@@ -1,0 +1,54 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   11th May 2006
+##--Update
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Master parameter file for Monte Carlo reaction event generator
+## Expected to reside in directory $acqu/data/
+## Radiative Pi0 photo production on the proton
+## Radiated photon energy from Breit-Wigner
+## To use invoke... MCGenerator GP_GPPi0.dat
+##-----------------------------------------------------------------------
+##		#events/run	Random seed	#runs
+Number-Throws:	500000		888888		10
+##
+## Baryon resonances
+##		Name	PDG code
+Resonance:	P33	2214
+##		Name	Peak Mass(GeV)	Width(GeV)
+Resonance:	S11	1.535		0.150
+##
+## Beam parameters
+##	Mass (GeV)	Source x,y,z (cm)
+Beam: 	0.0 		0.0 0.0 -500.
+## Beam Kinetic Energy	Form					min max  #pts 
+#P-Distr: Beam T-Dist	Uniform					0.3 0.5  200
+P-Distr: Beam T-Dist	1/x					0.3 0.5  200
+#P-Distr: Beam T-Dist	1/x*TMath::BreitWigner(x,0.294,0.12)	0.3 0.5  200
+## Beam Angle              Form                                 min max   #pts
+P-Distr: Beam Theta-Dist   Uniform				0.0 0.004 200
+#P-Distr: Beam Theta-Dist   TMath::Gaus(x,0.0,0.002)		0.0 0.004 200
+##
+##	Mass	Radius	Length	Center (x,y,z)
+Target: 0.938 	2.5	5.0   	0.0 0.0 0.0
+##
+## The reaction "particle"
+Particle: Delta_0	P33	1	0	NULL	Radiative
+##
+##	  Name		PDG	Decay?	Track?	Parent	Opt
+Particle: Delta_1	P33	1	0	Delta_0	NULL
+Particle  Gamma_0	22	0	1	Delta_0	NULL
+##
+## Primary Particles
+##	  Name		PDG	Decay?	Track?	Parent	Opt
+Particle: Pi0		111	1	0	Delta_1	NULL
+Particle: Proton       2212	0	1	Delta_1	NULL
+##
+## Secondary Particles
+Particle: Gamma_1	  22	0	1	Pi0	NULL
+Particle: Gamma_2	  22	0	1	Pi0	NULL
+##
+Tree-Output:    gp_gppi0_100k	2
+#Ntuple-Output: gp_gppi0_100k

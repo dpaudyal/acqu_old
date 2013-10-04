@@ -1,0 +1,40 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand    1st Jun 2005
+##--Update
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: MCsetup.dat
+## Master parameter file for Monte Carlo reaction event generator
+## Expected to reside in directory $acqu/data/
+## To use invoke... MCGenerator
+##-----------------------------------------------------------------------
+##
+Number-Throws: 100000	88888
+##
+## Hadronic resonance
+##		Name	Peak Mass(GeV)	Width(GeV)
+Resonance:	P33	2214
+##
+##   Mass Th-range  Emin Emax x   y    z    E distr.       Theta distr.  Res.
+Beam: 	22		0.0 0.0 -500.
+P-Distr: Beam T-Dist		1/x				0.145 0.445  300
+P-Distr: Beam Cos(Theta)	TMath::Gaus(x,1.0,0.000001)	0.9999975 1.0  200
+##
+Target: 0.938 2.5  5.0   0.0 0.0 0.0
+##
+## The reaction "particle"
+Particle: Delta		P33	1	0	NULL	NULL
+##
+## Primary Particles
+##	  Name		PDG	Decay?	Track?	Parent	Opt
+Particle: Pi0		111	1	0	Delta	NULL
+Particle: Proton       2212	0	1	Delta	NULL
+##
+## Secondary Particles
+Particle: Gamma_1	  22	0	1	Pi0	NULL
+Particle: Gamma_2	  22	0	1	Pi0	NULL
+##
+#Tree-Output: /scratch1/jrma/MCtest.root	2
+Ntuple-Output: acqumc/gp_ppi0

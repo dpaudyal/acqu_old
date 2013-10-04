@@ -1,0 +1,650 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@pcroot.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Sun Aug 11 12:18:02 2013            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>TDAQexperiment</title>
+<meta name="rating" content="General" />
+<meta name="objecttype" content="Manual" />
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers, cern" />
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis." />
+<link rel="stylesheet" type="text/css" href="ROOT.css" id="ROOTstyle" />
+<script type="text/javascript" src="ROOT.js"></script>
+</head>
+<body  onload="javascript:SetValuesFromCookie();"><div id="body_content">
+<div id="root_header"><img src="http://root.cern.ch/drupal/sites/default/files/rootdrawing-logo.png" alt="ROOT logo"/></div>
+<a name="TopOfPage"></a>
+<script type="text/javascript">WriteFollowPageBox('class TDAQexperiment','','/home/acqu/4v6/acqu/AcquDAQ/src/TDAQexperiment.h');</script>
+<div id="toplinks">
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Quick Links:</span>
+<a class="descrheadentry" href="http://root.cern.ch">ROOT Homepage</a>
+<a class="descrheadentry" href="./ClassIndex.html">Class Index</a>
+<a class="descrheadentry" href="./ClassHierarchy.html">Class Hierarchy</a></div>
+<script type="text/javascript">
+function onSearch() {
+var s='http://www.google.com/search?q=%s+site%3A%u+-site%3A%u%2Fsrc%2F+-site%3A%u%2Fexamples%2F';
+var ref=String(document.location.href).replace(/https?:\/\//,'').replace(/\/[^\/]*$/,'').replace(/\//g,'%2F');
+window.location.href=s.replace(/%u/ig,ref).replace(/%s/ig,escape(document.searchform.t.value));
+return false;}
+</script>
+<form id="searchform" name="searchform" onsubmit="return onSearch()" action="javascript:onSearch();" method="post">
+<input name="t" size="30" value="Search documentation..." onfocus="if (document.searchform.t.value=='Search documentation...') document.searchform.t.value='';"></input>
+<a id="searchlink"  title="www.google.com"  href="javascript:onSearch();" onclick="return onSearch()">Search</a></form>
+</div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Source:</span>
+<a class="descrheadentry" href="src/TDAQexperiment.h.html">header file</a>
+<a class="descrheadentry" href="src/TDAQexperiment.cxx.html">source file</a>
+<a class="descrheadentry" href="TDAQexperiment_Tree.pdf">inheritance tree (.pdf)</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquDAQ/src/TDAQexperiment.h?view=log">viewVC header</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquDAQ/src/TDAQexperiment.cc?view=log">viewVC source</a> 
+</div></div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Sections:</span>
+<a class="descrheadentry" href="#TDAQexperiment:description">class description</a> 
+<a class="descrheadentry" href="#TDAQexperiment:Function_Members">function members</a>
+<a class="descrheadentry" href="#TDAQexperiment:Data_Members">data members</a>
+<a class="descrheadentry" href="#TDAQexperiment:Class_Charts">class charts</a>
+</div></div>
+</div>
+<div class="location">
+<a class="locationlevel" href="index.html">(UNKNOWN PRODUCT)</a>
+ &#187; <a class="locationlevel" href="./HOME_Index.html">HOME</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_Index.html">4V6</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_ACQUDAQ_Index.html">ACQUDAQ</a>
+ &#187; <a class="locationlevel" href="#TopOfPage">TDAQexperiment</a>
+</div>
+<div class="dropshadow"><div class="withshadow"><h1><a name="TDAQexperiment:description"></a>class TDAQexperiment: public <a href="./TA2System.html">TA2System</a></h1>
+<div class="classdescr">
+</div>
+</div></div>
+
+<div id="functions">
+<h2><a id="TDAQexperiment:Function_Members"></a>Function Members (Methods)</h2>
+<div class="access" id="funcpubl"><b>public:</b>
+<table class="func" id="tabfuncpubl" cellspacing="0">
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:TDAQexperiment%1">TDAQexperiment</a>(<span class="keyword">const</span> <a href="./TDAQexperiment.html">TDAQexperiment</a>&amp;)</td></tr>
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:TDAQexperiment">TDAQexperiment</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./TAcquRoot.html">TAcquRoot</a>* = NULL, <a href="./ListOfTypes.html#Int_t">Int_t</a> = EExpInit0)</td></tr>
+<tr class="func"><td class="funcret"> virtual</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:_TDAQexperiment">~TDAQexperiment</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AbstractMethod"><span class="baseclass">TObject::</span>AbstractMethod</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:AddCmdList"><span class="baseclass">TA2System::</span>AddCmdList</a>(<span class="keyword">const</span> Map_t*)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:AddModule">AddModule</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AppendPad"><span class="baseclass">TObject::</span>AppendPad</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Browse"><span class="baseclass">TObject::</span>Browse</a>(TBrowser* b)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:BuildName"><span class="baseclass">TA2System::</span>BuildName</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:CheckName"><span class="baseclass">TA2System::</span>CheckName</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* name)</td></tr>
+<tr class="func"><td class="funcret">static TClass*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:Class">Class</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:ClassName"><span class="baseclass">TObject::</span>ClassName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Clear"><span class="baseclass">TNamed::</span>Clear</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TNamed:Clone"><span class="baseclass">TNamed::</span>Clone</a>(<span class="keyword">const</span> <span class="keyword">char</span>* newname = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:CommandConfig"><span class="baseclass">TA2System::</span>CommandConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Compare"><span class="baseclass">TNamed::</span>Compare</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Copy"><span class="baseclass">TNamed::</span>Copy</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>&amp; named) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Delete"><span class="baseclass">TObject::</span>Delete</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:DistancetoPrimitive"><span class="baseclass">TObject::</span>DistancetoPrimitive</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Draw"><span class="baseclass">TObject::</span>Draw</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DrawClass"><span class="baseclass">TObject::</span>DrawClass</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:DrawClone"><span class="baseclass">TObject::</span>DrawClone</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Dump"><span class="baseclass">TObject::</span>Dump</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Error"><span class="baseclass">TObject::</span>Error</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute"><span class="baseclass">TObject::</span>Execute</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute%1"><span class="baseclass">TObject::</span>Execute</a>(TMethod* method, TObjArray* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ExecuteEvent"><span class="baseclass">TObject::</span>ExecuteEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> event, <a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Fatal"><span class="baseclass">TObject::</span>Fatal</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:FileConfig"><span class="baseclass">TA2System::</span>FileConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:FillBuffer"><span class="baseclass">TNamed::</span>FillBuffer</a>(<span class="keyword">char</span>*&amp; buffer)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject%1"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">TList*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetADCList">GetADCList</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TAcquRoot.html">TAcquRoot</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetAR">GetAR</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetDataHeader">GetDataHeader</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetDataOutMode">GetDataOutMode</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetDrawOption"><span class="baseclass">TObject::</span>GetDrawOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Long_t">Long_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetDtorOnly"><span class="baseclass">TObject::</span>GetDtorOnly</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetFileName">GetFileName</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetIconName"><span class="baseclass">TObject::</span>GetIconName</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetInitLevel">GetInitLevel</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">ARFile_t*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetInputFile"><span class="baseclass">TA2System::</span>GetInputFile</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetIRQMod">GetIRQMod</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetIRQModName">GetIRQModName</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">ARFile_t*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetLogFile"><span class="baseclass">TA2System::</span>GetLogFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">FILE*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetLogStream"><span class="baseclass">TA2System::</span>GetLogStream</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetMapKey"><span class="baseclass">TA2System::</span>GetMapKey</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetMapString"><span class="baseclass">TA2System::</span>GetMapString</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="func"><td class="funcret">TList*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetModuleList">GetModuleList</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNADC">GetNADC</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNADCError">GetNADCError</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TNamed:GetName"><span class="baseclass">TNamed::</span>GetName</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNCtrl">GetNCtrl</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNEvent">GetNEvent</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNEventMax">GetNEventMax</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNModule">GetNModule</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNRec">GetNRec</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNRecMax">GetNRecMax</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNScaler">GetNScaler</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNScalerError">GetNScalerError</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetNSlowCtrl">GetNSlowCtrl</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetObjectInfo"><span class="baseclass">TObject::</span>GetObjectInfo</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetObjectStat"><span class="baseclass">TObject::</span>GetObjectStat</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetOption"><span class="baseclass">TObject::</span>GetOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">TA2RingBuffer*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetOutBuff">GetOutBuff</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetRecLen">GetRecLen</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetRingSize">GetRingSize</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetRunDesc">GetRunDesc</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetRunStart">GetRunStart</a>()</td></tr>
+<tr class="func"><td class="funcret">TList*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetScalerList">GetScalerList</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetScReadFreq">GetScReadFreq</a>()</td></tr>
+<tr class="func"><td class="funcret">TList*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetSlowCtrlList">GetSlowCtrlList</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetStartMod">GetStartMod</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetStartModName">GetStartModName</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TDAQstore.html">TDAQstore</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetStore">GetStore</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TDAQsupervise.html">TDAQsupervise</a>*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GetSupervise">GetSupervise</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TNamed:GetTitle"><span class="baseclass">TNamed::</span>GetTitle</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetUniqueID"><span class="baseclass">TObject::</span>GetUniqueID</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:GtSlCtrlFreq">GtSlCtrlFreq</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:HandleTimer"><span class="baseclass">TObject::</span>HandleTimer</a>(TTimer* timer)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#ULong_t">ULong_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Hash"><span class="baseclass">TNamed::</span>Hash</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IncADCError">IncADCError</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IncScalerError">IncScalerError</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Info"><span class="baseclass">TObject::</span>Info</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> <span class="keyword">char</span>* classname) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom%1"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> TClass* cl) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Inspect"><span class="baseclass">TObject::</span>Inspect</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:InvertBit"><span class="baseclass">TObject::</span>InvertBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="func"><td class="funcret">virtual TClass*</td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IsA">IsA</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IsCtrl">IsCtrl</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsEqual"><span class="baseclass">TObject::</span>IsEqual</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:IsError"><span class="baseclass">TA2System::</span>IsError</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsFolder"><span class="baseclass">TObject::</span>IsFolder</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:IsInit"><span class="baseclass">TA2System::</span>IsInit</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IsLocalAR">IsLocalAR</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IsMk2Format">IsMk2Format</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsOnHeap"><span class="baseclass">TObject::</span>IsOnHeap</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IsSlowCtrl">IsSlowCtrl</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:IsSortable"><span class="baseclass">TNamed::</span>IsSortable</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IsStore">IsStore</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:IsSwap">IsSwap</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsZombie"><span class="baseclass">TObject::</span>IsZombie</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:ls"><span class="baseclass">TNamed::</span>ls</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2Key"><span class="baseclass">TA2System::</span>Map2Key</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2Key%1"><span class="baseclass">TA2System::</span>Map2Key</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> Map_t**)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2String"><span class="baseclass">TA2System::</span>Map2String</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MayNotUse"><span class="baseclass">TObject::</span>MayNotUse</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Notify"><span class="baseclass">TObject::</span>Notify</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete%1"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]%1"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new%1"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]%1"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./#TNamed:TNamed" title="TNamed TNamed::TNamed() or overloads">TNamed</a>&amp;</td><td class="funcname"><a class="funcname" href="#TNamed:operator_"><span class="baseclass">TNamed::</span>operator=</a>(<span class="keyword">const</span> <a href="./#TNamed:TNamed" title="TNamed TNamed::TNamed() or overloads">TNamed</a>&amp; rhs)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Paint"><span class="baseclass">TObject::</span>Paint</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:ParseMisc"><span class="baseclass">TA2System::</span>ParseMisc</a>(<span class="keyword">char</span>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Pop"><span class="baseclass">TObject::</span>Pop</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:PostInit">PostInit</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:PostReset">PostReset</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Print"><span class="baseclass">TNamed::</span>Print</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Read"><span class="baseclass">TObject::</span>Read</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:RecursiveRemove"><span class="baseclass">TObject::</span>RecursiveRemove</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ResetBit"><span class="baseclass">TObject::</span>ResetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:RunDAQCtrl">RunDAQCtrl</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:RunIRQ">RunIRQ</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:RunSlowCtrl">RunSlowCtrl</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:RunStoreData">RunStoreData</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SaveAs"><span class="baseclass">TObject::</span>SaveAs</a>(<span class="keyword">const</span> <span class="keyword">char</span>* filename = <span class="string">""</span>, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SavePrimitive"><span class="baseclass">TObject::</span>SavePrimitive</a>(basic_ostream&lt;<span class="keyword">char</span>,char_traits&lt;<span class="keyword">char</span>&gt; &gt;&amp; out, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit%1"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f, <a href="./ListOfTypes.html#Bool_t">Bool_t</a> set)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:SetConfig">SetConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDrawOption"><span class="baseclass">TObject::</span>SetDrawOption</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDtorOnly"><span class="baseclass">TObject::</span>SetDtorOnly</a>(<span class="keyword">void</span>* obj)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetLogFile"><span class="baseclass">TA2System::</span>SetLogFile</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetLogStream"><span class="baseclass">TA2System::</span>SetLogStream</a>(FILE* str)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetName"><span class="baseclass">TNamed::</span>SetName</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetNameTitle"><span class="baseclass">TNamed::</span>SetNameTitle</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name, <span class="keyword">const</span> <span class="keyword">char</span>* title)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetObjectStat"><span class="baseclass">TObject::</span>SetObjectStat</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> stat)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetTitle"><span class="baseclass">TNamed::</span>SetTitle</a>(<span class="keyword">const</span> <span class="keyword">char</span>* title = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetUniqueID"><span class="baseclass">TObject::</span>SetUniqueID</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> uid)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:ShowMembers">ShowMembers</a>(TMemberInspector&amp; insp)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Sizeof"><span class="baseclass">TNamed::</span>Sizeof</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:StartExperiment">StartExperiment</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:StoreBuffer">StoreBuffer</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* buffData)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:StoreEvent">StoreEvent</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* evPos)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:Streamer">Streamer</a>(TBuffer&amp; b)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:StreamerNVirtual">StreamerNVirtual</a>(TBuffer&amp; b)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SysError"><span class="baseclass">TObject::</span>SysError</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBit"><span class="baseclass">TObject::</span>TestBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBits"><span class="baseclass">TObject::</span>TestBits</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:UseCurrentStyle"><span class="baseclass">TObject::</span>UseCurrentStyle</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Warning"><span class="baseclass">TObject::</span>Warning</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write%1"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQexperiment:ZeroNEvent">ZeroNEvent</a>()</td></tr>
+
+</table></div>
+<div class="access" id="funcprot"><b>protected:</b>
+<table class="func" id="tabfuncprot" cellspacing="0">
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:BaseInit"><span class="baseclass">TA2System::</span>BaseInit</a>(<span class="keyword">const</span> Map_t*, <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DoError"><span class="baseclass">TObject::</span>DoError</a>(<span class="keyword">int</span> level, <span class="keyword">const</span> <span class="keyword">char</span>* location, <span class="keyword">const</span> <span class="keyword">char</span>* fmt, va_list va) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MakeZombie"><span class="baseclass">TObject::</span>MakeZombie</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PrintError"><span class="baseclass">TA2System::</span>PrintError</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <a href="./ListOfTypes.html#Int_t">Int_t</a> = EErrNonFatal)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PrintMessage"><span class="baseclass">TA2System::</span>PrintMessage</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+
+</table></div>
+</div>
+
+<div id="datamembers">
+<h2><a name="TDAQexperiment:Data_Members"></a>Data Members</h2>
+<div class="access" id="enumpubl"><b>public:</b>
+<table class="data" id="tabenumpubl" cellspacing="0">
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span>EStatusBits { </td><td class="dataname"><a href="#TObject:kCanDelete">kCanDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kMustCleanup">kMustCleanup</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kObjInCanvas">kObjInCanvas</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kIsReferenced">kIsReferenced</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kHasUUID">kHasUUID</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kCannotPick">kCannotPick</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNoContextMenu">kNoContextMenu</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kInvalidObject">kInvalidObject</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span><i>[unnamed]</i> { </td><td class="dataname"><a href="#TObject:kIsOnHeap">kIsOnHeap</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNotDeleted">kNotDeleted</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kZombie">kZombie</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kBitMask">kBitMask</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kSingleKey">kSingleKey</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kOverwrite">kOverwrite</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kWriteDelete">kWriteDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+
+</table></div>
+<div class="access" id="dataprot"><b>protected:</b>
+<table class="data" id="tabdataprot" cellspacing="0">
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TDAQexperiment:fADCList"></a>fADCList</td><td class="datadesc">linked list all ADCs</td></tr>
+<tr class="data"><td class="datatype"><a href="./TAcquRoot.html">TAcquRoot</a>*</td><td class="dataname"><a name="TDAQexperiment:fAR"></a>fAR</td><td class="datadesc">AcquRoot analyser</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TDAQexperiment:fCATCHList"></a>fCATCHList</td><td class="datadesc">linked list of all CATCH modules</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TDAQexperiment:fCtrlList"></a>fCtrlList</td><td class="datadesc">linked list of all hardware controllers</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="dataname"><a name="TDAQexperiment:fCtrlMod"></a>fCtrlMod</td><td class="datadesc">current control module</td></tr>
+<tr class="data"><td class="datatype">TThread*</td><td class="dataname"><a name="TDAQexperiment:fDAQCtrlThread"></a>fDAQCtrlThread</td><td class="datadesc">control input as separate thread</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="dataname"><a name="TDAQexperiment:fDataHeader"></a>fDataHeader</td><td class="datadesc">data header either Mk2 or Mk1</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fDataOutMode"></a>fDataOutMode</td><td class="datadesc">mode of data output</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TDAQexperiment:fEventBuff"></a>fEventBuff</td><td class="datadesc">holds a single event</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="dataname"><a name="TDAQexperiment:fEventSendMod"></a>fEventSendMod</td><td class="datadesc">module to send event ID to remote</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TDAQexperiment:fEventSendModName"></a>fEventSendModName</td><td class="datadesc">name of module which sends event ID</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a></td><td class="dataname"><a name="TDAQexperiment:fFileName"></a>fFileName[128]</td><td class="datadesc">file name basis</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="dataname"><a name="TDAQexperiment:fIRQMod"></a>fIRQMod</td><td class="datadesc">-&gt; IRQ control hardware</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TDAQexperiment:fIRQModName"></a>fIRQModName</td><td class="datadesc">name of Interrupt control module</td></tr>
+<tr class="data"><td class="datatype">TThread*</td><td class="dataname"><a name="TDAQexperiment:fIRQThread"></a>fIRQThread</td><td class="datadesc">per-event readout as separate thread</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fInitLevel"></a>fInitLevel</td><td class="datadesc">hardware initialisation</td></tr>
+<tr class="datainh"><td class="datatype">ARFile_t*</td><td class="dataname"><a href="./TA2System.html#TA2System:fInputFile"><span class="baseclass">TA2System::</span>fInputFile</a></td><td class="datadesc">config input file if any</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsConfigPass"><span class="baseclass">TA2System::</span>fIsConfigPass</a></td><td class="datadesc">depreciated config handler</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQexperiment:fIsCtrl"></a>fIsCtrl</td><td class="datadesc">DAQ control enabled (run start/stop)?</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsError"><span class="baseclass">TA2System::</span>fIsError</a></td><td class="datadesc">any setup errors?</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsInit"><span class="baseclass">TA2System::</span>fIsInit</a></td><td class="datadesc">initialisation complete?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQexperiment:fIsLocalAR"></a>fIsLocalAR</td><td class="datadesc">DAQ is run as thread of AcquRoot</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQexperiment:fIsSlowCtrl"></a>fIsSlowCtrl</td><td class="datadesc">any slow-control functions?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQexperiment:fIsStore"></a>fIsStore</td><td class="datadesc">Data storage enabled?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQexperiment:fIsSwap"></a>fIsSwap</td><td class="datadesc">byte-swap data? big/little endian</td></tr>
+<tr class="datainh"><td class="datatype">ARFile_t*</td><td class="dataname"><a href="./TA2System.html#TA2System:fLogFile"><span class="baseclass">TA2System::</span>fLogFile</a></td><td class="datadesc">diagnostic log file</td></tr>
+<tr class="datainh"><td class="datatype">FILE*</td><td class="dataname"><a href="./TA2System.html#TA2System:fLogStream"><span class="baseclass">TA2System::</span>fLogStream</a></td><td class="datadesc">file ptr for logging output</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TDAQexperiment:fModuleList"></a>fModuleList</td><td class="datadesc">linked list all DAQ modules</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNADC"></a>fNADC</td><td class="datadesc"># ADCs</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNADCError"></a>fNADCError</td><td class="datadesc"># detected ADC errors</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNCtrl"></a>fNCtrl</td><td class="datadesc"># controllers</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="dataname"><a name="TDAQexperiment:fNEvent"></a>fNEvent</td><td class="datadesc">event number</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="dataname"><a name="TDAQexperiment:fNEventMax"></a>fNEventMax</td><td class="datadesc">maximum number of events</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNModule"></a>fNModule</td><td class="datadesc">total # hardware modules</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNRec"></a>fNRec</td><td class="datadesc"># records in file</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNRecMax"></a>fNRecMax</td><td class="datadesc">max # records in file</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNScaler"></a>fNScaler</td><td class="datadesc"># Scalers</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNScalerError"></a>fNScalerError</td><td class="datadesc"># detected scaler errors</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fNSlowCtrl"></a>fNSlowCtrl</td><td class="datadesc"># slow control "modules"</td></tr>
+<tr class="datainh"><td class="datatype">TString</td><td class="dataname"><a href="#TNamed:fName"><span class="baseclass">TNamed::</span>fName</a></td><td class="datadesc">object identifier</td></tr>
+<tr class="data"><td class="datatype">TA2RingBuffer*</td><td class="dataname"><a name="TDAQexperiment:fOutBuff"></a>fOutBuff</td><td class="datadesc">output data buffer</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fRecLen"></a>fRecLen</td><td class="datadesc">no. of bytes in record</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fRingSize"></a>fRingSize</td><td class="datadesc"># elements in ring buffer</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a></td><td class="dataname"><a name="TDAQexperiment:fRunDesc"></a>fRunDesc[256]</td><td class="datadesc">run description</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fRunStart"></a>fRunStart</td><td class="datadesc">starting run number</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fScReadFreq"></a>fScReadFreq</td><td class="datadesc">scaler read frequency (events)</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TDAQexperiment:fScalerList"></a>fScalerList</td><td class="datadesc">linked list all scalers</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fSlCtrlFreq"></a>fSlCtrlFreq</td><td class="datadesc">slow control scan frequency (events)</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TDAQexperiment:fSlowCtrlList"></a>fSlowCtrlList</td><td class="datadesc">linked list of all slow control </td></tr>
+<tr class="data"><td class="datatype">TThread*</td><td class="dataname"><a name="TDAQexperiment:fSlowCtrlThread"></a>fSlowCtrlThread</td><td class="datadesc">slow-control as separate thread</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="dataname"><a name="TDAQexperiment:fStartMod"></a>fStartMod</td><td class="datadesc">-&gt; trigger start/stop hardware</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TDAQexperiment:fStartModName"></a>fStartModName</td><td class="datadesc">name of Trigger start/stop module</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fStartSettleDelay"></a>fStartSettleDelay</td><td class="datadesc">delay usec after any TCS/CATCH reset</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQstore.html">TDAQstore</a>*</td><td class="dataname"><a name="TDAQexperiment:fStore"></a>fStore</td><td class="datadesc">data storage</td></tr>
+<tr class="data"><td class="datatype">TThread*</td><td class="dataname"><a name="TDAQexperiment:fStoreDataThread"></a>fStoreDataThread</td><td class="datadesc">data storage as separate thread</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQsupervise.html">TDAQsupervise</a>*</td><td class="dataname"><a name="TDAQexperiment:fSupervise"></a>fSupervise</td><td class="datadesc">DAQ system supervision</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQexperiment:fSynchIndex"></a>fSynchIndex</td><td class="datadesc">"adc index" of synchronisation value</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="dataname"><a name="TDAQexperiment:fSynchMod"></a>fSynchMod</td><td class="datadesc">-&gt; event synchronisation hardware</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TDAQexperiment:fSynchModName"></a>fSynchModName</td><td class="datadesc">name of Event synchronisation module</td></tr>
+<tr class="datainh"><td class="datatype">TString</td><td class="dataname"><a href="#TNamed:fTitle"><span class="baseclass">TNamed::</span>fTitle</a></td><td class="datadesc">object title</td></tr>
+
+</table></div>
+</div>
+<h2><a id="TDAQexperiment:Class_Charts"></a>Class Charts</h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%"><a href="ClassHierarchy.html">Inheritance Chart</a>:</td></tr><tr class="inhtree"><td width="10%"></td><td width="70%"><table class="inhtree"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td><table><tr>
+<td bgcolor="#efefef" align="right">
+<tt>TNamed</tt></td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><tt><a name="TA2System" href="./TA2System.html">TA2System</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><big><b><tt><a name="TDAQexperiment" href="./TDAQexperiment.html">TDAQexperiment</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<h2>Function documentation</h2>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TDAQexperiment:TDAQexperiment" href="src/TDAQexperiment.cxx.html#J60zJC">TDAQexperiment</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./TAcquRoot.html">TAcquRoot</a>*  = NULL, <a href="./ListOfTypes.html#Int_t">Int_t</a>  = EExpInit0)</span><br />
+<div class="funccomm"><pre> Base initialisation of DAQ object
+ Setup input config stream if file name supplied
+ Save log output stream....use standard out (tty) if not supplied
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TDAQexperiment:_TDAQexperiment" href="src/TDAQexperiment.cxx.html#yzqtpE">~TDAQexperiment</a>()</span><br />
+<div class="funccomm"><pre> Tidy up memory and opened files
+ incomplete...
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:SetConfig" href="src/TDAQexperiment.cxx.html#lVRNW">SetConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a> )</span><br />
+<div class="funccomm"><pre> DAQ configuration from a line of text (file or tty)
+ The line is already parsed for a keyword, which sets key
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:PostInit" href="src/TDAQexperiment.cxx.html#MTzaGB">PostInit</a>()</span><br />
+<div class="funccomm"><pre> Call <a href="./TDAQexperiment.html#TDAQexperiment:PostInit" title="void TDAQexperiment::PostInit()">PostInit</a> procedures of all modules (if any)
+ Check for interrupt and trigger start/stop modules
+ Setup DAQ supervisor and data storage
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:AddModule" href="src/TDAQexperiment.cxx.html#YJCQtB">AddModule</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> Setup software control of particular piece of hardware
+ Add it to the experimental list
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:StartExperiment" href="src/TDAQexperiment.cxx.html#vezCgD">StartExperiment</a>()</span><br />
+<div class="funccomm"><pre> Start the various threads which comprise the DAQ system running
+ but may produce an occasional message.
+ 1st data storage (if enabled)
+ 2nd slow-control functions (if enabled)
+ 3rd interrupt-driven readout (if enabled)
+ Then start the superviser command loop for control of the DAQ
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:RunIRQ" href="src/TDAQexperiment.cxx.html#havI2B">RunIRQ</a>()</span><br />
+<div class="funccomm"><pre> Event-by-event readout of data
+ 1/9/10 if running slave mode call <a href="./TDAQexperiment.html#TDAQexperiment:fSupervise" title="TDAQsupervise* TDAQexperiment::fSupervise">fSupervise</a>-><a href="./TDAQsupervise.html#TDAQsupervise:ExecAutoStart" title="void TDAQsupervise::ExecAutoStart()">ExecAutoStart</a>()
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:RunSlowCtrl" href="src/TDAQexperiment.cxx.html#Pt45oC">RunSlowCtrl</a>()</span><br />
+<div class="funccomm"><pre> Event-by-event readout of data
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:RunDAQCtrl" href="src/TDAQexperiment.cxx.html#rYmMqE">RunDAQCtrl</a>()</span><br />
+<div class="funccomm"><pre> Command loop
+  <a href="./TDAQexperiment.html#TDAQexperiment:fIsCtrl" title="Bool_t TDAQexperiment::fIsCtrl">fIsCtrl</a> = <a href="./ListOfTypes.html#Bool_t">kTRUE</a>;
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:RunStoreData" href="src/TDAQexperiment.cxx.html#wh7grC">RunStoreData</a>()</span><br />
+<div class="funccomm"><pre> Storage of data buffers.
+ Set flag for storage running
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:PostReset" href="src/TDAQexperiment.cxx.html#D9.j1">PostReset</a>()</span><br />
+<div class="funccomm"><pre> Perform any necessary actions after a general reset of the system
+ e.g. reset of the trigger control system, or after starting run
+ Check 1st for CATCH stuff
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:StoreEvent" href="src/TDAQexperiment.h.html#iw2UnC">StoreEvent</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* evPos)</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:StoreBuffer" href="src/TDAQexperiment.h.html#g.pjwB">StoreBuffer</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* buffData)</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TDAQexperiment:TDAQexperiment" href="src/TDAQexperiment.h.html#QbMpXB">TDAQexperiment</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./TAcquRoot.html">TAcquRoot</a>*  = NULL, <a href="./ListOfTypes.html#Int_t">Int_t</a>  = EExpInit0)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:ZeroNEvent" href="src/TDAQexperiment.h.html#jXs5p">ZeroNEvent</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TDAQexperiment.html#TDAQexperiment:fNEvent" title="UInt_t TDAQexperiment::fNEvent">fNEvent</a> = 0; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a> <a class="funcname" name="TDAQexperiment:GetNEvent" href="src/TDAQexperiment.h.html#FpYnjE">GetNEvent</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNEvent" title="UInt_t TDAQexperiment::fNEvent">fNEvent</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a> <a class="funcname" name="TDAQexperiment:GetNEventMax" href="src/TDAQexperiment.h.html#iMG4ZB">GetNEventMax</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNEventMax" title="UInt_t TDAQexperiment::fNEventMax">fNEventMax</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TAcquRoot.html">TAcquRoot</a>* <a class="funcname" name="TDAQexperiment:GetAR" href="src/TDAQexperiment.h.html#Wk8vaE">GetAR</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fAR" title="TAcquRoot* TDAQexperiment::fAR">fAR</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TDAQsupervise.html">TDAQsupervise</a>* <a class="funcname" name="TDAQexperiment:GetSupervise" href="src/TDAQexperiment.h.html#KZtwfD">GetSupervise</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fSupervise" title="TDAQsupervise* TDAQexperiment::fSupervise">fSupervise</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TDAQstore.html">TDAQstore</a>* <a class="funcname" name="TDAQexperiment:GetStore" href="src/TDAQexperiment.h.html#APGkwD">GetStore</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fStore" title="TDAQstore* TDAQexperiment::fStore">fStore</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TList* <a class="funcname" name="TDAQexperiment:GetModuleList" href="src/TDAQexperiment.h.html#ft58EB">GetModuleList</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fModuleList" title="TList* TDAQexperiment::fModuleList">fModuleList</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TList* <a class="funcname" name="TDAQexperiment:GetADCList" href="src/TDAQexperiment.h.html#KJRV.C">GetADCList</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fADCList" title="TList* TDAQexperiment::fADCList">fADCList</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TList* <a class="funcname" name="TDAQexperiment:GetScalerList" href="src/TDAQexperiment.h.html#dGF2SC">GetScalerList</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fScalerList" title="TList* TDAQexperiment::fScalerList">fScalerList</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TList* <a class="funcname" name="TDAQexperiment:GetSlowCtrlList" href="src/TDAQexperiment.h.html#M.amf">GetSlowCtrlList</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fSlowCtrlList" title="TList* TDAQexperiment::fSlowCtrlList">fSlowCtrlList</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TA2RingBuffer* <a class="funcname" name="TDAQexperiment:GetOutBuff" href="src/TDAQexperiment.h.html#G3R.MC">GetOutBuff</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fOutBuff" title="TA2RingBuffer* TDAQexperiment::fOutBuff">fOutBuff</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQexperiment:GetIRQModName" href="src/TDAQexperiment.h.html#Z503vB">GetIRQModName</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fIRQModName" title="Char_t* TDAQexperiment::fIRQModName">fIRQModName</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQexperiment:GetStartModName" href="src/TDAQexperiment.h.html#khlPnD">GetStartModName</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fStartModName" title="Char_t* TDAQexperiment::fStartModName">fStartModName</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQexperiment:GetRunDesc" href="src/TDAQexperiment.h.html#GCjdgB">GetRunDesc</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fRunDesc" title="Char_t TDAQexperiment::fRunDesc">fRunDesc</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQexperiment:GetFileName" href="src/TDAQexperiment.h.html#NedbbB">GetFileName</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fFileName" title="Char_t TDAQexperiment::fFileName">fFileName</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TDAQmodule.html">TDAQmodule</a>* <a class="funcname" name="TDAQexperiment:GetIRQMod" href="src/TDAQexperiment.h.html#UBhqkC">GetIRQMod</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fIRQMod" title="TDAQmodule* TDAQexperiment::fIRQMod">fIRQMod</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TDAQmodule.html">TDAQmodule</a>* <a class="funcname" name="TDAQexperiment:GetStartMod" href="src/TDAQexperiment.h.html#miNBJ">GetStartMod</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fStartMod" title="TDAQmodule* TDAQexperiment::fStartMod">fStartMod</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetRunStart" href="src/TDAQexperiment.h.html#TDxfNC">GetRunStart</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fRunStart" title="Int_t TDAQexperiment::fRunStart">fRunStart</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNModule" href="src/TDAQexperiment.h.html#qZrQZB">GetNModule</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNModule" title="Int_t TDAQexperiment::fNModule">fNModule</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNADC" href="src/TDAQexperiment.h.html#B4IJYC">GetNADC</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNADC" title="Int_t TDAQexperiment::fNADC">fNADC</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNScaler" href="src/TDAQexperiment.h.html#HVBJ1B">GetNScaler</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNScaler" title="Int_t TDAQexperiment::fNScaler">fNScaler</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNCtrl" href="src/TDAQexperiment.h.html#bin.sD">GetNCtrl</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNSlowCtrl" title="Int_t TDAQexperiment::fNSlowCtrl">fNSlowCtrl</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNSlowCtrl" href="src/TDAQexperiment.h.html#FQBrV">GetNSlowCtrl</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNSlowCtrl" title="Int_t TDAQexperiment::fNSlowCtrl">fNSlowCtrl</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetDataOutMode" href="src/TDAQexperiment.h.html#x2LffD">GetDataOutMode</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fDataOutMode" title="Int_t TDAQexperiment::fDataOutMode">fDataOutMode</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetScReadFreq" href="src/TDAQexperiment.h.html#XoHyEE">GetScReadFreq</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fScReadFreq" title="Int_t TDAQexperiment::fScReadFreq">fScReadFreq</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GtSlCtrlFreq" href="src/TDAQexperiment.h.html#T_Pzs">GtSlCtrlFreq</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fSlCtrlFreq" title="Int_t TDAQexperiment::fSlCtrlFreq">fSlCtrlFreq</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetRingSize" href="src/TDAQexperiment.h.html#iEaKr">GetRingSize</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fRingSize" title="Int_t TDAQexperiment::fRingSize">fRingSize</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetRecLen" href="src/TDAQexperiment.h.html#Bjw79C">GetRecLen</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fRecLen" title="Int_t TDAQexperiment::fRecLen">fRecLen</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNRec" href="src/TDAQexperiment.h.html#ht86wB">GetNRec</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNRec" title="Int_t TDAQexperiment::fNRec">fNRec</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNRecMax" href="src/TDAQexperiment.h.html#PZ4YtE">GetNRecMax</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNRecMax" title="Int_t TDAQexperiment::fNRecMax">fNRecMax</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetInitLevel" href="src/TDAQexperiment.h.html#y5zZzC">GetInitLevel</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fInitLevel" title="Int_t TDAQexperiment::fInitLevel">fInitLevel</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a> <a class="funcname" name="TDAQexperiment:GetDataHeader" href="src/TDAQexperiment.h.html#JvUDYB">GetDataHeader</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fDataHeader" title="UInt_t TDAQexperiment::fDataHeader">fDataHeader</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNADCError" href="src/TDAQexperiment.h.html#q9PKkD">GetNADCError</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNADCError" title="Int_t TDAQexperiment::fNADCError">fNADCError</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQexperiment:GetNScalerError" href="src/TDAQexperiment.h.html#TSG3qC">GetNScalerError</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fNScalerError" title="Int_t TDAQexperiment::fNScalerError">fNScalerError</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQexperiment:IsMk2Format" href="src/TDAQexperiment.h.html#yE7B6D">IsMk2Format</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQexperiment:IsSwap" href="src/TDAQexperiment.h.html#NI_VND">IsSwap</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fIsSwap" title="Bool_t TDAQexperiment::fIsSwap">fIsSwap</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQexperiment:IsSlowCtrl" href="src/TDAQexperiment.h.html#vnYoAB">IsSlowCtrl</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fIsSlowCtrl" title="Bool_t TDAQexperiment::fIsSlowCtrl">fIsSlowCtrl</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQexperiment:IsCtrl" href="src/TDAQexperiment.h.html#NgxB9C">IsCtrl</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fIsCtrl" title="Bool_t TDAQexperiment::fIsCtrl">fIsCtrl</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQexperiment:IsStore" href="src/TDAQexperiment.h.html#lG.N9">IsStore</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fIsStore" title="Bool_t TDAQexperiment::fIsStore">fIsStore</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQexperiment:IsLocalAR" href="src/TDAQexperiment.h.html#IrK0EE">IsLocalAR</a>()</span><br />
+<div class="funccomm"><pre>  <a href="./ListOfTypes.html#Bool_t">Bool_t</a> IsTrigCtrl(){ return fIsTrigCtrl; }
+  <a href="./ListOfTypes.html#void">void</a> SetTrigCtrl(){ fIsTrigCtrl = <a href="./ListOfTypes.html#Bool_t">kTRUE</a>; }
+</pre></div>
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQexperiment.html#TDAQexperiment:fIsLocalAR" title="Bool_t TDAQexperiment::fIsLocalAR">fIsLocalAR</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:IncADCError" href="src/TDAQexperiment.h.html#cBpI0B">IncADCError</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TDAQexperiment.html#TDAQexperiment:fNADCError" title="Int_t TDAQexperiment::fNADCError">fNADCError</a>++; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQexperiment:IncScalerError" href="src/TDAQexperiment.h.html#JsuHwE">IncScalerError</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TDAQexperiment.html#TDAQexperiment:fNScalerError" title="Int_t TDAQexperiment::fNScalerError">fNScalerError</a>++; }</code></div>
+<div style="clear:both;"></div>
+</div>
+
+<br />
+<!--SIGNATURE-->
+<div id="footer">
+
+<em>&raquo; Last changed:       JRM Annand    2nd Sep 2012  Add fEventSendMod..event ID send </em><em>&raquo; Last generated: 2013-08-11 12:18</em><br />
+<em>This page has been automatically generated. For comments or suggestions regarding the documentation or ROOT in general please send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>.</em>
+</div>
+</div>
+</body>
+</html>

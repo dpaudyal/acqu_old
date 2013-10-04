@@ -1,0 +1,860 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@pcroot.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Sun Aug 11 12:17:59 2013            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>TA2Particle</title>
+<meta name="rating" content="General" />
+<meta name="objecttype" content="Manual" />
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers, cern" />
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis." />
+<link rel="stylesheet" type="text/css" href="ROOT.css" id="ROOTstyle" />
+<script type="text/javascript" src="ROOT.js"></script>
+</head>
+<body  onload="javascript:SetValuesFromCookie();"><div id="body_content">
+<div id="root_header"><img src="http://root.cern.ch/drupal/sites/default/files/rootdrawing-logo.png" alt="ROOT logo"/></div>
+<a name="TopOfPage"></a>
+<script type="text/javascript">WriteFollowPageBox('class TA2Particle','','/home/acqu/4v6/acqu/AcquRoot/src/TA2Particle.h');</script>
+<div id="toplinks">
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Quick Links:</span>
+<a class="descrheadentry" href="http://root.cern.ch">ROOT Homepage</a>
+<a class="descrheadentry" href="./ClassIndex.html">Class Index</a>
+<a class="descrheadentry" href="./ClassHierarchy.html">Class Hierarchy</a></div>
+<script type="text/javascript">
+function onSearch() {
+var s='http://www.google.com/search?q=%s+site%3A%u+-site%3A%u%2Fsrc%2F+-site%3A%u%2Fexamples%2F';
+var ref=String(document.location.href).replace(/https?:\/\//,'').replace(/\/[^\/]*$/,'').replace(/\//g,'%2F');
+window.location.href=s.replace(/%u/ig,ref).replace(/%s/ig,escape(document.searchform.t.value));
+return false;}
+</script>
+<form id="searchform" name="searchform" onsubmit="return onSearch()" action="javascript:onSearch();" method="post">
+<input name="t" size="30" value="Search documentation..." onfocus="if (document.searchform.t.value=='Search documentation...') document.searchform.t.value='';"></input>
+<a id="searchlink"  title="www.google.com"  href="javascript:onSearch();" onclick="return onSearch()">Search</a></form>
+</div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Source:</span>
+<a class="descrheadentry" href="src/TA2Particle.h.html">header file</a>
+<a class="descrheadentry" href="src/TA2Particle.cxx.html">source file</a>
+<a class="descrheadentry" href="TA2Particle_Tree.pdf">inheritance tree (.pdf)</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquRoot/src/TA2Particle.h?view=log">viewVC header</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquRoot/src/TA2Particle.cc?view=log">viewVC source</a> 
+</div></div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Sections:</span>
+<a class="descrheadentry" href="#TA2Particle:description">class description</a> 
+<a class="descrheadentry" href="#TA2Particle:Function_Members">function members</a>
+<a class="descrheadentry" href="#TA2Particle:Data_Members">data members</a>
+<a class="descrheadentry" href="#TA2Particle:Class_Charts">class charts</a>
+</div></div>
+</div>
+<div class="location">
+<a class="locationlevel" href="index.html">(UNKNOWN PRODUCT)</a>
+ &#187; <a class="locationlevel" href="./HOME_Index.html">HOME</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_Index.html">4V6</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_ACQUROOT_Index.html">ACQUROOT</a>
+ &#187; <a class="locationlevel" href="#TopOfPage">TA2Particle</a>
+</div>
+<div class="dropshadow"><div class="withshadow"><h1><a name="TA2Particle:description"></a>class TA2Particle: public TObject</h1>
+<div class="classdescr">
+<pre>--Description
+                *** Acqu++ &lt;-&gt; Root ***
+ Online/Offline Analysis of Sub-Atomic Physics Experimental Data
+
+ <a href="./TA2Particle.html">TA2Particle</a>
+
+ Interface class for particle information transfer between &lt;<a href="./TA2Apparatus.html">TA2Apparatus</a>&gt;
+ and &lt;<a href="./TA2Physics.html">TA2Physics</a>&gt;
+</pre></div>
+</div></div>
+
+<div id="functions">
+<h2><a id="TA2Particle:Function_Members"></a>Function Members (Methods)</h2>
+<div class="access" id="funcpubl"><b>public:</b>
+<table class="func" id="tabfuncpubl" cellspacing="0">
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TA2Particle:TA2Particle">TA2Particle</a>()</td></tr>
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TA2Particle:TA2Particle%1">TA2Particle</a>(TDatabasePDG* pPDG)</td></tr>
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TA2Particle:TA2Particle%2">TA2Particle</a>(<span class="keyword">const</span> <a href="./TA2Particle.html">TA2Particle</a>&amp;)</td></tr>
+<tr class="func"><td class="funcret"> virtual</td><td class="funcname"><a class="funcname" href="#TA2Particle:_TA2Particle">~TA2Particle</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AbstractMethod"><span class="baseclass">TObject::</span>AbstractMethod</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2Particle.html">TA2Particle</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:Add">Add</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2Particle.html">TA2Particle</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:Add%1">Add</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2Particle.html">TA2Particle</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:Add%2">Add</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle1, <a href="./TA2Particle.html">TA2Particle</a> pParticle2)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2Particle.html">TA2Particle</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:Add%3">Add</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle1, <a href="./TA2Particle.html">TA2Particle</a>* pParticle2)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2Particle.html">TA2Particle</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:Add%4">Add</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle1, <a href="./TA2Particle.html">TA2Particle</a>* pParticle2)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2Particle.html">TA2Particle</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:Add%5">Add</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle1, <a href="./TA2Particle.html">TA2Particle</a> pParticle2)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2Particle.html">TA2Particle</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:Add%6">Add</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticles, <a href="./ListOfTypes.html#Int_t">Int_t</a> pNumber)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AppendPad"><span class="baseclass">TObject::</span>AppendPad</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Browse"><span class="baseclass">TObject::</span>Browse</a>(TBrowser* b)</td></tr>
+<tr class="func"><td class="funcret">static TClass*</td><td class="funcname"><a class="funcname" href="#TA2Particle:Class">Class</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:ClassName"><span class="baseclass">TObject::</span>ClassName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Clear"><span class="baseclass">TObject::</span>Clear</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:Clone"><span class="baseclass">TObject::</span>Clone</a>(<span class="keyword">const</span> <span class="keyword">char</span>* newname = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Compare"><span class="baseclass">TObject::</span>Compare</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Copy"><span class="baseclass">TObject::</span>Copy</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>&amp; object) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Delete"><span class="baseclass">TObject::</span>Delete</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:DistancetoPrimitive"><span class="baseclass">TObject::</span>DistancetoPrimitive</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Draw"><span class="baseclass">TObject::</span>Draw</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DrawClass"><span class="baseclass">TObject::</span>DrawClass</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:DrawClone"><span class="baseclass">TObject::</span>DrawClone</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Dump"><span class="baseclass">TObject::</span>Dump</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Error"><span class="baseclass">TObject::</span>Error</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute"><span class="baseclass">TObject::</span>Execute</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute%1"><span class="baseclass">TObject::</span>Execute</a>(TMethod* method, TObjArray* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ExecuteEvent"><span class="baseclass">TObject::</span>ExecuteEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> event, <a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Fatal"><span class="baseclass">TObject::</span>Fatal</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">HitCluster_t*</td><td class="funcname"><a class="funcname" href="#TA2Particle:FindCluster">FindCluster</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject%1"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngle">GetAngle</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngle%1">GetAngle</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngle%2">GetAngle</a>(TLorentzVector pP4)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngle%3">GetAngle</a>(TLorentzVector* pP4)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngle%4">GetAngle</a>(TVector3 pVect)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngle%5">GetAngle</a>(TVector3* pVect)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngleDg">GetAngleDg</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngleDg%1">GetAngleDg</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngleDg%2">GetAngleDg</a>(TLorentzVector pP4)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngleDg%3">GetAngleDg</a>(TLorentzVector* pP4)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngleDg%4">GetAngleDg</a>(TVector3 pVect)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetAngleDg%5">GetAngleDg</a>(TVector3* pVect)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetApparati">GetApparati</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetCentralIndex">GetCentralIndex</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetCircDegree">GetCircDegree</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetCircState">GetCircState</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetClusterSize">GetClusterSize</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetDetectors">GetDetectors</a>()</td></tr>
+<tr class="func"><td class="funcret">TVector3</td><td class="funcname"><a class="funcname" href="#TA2Particle:GetDirection">GetDirection</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetDrawOption"><span class="baseclass">TObject::</span>GetDrawOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Long_t">Long_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetDtorOnly"><span class="baseclass">TObject::</span>GetDtorOnly</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetE">GetE</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetEnergy">GetEnergy</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetIconName"><span class="baseclass">TObject::</span>GetIconName</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetKinetic">GetKinetic</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetLinDegree">GetLinDegree</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetLinState">GetLinState</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetM">GetM</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetMass">GetMass</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetMomentum">GetMomentum</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetName"><span class="baseclass">TObject::</span>GetName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetObjectInfo"><span class="baseclass">TObject::</span>GetObjectInfo</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetObjectStat"><span class="baseclass">TObject::</span>GetObjectStat</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetOption"><span class="baseclass">TObject::</span>GetOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetP">GetP</a>()</td></tr>
+<tr class="func"><td class="funcret">TVector3</td><td class="funcname"><a class="funcname" href="#TA2Particle:GetP3">GetP3</a>()</td></tr>
+<tr class="func"><td class="funcret">TLorentzVector</td><td class="funcname"><a class="funcname" href="#TA2Particle:GetP4">GetP4</a>()</td></tr>
+<tr class="func"><td class="funcret">TLorentzVector*</td><td class="funcname"><a class="funcname" href="#TA2Particle:GetP4A">GetP4A</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetParticleID">GetParticleID</a>()</td></tr>
+<tr class="func"><td class="funcret">TDatabasePDG*</td><td class="funcname"><a class="funcname" href="#TA2Particle:GetPDG">GetPDG</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetPhi">GetPhi</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetPhiDg">GetPhiDg</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetPSALong">GetPSALong</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetPSAShort">GetPSAShort</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetPx">GetPx</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetPy">GetPy</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetPz">GetPz</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetSecondID">GetSecondID</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetSigmaE">GetSigmaE</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetSigmaPhi">GetSigmaPhi</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetSigmaPhiDg">GetSigmaPhiDg</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetSigmaTheta">GetSigmaTheta</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetSigmaThetaDg">GetSigmaThetaDg</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetSigmaTime">GetSigmaTime</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetT">GetT</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetTheta">GetTheta</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetThetaDg">GetThetaDg</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetTime">GetTime</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetTitle"><span class="baseclass">TObject::</span>GetTitle</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetTotal">GetTotal</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetUniqueID"><span class="baseclass">TObject::</span>GetUniqueID</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">TVector3</td><td class="funcname"><a class="funcname" href="#TA2Particle:GetVect">GetVect</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetVetoEnergy">GetVetoEnergy</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetVetoIndex">GetVetoIndex</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetVetoTime">GetVetoTime</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:GetWindow">GetWindow</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:HandleTimer"><span class="baseclass">TObject::</span>HandleTimer</a>(TTimer* timer)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:HasApparatus">HasApparatus</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pApparatus)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:HasApparatusA">HasApparatusA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pApparatus)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:HasDetector">HasDetector</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pDetector)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:HasDetectorA">HasDetectorA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pDetector)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#ULong_t">ULong_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Hash"><span class="baseclass">TObject::</span>Hash</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Info"><span class="baseclass">TObject::</span>Info</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> <span class="keyword">char</span>* classname) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom%1"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> TClass* cl) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Inspect"><span class="baseclass">TObject::</span>Inspect</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:InvertBit"><span class="baseclass">TObject::</span>InvertBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="func"><td class="funcret">virtual TClass*</td><td class="funcname"><a class="funcname" href="#TA2Particle:IsA">IsA</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsEqual"><span class="baseclass">TObject::</span>IsEqual</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsFolder"><span class="baseclass">TObject::</span>IsFolder</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsOnHeap"><span class="baseclass">TObject::</span>IsOnHeap</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsSortable"><span class="baseclass">TObject::</span>IsSortable</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2Particle:IsUnclear">IsUnclear</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsZombie"><span class="baseclass">TObject::</span>IsZombie</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ls"><span class="baseclass">TObject::</span>ls</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MayNotUse"><span class="baseclass">TObject::</span>MayNotUse</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Notify"><span class="baseclass">TObject::</span>Notify</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete%1"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]%1"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new%1"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]%1"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2Particle.html">TA2Particle</a>&amp;</td><td class="funcname"><a class="funcname" href="#TA2Particle:operator_">operator=</a>(<span class="keyword">const</span> <a href="./TA2Particle.html">TA2Particle</a>&amp;)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Paint"><span class="baseclass">TObject::</span>Paint</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Pop"><span class="baseclass">TObject::</span>Pop</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Print"><span class="baseclass">TObject::</span>Print</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Read"><span class="baseclass">TObject::</span>Read</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:RecursiveRemove"><span class="baseclass">TObject::</span>RecursiveRemove</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:Reset">Reset</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ResetBit"><span class="baseclass">TObject::</span>ResetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SaveAs"><span class="baseclass">TObject::</span>SaveAs</a>(<span class="keyword">const</span> <span class="keyword">char</span>* filename = <span class="string">""</span>, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SavePrimitive"><span class="baseclass">TObject::</span>SavePrimitive</a>(basic_ostream&lt;<span class="keyword">char</span>,char_traits&lt;<span class="keyword">char</span>&gt; &gt;&amp; out, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetApparatus">SetApparatus</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pApparatus)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetApparatusA">SetApparatusA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pApparatus)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit%1"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f, <a href="./ListOfTypes.html#Bool_t">Bool_t</a> set)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetCentralIndex">SetCentralIndex</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pCentralIndex)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetCircDegree">SetCircDegree</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pCircDegree)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetCircState">SetCircState</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pCircState)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetClusterSize">SetClusterSize</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pClusterSize)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetDetector">SetDetector</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pDetector)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetDetectorA">SetDetectorA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pDetector)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetDirection">SetDirection</a>(TVector3 pP_)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetDirection%1">SetDirection</a>(TVector3* pP_)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDrawOption"><span class="baseclass">TObject::</span>SetDrawOption</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDtorOnly"><span class="baseclass">TObject::</span>SetDtorOnly</a>(<span class="keyword">void</span>* obj)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetE">SetE</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pE)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetEnergy">SetEnergy</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pE)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetKinetic">SetKinetic</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pT)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetLinDegree">SetLinDegree</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pLinDegree)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetLinState">SetLinState</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pLinState)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetM">SetM</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pM)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetMass">SetMass</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pM)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetMomentum">SetMomentum</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pP)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetObjectStat"><span class="baseclass">TObject::</span>SetObjectStat</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> stat)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetP">SetP</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pP)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetP3">SetP3</a>(TVector3 pP3)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetP3%1">SetP3</a>(TVector3* pP3)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetP4">SetP4</a>(TLorentzVector pP4)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetP4%1">SetP4</a>(TLorentzVector* pP4)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetP4%2">SetP4</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pParticleID, <a href="./ListOfTypes.html#Double_t">Double_t</a> pT, TVector3 pP_)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetP4%3">SetP4</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pParticleID, <a href="./ListOfTypes.html#Double_t">Double_t</a> pT, TVector3* pP_)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetParticleID">SetParticleID</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pParticleID)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetParticleIDA">SetParticleIDA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pParticleID)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetPDG">SetPDG</a>(TDatabasePDG* pPDG)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetPhi">SetPhi</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPhi)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetPhiDg">SetPhiDg</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPhi)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetPSAShort">SetPSAShort</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPSAShort)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetPx">SetPx</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPx)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetPy">SetPy</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPy)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetPz">SetPz</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPz)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetSecondID">SetSecondID</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pSecondID)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetSigmaE">SetSigmaE</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaE)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetSigmaPhi">SetSigmaPhi</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaPhi)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetSigmaPhiDg">SetSigmaPhiDg</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaPhi)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetSigmaTheta">SetSigmaTheta</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaTheta)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetSigmaThetaDg">SetSigmaThetaDg</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaTheta)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetSigmaTime">SetSigmaTime</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaTime)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetT">SetT</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pT)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetTheta">SetTheta</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pTheta)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetThetaDg">SetThetaDg</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pTheta)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetTime">SetTime</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pTime)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetTotal">SetTotal</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pE)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetUnclear">SetUnclear</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> pUnclear)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetUniqueID"><span class="baseclass">TObject::</span>SetUniqueID</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> uid)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetVetoEnergy">SetVetoEnergy</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pVetoEnergy)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetVetoIndex">SetVetoIndex</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pVetoIndex)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetVetoTime">SetVetoTime</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pVetoTime)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:SetWindow">SetWindow</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pWindow)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:ShowMembers">ShowMembers</a>(TMemberInspector&amp; insp)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:Streamer">Streamer</a>(TBuffer&amp; b)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2Particle:StreamerNVirtual">StreamerNVirtual</a>(TBuffer&amp; b)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SysError"><span class="baseclass">TObject::</span>SysError</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBit"><span class="baseclass">TObject::</span>TestBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBits"><span class="baseclass">TObject::</span>TestBits</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:UseCurrentStyle"><span class="baseclass">TObject::</span>UseCurrentStyle</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Warning"><span class="baseclass">TObject::</span>Warning</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write%1"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0) <span class="keyword">const</span></td></tr>
+
+</table></div>
+<div class="access" id="funcprot"><b>protected:</b>
+<table class="func" id="tabfuncprot" cellspacing="0">
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DoError"><span class="baseclass">TObject::</span>DoError</a>(<span class="keyword">int</span> level, <span class="keyword">const</span> <span class="keyword">char</span>* location, <span class="keyword">const</span> <span class="keyword">char</span>* fmt, va_list va) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MakeZombie"><span class="baseclass">TObject::</span>MakeZombie</a>()</td></tr>
+
+</table></div>
+</div>
+
+<div id="datamembers">
+<h2><a name="TA2Particle:Data_Members"></a>Data Members</h2>
+<div class="access" id="enumpubl"><b>public:</b>
+<table class="data" id="tabenumpubl" cellspacing="0">
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span>EStatusBits { </td><td class="dataname"><a href="#TObject:kCanDelete">kCanDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kMustCleanup">kMustCleanup</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kObjInCanvas">kObjInCanvas</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kIsReferenced">kIsReferenced</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kHasUUID">kHasUUID</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kCannotPick">kCannotPick</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNoContextMenu">kNoContextMenu</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kInvalidObject">kInvalidObject</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span><i>[unnamed]</i> { </td><td class="dataname"><a href="#TObject:kIsOnHeap">kIsOnHeap</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNotDeleted">kNotDeleted</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kZombie">kZombie</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kBitMask">kBitMask</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kSingleKey">kSingleKey</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kOverwrite">kOverwrite</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kWriteDelete">kWriteDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+
+</table></div>
+<div class="access" id="dataprot"><b>protected:</b>
+<table class="data" id="tabdataprot" cellspacing="0">
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fApparati"></a>fApparati</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fCentralIndex"></a>fCentralIndex</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fCircDegree"></a>fCircDegree</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fCircState"></a>fCircState</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fClusterSize"></a>fClusterSize</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fDetectors"></a>fDetectors</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fLinDegree"></a>fLinDegree</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fLinState"></a>fLinState</td><td></td></tr>
+<tr class="data"><td class="datatype">TLorentzVector</td><td class="dataname"><a name="TA2Particle:fP4"></a>fP4</td><td></td></tr>
+<tr class="data"><td class="datatype">TDatabasePDG*</td><td class="dataname"><a name="TA2Particle:fPDG"></a>fPDG</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fPSAShort"></a>fPSAShort</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fParticleID"></a>fParticleID</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fSecondID"></a>fSecondID</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fSigmaE"></a>fSigmaE</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fSigmaPhi"></a>fSigmaPhi</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fSigmaTheta"></a>fSigmaTheta</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fSigmaTime"></a>fSigmaTime</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fTime"></a>fTime</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2Particle:fUnclear"></a>fUnclear</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fVetoEnergy"></a>fVetoEnergy</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fVetoIndex"></a>fVetoIndex</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TA2Particle:fVetoTime"></a>fVetoTime</td><td></td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2Particle:fWindow"></a>fWindow</td><td></td></tr>
+
+</table></div>
+</div>
+<h2><a id="TA2Particle:Class_Charts"></a>Class Charts</h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%"><a href="ClassHierarchy.html">Inheritance Chart</a>:</td></tr><tr class="inhtree"><td width="10%"></td><td width="70%"><table class="inhtree"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<tt>TObject</tt></td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><big><b><tt><a name="TA2Particle" href="./TA2Particle.html">TA2Particle</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<h2>Function documentation</h2>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TA2Particle:TA2Particle%1" href="src/TA2Particle.cxx.html#kuHYC">TA2Particle</a>(TDatabasePDG* pPDG)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TA2Particle:TA2Particle" href="src/TA2Particle.cxx.html#KW6SjB">TA2Particle</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TA2Particle:_TA2Particle" href="src/TA2Particle.cxx.html#s.5pv">~TA2Particle</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:Reset" href="src/TA2Particle.cxx.html#Qd_9mD">Reset</a>()</span><br />
+<div class="funccomm"><pre><a href="./#TObject:Clear" title="void TObject::Clear(Option_t* =&quot;&quot;)">Clear</a> all entries either at construction time or
+when <a href="./TA2Particle.html">TA2Particle</a> instance is re-used in new event
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetLinState" href="src/TA2Particle.cxx.html#rAA8KB">SetLinState</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pLinState)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetCircState" href="src/TA2Particle.cxx.html#xI7TUC">SetCircState</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pCircState)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetWindow" href="src/TA2Particle.cxx.html#jV7SYB">SetWindow</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pWindow)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetApparatus" href="src/TA2Particle.cxx.html#BovqYD">SetApparatus</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pApparatus)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetDetector" href="src/TA2Particle.cxx.html#ybk8G">SetDetector</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pDetector)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2Particle:HasApparatus" href="src/TA2Particle.cxx.html#BjaU0D">HasApparatus</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pApparatus)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2Particle:HasDetector" href="src/TA2Particle.cxx.html#WTzyiB">HasDetector</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pDetector)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetP4%2" href="src/TA2Particle.cxx.html#bUGR1B">SetP4</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pParticleID, <a href="./ListOfTypes.html#Double_t">Double_t</a> pT, TVector3 pP_)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetMass" href="src/TA2Particle.cxx.html#S92M3C">SetMass</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pM)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetParticleID" href="src/TA2Particle.cxx.html#XmXs.B">SetParticleID</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pParticleID)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetKinetic" href="src/TA2Particle.cxx.html#E87JoB">SetKinetic</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pT)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetTotal" href="src/TA2Particle.cxx.html#XGDOZ">SetTotal</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pE)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetMomentum" href="src/TA2Particle.cxx.html#oaR9jE">SetMomentum</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pP)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetP3" href="src/TA2Particle.cxx.html#PiY4kE">SetP3</a>(TVector3 pP3)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetPx" href="src/TA2Particle.cxx.html#W1V9t">SetPx</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPx)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetPy" href="src/TA2Particle.cxx.html#acukG">SetPy</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPy)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetPz" href="src/TA2Particle.cxx.html#Onku8B">SetPz</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPz)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2Particle.html">TA2Particle</a> <a class="funcname" name="TA2Particle:Add" href="src/TA2Particle.cxx.html#foaBgE">Add</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2Particle.html">TA2Particle</a> <a class="funcname" name="TA2Particle:Add%2" href="src/TA2Particle.cxx.html#co.NjB">Add</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle1, <a href="./TA2Particle.html">TA2Particle</a> pParticle2)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2Particle.html">TA2Particle</a> <a class="funcname" name="TA2Particle:Add%6" href="src/TA2Particle.cxx.html#ZF1BpB">Add</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticles, <a href="./ListOfTypes.html#Int_t">Int_t</a> pNumber)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname">HitCluster_t* <a class="funcname" name="TA2Particle:FindCluster" href="src/TA2Particle.cxx.html#YXYQLE">FindCluster</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TA2Particle:TA2Particle" href="src/TA2Particle.h.html#a6xm3E">TA2Particle</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname">TLorentzVector <a class="funcname" name="TA2Particle:GetP4" href="src/TA2Particle.h.html#Gex6D">GetP4</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TLorentzVector* <a class="funcname" name="TA2Particle:GetP4A" href="src/TA2Particle.h.html#P4w5wD">GetP4A</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> &amp;<a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TVector3 <a class="funcname" name="TA2Particle:GetP3" href="src/TA2Particle.h.html#kviSY">GetP3</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Vect(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TVector3 <a class="funcname" name="TA2Particle:GetVect" href="src/TA2Particle.h.html#hmpyj">GetVect</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Vect(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TVector3 <a class="funcname" name="TA2Particle:GetDirection" href="src/TA2Particle.h.html#xvOj3C">GetDirection</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Vect().Unit(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetEnergy" href="src/TA2Particle.h.html#w2c99C">GetEnergy</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.E(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetTotal" href="src/TA2Particle.h.html#aNETNB">GetTotal</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.E(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetKinetic" href="src/TA2Particle.h.html#mLsEi">GetKinetic</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.E() - <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.M()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetMass" href="src/TA2Particle.h.html#Le1BgC">GetMass</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.M(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetMomentum" href="src/TA2Particle.h.html#Puh9m">GetMomentum</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.P(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetE" href="src/TA2Particle.h.html#rMoVmE">GetE</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.E(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetT" href="src/TA2Particle.h.html#bDdePC">GetT</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.E() - <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.M()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetM" href="src/TA2Particle.h.html#D_7B6E">GetM</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.M(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetP" href="src/TA2Particle.h.html#rUUpyD">GetP</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.P(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetPx" href="src/TA2Particle.h.html#vsDk7B">GetPx</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Px(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetPy" href="src/TA2Particle.h.html#BjNa7B">GetPy</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Py(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetPz" href="src/TA2Particle.h.html#HZXQ7B">GetPz</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Pz(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetPhi" href="src/TA2Particle.h.html#wZXcWC">GetPhi</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Phi(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetTheta" href="src/TA2Particle.h.html#nTZ95B">GetTheta</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Theta(); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetPhiDg" href="src/TA2Particle.h.html#JKjjOC">GetPhiDg</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Phi() * TMath::RadToDeg()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetThetaDg" href="src/TA2Particle.h.html#HqCKb">GetThetaDg</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Theta() * TMath::RadToDeg()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetTime" href="src/TA2Particle.h.html#qk.VlE">GetTime</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fTime" title="Double_t TA2Particle::fTime">fTime</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetLinDegree" href="src/TA2Particle.h.html#vQtrMC">GetLinDegree</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetCircDegree" href="src/TA2Particle.h.html#zdar0E">GetCircDegree</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetPSAShort" href="src/TA2Particle.h.html#sHVtXE">GetPSAShort</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetPSALong" href="src/TA2Particle.h.html#U4_g2B">GetPSALong</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetVetoEnergy" href="src/TA2Particle.h.html#OhR8EB">GetVetoEnergy</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetVetoTime" href="src/TA2Particle.h.html#sYUQSD">GetVetoTime</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetSigmaE" href="src/TA2Particle.h.html#oNsA3C">GetSigmaE</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fSigmaE" title="Double_t TA2Particle::fSigmaE">fSigmaE</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetSigmaPhi" href="src/TA2Particle.h.html#c37OyC">GetSigmaPhi</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fSigmaPhi" title="Double_t TA2Particle::fSigmaPhi">fSigmaPhi</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetSigmaTheta" href="src/TA2Particle.h.html#B0g_xC">GetSigmaTheta</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fSigmaTheta" title="Double_t TA2Particle::fSigmaTheta">fSigmaTheta</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetSigmaPhiDg" href="src/TA2Particle.h.html#ll319D">GetSigmaPhiDg</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TA2Particle.html#TA2Particle:fSigmaPhi" title="Double_t TA2Particle::fSigmaPhi">fSigmaPhi</a> * TMath::RadToDeg()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetSigmaThetaDg" href="src/TA2Particle.h.html#k.fTvC">GetSigmaThetaDg</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TA2Particle.html#TA2Particle:fSigmaTheta" title="Double_t TA2Particle::fSigmaTheta">fSigmaTheta</a> * TMath::RadToDeg()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetSigmaTime" href="src/TA2Particle.h.html#QYEOkC">GetSigmaTime</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fSigmaTime" title="Double_t TA2Particle::fSigmaTime">fSigmaTime</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngle" href="src/TA2Particle.h.html#tAiFR">GetAngle</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngle%1" href="src/TA2Particle.h.html#sPvSxC">GetAngle</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngle%2" href="src/TA2Particle.h.html#UhGFQE">GetAngle</a>(TLorentzVector pP4)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Vect().Angle(pP4.Vect()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngle%3" href="src/TA2Particle.h.html#JxuuAC">GetAngle</a>(TLorentzVector* pP4)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngle%4" href="src/TA2Particle.h.html#y6Fi5B">GetAngle</a>(TVector3 pVect)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Vect().Angle(pVect); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngle%5" href="src/TA2Particle.h.html#r1IV1">GetAngle</a>(TVector3* pVect)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.Vect().Angle(*pVect); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngleDg" href="src/TA2Particle.h.html#UTW4GB">GetAngleDg</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngleDg%1" href="src/TA2Particle.h.html#efK07B">GetAngleDg</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngleDg%2" href="src/TA2Particle.h.html#IW.9sD">GetAngleDg</a>(TLorentzVector pP4)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngleDg%3" href="src/TA2Particle.h.html#NjmKWC">GetAngleDg</a>(TLorentzVector* pP4)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngleDg%4" href="src/TA2Particle.h.html#BM5KpD">GetAngleDg</a>(TVector3 pVect)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TA2Particle:GetAngleDg%5" href="src/TA2Particle.h.html#SG5RZC">GetAngleDg</a>(TVector3* pVect)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetVetoIndex" href="src/TA2Particle.h.html#k.yMFC">GetVetoIndex</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">if</span>((<a href="./TA2Particle.html#TA2Particle:fDetectors" title="Int_t TA2Particle::fDetectors">fDetectors</a> &amp; EDetVeto)||(<a href="./TA2Particle.html#TA2Particle:fDetectors" title="Int_t TA2Particle::fDetectors">fDetectors</a> &amp; EDetPID)) <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fVetoIndex" title="Int_t TA2Particle::fVetoIndex">fVetoIndex</a>; <span class="keyword">else</span> <span class="keyword">return</span> EBufferEnd; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetCentralIndex" href="src/TA2Particle.h.html#wc_t7">GetCentralIndex</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetLinState" href="src/TA2Particle.h.html#YSRKFC">GetLinState</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetCircState" href="src/TA2Particle.h.html#sWPARB">GetCircState</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetClusterSize" href="src/TA2Particle.h.html#SBRY.C">GetClusterSize</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fClusterSize" title="Int_t TA2Particle::fClusterSize">fClusterSize</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetParticleID" href="src/TA2Particle.h.html#XJgAnC">GetParticleID</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fParticleID" title="Int_t TA2Particle::fParticleID">fParticleID</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetSecondID" href="src/TA2Particle.h.html#zM6dnB">GetSecondID</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fSecondID" title="Int_t TA2Particle::fSecondID">fSecondID</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetWindow" href="src/TA2Particle.h.html#LpB7pB">GetWindow</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">if</span>((<a href="./TA2Particle.html#TA2Particle:fDetectors" title="Int_t TA2Particle::fDetectors">fDetectors</a> &amp; EDetLadder)||(<a href="./TA2Particle.html#TA2Particle:fDetectors" title="Int_t TA2Particle::fDetectors">fDetectors</a> &amp; EDetMicro)) <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fWindow" title="Int_t TA2Particle::fWindow">fWindow</a>; <span class="keyword">else</span> <span class="keyword">return</span> EWindowNone; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetApparati" href="src/TA2Particle.h.html#mYRyjE">GetApparati</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fApparati" title="Int_t TA2Particle::fApparati">fApparati</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2Particle:GetDetectors" href="src/TA2Particle.h.html#U4UAWD">GetDetectors</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fDetectors" title="Int_t TA2Particle::fDetectors">fDetectors</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2Particle:HasApparatusA" href="src/TA2Particle.h.html#DBN0dB">HasApparatusA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pApparatus)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TA2Particle.html#TA2Particle:fApparati" title="Int_t TA2Particle::fApparati">fApparati</a> &amp; pApparatus); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2Particle:HasDetectorA" href="src/TA2Particle.h.html#wWEwIB">HasDetectorA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pDetector)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TA2Particle.html#TA2Particle:fDetectors" title="Int_t TA2Particle::fDetectors">fDetectors</a> &amp; pDetector); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2Particle:IsUnclear" href="src/TA2Particle.h.html#L4gGf">IsUnclear</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fUnclear" title="Bool_t TA2Particle::fUnclear">fUnclear</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetTime" href="src/TA2Particle.h.html#azUBtE">SetTime</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pTime)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fTime" title="Double_t TA2Particle::fTime">fTime</a> = pTime; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetVetoIndex" href="src/TA2Particle.h.html#LlI4OB">SetVetoIndex</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pVetoIndex)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fVetoIndex" title="Int_t TA2Particle::fVetoIndex">fVetoIndex</a> = pVetoIndex; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetCentralIndex" href="src/TA2Particle.h.html#xyjbu">SetCentralIndex</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pCentralIndex)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fCentralIndex" title="Int_t TA2Particle::fCentralIndex">fCentralIndex</a> = pCentralIndex; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetClusterSize" href="src/TA2Particle.h.html#IchcVC">SetClusterSize</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pClusterSize)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fClusterSize" title="Int_t TA2Particle::fClusterSize">fClusterSize</a> = pClusterSize; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetLinDegree" href="src/TA2Particle.h.html#OtH.f">SetLinDegree</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pLinDegree)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fLinDegree" title="Double_t TA2Particle::fLinDegree">fLinDegree</a> = pLinDegree; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetCircDegree" href="src/TA2Particle.h.html#eB18aC">SetCircDegree</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pCircDegree)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fCircDegree" title="Double_t TA2Particle::fCircDegree">fCircDegree</a> = pCircDegree; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetPSAShort" href="src/TA2Particle.h.html#gWuGVD">SetPSAShort</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPSAShort)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fPSAShort" title="Double_t TA2Particle::fPSAShort">fPSAShort</a> = pPSAShort; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetVetoEnergy" href="src/TA2Particle.h.html#WWjp6E">SetVetoEnergy</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pVetoEnergy)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fVetoEnergy" title="Double_t TA2Particle::fVetoEnergy">fVetoEnergy</a> = pVetoEnergy; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetVetoTime" href="src/TA2Particle.h.html#Q47DYB">SetVetoTime</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pVetoTime)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fVetoTime" title="Double_t TA2Particle::fVetoTime">fVetoTime</a> = pVetoTime; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetSigmaE" href="src/TA2Particle.h.html#EnlwaE">SetSigmaE</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaE)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fSigmaE" title="Double_t TA2Particle::fSigmaE">fSigmaE</a> = pSigmaE; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetSigmaPhi" href="src/TA2Particle.h.html#u2SdlB">SetSigmaPhi</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaPhi)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fSigmaPhi" title="Double_t TA2Particle::fSigmaPhi">fSigmaPhi</a> = pSigmaPhi; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetSigmaTheta" href="src/TA2Particle.h.html#R07hkB">SetSigmaTheta</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaTheta)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fSigmaTheta" title="Double_t TA2Particle::fSigmaTheta">fSigmaTheta</a> = pSigmaTheta; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetSigmaPhiDg" href="src/TA2Particle.h.html#z74YQE">SetSigmaPhiDg</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaPhi)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fSigmaPhi" title="Double_t TA2Particle::fSigmaPhi">fSigmaPhi</a> = (pSigmaPhi * TMath::DegToRad()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetSigmaThetaDg" href="src/TA2Particle.h.html#ytSJ.">SetSigmaThetaDg</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaTheta)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fSigmaTheta" title="Double_t TA2Particle::fSigmaTheta">fSigmaTheta</a> = (pSigmaTheta * TMath::DegToRad()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetSigmaTime" href="src/TA2Particle.h.html#qqCvZD">SetSigmaTime</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pSigmaTime)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fSigmaTime" title="Double_t TA2Particle::fSigmaTime">fSigmaTime</a> = pSigmaTime; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetApparatusA" href="src/TA2Particle.h.html#SL9cGD">SetApparatusA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pApparatus)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fApparati" title="Int_t TA2Particle::fApparati">fApparati</a>+=pApparatus; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetDetectorA" href="src/TA2Particle.h.html#jydpZC">SetDetectorA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pDetector)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fDetectors" title="Int_t TA2Particle::fDetectors">fDetectors</a>+=pDetector; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetUnclear" href="src/TA2Particle.h.html#qxpXVC">SetUnclear</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> pUnclear)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fUnclear" title="Bool_t TA2Particle::fUnclear">fUnclear</a> = pUnclear; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetP4" href="src/TA2Particle.h.html#ycmiFC">SetP4</a>(TLorentzVector pP4)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a> = pP4; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetP4%1" href="src/TA2Particle.h.html#jNH4GC">SetP4</a>(TLorentzVector* pP4)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">if</span>(pP4) <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a> = *pP4; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetP4%2" href="src/TA2Particle.h.html#BJIfCC">SetP4</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pParticleID, <a href="./ListOfTypes.html#Double_t">Double_t</a> pT, TVector3 pP_)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetParticleIDA" href="src/TA2Particle.h.html#vIV8CB">SetParticleIDA</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pParticleID)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fParticleID" title="Int_t TA2Particle::fParticleID">fParticleID</a> = pParticleID; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetSecondID" href="src/TA2Particle.h.html#QAisJB">SetSecondID</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> pSecondID)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fSecondID" title="Int_t TA2Particle::fSecondID">fSecondID</a> = pSecondID; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetEnergy" href="src/TA2Particle.h.html#uOouPD">SetEnergy</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pE)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:SetTotal" title="void TA2Particle::SetTotal(Double_t pE)">SetTotal</a>(pE); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetDirection" href="src/TA2Particle.h.html#xhQgl">SetDirection</a>(TVector3 pP_)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.SetVect(<a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.P() * pP_.Unit()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetDirection%1" href="src/TA2Particle.h.html#Q6oep">SetDirection</a>(TVector3* pP_)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetP3" href="src/TA2Particle.h.html#TXz.fD">SetP3</a>(TVector3 pP3)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetM" href="src/TA2Particle.h.html#Op_5P">SetM</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pM)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:SetMass" title="void TA2Particle::SetMass(Double_t pM)">SetMass</a>(pM); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetT" href="src/TA2Particle.h.html#VE1QyB">SetT</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pT)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:SetKinetic" title="void TA2Particle::SetKinetic(Double_t pT)">SetKinetic</a>(pT); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetE" href="src/TA2Particle.h.html#WEPQRE">SetE</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pE)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:SetTotal" title="void TA2Particle::SetTotal(Double_t pE)">SetTotal</a>(pE); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetP" href="src/TA2Particle.h.html#zJDyq">SetP</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pP)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:SetMomentum" title="void TA2Particle::SetMomentum(Double_t pP)">SetMomentum</a>(pP); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetPhi" href="src/TA2Particle.h.html#Z_9itC">SetPhi</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPhi)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.<a href="./TA2Particle.html#TA2Particle:SetPhi" title="void TA2Particle::SetPhi(Double_t pPhi)">SetPhi</a>(pPhi); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetTheta" href="src/TA2Particle.h.html#P8zblE">SetTheta</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pTheta)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.<a href="./TA2Particle.html#TA2Particle:SetTheta" title="void TA2Particle::SetTheta(Double_t pTheta)">SetTheta</a>(pTheta); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetPhiDg" href="src/TA2Particle.h.html#nD2VO">SetPhiDg</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pPhi)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.<a href="./TA2Particle.html#TA2Particle:SetPhi" title="void TA2Particle::SetPhi(Double_t pPhi)">SetPhi</a>(pPhi * TMath::DegToRad()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetThetaDg" href="src/TA2Particle.h.html#YDKds">SetThetaDg</a>(<a href="./ListOfTypes.html#Double_t">Double_t</a> pTheta)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fP4" title="TLorentzVector TA2Particle::fP4">fP4</a>.<a href="./TA2Particle.html#TA2Particle:SetTheta" title="void TA2Particle::SetTheta(Double_t pTheta)">SetTheta</a>(pTheta * TMath::DegToRad()); }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2Particle:SetPDG" href="src/TA2Particle.h.html#DVhxcB">SetPDG</a>(TDatabasePDG* pPDG)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TA2Particle.html#TA2Particle:fPDG" title="TDatabasePDG* TA2Particle::fPDG">fPDG</a> = pPDG; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2Particle.html">TA2Particle</a> <a class="funcname" name="TA2Particle:Add" href="src/TA2Particle.h.html#Gim9TB">Add</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2Particle.html">TA2Particle</a> <a class="funcname" name="TA2Particle:Add%1" href="src/TA2Particle.h.html#wEeMID">Add</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">if</span>(pParticle) <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:Add" title="TA2Particle TA2Particle::Add(TA2Particle pParticle) or overloads">Add</a>(*pParticle); <span class="keyword">else</span> <span class="keyword">return</span> *<span class="keyword">this</span>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2Particle.html">TA2Particle</a> <a class="funcname" name="TA2Particle:Add%2" href="src/TA2Particle.h.html#KshlY">Add</a>(<a href="./TA2Particle.html">TA2Particle</a> pParticle1, <a href="./TA2Particle.html">TA2Particle</a> pParticle2)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2Particle.html">TA2Particle</a> <a class="funcname" name="TA2Particle:Add%3" href="src/TA2Particle.h.html#r9wJEC">Add</a>(<a href="./TA2Particle.html">TA2Particle</a>* pParticle1, <a href="./TA2Particle.html">TA2Particle</a>* pParticle2)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">if</span>(pParticle1||pParticle2) <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:Add" title="TA2Particle TA2Particle::Add(TA2Particle pParticle) or overloads">Add</a>(*pParticle1, *pParticle2); <span class="keyword">else</span> <span class="keyword">return</span> *<span class="keyword">this</span>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TDatabasePDG* <a class="funcname" name="TA2Particle:GetPDG" href="src/TA2Particle.h.html#tC6adB">GetPDG</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2Particle.html#TA2Particle:fPDG" title="TDatabasePDG* TA2Particle::fPDG">fPDG</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+
+<br />
+<!--SIGNATURE-->
+<div id="footer">
+
+<em>&raquo; Last changed:       JRM Annand   23rd Apr 2009 call TObj constructor </em><em>&raquo; Last generated: 2013-08-11 12:17</em><br />
+<em>This page has been automatically generated. For comments or suggestions regarding the documentation or ROOT in general please send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>.</em>
+</div>
+</div>
+</body>
+</html>

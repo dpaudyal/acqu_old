@@ -1,0 +1,51 @@
+##-----------------------------------------------------------------------
+##--Author      JRM Annand   29th Apr 2003
+##--Update      JRM Annand...13th Jul 2007 New Tagger scaler ordering
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data
+##
+## Parameter File: Tagger.dat (specified in main analysis file)
+## Setup analysis of the TA2Tagger apparatus
+## This one sets up an analysis of the main focal-plane detector
+##----------------------------------------------------------------------------
+#       NMR field       Beam Energy (MeV)
+Magnet:    1.026086    855
+#         Name          Class Name      Setup file
+Detector: FPD           TA2Ladder       FP_855_091210.dat
+#
+#
+### Linear Polarization Parameters ###
+#
+#               BaseADC, EdgeChMin, EdgeChMax,  NormEnergy, name
+Linear-Pol:     30       30         200         400.0       pol4
+#                       Filename
+Linear-Pol-Scaler:      data/scaler_acc_20856.dat
+#
+Reconstruct:
+#
+Initialise:
+#
+Display: 1D Nhit           20 0  20  -1
+Display: 1D PhotonEnergy  150 0 1500  -1
+#Display: 2D Ladder_Hits   352 0 352 -1 Ladder_Time 100 0 200 -1
+Display: 1D Incoherent          352 0  352 -1
+Display: 1D Coherent            352 0  352 -1
+Display: 1D Enhancement         300 0  300 -1
+Display: 1D CoherentPara        352 0  352 -1
+Display: 1D EnhancementPara     352 0  352 -1
+Display: 1D CoherentPerp        352 0  352 -1
+Display: 1D EnhancementPerp     352 0  352 -1
+Display: 1D IncoherentTDC       352 0  352 -1
+Display: 1D CoherentTDC         352 0  352 -1
+Display: 1D EnhancementTDC      352 0  352 -1
+Display: 1D CoherentParaTDC     352 0  352 -1
+Display: 1D EnhancementParaTDC  352 0  352 -1
+Display: 1D CoherentPerpTDC     352 0  352 -1
+Display: 1D EnhancementPerpTDC  352 0  352 -1
+Display: 1D ScanStep            180 0 180 -1
+Display: 2D ScanStep            180 0 180 -1  Enhancement       352 0  352 -1
+Display: 1D CohEdgeChan         4000 0 4000 -1
+Display: 1D CohEdgeEnergy       4000 0 4000 -1
+#
+Initialise:

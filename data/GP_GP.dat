@@ -1,0 +1,46 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   11th May 2006
+##--Update
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Master parameter file for Monte Carlo reaction event generator
+## Expected to reside in directory $acqu/data/
+## Radiative Pi0 photo production on the proton
+## Pure phase space
+## To use invoke... MCGenerator GP_GPPi0a.dat
+##-----------------------------------------------------------------------
+##		#events/run	Random seed	#runs
+Number-Throws:	100000		888888		1
+##
+## Baryon resonances
+##		Name	PDG code
+Resonance:	P33	2214
+##		Name	Peak Mass(GeV)	Width(GeV)
+#Resonance:	S11	1.535		0.150
+##
+##	PDG-index	Source x,y,z (cm)
+Beam: 	22		0.0 0.0 -500.
+P-Distr: Beam T-Dist	1/x		0.1 0.8  200
+P-Distr: Beam Cos(Theta)	TMath::Gaus(x,1.0,0.000001)	0.9999975 1.0  200
+##
+##	Mass	Radius	Length	Center (x,y,z)
+Target: 0.938 	2.5	5.0   	0.0 0.0 0.0
+#Target: 	1000060120 	2.5	2.0   	0.0 0.0 0.0
+##
+## The reaction "particle"
+Particle: Delta		P33	1	0	NULL	NULL
+##
+## Primary Particles
+##	  Name		PDG	Decay?	Track?	Parent	Opt
+Particle  Gamma_0	22	0	1	Delta	NULL
+#Particle: Pi0		111	1	0	Delta	NULL
+Particle: Proton       2212	0	1	Delta	NULL
+##
+## Secondary Particles
+#Particle: Gamma_1	  22	0	1	Pi0	NULL
+#Particle: Gamma_2	  22	0	1	Pi0	NULL
+##
+#Tree-Output:    GP_GP_200kT	2
+Ntuple-Output:    acqumc/GP_GP_100kN

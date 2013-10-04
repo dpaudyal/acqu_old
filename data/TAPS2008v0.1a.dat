@@ -1,0 +1,153 @@
+#########################################################################
+##                                                                     ##
+##                                                                     ##
+##  TAPS2008 Config File  for use of TA2Taps2008-class in AcquRoot     ##
+##                                                                     ##
+## --Author   H.Berghauser June 2008  (HenningBerghaeuser@web.de)      ##
+##                                                                     ##
+#########################################################################
+#########################################################################
+#Detector: BaF2          TA2TAPS_BaF2		BaF2_Etp4_Apr07_cal13.dat
+Detector: BaF2          TA2TAPS_BaF2		BaF2_ThPi0_Dec08_Sergey.dat
+#Detector: VetoBaF2      TA2PlasticPID		VetoBaF2.14.12.06.dat
+#Detector: PbWO4         TA2TAPS_PbWO4		PbWO4.19.04.08.dat
+#
+##########################################################################
+##########################################################################
+Reconstruct:
+##
+## PDG database	# particles
+ParticleID: 	16
+## Do some post-initialisation.
+## Should usually be done before display is setup
+Initialise:
+##
+#TAPSVetoInit: 520
+TAPS-Factor: 1.19
+#TAPS-Test: 1.0
+#Use time of flight 0=off 1=on
+#TAPSTOF: 0
+#Use pulsehshape 0=off 1=on
+#TAPSPSA: 0
+# PSA-Sigma*Sigma to distinguish between gamma and proton lineshape, standard = 3, first value
+#PSA-Sigma: 3.0 3.0
+#
+#
+#
+#########################################################################
+##                                                                     ##
+## Define TAPS-Reconstruction mode with variable TAPSSimpleReconstruct ##
+##                                                                     ##
+## SimpleReconstruct = 1  means: all hits will be reconstructed as photons ##
+##                              (same as TA2Calorimater does)          ##
+## TAPSSimpleReconstruct = 0  means: full reconstruction .. use TOF/dEvE/PSA ##
+##                    in order to separate protons from ch.pions etc.  ##
+##                                                                     ##
+#########################################################################
+TAPS_SimpleReconstruct: 1
+#
+#
+#########################################################################
+##                                                                     ##
+##  Time Of Flight  TOF      (time between CB & TAPS)                  ##
+##                                                                     ##
+##  TAPS_TOF_USEAGE = 1 means "TOF" is active   / =0 no use of TOF     ##
+##     (note: when =1 TAPS_TOF_Cuts-File must exist!...and cuts also)  ##
+##  CUTS:                                                              ##
+##  TAPS_TOF_Neutron = 1  TOF-Cuts on neutrons is active               ##
+##  TAPS_TOF_Proton  = 1  TOF-Cuts on protons is active                ##
+##  TAPS_TOF_ChPion  = 1  TOF-Cuts on charged pions is actice          ##
+##  TAPS_TOF_Electron= 1  TOF-CUTS on electrons is active              ##
+##                                                                     ##
+## (note: when a cut is set active ("=1")then the appendant TCut with name specified  ##
+##     below must exist in TAPS_TOF_Cuts root-File                     ##
+##                                                                     ##
+#########################################################################
+TAPS_TOF_USEAGE: 0
+TAPS_TOF_Cuts: data/TAPS2008_TOF_CUTSv0.root
+TAPS_TOF_Proton: 0
+TAPS_TOF_Proton_CutName: tof_nucleon_cut
+TAPS_TOF_Neutron: 0
+TAPS_TOF_Neutron_CutName: tof_nucleon_cut
+TAPS_TOF_ChPion: 0
+TAPS_TOF_ChPion_CutName: tof_chpion_cut
+TAPS_TOF_Electron: 0
+TAPS_TOF_Electron_CutName: tof_electron_cu
+TAPS_TOF_Gamma: 0
+TAPS_TOF_Gamma_CutName: tof_gamma_cut
+#
+#########################################################################
+##                                                                     ##
+##  DeltaEenergy versus Energy  dEvE  (between Veto and BaF2-Clusters) ##
+##                                                                     ##
+##  TAPS_dEvE_USEAGE = 1 means "dEvE" is active   / =0 no use of TOF                  ##
+##                   (note: when =1 TAPS_dEvE_Cuts-File must exist!...and cuts also)  ##
+##  CUTS:                                                                             ##
+##  TAPS_dEvE_Proton = 1  dEvE-Cut on protons/neutrons is active    /=0 not active    ##
+##  TAPS_dEvE_ChPion  = 1  dEvE-Cuts on charged pions is actice     /=0 not active    ##
+##  TAPS_dEvE_Electron= 1  dEvE-CUTS on electrons is active         /=0 not active    ##
+##                                                                                    ##
+## (note: when a cut is set active ("=1")then the appendant TCut with name specified  ##
+##     below must exist in TAPS_dEvE_Cuts root-File                                   ##
+##                                                                                    ##
+#########################################################################
+TAPS_dEvE_USEAGE: 1
+TAPS_dEvE_Cuts: data/TAPS2008_dEvE_CUTSv0.root
+TAPS_dEvE_Proton: 1
+TAPS_dEvE_Proton_CutName: dEvE_proton_cut
+TAPS_dEvE_ChPion: 1
+TAPS_dEvE_ChPion_CutName: dEvE_chpion_cut
+TAPS_dEvE_Electron: 1
+TAPS_dEvE_Electron_CutName: dEvE_electron_cut
+#
+#
+#
+#
+#########################################################################
+##                                                                                    ##
+##                                                                                    ##
+##         Pulse Shape Analysis  PSU                                                  ##
+##                                                                                    ##
+##         TAPS_PSU_USEAGE: 0 / not active      1 / active                            ##
+##                                                                                    ##
+##                                                                                    ##
+#########################################################################
+TAPS_PSA_USEAGE: 0
+TAPS_PSA_Cuts: data/TAPS2008_PSA_CUTSv0.root
+TAPS_PSA_Nucleon: 0
+TAPS_PSA_Nucleon_CutName: psa_nucleon_cut
+TAPS_PSA_noNucleon: 0
+TAPS_PSA_noNucleon_CutName: psa_nonucleon_cut
+#
+#
+#
+#
+#
+##########################################################################
+##                                                                                     ##
+##                                                                                     ##
+##      TAPS2008  OUTPUT-FILE (root-file)                                              ##
+##                                                                                     ##
+##      - this will contain ntuples (TNtuple) containing all information               ##
+##      gathered in TAPS considering TOF / dEvE / PSA / and so on                      ##
+##                                                                                     ##
+##########################################################################
+#TAPS_OUTPUT_FILE: AR_TAPS2008.root
+#
+##########################################################################
+##                                                                      ##
+##                                                                      ##
+##      ReadOut PBW04        // only for TESTING & only my code has these functions    ##
+##                                                                      ##
+##      This is only for testing PbWO4 ... will not be in Verson 1                     ##
+##      - only for me ... to check PbWO4 readout                                       ##
+##      - 1 = on  and 0 = off                                                          ##
+##                                                                                     ##
+##########################################################################
+TAPS_fReadPbWO4: 0
+#
+#
+#
+Display: 2D BaF2_EnergyOR 1000 0 1000 -1 TimeOfFlight 1000 -1000 1000 -1
+#
+# End

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@pcroot.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Sun Aug 11 12:17:57 2013            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>TA2CylWireSven - source file</title>
+<meta name="rating" content="General" />
+<meta name="objecttype" content="Manual" />
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers, cern" />
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis." />
+<link rel="stylesheet" type="text/css" href="../ROOT.css" id="ROOTstyle" />
+<script type="text/javascript" src="../ROOT.js"></script>
+</head>
+<body  onload="javascript:SetValuesFromCookie();"><div id="body_content">
+<div id="root_header"><img src="http://root.cern.ch/drupal/sites/default/files/rootdrawing-logo.png" alt="ROOT logo"/></div>
+<div id="codeAndLineNumbers"><pre class="listing">
+<span class="comment">//--Author      V Lisin      28th Jun 2004  original DAPHNE fortran -&gt; C</span>
+<span class="comment">//--Update      JRM Annand... 8th Jul 2004  AcquRoot C++ class</span>
+<span class="comment">//--Description</span>
+<span class="comment">//                *** Acqu++ &lt;-&gt; Root ***</span>
+<span class="comment">// Online/Offline Analysis of Sub-Atomic Physics Experimental Data </span>
+<span class="comment">//</span>
+<span class="comment">// <a href="../TA2CylWire.html">TA2CylWire</a></span>
+<span class="comment">//</span>
+<span class="comment">// Helical cathode strips on a cylindrical surface</span>
+<span class="comment">//</span>
+
+<span class="cpp">#include "TA2CylWireSven.h"</span>
+
+ClassImp(<a href="../TA2CylWireSven.html">TA2CylWireSven</a>)
+
+<span class="comment">//---------------------------------------------------------------------------</span>
+<a name="BCHJmB"></a><a href="../TA2CylWireSven.html">TA2CylWireSven</a>::<a href="../TA2CylWireSven.html#TA2CylWireSven:TA2CylWireSven" title="TA2CylWireSven TA2CylWireSven::TA2CylWireSven(const char* ,Int_t ,Int_t ,Int_t ,void* ,Double_t* ) or overloads">TA2CylWireSven</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name, <a href="../ListOfTypes.html#Int_t">Int_t</a> nelem, <a href="../ListOfTypes.html#Int_t">Int_t</a> maxclust,
+                               <a href="../ListOfTypes.html#Int_t">Int_t</a> maxclsize, <span class="keyword">void</span>* det, <a href="../ListOfTypes.html#Double_t">Double_t</a>* layerparm)
+               :<a href="../TA2WCLayerSven.html">TA2WCLayerSven</a>(name, nelem, maxclust, maxclsize, det)
+{
+  <span class="comment">// Store dimensions, alignment and correction factors</span>
+  <a href="../TA2CylWireSven.html#TA2CylWireSven:fRadius" title="Double_t TA2CylWireSven::fRadius">fRadius</a> = layerparm[0];
+  <a href="../TA2CylWireSven.html#TA2CylWireSven:fLength" title="Double_t TA2CylWireSven::fLength">fLength</a> = layerparm[1];
+  <span class="keyword">for</span>( <a href="../ListOfTypes.html#Int_t">Int_t</a> i=0; i&lt;3; i++ ){
+    <a href="../TA2CylWireSven.html#TA2CylWireSven:fPhiCor" title="Double_t TA2CylWireSven::fPhiCor">fPhiCor</a>[i] = layerparm[i+2]*0.5;
+  }
+  <a href="../TA2CylWireSven.html#TA2CylWireSven:fPhiSpace" title="Double_t TA2CylWireSven::fPhiSpace">fPhiSpace</a> = TMath::TwoPi()/fNElement;
+}
+
+</pre>
+<div id="linenums"><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="1" href="#1" class="ln">1</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="2" href="#2" class="ln">2</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="3" href="#3" class="ln">3</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="4" href="#4" class="ln">4</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="5" href="#5" class="ln">5</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="6" href="#6" class="ln">6</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="7" href="#7" class="ln">7</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="8" href="#8" class="ln">8</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="9" href="#9" class="ln">9</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="10" href="#10" class="ln">10</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="11" href="#11" class="ln">11</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="12" href="#12" class="ln">12</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="13" href="#13" class="ln">13</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="14" href="#14" class="ln">14</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="15" href="#15" class="ln">15</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="16" href="#16" class="ln">16</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="17" href="#17" class="ln">17</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="18" href="#18" class="ln">18</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="19" href="#19" class="ln">19</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="20" href="#20" class="ln">20</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="21" href="#21" class="ln">21</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="22" href="#22" class="ln">22</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="23" href="#23" class="ln">23</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="24" href="#24" class="ln">24</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="25" href="#25" class="ln">25</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="26" href="#26" class="ln">26</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="27" href="#27" class="ln">27</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="28" href="#28" class="ln">28</a></div><div class="ln">&nbsp;<span class="lnfile">TA2CylWireSven.cc:</span><a name="29" href="#29" class="ln">29</a></div></div>
+</div>
+
+<br />
+<!--SIGNATURE-->
+<div id="footer">
+
+<em>&raquo; Last changed: 2013-08-11 12:17 </em><em>&raquo; Last generated: 2013-08-11 12:17</em><br />
+<em>This page has been automatically generated. For comments or suggestions regarding the documentation or ROOT in general please send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>.</em>
+</div>
+</div>
+</body>
+</html>

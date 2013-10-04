@@ -1,0 +1,30 @@
+##############################################################################
+Detector: BaF2            TA2TAPS_BaF2            BaF2_MC_07.dat
+Detector: VetoBaF2        TA2PlasticPID		  Veto_BaF2_MC.dat
+#
+###############################################################################
+Reconstruct:
+##
+## PDG database	# particles
+ParticleID: 	16
+## Do some post-initialisation.
+## Should usually be done before display is setup
+Initialise:
+##
+TAPS-Factor: 1.0
+#
+##############################################################################
+TAPS_SimpleReconstruct: 1
+##############################################################################
+#TAPS_dEvE_Cuts: data/TAPSdEvE_2007_07_FEB09.root
+#TAPS_dEvE_Proton: 0
+#TAPS_dEvE_Proton_CutName: dEvE_proton_cut
+#TAPS_dEvE_ChPion: 0
+#TAPS_dEvE_ChPion_CutName: dEvE_chpion_cut
+#TAPS_dEvE_Electron: 0
+#TAPS_dEvE_Electron_CutName: dEvE_electron_cut
+#
+Display: 2D Echarged 800 0 400 0   DeltaE 80 0 4 0
+Display: 1D DeltaE 80 0 4
+Display: 1D Echarged 800 0 400
+# End

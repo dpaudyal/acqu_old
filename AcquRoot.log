@@ -1,0 +1,19 @@
+Data processing type: Raw  chosen
+
+ ROOT Tree name: RawEvent_AR_Save for I/O
+
+ Branch: RawEvent_Hits, size 1048576 added to offline analysis
+
+ Branch: RawEvent_Scalers, size 32768 added to offline analysis
+
+ Branch: Mk1_Header, size 262144 added to offline analysis
+
+ ROOT output stored in directory: histograms/
+
+Analysis Class: TA2UserAnalysis chosen
+ Analysis setup from file Analysis_2011_01_pi0.dat
+
+ Data Server setup from file Server_Jan11Carbon.dat
+
+ TA2UserAnalysis analysis loaded into TAcquRoot Acqu-to-Root interface
+ TA2DataServer data server loaded into TAcquRoot Acqu-to-Root interface

@@ -1,0 +1,24 @@
+##	Scaler time dependence config file
+##	JRM Annand	 27th Jun 2004
+##
+##	Ratios of scalers as a function of time
+Number-Rates: 13
+##	     Name	Scaler	Clock	Frequency	Normalisation
+RateData: ScP2Tagger	151	355	1		100.
+RateData: ScInt4	2	534	1		1000000.
+RateData: ScLiveTime	1	534	1		100.
+#RateData: ScCBSum	5	534	1		1000000.
+#RateData: ScTAPSor	6	534	1		1000000.
+#RateData: ScPIDor	7	534	1		1000000.
+RateData: ScG175	355	534	1		1000000.
+RateData: ScP2Faraday 	151	150	1		1000000.
+RateData: TOF-O5-top 	524	534	1		1000000.
+RateData: TOF-O5-bottom 525	534	1		1000000.
+RateData: TOF-O6-top 	526	534	1		1000000.
+RateData: TOF-O6-bottom 527	534	1		1000000.
+RateData: TOF-P5-top 	528	534	1		1000000.
+RateData: TOF-P5-bottom 529	534	1		1000000.
+RateData: TOF-O7-top 	521	534	1		1000000.
+RateData: TOF-O7-bottom 522	534	1		1000000.
+##
+##	End

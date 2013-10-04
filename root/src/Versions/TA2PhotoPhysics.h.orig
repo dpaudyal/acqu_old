@@ -1,0 +1,349 @@
+//--Author	JRM Annand   18th Feb 2004   Use def physics
+//--Rev
+//--Rev         JRM Annand   13th May 2004   Start general physics suite
+//--Rev         JRM Annand   28th Apr 2004   General photo-meson methods
+//--Rev         JRM Annand   13th Jul 2005   SortNPhoton bugs
+//--Rev         JRM Annand   25th Jul 2005   ED bug fix fP4tot
+//--Rev         JRM Annand   22nd Sep 2006   pi+n analysis add lin pol
+//--Rev         JRM Annand   14th Dec 2006   fM2gCBTAPS for online diagnostic
+//--Update      JRM Annand   14th Mar 2007   fEmProton for D(g,np) calib.
+//--Description
+//                *** Acqu++ <-> Root ***
+// Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+//
+// TA2PhotoPhysics
+//
+// General reconstruction of reaction kinematics in Mainz tagged-photon
+// meson production experiments.
+// Use 4-momenta and PDG-index information from apparati to reconstruct
+// reaction kinematics. The PDG index (and 4-momentum) assigned by the
+// apparatus is not considered binding, e.g. in cases where n/gamma
+// discrimination by an apparatus is not possible, in which case it
+// defaults to kGamma. The method TA2ParticleID->SetMassP4( *p4, ipdg )
+// may be used to reset the rest-mass of an existing 4 momentum *p4 to that
+// corresponding to PDG index ipdg.
+// This one deals with pion and eta photoproduction on the nucleon.
+// PDG codes of particles generlly observed MAMI-B
+// kElectron 11,     kPositron -11
+// kMuonMinus 13     kMuonPlus -13      kGamma 22
+// kPi0 111          kPiPlus 211        kPiMinus -211       kEta 221
+// kProton 2212      kNeutron 2112
+// 
+
+#ifndef __TA2PhotoPhysics_h__
+#define __TA2PhotoPhysics_h__
+
+#include "TA2Physics.h"
+
+enum { EPhotoUndefined = 999999999 };
+
+class TA2Tagger;
+//class TA2LinearPol;
+
+class TA2PhotoPhysics : public TA2Physics {
+ protected:
+  TA2Tagger* fTAGG;                         // Glasgow photon tagger
+  //  TA2LinearPol* fLP;                        // Coherent brem. analysis
+  TA2Apparatus* fCB;                        // Crystal Ball
+  TA2Apparatus* fTAPS;                      // TAPS
+  TLorentzVector* fTAGGp4;                  // Tagger 4-mom store
+  TLorentzVector* fCBp4;                    // CB 4-mom store
+  TLorentzVector* fTAPSp4;                  // TAPS 4-mom store
+  Int_t* fTAGGpdg;                          // PDG indices of tagger hits
+  Int_t* fCBpdg;                            // PDG indices of CB hits
+  Int_t* fTAPSpdg;                          // PDG indices of TAPS hits
+  TLorentzVector** fP4photon;               // sorted list of gamma 4 momenta
+  TLorentzVector** fP4proton;               // sorted list of proton 4 momenta
+  TLorentzVector** fP4piplus;               // sorted list of pi+ 4 momenta
+  TLorentzVector** fP4neutron;              // sorted list of neutron 4 momenta
+  TLorentzVector** fP4pi0;                  // sorted list of pi0 4 momenta
+  TLorentzVector** fP4gprime;               // sorted list of gamma' 4 momenta
+  TLorentzVector** fP4eta;                  // sorted list of eta 4 momenta
+  TLorentzVector** fP4rootino;              // sorted list of unknown 4 momenta
+  TLorentzVector fP4photonTot;              // total 4-momentum of gammas
+  Int_t fNphoton;                           // # photon
+  Int_t fNproton;                           // # proton
+  Int_t fNpiplus;                           // # pi+
+  Int_t fNneutron;                          // # neutron
+  Int_t fNpi0;                              // # pi0
+  Int_t fNgprime;                           // # gamma'
+  Int_t fNeta;                              // # eta
+  Int_t fNrootino;                          // # unknowns
+  Int_t fNprompt;                           // tagger prompts
+  Int_t fNrandom;                           // tagger randoms
+  Int_t fNparaP;                            // prompts lin-pol para
+  Int_t fNparaR;                            // randoms lin-pol para
+  Int_t fNperpP;                            // prompts lin-pol perp
+  Int_t fNperpR;                            // randoms lin-pol perp
+  Int_t fMaxTagg;                           // max # tagger hits
+  Int_t fMax2gPerm;                         // max # 2-gamma permutations
+  Double_t* fMassDpi0;                      // for meson ID by inv. mass
+  Double_t* fMassDeta;                      // for meson ID by inv. mass
+  Int_t* fMassIJ;                           // combinatorial indices
+  Int_t* fMassIpi0;                         // ditto
+  Int_t* fMassIeta;                         // ditto
+  Bool_t* fIsMesonIndex;                    // is a photon derived from a meson
+  Double_t fMaxMDpi0;                       // mass-diff limit pi0
+  Double_t fMaxMDeta;                       // mass-diff limit eta
+  Double_t fM2g;                            // 2-photon invariant mass
+  Double_t fM6g;                            // 2-photon invariant mass
+  Double_t fM2gCBTAPS;                      // 1-photon CB and 1-photon TAPS invariant mass
+  // Missing masses, missing energies, cm momenta for various combinations
+  // of final state particles.
+  // Array pointer followed by pointer to  Tagger prompt section (suffix P)
+  // and Tagger random section (suffix R)
+  Double_t* fEm;                  // overall missing mass
+  Double_t* fEmP;
+  Double_t* fEmR;
+  Double_t* fEmPi0;               // missing mass single pi0 final state
+  Double_t* fEmPi0P;
+  Double_t* fEmPi0R;
+  Double_t* fEmPi0p;              // missing energy pi0-p final state
+  Double_t* fEmPi0pP;
+  Double_t* fEmPi0pR;
+  Double_t* fPmPi0p;              // cm mometum pi0-p final state
+  Double_t* fPmPi0pP;
+  Double_t* fPmPi0pR;
+  Double_t* fPcmPi0p;             // cm mometum pi0-p final state
+  Double_t* fPcmPi0pP;
+  Double_t* fPcmPi0pR;
+  Double_t* fEmPi0g;              // missing mass pi0-g' final state
+  Double_t* fEmPi0gP;
+  Double_t* fEmPi0gR;
+  Double_t* fEmPi0gp;             // missing energy pi0-g'-p final state
+  Double_t* fEmPi0gpP;
+  Double_t* fEmPi0gpR;
+  Double_t* fPmPi0gp;             // Pmiss pi0-g'-p
+  Double_t* fPmPi0gpP;
+  Double_t* fPmPi0gpR;
+  Double_t* fPcmPi0gp;            // cm momentum pi0-g'-p final state
+  Double_t* fPcmPi0gpP;
+  Double_t* fPcmPi0gpR;
+  Double_t* fEgPi0gp;             // g' energy pi0-g'-p final state
+  Double_t  fWEgPi0gp;            // weight factor for g' energy spectrum
+  Double_t* fEgPi0gpP;
+  Double_t* fEgPi0gpR;
+  Double_t* fEmEta;               // missing mass single eta final state
+  Double_t* fEmEtaP;
+  Double_t* fEmEtaR;
+  Double_t* fEmEtap;              // missing energy eta-p final state
+  Double_t* fEmEtapP;
+  Double_t* fEmEtapR;
+  Double_t* fPcmEtap;             // cm momentum eta-p final state
+  Double_t* fPcmEtapP;
+  Double_t* fPcmEtapR;
+  Double_t* fEmPiplus;            // missing mass single pi+ final state
+  Double_t* fEmPiplusP;
+  Double_t* fEmPiplusR;
+  Double_t* fEmProton;            // missing mass single pi+ final state
+  Double_t* fEmProtonP;
+  Double_t* fEmProtonR;
+  Double_t* fAopen;               // final-state Pi-N opening angle
+  Double_t* fAopenP;              // prompt
+  Double_t* fAopenR;              // random
+  Double_t* fTheta;               // polar angles
+  Double_t* fThetaP;              // polar prompt
+  Double_t* fThetaR;              // polar random
+  Double_t* fPhi;                 // asimuthal angles
+  Double_t* fPhiParaP;            // asimuth prompt parallel pol
+  Double_t* fPhiParaR;            // asimuth random parallel pol
+  Double_t* fPhiPerpP;            // asimuth prompt perpendicular pol
+  Double_t* fPhiPerpR;            // asimuth random perpendicular pol
+  Double_t  fEmLow;               // missing energy cut low threshold
+  Double_t  fEmHigh;              // missing energy cut high threshold
+  Double_t  fEgLow;               // photon energy cut low threshold
+  Double_t  fEgHigh;              // photon energy cut high threshold
+  Double_t  fALow;                // angle cut low threshold
+  Double_t  fAHigh;               // angle cut high threshold
+  Double_t* fAngle1;              // wild-card angles
+  Double_t* fAngle1P;
+  Double_t* fAngle1R;;
+  Double_t* fAngle2;              // wild-card angles
+  Double_t* fAngle2P;
+  Double_t* fAngle2R;;
+  //
+ public:
+  TA2PhotoPhysics( const char*, TA2Analysis* );
+  virtual ~TA2PhotoPhysics();
+  virtual void LoadVariable();            // variables for display/cuts
+  virtual void PostInit( );               // init after parameter input
+  virtual void SetConfig(Char_t*, Int_t);
+
+  virtual void Reconstruct();             // reconstruct detector info
+  virtual TA2DataManager* CreateChild( const char*, Int_t ){ return NULL;}
+  virtual void Sort2Photon( );
+  virtual void SortNPhoton( );
+  virtual void MarkUndefined( Int_t );
+  virtual void MarkEndBuffer( );
+
+  ClassDef(TA2PhotoPhysics,1)
+};
+
+//-----------------------------------------------------------------------------
+inline void TA2PhotoPhysics::Sort2Photon(  )
+{
+  // Test if 2 gamma 4-momenta combine to give a  possible pi0 or eta
+  // by finding the invariant mass. This is a fast version of SortNPhoton
+  // for the frequent pi0 -> 2 gamma situation
+
+  TLorentzVector p4 = *fP4photon[0] + *fP4photon[1];  // sum 4 momenta
+  fM2g = p4.M();                                      // inv. mass
+  fMassDpi0[0] = TMath::Abs( p4.M() - fParticleID->GetMassMeV(kPi0) );
+  if( fMassDpi0[0] < fMaxMDpi0 ){                     // is it a pi0
+    *fP4pi0[0] = p4;
+    fNpi0 = 1;
+  }
+  // wasn't a pi0 so test for eta
+  else if( (fMassDeta[0] =
+	    TMath::Abs( p4.M() - fParticleID->GetMassMeV(kEta) ) )
+	   < fMaxMDeta ){
+    *fP4eta[0] = p4;
+    fNeta = 1;
+  }
+  // not an eta so assume both photons are gamma-prime
+  else {
+    fP4gprime[0] = fP4photon[0];
+    fP4gprime[1] = fP4photon[1];
+    fNgprime = 2;
+  }
+  return;
+}
+
+//-----------------------------------------------------------------------------
+inline void TA2PhotoPhysics::SortNPhoton(  )
+{
+  // Take sample of n gamma 4-momenta and sort into possible pi0 or eta
+  // by finding the invariant mass of the possible 2-photon combinations.
+  // The differences of the 2-photon invariant masses and pi0/eta mass are
+  // sorted in ascending order.
+
+  TLorentzVector p4temp;
+  Double_t mPi0 = fParticleID->GetMassMeV(kPi0);
+  Double_t mEta = fParticleID->GetMassMeV(kEta);
+  Double_t* pi0diff = fMassDpi0;
+  Double_t* etadiff = fMassDeta;
+  Int_t* ij = fMassIJ;
+  Int_t i,j,k,jk;
+  Int_t n = fNphoton;
+  fP4photonTot.SetXYZT(0.0,0.0,0.0,0.0);         // zero total photon 4-mom
+
+  // Loop over possible 2-photon combinations i != j, ij = ji
+  for( i=0,k=0; i<n; i++ ){
+    fP4photonTot += *fP4photon[i];
+    fIsMesonIndex[i] = EFalse;                   // initialise not meson
+    for( j=i+1; j<n; j++ ){
+      p4temp =  *fP4photon[i] + *fP4photon[j];   // add the 4 momenta
+      *pi0diff++ = TMath::Abs( p4temp.M() - mPi0 );// check inv mass pi0
+      *etadiff++ = TMath::Abs( p4temp.M() - mEta );// check inv. mass eta
+      *ij++ = i | (j<<16);                       // store i,j indices
+      k++;                                       // permutation counter
+    }
+  }
+  if( n == 6 ) fM6g = fP4photonTot.M();
+  TMath::Sort(k, fMassDeta, fMassIeta, EFalse);  // sort mass diffs ascending
+  TMath::Sort(k, fMassDpi0, fMassIpi0, EFalse);  // sort mass diffs ascending
+  Int_t nMeson = k;                              // max # possible mesons
+  // Check for eta combinations
+  for( i=0; i<nMeson; i++){
+    // exit loop when mass-diff exceeds maximum bound
+    if( fMassDeta[fMassIeta[i]] > fMaxMDeta ) break;
+    jk = fMassIJ[fMassIeta[i]];                  // get indices
+    j = jk & 0xffff;
+    k = (jk>>16) & 0xffff;
+    // photon already used to construct meson ?
+    if( fIsMesonIndex[j] || fIsMesonIndex[k] ) continue;
+    *fP4eta[fNeta++] = *fP4photon[j] + *fP4photon[k]; // 2-gamma 4-momentum
+    fIsMesonIndex[j] = fIsMesonIndex[k] = ETrue;
+  }
+  // Check for pi0 combinations
+  for( i=0; i<nMeson; i++){ 
+    // exit loop when mass-diff exceeds maximum bound
+    if( fMassDpi0[fMassIpi0[i]] > fMaxMDpi0 ) break;
+    jk = fMassIJ[fMassIpi0[i]];                  // get indices
+    j = jk & 0xffff;
+    k = (jk>>16) & 0xffff;
+    // photon already used to construct meson ?
+    if( fIsMesonIndex[j] || fIsMesonIndex[k] ) continue;
+    *fP4pi0[fNpi0++]  = *fP4photon[j] + *fP4photon[k];// 2-gamma 4-momentum
+    fIsMesonIndex[j] = fIsMesonIndex[k] = ETrue;      // mark photons as used
+  }
+  // Put any photons not combined into a meson into the gamma-primed list
+  for( j=0; j<n; j++ ){
+    if( !fIsMesonIndex[j] ) fP4gprime[ fNgprime++ ] = fP4photon[j];
+  }
+}
+
+//-----------------------------------------------------------------------------
+inline void TA2PhotoPhysics::MarkUndefined( Int_t jtagg )
+{
+  // Initialise undefined
+  fEmP[jtagg] = EPhotoUndefined;
+  fEmPi0P[jtagg] = EPhotoUndefined;
+  fEmPi0pP[jtagg] = EPhotoUndefined;
+  fPmPi0pP[jtagg] = EPhotoUndefined;
+  fPcmPi0pP[jtagg] = EPhotoUndefined;
+  fEmPi0gP[jtagg] = EPhotoUndefined;
+  fEmPi0gpP[jtagg] = EPhotoUndefined;
+  fPmPi0gpP[jtagg] = EPhotoUndefined;
+  fPcmPi0gpP[jtagg] = EPhotoUndefined;
+  fEgPi0gpP[jtagg] = EPhotoUndefined;
+  fEmEtaP[jtagg] = EPhotoUndefined;
+  fEmEtapP[jtagg] = EPhotoUndefined;
+  fPcmEtapP[jtagg] = EPhotoUndefined;
+  fEmPiplusP[jtagg] = EPhotoUndefined;
+  fEmProtonP[jtagg] = EPhotoUndefined;
+  fAopenP[jtagg] = EPhotoUndefined;
+  fThetaP[jtagg] = EPhotoUndefined ;
+  fAngle1P[jtagg] = EPhotoUndefined;
+  fAngle2P[jtagg] = EPhotoUndefined;
+}
+
+//-----------------------------------------------------------------------------
+inline void TA2PhotoPhysics::MarkEndBuffer()
+{
+  // Ensure the multi-data buffers are marked as ended
+  fEmP[fNprompt] = EBufferEnd;
+  fEmR[fNrandom] = EBufferEnd;
+  fEmPi0P[fNprompt] = EBufferEnd;
+  fEmPi0R[fNrandom] = EBufferEnd;
+  fEmPi0pP[fNprompt] = EBufferEnd;
+  fEmPi0pR[fNrandom] = EBufferEnd;
+  fPmPi0pP[fNprompt] = EBufferEnd;
+  fPmPi0pR[fNrandom] = EBufferEnd;
+  fPcmPi0pP[fNprompt] = EBufferEnd;
+  fPcmPi0pR[fNrandom] = EBufferEnd;
+  fEmPi0gP[fNprompt] = EBufferEnd;
+  fEmPi0gR[fNrandom] = EBufferEnd;
+  fEmPi0gpP[fNprompt] = EBufferEnd;
+  fEmPi0gpR[fNrandom] = EBufferEnd;
+  fPmPi0gpP[fNprompt] = EBufferEnd;
+  fPmPi0gpR[fNrandom] = EBufferEnd;
+  fPcmPi0gpP[fNprompt] = EBufferEnd;
+  fPcmPi0gpR[fNrandom] = EBufferEnd;
+  fEgPi0gpP[fNprompt] = EBufferEnd;
+  fEgPi0gpR[fNrandom] = EBufferEnd;
+  fEmEtaP[fNprompt] = EBufferEnd;
+  fEmEtaR[fNrandom] = EBufferEnd;
+  fEmEtapP[fNprompt] = EBufferEnd;
+  fEmEtapR[fNrandom] = EBufferEnd;
+  fPcmEtapP[fNprompt] = EBufferEnd;
+  fPcmEtapR[fNrandom] = EBufferEnd;
+  fEmPiplusP[fNprompt] = EBufferEnd;
+  fEmPiplusR[fNrandom] = EBufferEnd;
+  fEmProtonP[fNprompt] = EBufferEnd;
+  fEmProtonR[fNrandom] = EBufferEnd;
+  fAopenP[fNprompt] = EBufferEnd;
+  fAopenR[fNrandom] = EBufferEnd;
+  fThetaP[fNprompt] = EBufferEnd;
+  fThetaR[fNrandom] = EBufferEnd;
+  fPhiParaP[fNparaP] = EBufferEnd;
+  fPhiParaR[fNparaR] = EBufferEnd;
+  fPhiPerpP[fNperpP] = EBufferEnd;
+  fPhiPerpR[fNperpR] = EBufferEnd;
+  fAngle1P[fNprompt] = EBufferEnd;
+  fAngle1R[fNrandom] = EBufferEnd;
+  fAngle2P[fNprompt] = EBufferEnd;
+  fAngle2R[fNrandom] = EBufferEnd;
+}
+
+#endif

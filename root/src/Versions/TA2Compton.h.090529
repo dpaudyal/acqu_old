@@ -1,0 +1,355 @@
+//--Author	JRM Annand   18th Feb 2004   Use def physics
+//--Rev
+//--Rev         JRM Annand   13th May 2004   Start general physics suite
+//--Rev         JRM Annand   28th Apr 2004   General photo-meson methods
+//--Rev         JRM Annand   13th Jul 2005   SortNPhoton bugs
+//--Rev         JRM Annand   25th Jul 2005   ED bug fix fP4tot
+//--Rev         JRM Annand   22nd Sep 2006   pi+n analysis add lin pol
+//--Rev         JRM Annand   14th Mar 2007   fEmProton for D(g,np) calib.
+//--Update      JRM Annand   21st Jul 2008   Compton scattering
+//--Update      DL Hornidge   6th Sep 2008   More Compton scattering
+//--Description
+//                *** Acqu++ <-> Root ***
+// Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+//
+// TA2Compton
+//
+// General reconstruction of reaction kinematics in Mainz tagged-photon
+// meson production experiments.
+// Use 4-momenta and PDG-index information from apparati to reconstruct
+// reaction kinematics. The PDG index (and 4-momentum) assigned by the
+// apparatus is not considered binding, e.g. in cases where n/gamma
+// discrimination by an apparatus is not possible, in which case it
+// defaults to kGamma. The method TA2ParticleID->SetMassP4( *p4, ipdg )
+// may be used to reset the rest-mass of an existing 4 momentum *p4 to that
+// corresponding to PDG index ipdg.
+// This one deals with pion and eta photoproduction on the nucleon.
+// PDG codes of particles generlly observed MAMI-B
+// kElectron 11,     kPositron -11
+// kMuonMinus 13     kMuonPlus -13      kGamma 22
+// kPi0 111          kPiPlus 211        kPiMinus -211       kEta 221
+// kProton 2212      kNeutron 2112
+// 
+
+#ifndef __TA2Compton_h__
+#define __TA2Compton_h__
+
+#include "TA2Physics.h"
+#include "TA2CrystalBall.h"
+#include "TA2TAPS.h"
+#include "TA2Ladder.h"
+
+class TA2Tagger;
+
+class TA2Compton : public TA2Physics {
+
+	protected:
+
+		TA2Tagger* fTAGG;                      // Glasgow photon tagger
+		TA2Apparatus* fCB;                     // Crystal Ball
+		TA2Apparatus* fTAPS;                   // TAPS
+		TA2Ladder* fLADD;								// Ladder
+
+		TLorentzVector* fTAGGp4;               // Tagger 4-mom store
+		TLorentzVector* fCBp4;                 // CB 4-mom store
+		TLorentzVector* fTAPSp4;               // TAPS 4-mom store
+
+		Int_t* fTAGGpdg;                       // PDG indices of tagger hits
+		Int_t* fCBpdg;                         // PDG indices of CB hits
+		Int_t* fTAPSpdg;                       // PDG indices of TAPS hits
+
+		TLorentzVector** fP4photon;            // sorted list of gamma 4 momenta
+		TLorentzVector** fP4proton;            // sorted list of proton 4 momenta
+		TLorentzVector** fP4piplus;            // sorted list of pi+ 4 momenta
+		TLorentzVector** fP4neutron;           // sorted list of neutron 4 momenta
+		TLorentzVector** fP4pi0;               // sorted list of pi0 4 momenta
+		TLorentzVector** fP4gprime;            // sorted list of gamma' 4 momenta
+		TLorentzVector** fP4eta;               // sorted list of eta 4 momenta
+		TLorentzVector** fP4rootino;           // sorted list of unknown 4 momenta
+		TLorentzVector fP4photonTot;           // total 4-momentum of gammas
+
+		Int_t fNphoton;                        // # photon
+		Int_t fNproton;                        // # proton
+		Int_t fNpiplus;                        // # pi+
+		Int_t fNneutron;                       // # neutron
+		Int_t fNpi0;                           // # pi0
+		Int_t fNgprime;                        // # gamma'
+		Int_t fNeta;                           // # eta
+		Int_t fNrootino;                       // # unknowns
+
+		Int_t fNprompt;                        // tagger prompts
+		Int_t fNrandom;                        // tagger randoms
+		Int_t fNparaP;                         // prompts lin-pol para
+		Int_t fNparaR;                         // randoms lin-pol para
+		Int_t fNperpP;                         // prompts lin-pol perp
+		Int_t fNperpR;                         // randoms lin-pol perp
+
+		Int_t fMaxTagg;                        // max # tagger hits
+		Int_t fMax2gPerm;                      // max # 2-gamma permutations
+
+		Double_t* fMassDpi0;                   // for meson ID by inv. mass
+		Double_t* fMassDeta;                   // for meson ID by inv. mass
+		Int_t* fMassIJ;                        // combinatorial indices
+		Int_t* fMassIpi0;                      // ditto
+		Int_t* fMassIeta;                      // ditto
+		Bool_t* fIsMesonIndex;                 // is a photon derived from a meson
+
+		Double_t fMaxMDpi0;                    // mass-diff limit pi0
+		Double_t fMaxMDeta;                    // mass-diff limit eta
+		Double_t fM2g;                         // 2-photon invariant mass
+		Double_t fM6g;                         // 6-photon invariant mass
+
+		Double_t fPhi, fPlo, fRhi, fRlo;		// Prompt-Random windows
+		Double_t fMMMinLo;						// missing mass limit low E lo
+		Double_t fMMMinHi;						// missing mass limit low E hi
+		Double_t fMMMaxLo;						// missing mass limit high E lo
+		Double_t fMMMaxHi;						// missing mass limit high E hi
+		Double_t fOACut;							// opening-angle cut
+
+		// Particle Timing Stuff
+		Double_t* fCBTime;
+		Double_t* fTAPSTime;
+		Double_t* fTimePhoton;
+		Double_t* fTimeProton;
+		Double_t* fTimePiPlus;
+		Double_t* fTimeRootino;
+
+		Double_t fPi0TGG;				// Pion Opening Angle
+		Double_t fPi0KE;				// Pion Kinetic Energy
+		Double_t fPi0Theta;			// Pion Theta
+		Double_t fPi0Phi;				// Pion Phi
+
+		Double_t fPhotKE;				// Photon Energy
+		Double_t fPhotTheta;			// Photon Theta
+		Double_t fPhotPhi;			// Photon Phi
+
+		Double_t fProtKE;				// Proton Kinetic Energy
+		Double_t fProtTheta;			// Proton Theta
+		Double_t fProtPhi;			// Proton Phi
+
+		TRandom *rand;
+
+	public:
+
+		TA2Compton( const char*, TA2Analysis* );
+		virtual ~TA2Compton();
+		virtual void LoadVariable();            // variables for display/cuts
+		virtual void PostInit( );               // init after parameter input
+		virtual void SetConfig(Char_t*, Int_t);
+
+		virtual void Reconstruct();             // reconstruct detector info
+		virtual TA2DataManager* CreateChild( const char*, Int_t ){ return NULL;}
+		virtual void Sort2Photon( );
+		virtual void SortNPhoton( );
+
+		Double_t Sqr( Double_t);
+		Double_t TGGCut( Double_t, Double_t);
+
+		TH1D* TagTime;
+//		TH1D* PhotTime;
+//		TH1D* PhotTagTime;
+
+// Photon
+		TH1D* MMissPhot_P;
+		TH1D* MMissPhot_R;
+		TH2D* MMissPhot_TChan_P;
+		TH2D* MMissPhot_TChan_R;
+		TH3D* MMissPhot_Theta_TChan_P;
+		TH3D* MMissPhot_Theta_TChan_R;
+		TH2D* MMissPhot_OpenA_P;
+		TH2D* MMissPhot_OpenA_R;
+		TH3D* MMissPhot_Theta_OpenA_P;
+		TH3D* MMissPhot_Theta_OpenA_R;
+		TH2D* EMiss_OpenA_P;
+		TH2D* EMiss_OpenA_R;
+		TH1D* MMissPhot_CutP;
+		TH1D* MMissPhot_CutR;
+		TH2D* MMissPhot_TChan_CutP;
+		TH2D* MMissPhot_TChan_CutR;
+		TH3D* MMissPhot_Theta_TChan_CutP;
+		TH3D* MMissPhot_Theta_TChan_CutR;
+
+// Pi0
+		TH3D* MMissPi0_Theta_TChan_P;
+		TH3D* MMissPi0_Theta_TChan_R;
+
+		TH3D* MMissPi0_TGG_ThetaCM_P;
+		TH3D* MMissPi0_TGG_ThetaCM_R;
+
+		TH3D* MMissPi0_TGG_ThetaCM_NC_P;
+		TH3D* MMissPi0_TGG_ThetaCM_NC_R;
+
+	ClassDef(TA2Compton,1)
+};
+
+//-----------------------------------------------------------------------------
+inline void TA2Compton::Sort2Photon()
+{
+	// Test if 2 gamma 4-momenta combine to give a  possible pi0 or eta
+	// by finding the invariant mass. This is a fast version of SortNPhoton
+	// for the frequent pi0 -> 2 gamma situation
+
+	TLorentzVector p4 = *fP4photon[0] + *fP4photon[1];  // sum 4 momenta
+	fM2g = p4.M();                                      // inv. mass
+	fMassDpi0[0] = TMath::Abs( p4.M() - fParticleID->GetMassMeV(kPi0));
+	if( fMassDpi0[0] < fMaxMDpi0 ){                     // is it a pi0
+		*fP4pi0[0] = p4;
+		fNpi0 = 1;
+	}
+	// wasn't a pi0 so test for eta
+	else if( (fMassDeta[0] = TMath::Abs( p4.M()
+					- fParticleID->GetMassMeV(kEta))) < fMaxMDeta ){
+		*fP4eta[0] = p4;
+		fNeta = 1;
+	}
+	// not an eta so assume both photons are gamma-prime
+	else {
+		fP4gprime[0] = fP4photon[0];
+		fP4gprime[1] = fP4photon[1];
+		fNgprime = 2;
+	}
+	return;
+}
+
+//-----------------------------------------------------------------------------
+inline void TA2Compton::SortNPhoton()
+{
+	// Take sample of n gamma 4-momenta and sort into possible pi0 or eta
+	// by finding the invariant mass of the possible 2-photon combinations.
+	// The differences of the 2-photon invariant masses and pi0/eta mass are
+	// sorted in ascending order.
+
+	TLorentzVector p4temp;
+	Double_t mPi0 = fParticleID->GetMassMeV(kPi0);
+	Double_t mEta = fParticleID->GetMassMeV(kEta);
+	Double_t* pi0diff = fMassDpi0;
+	Double_t* etadiff = fMassDeta;
+	Int_t* ij = fMassIJ;
+	Int_t i,j,k,jk;
+	Int_t n = fNphoton;
+	fP4photonTot.SetXYZT(0.0,0.0,0.0,0.0);         // zero total photon 4-mom
+
+	// Loop over possible 2-photon combinations i != j, ij = ji
+	for( i=0,k=0; i<n; i++ ){
+		fP4photonTot += *fP4photon[i];
+		fIsMesonIndex[i] = EFalse;                   // initialise not meson
+		for( j=i+1; j<n; j++ ){
+			p4temp =  *fP4photon[i] + *fP4photon[j];   // add the 4 momenta
+			*pi0diff++ = TMath::Abs( p4temp.M() - mPi0 );// check inv mass pi0
+			*etadiff++ = TMath::Abs( p4temp.M() - mEta );// check inv. mass eta
+			*ij++ = i | (j<<16);                       // store i,j indices
+			k++;                                       // permutation counter
+		}
+	}
+	if( n == 6 ) fM6g = fP4photonTot.M();
+	TMath::Sort(k, fMassDeta, fMassIeta, EFalse);  // sort mass diffs ascending
+	TMath::Sort(k, fMassDpi0, fMassIpi0, EFalse);  // sort mass diffs ascending
+	Int_t nMeson = k;                              // max # possible mesons
+	// Check for eta combinations
+	for( i=0; i<nMeson; i++){
+		// exit loop when mass-diff exceeds maximum bound
+		if( fMassDeta[fMassIeta[i]] > fMaxMDeta ) break;
+		jk = fMassIJ[fMassIeta[i]];                  // get indices
+		j = jk & 0xffff;
+		k = (jk>>16) & 0xffff;
+		// photon already used to construct meson ?
+		if( fIsMesonIndex[j] || fIsMesonIndex[k] ) continue;
+		*fP4eta[fNeta++] = *fP4photon[j] + *fP4photon[k]; // 2-gamma 4-momentum
+		fIsMesonIndex[j] = fIsMesonIndex[k] = ETrue;
+	}
+	// Check for pi0 combinations
+	for( i=0; i<nMeson; i++){ 
+		// exit loop when mass-diff exceeds maximum bound
+		if( fMassDpi0[fMassIpi0[i]] > fMaxMDpi0 ) break;
+		jk = fMassIJ[fMassIpi0[i]];                  // get indices
+		j = jk & 0xffff;
+		k = (jk>>16) & 0xffff;
+		// photon already used to construct meson?
+		if( fIsMesonIndex[j] || fIsMesonIndex[k] ) continue;
+		*fP4pi0[fNpi0++]  = *fP4photon[j] + *fP4photon[k];// 2-gamma 4-momentum
+		fIsMesonIndex[j] = fIsMesonIndex[k] = ETrue;      // mark photons as used
+	}
+	// Put any photons not combined into a meson into the gamma-primed list
+	for( j=0; j<n; j++ ){
+		if( !fIsMesonIndex[j] ) fP4gprime[ fNgprime++ ] = fP4photon[j];
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+inline Double_t TA2Compton::Sqr( Double_t x)
+{
+	return( x*x);
+}
+
+//-----------------------------------------------------------------------------
+
+inline Double_t TA2Compton::TGGCut( Double_t eg, Double_t cmth)
+{
+	Double_t cut;
+	Double_t c, d, a[2], b[2];
+
+	if ( ( eg >= 142.5) && ( eg <= 157.5)) {
+//		c = 92.5;
+		c = 180;
+		d = 160;
+		if ( cmth <= c) {
+			a[0] = 0;
+			b[0] = 140;
+			a[1] = c;
+			b[1] = d;
+		}
+		else {
+			a[0] = c;
+			b[0] = d;
+			a[1] = 180;
+			b[1] = 164;
+		}
+	}
+	else if ( ( eg > 157.5) && ( eg <= 172.5)) {
+//		c = 67.5;
+		c = 66;
+//		d = 114;
+		d = 124;
+		if ( cmth < c) {
+			a[0] = 0;
+			b[0] = 110;
+			a[1] = c;
+			b[1] = d;
+		}
+		else {
+			a[0] = c;
+			b[0] = d;
+			a[1] = 180;
+			b[1] = 150;
+		}
+	}
+	else if ( ( eg > 172.5) && ( eg <= 187.5)) {
+		c = 60;
+//		d = 102;
+		d = 110;
+		if ( cmth < c) {
+			a[0] = 0;
+			b[0] = 96;
+			a[1] = c;
+			b[1] = d;
+		}
+		else {
+			a[0] = c;
+			b[0] = d;
+			a[1] = 180;
+			b[1] = 130;
+		}
+	}
+	else {
+		a[0] = 0;
+		b[0] = 180;
+		a[1] = 180;
+		b[1] = 180;
+	}
+	cut = b[0] + (b[1]-b[0])/(a[1]-a[0])*(cmth-a[0]);
+
+	return( cut);
+}
+
+#endif

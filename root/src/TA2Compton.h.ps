@@ -1,0 +1,1452 @@
+%!PS-Adobe-3.0
+%%Title: TA2Compton.h
+%%For: Garth Huber
+%%Creator: a2ps version 4.14
+%%CreationDate: Thu Mar 25 08:29:12 2010
+%%BoundingBox: 24 24 588 768
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 3
+%%PageOrder: Ascend
+%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-BoldOblique
+%%+ font Courier-Oblique
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black 
+%%DocumentSuppliedResources: procset a2ps-a2ps-hdr
+%%+ procset a2ps-black+white-Prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontType get 0 eq {
+    currentfont /FontMatrix get 3 get
+  }{
+    currentfont /FontMatrix get 3 get 1000 mul
+  } ifelse
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% composite fonts for ASCII-EUC mixed string
+% Version 1.2 1/31/1990
+% Orignal Ken'ichi HANDA (handa@etl.go.jp)
+% Modified Norio Katayama (katayama@rd.nacsis.ac.jp),1998
+% Extend & Fix Koji Nakamaru (maru@on.cs.keio.ac.jp), 1999
+% Anyone can freely copy, modify, distribute this program.
+
+/copyfont {	% font-dic extra-entry-count  copyfont  font-dic
+	1 index maxlength add dict begin
+	{	1 index /FID ne 2 index /UniqueID ne and
+		{def} {pop pop} ifelse
+	} forall
+	currentdict
+	end
+} bind def
+
+/compositefont { % ASCIIFontName EUCFontName RomanScale RomanOffset Rot(T/F) compositefont font
+    /RomanRotation exch def
+    /RomanOffset exch def
+    /RomanScale exch def
+    userdict /fixeucfont_dict known not {
+	userdict begin
+	    /fixeucfont_dict 2 dict begin
+		/UpperByteEncoding [
+		    16#00 1 16#20 { pop 0 } for
+		    16#21 1 16#28 { 16#20 sub } for
+		    16#29 1 16#2F { pop 0 } for
+		    16#30 1 16#74 { 16#27 sub } for
+		    16#75 1 16#FF { pop 0 } for
+		] def
+	        /LowerByteEncoding [
+		    16#00 1 16#A0 { pop /.notdef } for
+		    16#A1 1 16#FE { 16#80 sub 16 2 string cvrs
+				    (cXX) dup 1 4 -1 roll
+				    putinterval cvn } for
+		    /.notdef
+		] def
+		currentdict
+	    end def
+	end
+    } if
+    findfont dup /FontType get 0 eq {
+	14 dict begin
+	    %
+	    % 7+8 bit EUC font
+	    %
+	    12 dict begin
+		/EUCFont exch def
+		/FontInfo (7+8 bit EUC font) readonly def
+		/PaintType 0 def
+		/FontType 0 def
+		/FontMatrix matrix def
+		% /FontName
+		/Encoding fixeucfont_dict /UpperByteEncoding get def
+		/FMapType 2 def
+		EUCFont /WMode known
+		{ EUCFont /WMode get /WMode exch def }
+		{ /WMode 0 def } ifelse
+		/FDepVector [
+		    EUCFont /FDepVector get 0 get
+		    [ 16#21 1 16#28 {} for 16#30 1 16#74 {} for ]
+		    {
+			13 dict begin
+			    /EUCFont EUCFont def
+			    /UpperByte exch 16#80 add def	
+			    % /FontName
+			    /FontInfo (EUC lower byte font) readonly def
+			    /PaintType 0 def
+			    /FontType 3 def
+			    /FontMatrix matrix def
+			    /FontBBox {0 0 0 0} def
+			    /Encoding
+				fixeucfont_dict /LowerByteEncoding get def
+			    % /UniqueID
+			    % /WMode
+			    /BuildChar {
+				gsave
+				exch dup /EUCFont get setfont
+				/UpperByte get
+				2 string
+				dup 0 4 -1 roll put
+				dup 1 4 -1 roll put
+				dup stringwidth setcharwidth
+				0 0 moveto show
+				grestore
+			    } bind def
+			    currentdict
+			end
+			/lowerbytefont exch definefont
+		    } forall
+		] def
+		currentdict
+	    end
+	    /eucfont exch definefont
+	    exch
+	    findfont 1 copyfont dup begin
+		RomanRotation {
+			/FontMatrix FontMatrix
+			[ 0 RomanScale neg RomanScale 0 RomanOffset neg 0 ]
+			matrix concatmatrix def
+		}{
+			/FontMatrix FontMatrix
+			[ RomanScale 0 0 RomanScale 0 RomanOffset ] matrix concatmatrix
+			def
+			/CDevProc
+			    {pop pop pop pop 0 exch -1000 exch 2 div 880} def
+		} ifelse
+	    end
+	    /asciifont exch definefont
+	    exch
+	    /FDepVector [ 4 2 roll ] def
+	    /FontType 0 def
+	    /WMode 0 def
+	    /FMapType 4 def
+	    /FontMatrix matrix def
+	    /Encoding [0 1] def
+	    /FontBBox {0 0 0 0} def
+%	    /FontHeight 1.0 def % XXXX
+	    /FontHeight RomanScale 1.0 ge { RomanScale }{ 1.0 } ifelse def
+	    /Descent -0.3 def   % XXXX
+	    currentdict
+	end
+	/tmpfont exch definefont
+	pop
+	/tmpfont findfont
+    }{
+	pop findfont 0 copyfont
+    } ifelse
+} def	
+
+/slantfont {	% FontName slant-degree  slantfont  font'
+    exch findfont 1 copyfont begin
+    [ 1 0 4 -1 roll 1 0 0 ] FontMatrix exch matrix concatmatrix
+    /FontMatrix exch def
+    currentdict
+    end
+} def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%BeginResource: procset a2ps-a2ps-hdr 2.0 2
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.95 setgray
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+%%EndResource
+%%BeginResource: procset a2ps-black+white-Prolog 2.0 1
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T { 
+  cw mul x0 add y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n { %def
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+}  bind def
+
+/S {
+  Show
+} bind def
+
+/p {
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  false UL
+  false BX
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false UL
+  false BX
+  fCourier-BoldOblique bfs scalefont setfont
+  Show 
+} bind def
+
+/l {
+  false UL
+  false BX
+  fHelvetica bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  false UL
+  false BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show 
+} bind def
+
+/str{
+  false UL
+  false BX
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  false UL
+  true BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Oblique
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%IncludeResource: font Courier-BoldOblique
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 612 def
+/sw 792 def
+/llx 24 def
+/urx 768 def
+/ury 588 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 7.493857 def
+/cw 4.496314 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 8 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fCourier-BoldOblique ISO-8859-1Encoding /Courier-BoldOblique reencode_font
+  /fCourier-Oblique ISO-8859-1Encoding /Courier-Oblique reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 81.400000 mul
+def
+/ph
+   522.321860 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 0 def
+/tab 8 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1-2) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(//--Author      JRM Annand   18th Feb 2004   Use def physics) c n
+(//--Rev) N
+(//--Rev         JRM Annand   13th May 2004   Start general physics suite) N
+(//--Rev         JRM Annand   28th Apr 2004   General photo-meson methods) N
+(//--Rev         JRM Annand   13th Jul 2005   SortNPhoton bugs) N
+(//--Rev         JRM Annand   25th Jul 2005   ED bug fix fP4tot) N
+(//--Rev         JRM Annand   22nd Sep 2006   pi+n analysis add lin pol) N
+(//--Rev         JRM Annand   14th Mar 2007   fEmProton for D\(g,np\) calib.) N
+(//--Update      JRM Annand   21st Jul 2008   Compton scattering) N
+(//--Update      DL Hornidge   6th Sep 2008   More Compton scattering) N
+(//--Update      DL Hornidge  27th May 2009   Threshold Pi0) N
+(//--Description) N
+(//                *** Acqu++ <-> Root ***) N
+(// Online/Offline Analysis of Sub-Atomic Physics Experimental Data ) N
+(//) N
+(// TA2Compton) N
+(//) N
+(// General reconstruction of reaction kinematics in Mainz tagged-photon) N
+(// meson production experiments.) N
+(// Use 4-momenta and PDG-index information from apparati to reconstruct) N
+(// reaction kinematics. The PDG index \(and 4-momentum\) assigned by the) N
+(// apparatus is not considered binding, e.g. in cases where n/gamma) N
+(// discrimination by an apparatus is not possible, in which case it) N
+(// defaults to kGamma. The method TA2ParticleID->SetMassP4\( *p4, ipdg \)) N
+(// may be used to reset the rest-mass of an existing 4 momentum *p4 to that) N
+(// corresponding to PDG index ipdg.) N
+(// This one deals with Compton scattering on the nucleon.) N
+(//) N
+(// PDG codes of particles generlly observed MAMI-C) N
+(// kElectron 11,     kPositron -11) N
+(// kMuonMinus 13     kMuonPlus -13      kGamma 22) N
+(// kPi0 111          kPiPlus 211        kPiMinus -211       kEta 221) N
+(// kProton 2212      kNeutron 2112) N
+(// ) N
+() p n
+(#ifndef) K
+( __TA2Compton_h__) p n
+(#define) K
+( __TA2Compton_h__) p n
+() N
+(#include) K
+( ") p
+(TAcquRoot.h) str
+(") p n
+(#include) K
+( ") p
+(TAcquFile.h) str
+(") p n
+(#include) K
+( ") p
+(TA2Physics.h) str
+(") p n
+(#include) K
+( ") p
+(TA2Analysis.h) str
+(") p n
+(#include) K
+( ") p
+(TA2Tagger.h) str
+(") p n
+(#include) K
+( ") p
+(TA2CrystalBall.h) str
+(") p n
+(#include) K
+( ") p
+(TA2TAPS2009.h) str
+(") p n
+(#include) K
+( ") p
+(TA2Ladder.h) str
+(") p n
+(#include) K
+( ") p
+(TA2PhotoPhysics.h) str
+(") p n
+(#include) K
+( <iostream>) p n
+() N
+(class TA2Tagger;) N
+() N
+(class TA2Compton : public TA2Physics {) N
+() N
+(     protected:) N
+() N
+(          TA2Tagger* fTAGG;                      ) S
+(// Glasgow photon tagger) c n
+(          TA2CrystalBall* fCB;                   ) p
+(// Crystal Ball) c n
+(          TA2TAPS2009* fTAPS;                    ) p
+(// TAPS) c n
+(          TA2Ladder* fLADD;                      ) p
+(// Ladder) c n
+() p n
+(//          TA2Particle* fTAGGpart;                // TA2Particles from Tagger) c n
+(          TA2Particle* fCBpart;                  ) p
+(// TA2Particles from CB) c n
+(          TA2Particle* fTAPSpart;                ) p
+(// TA2Particles from TAPS) c n
+() p n
+(          TLorentzVector* fTAGGp4;               ) S
+(// Tagger 4-mom store) c n
+() p n
+(//          TA2Particle** fPARTtaggphot;           // TA2Particle tagger photon) c n
+(          TA2Particle** fPARTphoton;             ) p
+(// TA2Particle photon) c n
+(          TA2Particle** fPARTproton;             ) p
+(// TA2Particle proton) c n
+(TA2Compton.h) (Page 1/6) (Mar 25, 10 8:29) title
+border
+/v 1 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(          TA2Particle** fPARTpiplus;             ) p
+(// TA2Particle piplus) c n
+(          TA2Particle** fPARTneutron;            ) p
+(// TA2Particle neutron) c n
+(          TA2Particle** fPARTrootino;            ) p
+(// TA2Particle rootino) c n
+() p n
+(          TA2Particle** fPARTpi0;                ) S
+(// TA2Particle pi0) c n
+(          TA2Particle** fPARTeta;                ) p
+(// TA2Particle eta) c n
+(          TA2Particle** fPARTgprime;             ) p
+(// TA2Particle gprime) c n
+() p n
+(          TLorentzVector fP4photonTot;           ) S
+(// total 4-momentum of gammas) c n
+() p n
+(          Int_t fNphoton;                        ) S
+(// # photon) c n
+(          Int_t fNproton;                        ) p
+(// # proton) c n
+(          Int_t fNpiplus;                        ) p
+(// # pi+) c n
+(          Int_t fNneutron;                       ) p
+(// # neutron) c n
+(          Int_t fNrootino;                       ) p
+(// # unknowns) c n
+(          Int_t fNgprime;                        ) p
+(// # unknowns) c n
+(          Int_t fNprompt;                        ) p
+(// tagger prompts) c n
+(          Int_t fNrandom;                        ) p
+(// tagger randoms) c n
+(          Int_t fNparaP;                         ) p
+(// prompts lin-pol para) c n
+(          Int_t fNparaR;                         ) p
+(// randoms lin-pol para) c n
+(          Int_t fNperpP;                         ) p
+(// prompts lin-pol perp) c n
+(          Int_t fNperpR;                         ) p
+(// randoms lin-pol perp) c n
+(          Int_t fMaxTagg;                        ) p
+(// max # tagger hits) c n
+() p n
+(          Int_t fNpi0;                           ) S
+(// # pi0) c n
+(          Int_t fNeta;                           ) p
+(// # eta) c n
+() p n
+(          Double_t* fMassDpi0;                   ) S
+(// for meson ID by inv. mass) c n
+(          Double_t* fMassDeta;                   ) p
+(// for meson ID by inv. mass) c n
+(          Int_t* fMassIJ;                        ) p
+(// combinatorial indices) c n
+(          Int_t* fMassIpi0;                      ) p
+(// ditto) c n
+(          Int_t* fMassIeta;                      ) p
+(// ditto) c n
+(          Int_t fMax2gPerm;                      ) p
+(// max # 2-gamma permutations) c n
+(          Bool_t* fIsMesonIndex;                 ) p
+(// photon derived from a meson?) c n
+(          Double_t fMaxMDpi0;                    ) p
+(// mass-diff limit pi0) c n
+(          Double_t fMaxMDeta;                    ) p
+(// mass-diff limit eta) c n
+() p n
+(          Double_t fP1, fP2, fRl1, fRl2, fRh1, fRh2;  ) S
+(// Prompt-Random windows) c n
+(          Double_t fMMMinLo;                     ) p
+(// missing mass limit low E lo) c n
+(          Double_t fMMMinHi;                     ) p
+(// missing mass limit low E hi) c n
+(          Double_t fMMMaxLo;                     ) p
+(// missing mass limit high E lo) c n
+(          Double_t fMMMaxHi;                     ) p
+(// missing mass limit high E hi) c n
+(          Double_t fOACut;                       ) p
+(// opening-angle cut) c n
+() p n
+(          Double_t fM2g;                         ) S
+(// 2-photon invariant mass) c n
+(          Double_t fM6g;                         ) p
+(// 6-photon invariant mass) c n
+() p n
+(          Double_t fProtKE;                      ) S
+(// Proton variables) c n
+(          Double_t fProtTheta;) p n
+(          Double_t fProtPhi;) N
+(          Double_t fProtTime;) N
+() N
+(          Double_t fPhotKE;                      ) S
+(// Photon variables) c n
+(          Double_t fPhotTheta;) p n
+(          Double_t fPhotPhi;) N
+(          Double_t fPhotTime;) N
+() N
+(          Double_t* fTaggerTime;                 ) S
+(// tagger time) c n
+(          Double_t* fPhotTaggTime;               ) p
+(// photon-tagger time) c n
+(          Int_t* fTChanHit;                      ) p
+(// channel hits) c n
+() p n
+(          Int_t* fTChanPhot;                     ) S
+(// tagger channel) c n
+(          Int_t* fTChanPhotP;) p n
+(          Int_t* fTChanPhotR;) N
+(          Double_t* fPhotonMmiss;                ) S
+(// missing mass for the photon) c n
+(          Double_t* fPhotonMmissP;) p n
+(          Double_t* fPhotonMmissR;) N
+() N
+(          Double_t* fPhotonKECM;                 ) S
+(// KE CM of the photon) c n
+(TA2Compton.h) (Page 2/6) (Mar 25, 10 8:29) title
+border
+grestore
+(Printed by Garth Huber) rhead
+(TA2Compton.h) (1/3) (Thursday March 25, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3-4) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(          Double_t* fPhotonKECMP;) p n
+(          Double_t* fPhotonKECMR;) N
+(          Double_t* fPhotonThetaCM;              ) S
+(// Theta CM of the photon) c n
+(          Double_t* fPhotonThetaCMP;) p n
+(          Double_t* fPhotonThetaCMR;) N
+(          Double_t* fPhotonPhiCM;                ) S
+(// Phi CM of the photon) c n
+(          Double_t* fPhotonPhiCMP;) p n
+(          Double_t* fPhotonPhiCMR;) N
+() N
+(          Int_t* fTChanPhotProt;                 ) S
+(// tagger channel) c n
+(          Int_t* fTChanPhotProtP;) p n
+(          Int_t* fTChanPhotProtR;) N
+(          Double_t* fPhotProtOA;) N
+(          Double_t* fPhotProtOAP;) N
+(          Double_t* fPhotProtOAR;) N
+() N
+(          Double_t* fPhotonMmissProt;) N
+(          Double_t* fPhotonMmissProtP;) N
+(          Double_t* fPhotonMmissProtR;) N
+(          Double_t* fPhotonEmissProt;) N
+(          Double_t* fPhotonEmissProtP;) N
+(          Double_t* fPhotonEmissProtR;) N
+(          Double_t* fPhotonThetaCMProt;) N
+(          Double_t* fPhotonThetaCMProtP;) N
+(          Double_t* fPhotonThetaCMProtR;) N
+() N
+(          Double_t* fPhotonMmissProtOA;) N
+(          Double_t* fPhotonMmissProtOAP;) N
+(          Double_t* fPhotonMmissProtOAR;) N
+(          Double_t* fTChanPhotProtOA;) N
+(          Double_t* fTChanPhotProtOAP;) N
+(          Double_t* fTChanPhotProtOAR;) N
+(          Double_t* fPhotonThetaCMProtOA;) N
+(          Double_t* fPhotonThetaCMProtOAP;) N
+(          Double_t* fPhotonThetaCMProtOAR;) N
+() N
+(     public:) N
+() N
+(          TA2Compton\( ) S
+(const) K
+( ) p
+(char) k
+(*, TA2Analysis* \);) p n
+(          virtual ~TA2Compton\(\);) N
+(          virtual ) S
+(void) k
+( LoadVariable\(\);           ) p
+(// variables for display/cuts) c n
+(          virtual ) p
+(void) k
+( PostInit\( \);              ) p
+(// init after parameter input) c n
+(          virtual ) p
+(void) k
+( SetConfig\(Char_t*, Int_t\);) p n
+() N
+(          virtual ) S
+(void) k
+( Reconstruct\(\);            ) p
+(// reconstruct detector info) c n
+(          virtual TA2DataManager* CreateChild\() p
+(const) K
+( ) p
+(char) k
+(*,Int_t\){) p
+(return) K
+( ) p
+(NULL) K
+(;}) p n
+() N
+(          virtual ) S
+(void) k
+( Sort2Photon\( \);) p n
+(          virtual ) S
+(void) k
+( SortNPhoton\( \);) p n
+(          virtual ) S
+(void) k
+( MarkUndefined\( Int_t \);) p n
+(          virtual ) S
+(void) k
+( MarkEndBuffer\( \);) p n
+() N
+(          Double_t Sqr\( Double_t\);) N
+() N
+(     ClassDef\(TA2Compton,1\)) N
+(};) N
+() N
+(//-----------------------------------------------------------------------------) c n
+(inline) K
+( ) p
+(void) k
+( TA2Compton::Sort2Photon\(\)) p n
+({) N
+(     ) S
+(// Test if 2 gamma 4-momenta combine to give a  possible pi0 or eta) c n
+(     ) p
+(// by finding the invariant mass. This is a fast version of SortNPhoton) c n
+(     ) p
+(// for the frequent pi0 or eta -> 2 gamma situation) c n
+() p n
+(     TA2Particle phot1 = *fPARTphoton[0];) N
+(     TA2Particle phot2 = *fPARTphoton[1];) N
+() N
+(     Double_t time = \(phot1.GetTime\(\) + phot2.GetTime\(\)\)/2;) N
+() N
+(TA2Compton.h) (Page 3/6) (Mar 25, 10 8:29) title
+border
+/v 1 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(     TLorentzVector p4 = phot1.GetP4\(\) + phot2.GetP4\(\);  ) p
+(// sum 4 momenta) c n
+() p n
+(     fM2g = p4.M\(\);                                      ) S
+(// inv. mass) c n
+() p n
+(     fMassDpi0[0] = TMath::Abs\( p4.M\(\) - fParticleID->GetMassMeV\( kPi0\)\);) N
+(     fMassDeta[0] = TMath::Abs\( p4.M\(\) - fParticleID->GetMassMeV\( kEta\)\);) N
+() N
+(     ) S
+(if) K
+( \( fMassDpi0[0] < fMaxMDpi0 \) {                   ) p
+(// is it a pi0) c n
+(//          printf\( "%6.1f  %6.1f  %6.1f  %6.1f\\n",fMaxMDpi0,fMassDpi0[0],fM2g,) N
+(//                    time\);) N
+(          \(*fPARTpi0[0]\).SetP4\( p4\);) p n
+(          \(*fPARTpi0[0]\).SetTime\( time\);) N
+(          fNpi0 = 1;) N
+(     }) N
+(     ) S
+(// wasn't a pi0 so test for eta) c n
+(     ) p
+(else) K
+( ) p
+(if) K
+( \( fMassDeta[0] < fMaxMDeta \) {) p n
+(          \(*fPARTeta[0]\).SetP4\( p4\);) N
+(          \(*fPARTeta[0]\).SetTime\( time\);) N
+(          fNeta = 1;) N
+(     }) N
+(     ) S
+(// not an eta so assume both photons are gamma-prime) c n
+(     ) p
+(else) K
+( {) p n
+(          fPARTgprime[0] = fPARTphoton[0];) N
+(          fPARTgprime[1] = fPARTphoton[1];) N
+(          fNgprime = 2;) N
+(     }) N
+(     ) S
+(return) K
+(;) p n
+(}) N
+() N
+(//-----------------------------------------------------------------------------) c n
+() p n
+(inline) K
+( ) p
+(void) k
+( TA2Compton::SortNPhoton\(\)) p n
+({) N
+(     ) S
+(// Take sample of n gamma 4-momenta and sort into possible pi0 or eta) c n
+(     ) p
+(// by finding the invariant mass of the possible 2-photon combinations.) c n
+(     ) p
+(// The differences of the 2-photon invariant masses and pi0/eta mass are) c n
+(     ) p
+(// sorted in ascending order.) c n
+() p n
+(     TLorentzVector p4temp, q4;) N
+(     Double_t mPi0 = fParticleID->GetMassMeV\( kPi0\);) N
+(     Double_t mEta = fParticleID->GetMassMeV\( kEta\);) N
+(     Double_t* pi0diff = fMassDpi0;) N
+(     Double_t* etadiff = fMassDeta;) N
+(     Int_t* ij = fMassIJ;) N
+(     Int_t i,j,k,jk;) N
+(     Int_t n = fNphoton;) N
+(     fP4photonTot.SetXYZT\(0.0,0.0,0.0,0.0\);         ) S
+(// zero total photon 4-mom) c n
+() p n
+(     Double_t time;) N
+() N
+(     ) S
+(// Loop over possible 2-photon combinations i != j, ij = ji) c n
+(     ) p
+(for) K
+(\( i = 0, k = 0; i < n; i++ \){) p n
+() N
+(          fP4photonTot += \(*fPARTphoton[i]\).GetP4\(\);) N
+(          fIsMesonIndex[i] = EFalse;                ) S
+(// initialise not meson) c n
+() p n
+(          ) S
+(for) K
+(\( j = i + 1; j < n; j++ \){) p n
+() N
+(               ) S
+(// add the 4 momenta) c n
+(               p4temp =  \(*fPARTphoton[i]\).GetP4\(\)+\(*fPARTphoton[j]\).GetP4\(\);) p n
+(               *pi0diff++ = TMath::Abs\( p4temp.M\(\)-mPi0 \);) S
+(//check inv mass pi0) c n
+(               *etadiff++ = TMath::Abs\( p4temp.M\(\)-mEta \);) p
+(//check inv. mass eta) c n
+(               *ij++ = i | \(j<<16\);                 ) p
+(// store i,j indices) c n
+(               k++;                                 ) p
+(// permutation counter) c n
+() p n
+(          }) N
+(     }) N
+() N
+(     ) S
+(if) K
+( \( n == 6 \) fM6g = fP4photonTot.M\(\);) p n
+(TA2Compton.h) (Page 4/6) (Mar 25, 10 8:29) title
+border
+grestore
+(Printed by Garth Huber) rhead
+(TA2Compton.h) (2/3) (Thursday March 25, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (5-6) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(     TMath::Sort\(k, fMassDeta, fMassIeta, EFalse\);  ) p
+(// sort mass diffs ascending) c n
+(     TMath::Sort\(k, fMassDpi0, fMassIpi0, EFalse\);  ) p
+(// sort mass diffs ascending) c n
+(     Int_t nMeson = k;                              ) p
+(// max # possible mesons) c n
+() p n
+(     ) S
+(// Check for eta combinations) c n
+(     ) p
+(for) K
+( \( i = 0; i < nMeson; i++\) {) p n
+() N
+(          ) S
+(// exit loop when mass-diff exceeds maximum bound) c n
+(          ) p
+(if) K
+(\( fMassDeta[fMassIeta[i]] > fMaxMDeta \) ) p
+(break) K
+(;) p n
+() N
+(          ) S
+(// get indices) c n
+(          jk = fMassIJ[fMassIeta[i]];) p n
+(          j = jk & 0xffff;) N
+(          k = \(jk>>16\) & 0xffff;) N
+() N
+(          ) S
+(// photon already used to construct meson ?) c n
+(          ) p
+(if) K
+(\( fIsMesonIndex[j] || fIsMesonIndex[k] \) ) p
+(continue) K
+(;) p n
+() N
+(          ) S
+(// set 4-momentum) c n
+(          q4 = \(*fPARTphoton[j]\).GetP4\(\) + \(*fPARTphoton[k]\).GetP4\(\);) p n
+(          \(*fPARTeta[fNeta]\).SetP4\( q4\);) N
+() N
+(          ) S
+(// set time) c n
+(          time = \(\(*fPARTphoton[j]\).GetTime\(\) + \(*fPARTphoton[k]\).GetTime\(\)\)/2;) p n
+(          \(*fPARTeta[fNeta++]\).SetTime\( time\);) N
+() N
+(          ) S
+(// mark photons as used) c n
+(          fIsMesonIndex[j] = fIsMesonIndex[k] = ETrue;) p n
+(     }) N
+() N
+(     ) S
+(// Check for pi0 combinations) c n
+(     ) p
+(for) K
+( \( i = 0; i < nMeson; i++\) {) p n
+() N
+(          ) S
+(// exit loop when mass-diff exceeds maximum bound) c n
+(          ) p
+(if) K
+( \( fMassDpi0[fMassIpi0[i]] > fMaxMDpi0 \) ) p
+(break) K
+(;) p n
+() N
+(          ) S
+(// get indices) c n
+(          jk = fMassIJ[fMassIpi0[i]];) p n
+(          j = jk & 0xffff;) N
+(          k = \(jk>>16\) & 0xffff;) N
+() N
+(          ) S
+(// photon already used to construct meson?) c n
+(          ) p
+(if) K
+( \( fIsMesonIndex[j] || fIsMesonIndex[k] \) ) p
+(continue) K
+(;) p n
+() N
+(          ) S
+(// set 4-momentum) c n
+(          q4 = \(*fPARTphoton[j]\).GetP4\(\) + \(*fPARTphoton[k]\).GetP4\(\);) p n
+(          \(*fPARTpi0[fNpi0]\).SetP4\( q4\);) N
+() N
+(          ) S
+(// set time) c n
+(          time = \(\(*fPARTphoton[j]\).GetTime\(\) + \(*fPARTphoton[k]\).GetTime\(\)\)/2;) p n
+(          \(*fPARTpi0[fNpi0++]\).SetTime\( time\);) N
+() N
+(          ) S
+(// mark photons as used) c n
+(          fIsMesonIndex[j] = fIsMesonIndex[k] = ETrue;) p n
+(     }) N
+() N
+(     ) S
+(// Put any photons not combined into a meson into the gamma-primed list) c n
+(     ) p
+(for) K
+( \( j = 0; j < n; j++ \) {) p n
+(          ) S
+(if) K
+( \( !fIsMesonIndex[j] \) fPARTgprime[fNgprime++] = fPARTphoton[j];) p n
+(     }) N
+() N
+(}) N
+() N
+(//-----------------------------------------------------------------------------) c n
+() p n
+(inline) K
+( Double_t TA2Compton::Sqr\( Double_t x\)) p n
+({) N
+(     ) S
+(return) K
+(\( x*x\);) p n
+(}) N
+(TA2Compton.h) (Page 5/6) (Mar 25, 10 8:29) title
+border
+/v 1 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+() p n
+(//-----------------------------------------------------------------------------) c n
+() p n
+(inline) K
+( ) p
+(void) k
+( TA2Compton::MarkUndefined\( Int_t jtagg \)) p n
+({) N
+(     ) S
+(// Initialise undefined) c n
+(     fTChanPhotP[jtagg] = EPhotoUndefined;) p n
+(     fPhotonMmissP[jtagg] = EPhotoUndefined;) N
+() N
+(     fPhotonKECMP[jtagg] = EPhotoUndefined;) N
+(     fPhotonThetaCMP[jtagg] = EPhotoUndefined;) N
+(     fPhotonPhiCMP[jtagg] = EPhotoUndefined;) N
+() N
+(     fTChanPhotProtP[jtagg] = EPhotoUndefined;) N
+(     fPhotProtOAP[jtagg] = EPhotoUndefined;) N
+() N
+(     fPhotonMmissProtP[jtagg] = EPhotoUndefined;) N
+(     fPhotonEmissProtP[jtagg] = EPhotoUndefined;) N
+(     fPhotonThetaCMProtP[jtagg] = EPhotoUndefined;) N
+() N
+(     fPhotonMmissProtOAP[jtagg] = EPhotoUndefined;) N
+(     fTChanPhotProtOAP[jtagg] = EPhotoUndefined;) N
+(     fPhotonThetaCMProtOAP[jtagg] = EPhotoUndefined;) N
+(}) N
+() N
+(//-----------------------------------------------------------------------------) c n
+() p n
+(inline) K
+( ) p
+(void) k
+( TA2Compton::MarkEndBuffer\(\)) p n
+({) N
+(     ) S
+(// Ensure the multi-data buffers are marked as ended) c n
+(     fTChanPhotP[fNprompt] = EBufferEnd;) p n
+(     fTChanPhotR[fNrandom] = EBufferEnd;) N
+(     fPhotonMmissP[fNprompt] = EBufferEnd;) N
+(     fPhotonMmissR[fNrandom] = EBufferEnd;  ) N
+() N
+(     fPhotonKECMP[fNprompt] = EBufferEnd;) N
+(     fPhotonKECMR[fNrandom] = EBufferEnd;) N
+(     fPhotonThetaCMP[fNprompt] = EBufferEnd;) N
+(     fPhotonThetaCMR[fNrandom] = EBufferEnd;) N
+(     fPhotonPhiCMP[fNprompt] = EBufferEnd;) N
+(     fPhotonPhiCMR[fNrandom] = EBufferEnd;) N
+() N
+(     fTChanPhotProtP[fNprompt] = EBufferEnd;) N
+(     fTChanPhotProtR[fNrandom] = EBufferEnd;) N
+(     fPhotProtOAP[fNprompt] = EBufferEnd;) N
+(     fPhotProtOAR[fNrandom] = EBufferEnd;) N
+() N
+(     fPhotonMmissProtP[fNprompt] = EBufferEnd;) N
+(     fPhotonMmissProtR[fNrandom] = EBufferEnd;) N
+(     fPhotonEmissProtP[fNprompt] = EBufferEnd;) N
+(     fPhotonEmissProtR[fNrandom] = EBufferEnd;) N
+(     fPhotonThetaCMProtP[fNprompt] = EBufferEnd;) N
+(     fPhotonThetaCMProtR[fNrandom] = EBufferEnd;) N
+() N
+(     fPhotonMmissProtOAP[fNprompt] = EBufferEnd;) N
+(     fPhotonMmissProtOAR[fNrandom] = EBufferEnd;) N
+(     fTChanPhotProtOAP[fNprompt] = EBufferEnd;) N
+(     fTChanPhotProtOAR[fNrandom] = EBufferEnd;) N
+(     fPhotonThetaCMProtOAP[fNprompt] = EBufferEnd;) N
+(     fPhotonThetaCMProtOAR[fNrandom] = EBufferEnd;) N
+(}) N
+() N
+(#endif) K n
+(TA2Compton.h) (Page 6/6) (Mar 25, 10 8:29) title
+border
+grestore
+(Printed by Garth Huber) rhead
+(TA2Compton.h) (3/3) (Thursday March 25, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF

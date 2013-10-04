@@ -1,0 +1,214 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   29th Apr 2003
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: SpinPolPhysics.dat
+## Last stage in event-by-event analysis
+##
+##-----------------------------------------------------------------------
+##
+## Target parameters
+##	x,y,z		Mass(MeV)
+# LH2
+Target:	0. 0. 0.	938.271
+##
+## Wild-card stuff for fitting combinations of particles to a reaction
+## Not fully implemented
+Permutations: 1
+##
+## Particle data group database,	max # particles
+ParticleID:				16
+## Limits for meson -> N photons invariant-mass identification
+##		pi0 (MeV)	eta (MeV)
+#Mass-Limits:	40.		40.
+Mass-Limits:	20.		40.
+#Mass-Limits:	10.		40.
+##
+## Require      Comp (OR) Pion (AND) Prot
+Requires:       1         1          1
+##
+## Output tree to ROOT file
+##
+#SaveEventTree: EventTree.root
+SaveComptonTree: ComptonTree.root
+##
+## Do some post-initialisation.
+## Should usually be done before display is setup
+Initialise:
+#
+# Cut specification...see apparatus setup, same syntax applies
+#         1/2D Name      Link   Scope          Low/High Limits
+#Data-Cut: 1D   Nphoton	 AND    data			1 2
+#Data-Cut: 1D   Nproton	 AND    data			1 2
+#
+#Data-Cut: 1D	SynchDif	OR	data -615 -585
+#Data-Cut: 1D	SynchDif	OR	data 61440 61465
+#Data-Cut: 1D	SynchDif	OR	data 0 0
+#
+Data-Cut: 1D	compton		AND	compound-hist
+Data-Cut: 1D	Nphoton		AND	element	1 1
+Data-Cut: 1D	Nproton		AND	element 1 1
+#
+Data-Cut: 1D	pizero		AND	compound-hist
+Data-Cut: 1D	Npi0		AND	element 1 1
+Data-Cut: 1D	Nproton		AND	element 1 1
+#
+#Data-Cut: 1D	cherORW 	OR	compound-hist
+#Data-Cut: 1D	CherTDC0	OR	element -2200 -1600
+#Data-Cut: 1D	CherTDC1	OR	element -2200 -1600
+#Data-Cut: 1D	CherTDC2	OR	element -2200 -1600
+#
+#Data-Cut: 1D	cherM0W 	AND	compound-hist
+#Data-Cut: 1D	CherTDC0	AND	element -2200 -1600
+#
+#Data-Cut: 1D	cherM1W 	AND	compound-hist
+#Data-Cut: 1D	CherTDC1	AND	element -2200 -1600
+#
+#Data-Cut: 1D	cherM2W 	AND	compound-hist
+#Data-Cut: 1D	CherTDC2	AND	element -2200 -1600
+#
+#Data-Cut: 1D	cherORT 	OR	compound-hist
+#Data-Cut: 1D	CherTDC0	OR	element -2050 -1950
+#Data-Cut: 1D	CherTDC1	OR	element -2050 -1950
+#Data-Cut: 1D	CherTDC2	OR	element -2050 -1950
+#
+#Data-Cut: 1D	cherM0T 	AND	compound-hist
+#Data-Cut: 1D	CherTDC0	AND	element -2050 -1950
+#
+#Data-Cut: 1D	cherM1T 	AND	compound-hist
+#Data-Cut: 1D	CherTDC1	AND	element -2050 -1950
+#
+#Data-Cut: 1D	cherM2T 	AND	compound-hist
+#Data-Cut: 1D	CherTDC2	AND	element -2050 -1950
+#
+#Display: 1D SynchDif 70000 -1000 69000
+#Display: 2D TgRefTDC 200 0 10000 -1 CBRefTDC 200 0 10000 -1
+#
+#Display: 1D CherADC 4096 0 4095
+#Display: 1D CherTDC0 2000 -7000 7000
+#Display: 1D CherTDC1 2000 -7000 7000
+#Display: 1D CherTDC2 2000 -7000 7000
+#
+#Display: 1D CherADC 4096 0 4095 -1 -1 cherORW
+#Display: 1D CherADC 4096 0 4095 -1 -1 cherM0W
+#Display: 1D CherADC 4096 0 4095 -1 -1 cherM1W
+#Display: 1D CherADC 4096 0 4095 -1 -1 cherM2W
+#
+#Display: 1D CherTDC0 2000 -7000 7000 -1 -1 cherM0W
+#Display: 1D CherTDC1 2000 -7000 7000 -1 -1 cherM1W
+#Display: 1D CherTDC2 2000 -7000 7000 -1 -1 cherM2W
+#
+#Display: 1D CherADC 4096 0 4095 -1 -1 cherORT
+#Display: 1D CherADC 4096 0 4095 -1 -1 cherM0T
+#Display: 1D CherADC 4096 0 4095 -1 -1 cherM1T
+#Display: 1D CherADC 4096 0 4095 -1 -1 cherM2T
+#
+#Display: 1D CherTDC0 2000 -7000 7000 -1 -1 cherM0T
+#Display: 1D CherTDC1 2000 -7000 7000 -1 -1 cherM1T
+#Display: 1D CherTDC2 2000 -7000 7000 -1 -1 cherM2T
+#
+#Display: 1D BeamPol	20 0 20
+#
+Display: 1D Nphoton	16 0 16
+Display: 1D Nproton	16 0 16
+Display: 1D Npiplus	16 0 16
+Display: 1D Nneutron	16 0 16
+Display: 1D Nrootino	16 0 16
+#
+Display: 1D Ngprime	16 0 16
+Display: 1D Nprompt	16 0 16
+Display: 1D Nrandom	16 0 16
+Display: 1D Npi0	16 0 16
+Display: 1D Neta	16 0 16
+#
+Display: 1D Nproton	16 0 16 -1 -1 compton
+Display: 1D Nproton	16 0 16 -1 -1 pizero
+#
+Display: 1D Nprompt	16 0 16 -1 -1 compton
+Display: 1D Nrandom	16 0 16 -1 -1 compton
+Display: 1D Nprompt	16 0 16 -1 -1 pizero
+Display: 1D Nrandom	16 0 16 -1 -1 pizero
+#
+Display: 1D M2g 	800 0 800
+Display: 1D M6g 	800 0 800
+#
+# Require at least one photon and one proton
+#
+Display: 1D ScatEk 	400 0 400
+Display: 1D ScatPx 	800 -400 400
+Display: 1D ScatPy 	800 -400 400
+Display: 1D ScatPz 	800 -400 400
+Display: 1D ScatTh 	180 0 180
+Display: 1D ScatPh 	360 -180 180
+Display: 1D ScatTm 	200 -100 100
+#
+Display: 1D RecoUn 	400 0 400
+Display: 1D RecoEk 	400 0 400
+Display: 1D RecoPx 	1600 -800 800
+Display: 1D RecoPy 	1600 -800 800
+Display: 1D RecoPz 	1600 -800 800
+Display: 1D RecoTh 	180 0 180
+Display: 1D RecoPh 	360 -180 180
+Display: 1D RecoTm 	200 -100 100
+#
+Display: 1D MPrToPh	500 0 1000 -1 -1 compton
+Display: 1D MPrToPh	500 0 1000 -1 -1 pizero
+#
+# RANDOM SUBTRACTED VARIABLES
+#
+Display: 1D TaggChP     352 0 352 -1 -1 compton
+Display: 1D TaggChR     352 0 352 -1 -1 compton
+Display: 1D TaggChP     352 0 352 -1 -1 pizero
+Display: 1D TaggChR     352 0 352 -1 -1 pizero
+Display: 1D TaggEkP	352 v2u_450_plot.ghist -1
+Display: 1D TaggEkR	352 v2u_450_plot.ghist -1
+Display: 1D TaggTmP	110 0 220 -1 -1 compton
+Display: 1D TaggTmR	110 0 220 -1 -1 compton
+Display: 1D TaggTmP	110 0 220 -1 -1 pizero
+Display: 1D TaggTmR	110 0 220 -1 -1 pizero
+#
+Display: 1D MissEkP 	800 -400 400 -1 -1 compton
+Display: 1D MissEkR 	800 -400 400 -1 -1 compton
+Display: 1D MissPx 	1600 -800 800 -1 -1 compton
+Display: 1D MissPy 	1600 -800 800 -1 -1 compton
+Display: 1D MissPzP 	1600 -800 800 -1 -1 compton
+Display: 1D MissPzR 	1600 -800 800 -1 -1 compton
+Display: 1D MissPt 	800 0 800 -1 -1 compton
+Display: 1D MissPrP 	800 0 800 -1 -1 compton
+Display: 1D MissPrR 	800 0 800 -1 -1 compton
+Display: 1D MissMtP 	800 0 1600 -1 -1 compton
+Display: 1D MissMtR 	800 0 1600 -1 -1 compton
+Display: 1D MissMsP 	1000 -1500 500 -1 -1 compton
+Display: 1D MissMsR 	1000 -1500 500 -1 -1 compton
+Display: 1D MissMrP 	800 0 1600 -1 -1 compton
+Display: 1D MissMrR 	800 0 1600 -1 -1 compton
+#
+Display: 1D ScatOAP 	360 -180 180 -1 -1 compton
+Display: 1D ScatOAR 	360 -180 180 -1 -1 compton
+Display: 1D RecoOAP 	180 0 180 -1 -1 compton
+Display: 1D RecoOAR 	180 0 180 -1 -1 compton
+#
+Display: 1D MissEkP 	800 -400 400 -1 -1 pizero
+Display: 1D MissEkR 	800 -400 400 -1 -1 pizero
+Display: 1D MissPx 	1600 -800 800 -1 -1 pizero
+Display: 1D MissPy 	1600 -800 800 -1 -1 pizero
+Display: 1D MissPzP 	1600 -800 800 -1 -1 pizero
+Display: 1D MissPzR 	1600 -800 800 -1 -1 pizero
+Display: 1D MissPt 	800 0 800 -1 -1 pizero
+Display: 1D MissPrP 	800 0 800 -1 -1 pizero
+Display: 1D MissPrR 	800 0 800 -1 -1 pizero
+Display: 1D MissMtP 	800 0 1600 -1 -1 pizero
+Display: 1D MissMtR 	800 0 1600 -1 -1 pizero
+Display: 1D MissMsP 	1000 -1500 500 -1 -1 pizero
+Display: 1D MissMsR 	1000 -1500 500 -1 -1 pizero
+Display: 1D MissMrP 	800 0 1600 -1 -1 pizero
+Display: 1D MissMrR 	800 0 1600 -1 -1 pizero
+#
+Display: 1D ScatOAP 	360 -180 180 -1 -1 pizero
+Display: 1D ScatOAR 	360 -180 180 -1 -1 pizero
+Display: 1D RecoOAP 	180 0 180 -1 -1 pizero
+Display: 1D RecoOAR 	180 0 180 -1 -1 pizero
+#

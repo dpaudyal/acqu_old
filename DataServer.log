@@ -1,0 +1,7 @@
+TA2DataServer: Starting configuration from file
+ TA2FileSource: Starting data file read
+
+  Error in operation <ERROR ARFile_t: file open by open() failed> of class TA2FileSource at command line:
+home/dpaudyal/nobackup/december_data_perp/Compton_312.dat
+ FATAL ERROR...exiting AcquRoot
+

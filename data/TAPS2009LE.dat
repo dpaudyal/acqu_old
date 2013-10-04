@@ -1,0 +1,99 @@
+########################################################################################
+##                                                                                    ##
+##                                                                                    ##
+##       TAPS2009LE Config File  for use of TA2Taps2009LE-class in AcquRoot           ##
+##                                                                                    ##
+##                                                                                    ##
+##                                                                                    ##
+##                                                                                    ##
+##                                                                                    ##
+##    --Author      H.Berghauser June 2008    (HenningBerghaeuser@web.de)             ##
+##    --Update      H.Berghaeuser Dez 2008                                            ##
+##                                                                                    ##
+##    --Version :  1.0                                                                ##
+##                                                                                    ##
+## Parameter File: TAPS2009LE.dat                                                     ##
+## Setup analysis of the TA2Taps2009LE    (TAPS) apparatus class                      ##
+## This one sets up an analysis of the forward-wall BaF2 array                        ##
+## Vetos handled in TA2PlasticPID-Class                                               ##
+##                                                                                    ##
+########################################################################################
+#
+#
+#
+#
+#
+########################################################################################
+##                                                                                    ##
+##      Specify list of detectors which constitute the TAPS apparatus                 ##
+##                                                                                    ##
+##	  Name         Class Name		Setup file                                  ##
+########################################################################################
+Detector: BaF2            TA2TAPS_BaF2            BaF2_Jan2009.dat
+Detector: VetoBaF2        TA2PlasticPID		  Veto_Jan2009.dat
+#
+#
+#
+#########################################################################################
+##                                                                                     ##
+##                                                                                     ##
+##      Other and OLD settings                                                         ##
+##                                                                                     ##
+##                                                                                     ##
+##                                                                                     ##
+#########################################################################################
+Reconstruct:
+##
+## PDG database	# particles
+ParticleID: 	16
+## Do some post-initialisation.
+## Should usually be done before display is setup
+Initialise:
+##
+TAPS-Factor: 1.0
+#
+#
+#
+########################################################################################
+##                                                                                    ##
+## Define TAPS-Reconstruction mode with variable TAPSSimpleReconstruct                ##
+##                                                                                    ##
+## TAPSSimpleReconstruct = 1  means: all hits will be reconstructed as photons        ##
+##                                   (same as TA2Calorimater does)                    ##
+## TAPSSimpleReconstruct = 0  means: full reconstruction .. use dEvE                  ##
+##                                   in order to separate protons from ch.pions etc.  ##
+##                                                                                    ##
+########################################################################################
+TAPS_SimpleReconstruct: 0
+#
+#
+#
+#
+########################################################################################
+##                                                                                    ##
+##  DeltaEenergy versus Energy  dEvE      (between Veto and BaF2-Clusters)            ##
+##                                                                                    ##
+##  CUTS:                                                                             ##
+##  TAPS_dEvE_Proton  = 1  dEvE-Cut on protons/neutrons is active  / =0 not active    ##
+##  TAPS_dEvE_ChPion  = 1  dEvE-Cuts on charged pions is actice    / =0 not active    ##
+##  TAPS_dEvE_Electron= 1  dEvE-Cuts on electrons is active        / =0 not active    ##
+##                                                                                    ##
+## (note: when a cut is set active ("=1")then the appendant TCut with name specified  ##
+##     below must exist in TAPS_dEvE_Cuts root-File                                   ##
+##                                                                                    ##
+########################################################################################
+TAPS_dEvE_Cuts: /home/ta2anaonline/acqu/acqu/data/TAPS2008_dEvE_CUTSv0.root
+TAPS_dEvE_Proton: 0
+TAPS_dEvE_Proton_CutName: dEvE_proton_cut
+TAPS_dEvE_ChPion: 0
+TAPS_dEvE_ChPion_CutName: dEvE_chpion_cut
+TAPS_dEvE_Electron: 0
+TAPS_dEvE_Electron_CutName: dEvE_electron_cut
+#
+#
+#
+#
+Display: 2D Echarged 800 0 400 0   DeltaE 80 0 4 0
+Display: 1D DeltaE 80 0 4
+Display: 1D Echarged 800 0 400
+# End

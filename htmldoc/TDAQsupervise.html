@@ -1,0 +1,624 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@pcroot.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Sun Aug 11 12:18:02 2013            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>TDAQsupervise</title>
+<meta name="rating" content="General" />
+<meta name="objecttype" content="Manual" />
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers, cern" />
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis." />
+<link rel="stylesheet" type="text/css" href="ROOT.css" id="ROOTstyle" />
+<script type="text/javascript" src="ROOT.js"></script>
+</head>
+<body  onload="javascript:SetValuesFromCookie();"><div id="body_content">
+<div id="root_header"><img src="http://root.cern.ch/drupal/sites/default/files/rootdrawing-logo.png" alt="ROOT logo"/></div>
+<a name="TopOfPage"></a>
+<script type="text/javascript">WriteFollowPageBox('class TDAQsupervise','','/home/acqu/4v6/acqu/AcquDAQ/src/TDAQsupervise.h');</script>
+<div id="toplinks">
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Quick Links:</span>
+<a class="descrheadentry" href="http://root.cern.ch">ROOT Homepage</a>
+<a class="descrheadentry" href="./ClassIndex.html">Class Index</a>
+<a class="descrheadentry" href="./ClassHierarchy.html">Class Hierarchy</a></div>
+<script type="text/javascript">
+function onSearch() {
+var s='http://www.google.com/search?q=%s+site%3A%u+-site%3A%u%2Fsrc%2F+-site%3A%u%2Fexamples%2F';
+var ref=String(document.location.href).replace(/https?:\/\//,'').replace(/\/[^\/]*$/,'').replace(/\//g,'%2F');
+window.location.href=s.replace(/%u/ig,ref).replace(/%s/ig,escape(document.searchform.t.value));
+return false;}
+</script>
+<form id="searchform" name="searchform" onsubmit="return onSearch()" action="javascript:onSearch();" method="post">
+<input name="t" size="30" value="Search documentation..." onfocus="if (document.searchform.t.value=='Search documentation...') document.searchform.t.value='';"></input>
+<a id="searchlink"  title="www.google.com"  href="javascript:onSearch();" onclick="return onSearch()">Search</a></form>
+</div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Source:</span>
+<a class="descrheadentry" href="src/TDAQsupervise.h.html">header file</a>
+<a class="descrheadentry" href="src/TDAQsupervise.cxx.html">source file</a>
+<a class="descrheadentry" href="TDAQsupervise_Tree.pdf">inheritance tree (.pdf)</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquDAQ/src/TDAQsupervise.h?view=log">viewVC header</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquDAQ/src/TDAQsupervise.cc?view=log">viewVC source</a> 
+</div></div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Sections:</span>
+<a class="descrheadentry" href="#TDAQsupervise:description">class description</a> 
+<a class="descrheadentry" href="#TDAQsupervise:Function_Members">function members</a>
+<a class="descrheadentry" href="#TDAQsupervise:Data_Members">data members</a>
+<a class="descrheadentry" href="#TDAQsupervise:Class_Charts">class charts</a>
+</div></div>
+</div>
+<div class="location">
+<a class="locationlevel" href="index.html">(UNKNOWN PRODUCT)</a>
+ &#187; <a class="locationlevel" href="./HOME_Index.html">HOME</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_Index.html">4V6</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_ACQUDAQ_Index.html">ACQUDAQ</a>
+ &#187; <a class="locationlevel" href="#TopOfPage">TDAQsupervise</a>
+</div>
+<div class="dropshadow"><div class="withshadow"><h1><a name="TDAQsupervise:description"></a>class TDAQsupervise: public <a href="./TA2System.html">TA2System</a></h1>
+<div class="classdescr">
+</div>
+</div></div>
+
+<div id="functions">
+<h2><a id="TDAQsupervise:Function_Members"></a>Function Members (Methods)</h2>
+<div class="access" id="funcpubl"><b>public:</b>
+<table class="func" id="tabfuncpubl" cellspacing="0">
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:TDAQsupervise%1">TDAQsupervise</a>(<span class="keyword">const</span> <a href="./TDAQsupervise.html">TDAQsupervise</a>&amp;)</td></tr>
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:TDAQsupervise">TDAQsupervise</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./TDAQexperiment.html">TDAQexperiment</a>*, <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="func"><td class="funcret"> virtual</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:_TDAQsupervise">~TDAQsupervise</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AbstractMethod"><span class="baseclass">TObject::</span>AbstractMethod</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:AddCmdList"><span class="baseclass">TA2System::</span>AddCmdList</a>(<span class="keyword">const</span> Map_t*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AppendPad"><span class="baseclass">TObject::</span>AppendPad</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Browse"><span class="baseclass">TObject::</span>Browse</a>(TBrowser* b)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:BuildName"><span class="baseclass">TA2System::</span>BuildName</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:CAMAC_IO">CAMAC_IO</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <a href="./ListOfTypes.html#Int_t">Int_t</a>, <a href="./ListOfTypes.html#Int_t">Int_t</a>, <a href="./ListOfTypes.html#Int_t">Int_t</a>, <a href="./ListOfTypes.html#Int_t">Int_t</a>)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:CheckName"><span class="baseclass">TA2System::</span>CheckName</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* name)</td></tr>
+<tr class="func"><td class="funcret">static TClass*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:Class">Class</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:ClassName"><span class="baseclass">TObject::</span>ClassName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Clear"><span class="baseclass">TNamed::</span>Clear</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TNamed:Clone"><span class="baseclass">TNamed::</span>Clone</a>(<span class="keyword">const</span> <span class="keyword">char</span>* newname = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:CommandConfig"><span class="baseclass">TA2System::</span>CommandConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:CommandLoop">CommandLoop</a>(<a href="./TDAQmodule.html">TDAQmodule</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Compare"><span class="baseclass">TNamed::</span>Compare</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ConfigTCS">ConfigTCS</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ConfigVUPROM">ConfigVUPROM</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Copy"><span class="baseclass">TNamed::</span>Copy</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>&amp; named) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:CreateHeader">CreateHeader</a>(<span class="keyword">void</span>*)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:CreateHeader%1">CreateHeader</a>(<span class="keyword">void</span>*, <a href="./ListOfTypes.html#UInt_t">UInt_t</a>)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:CreateMk1Header">CreateMk1Header</a>(<span class="keyword">void</span>*)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:DAQDisable">DAQDisable</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:DAQEnable">DAQEnable</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Delete"><span class="baseclass">TObject::</span>Delete</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:DistancetoPrimitive"><span class="baseclass">TObject::</span>DistancetoPrimitive</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Draw"><span class="baseclass">TObject::</span>Draw</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DrawClass"><span class="baseclass">TObject::</span>DrawClass</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:DrawClone"><span class="baseclass">TObject::</span>DrawClone</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Dump"><span class="baseclass">TObject::</span>Dump</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Error"><span class="baseclass">TObject::</span>Error</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecAutoStart">ExecAutoStart</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecBufferDump">ExecBufferDump</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecEnd">ExecEnd</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecGo">ExecGo</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecKill">ExecKill</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecPause">ExecPause</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecRun">ExecRun</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> = -1)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecStart">ExecStart</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ExecStop">ExecStop</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute"><span class="baseclass">TObject::</span>Execute</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute%1"><span class="baseclass">TObject::</span>Execute</a>(TMethod* method, TObjArray* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ExecuteEvent"><span class="baseclass">TObject::</span>ExecuteEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> event, <a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Fatal"><span class="baseclass">TObject::</span>Fatal</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:FileConfig"><span class="baseclass">TA2System::</span>FileConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:FillBuffer"><span class="baseclass">TNamed::</span>FillBuffer</a>(<span class="keyword">char</span>*&amp; buffer)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject%1"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetCommandLine">GetCommandLine</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetComment">GetComment</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetDrawOption"><span class="baseclass">TObject::</span>GetDrawOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Long_t">Long_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetDtorOnly"><span class="baseclass">TObject::</span>GetDtorOnly</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TDAQexperiment.html">TDAQexperiment</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetEXP">GetEXP</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetExpCtrlMode">GetExpCtrlMode</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetFileName">GetFileName</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetGUIBuffer">GetGUIBuffer</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TDAQguiCtrl.html">TDAQguiCtrl</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetGUICtrl">GetGUICtrl</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetIconName"><span class="baseclass">TObject::</span>GetIconName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">ARFile_t*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetInputFile"><span class="baseclass">TA2System::</span>GetInputFile</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetIRQMod">GetIRQMod</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">ARFile_t*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetLogFile"><span class="baseclass">TA2System::</span>GetLogFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">FILE*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetLogStream"><span class="baseclass">TA2System::</span>GetLogStream</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetMapKey"><span class="baseclass">TA2System::</span>GetMapKey</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetMapString"><span class="baseclass">TA2System::</span>GetMapString</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TNamed:GetName"><span class="baseclass">TNamed::</span>GetName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetObjectInfo"><span class="baseclass">TObject::</span>GetObjectInfo</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetObjectStat"><span class="baseclass">TObject::</span>GetObjectStat</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetOption"><span class="baseclass">TObject::</span>GetOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetOutBuff">GetOutBuff</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetPort">GetPort</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetRunDesc">GetRunDesc</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetRunLog">GetRunLog</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetRunNumber">GetRunNumber</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetServerIP">GetServerIP</a>()</td></tr>
+<tr class="func"><td class="funcret">ARSocket_t*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetSocket">GetSocket</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetString">GetString</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetSysTime">GetSysTime</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetTime">GetTime</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TNamed:GetTitle"><span class="baseclass">TNamed::</span>GetTitle</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetUniqueID"><span class="baseclass">TObject::</span>GetUniqueID</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a>*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:GetVUPROMparm">GetVUPROMparm</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:HandleTimer"><span class="baseclass">TObject::</span>HandleTimer</a>(TTimer* timer)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#ULong_t">ULong_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Hash"><span class="baseclass">TNamed::</span>Hash</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Info"><span class="baseclass">TObject::</span>Info</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> <span class="keyword">char</span>* classname) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom%1"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> TClass* cl) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Inspect"><span class="baseclass">TObject::</span>Inspect</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:InvertBit"><span class="baseclass">TObject::</span>InvertBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="func"><td class="funcret">virtual TClass*</td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsA">IsA</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsAuto">IsAuto</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsBufferDump">IsBufferDump</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsDataReady">IsDataReady</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsEqual"><span class="baseclass">TObject::</span>IsEqual</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:IsError"><span class="baseclass">TA2System::</span>IsError</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsFolder"><span class="baseclass">TObject::</span>IsFolder</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsGUI">IsGUI</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:IsInit"><span class="baseclass">TA2System::</span>IsInit</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsOnHeap"><span class="baseclass">TObject::</span>IsOnHeap</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsRunInit">IsRunInit</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsRunning">IsRunning</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsRunTerm">IsRunTerm</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:IsSlave">IsSlave</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:IsSortable"><span class="baseclass">TNamed::</span>IsSortable</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsZombie"><span class="baseclass">TObject::</span>IsZombie</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:ls"><span class="baseclass">TNamed::</span>ls</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2Key"><span class="baseclass">TA2System::</span>Map2Key</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2Key%1"><span class="baseclass">TA2System::</span>Map2Key</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> Map_t**)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2String"><span class="baseclass">TA2System::</span>Map2String</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MayNotUse"><span class="baseclass">TObject::</span>MayNotUse</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Notify"><span class="baseclass">TObject::</span>Notify</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete%1"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]%1"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new%1"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]%1"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./#TNamed:TNamed" title="TNamed TNamed::TNamed() or overloads">TNamed</a>&amp;</td><td class="funcname"><a class="funcname" href="#TNamed:operator_"><span class="baseclass">TNamed::</span>operator=</a>(<span class="keyword">const</span> <a href="./#TNamed:TNamed" title="TNamed TNamed::TNamed() or overloads">TNamed</a>&amp; rhs)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Paint"><span class="baseclass">TObject::</span>Paint</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:ParseMisc"><span class="baseclass">TA2System::</span>ParseMisc</a>(<span class="keyword">char</span>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Pop"><span class="baseclass">TObject::</span>Pop</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PostInit"><span class="baseclass">TA2System::</span>PostInit</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Print"><span class="baseclass">TNamed::</span>Print</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:PutString">PutString</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Read"><span class="baseclass">TObject::</span>Read</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:RecursiveRemove"><span class="baseclass">TObject::</span>RecursiveRemove</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ResetBit"><span class="baseclass">TObject::</span>ResetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SaveAs"><span class="baseclass">TObject::</span>SaveAs</a>(<span class="keyword">const</span> <span class="keyword">char</span>* filename = <span class="string">""</span>, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SavePrimitive"><span class="baseclass">TObject::</span>SavePrimitive</a>(basic_ostream&lt;<span class="keyword">char</span>,char_traits&lt;<span class="keyword">char</span>&gt; &gt;&amp; out, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:SaveRunLog">SaveRunLog</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:SetAuto">SetAuto</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> state)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit%1"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f, <a href="./ListOfTypes.html#Bool_t">Bool_t</a> set)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:SetConfig">SetConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDrawOption"><span class="baseclass">TObject::</span>SetDrawOption</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDtorOnly"><span class="baseclass">TObject::</span>SetDtorOnly</a>(<span class="keyword">void</span>* obj)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:SetGUIBuffer">SetGUIBuffer</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* b)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:SetInputMode">SetInputMode</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetLogFile"><span class="baseclass">TA2System::</span>SetLogFile</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetLogStream"><span class="baseclass">TA2System::</span>SetLogStream</a>(FILE* str)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetName"><span class="baseclass">TNamed::</span>SetName</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetNameTitle"><span class="baseclass">TNamed::</span>SetNameTitle</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name, <span class="keyword">const</span> <span class="keyword">char</span>* title)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetObjectStat"><span class="baseclass">TObject::</span>SetObjectStat</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> stat)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:SetRunNumber">SetRunNumber</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> r)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetTitle"><span class="baseclass">TNamed::</span>SetTitle</a>(<span class="keyword">const</span> <span class="keyword">char</span>* title = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:SetTrigMod">SetTrigMod</a>(<a href="./TDAQmodule.html">TDAQmodule</a>* trigmod)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetUniqueID"><span class="baseclass">TObject::</span>SetUniqueID</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> uid)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:ShowMembers">ShowMembers</a>(TMemberInspector&amp; insp)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Sizeof"><span class="baseclass">TNamed::</span>Sizeof</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:Streamer">Streamer</a>(TBuffer&amp; b)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TDAQsupervise:StreamerNVirtual">StreamerNVirtual</a>(TBuffer&amp; b)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SysError"><span class="baseclass">TObject::</span>SysError</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBit"><span class="baseclass">TObject::</span>TestBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBits"><span class="baseclass">TObject::</span>TestBits</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:UseCurrentStyle"><span class="baseclass">TObject::</span>UseCurrentStyle</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Warning"><span class="baseclass">TObject::</span>Warning</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write%1"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0) <span class="keyword">const</span></td></tr>
+
+</table></div>
+<div class="access" id="funcprot"><b>protected:</b>
+<table class="func" id="tabfuncprot" cellspacing="0">
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:BaseInit"><span class="baseclass">TA2System::</span>BaseInit</a>(<span class="keyword">const</span> Map_t*, <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DoError"><span class="baseclass">TObject::</span>DoError</a>(<span class="keyword">int</span> level, <span class="keyword">const</span> <span class="keyword">char</span>* location, <span class="keyword">const</span> <span class="keyword">char</span>* fmt, va_list va) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MakeZombie"><span class="baseclass">TObject::</span>MakeZombie</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PrintError"><span class="baseclass">TA2System::</span>PrintError</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <a href="./ListOfTypes.html#Int_t">Int_t</a> = EErrNonFatal)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PrintMessage"><span class="baseclass">TA2System::</span>PrintMessage</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+
+</table></div>
+</div>
+
+<div id="datamembers">
+<h2><a name="TDAQsupervise:Data_Members"></a>Data Members</h2>
+<div class="access" id="enumpubl"><b>public:</b>
+<table class="data" id="tabenumpubl" cellspacing="0">
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span>EStatusBits { </td><td class="dataname"><a href="#TObject:kCanDelete">kCanDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kMustCleanup">kMustCleanup</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kObjInCanvas">kObjInCanvas</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kIsReferenced">kIsReferenced</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kHasUUID">kHasUUID</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kCannotPick">kCannotPick</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNoContextMenu">kNoContextMenu</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kInvalidObject">kInvalidObject</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span><i>[unnamed]</i> { </td><td class="dataname"><a href="#TObject:kIsOnHeap">kIsOnHeap</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNotDeleted">kNotDeleted</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kZombie">kZombie</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kBitMask">kBitMask</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kSingleKey">kSingleKey</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kOverwrite">kOverwrite</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kWriteDelete">kWriteDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+
+</table></div>
+<div class="access" id="dataprot"><b>protected:</b>
+<table class="data" id="tabdataprot" cellspacing="0">
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a></td><td class="dataname"><a name="TDAQsupervise:fCommandLine"></a>fCommandLine[1024]</td><td class="datadesc">for input commands</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a></td><td class="dataname"><a name="TDAQsupervise:fComment"></a>fComment[256]</td><td class="datadesc">comment on DAQ session</td></tr>
+<tr class="data"><td class="datatype">TControlBar*</td><td class="dataname"><a name="TDAQsupervise:fCtrlBar"></a>fCtrlBar</td><td class="datadesc">for GUI control</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="dataname"><a name="TDAQsupervise:fDataHeader"></a>fDataHeader</td><td class="datadesc">Either Mk1 or Mk2 format</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQexperiment.html">TDAQexperiment</a>*</td><td class="dataname"><a name="TDAQsupervise:fEXP"></a>fEXP</td><td class="datadesc">DAQ container class</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQsupervise:fExpCtrlMode"></a>fExpCtrlMode</td><td class="datadesc">mode of control I/O</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a></td><td class="dataname"><a name="TDAQsupervise:fFileName"></a>fFileName[128]</td><td class="datadesc">output file name</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TDAQsupervise:fGUIBuffer"></a>fGUIBuffer</td><td class="datadesc">diagnostic output to GUI text window</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQguiCtrl.html">TDAQguiCtrl</a>*</td><td class="dataname"><a name="TDAQsupervise:fGUICtrl"></a>fGUICtrl</td><td class="datadesc">GUI specs.</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="dataname"><a name="TDAQsupervise:fIRQMod"></a>fIRQMod</td><td class="datadesc">IRQ and trigger control module</td></tr>
+<tr class="datainh"><td class="datatype">ARFile_t*</td><td class="dataname"><a href="./TA2System.html#TA2System:fInputFile"><span class="baseclass">TA2System::</span>fInputFile</a></td><td class="datadesc">config input file if any</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQsupervise:fIsAuto"></a>fIsAuto</td><td class="datadesc">Auto file change?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQsupervise:fIsBufferDump"></a>fIsBufferDump</td><td class="datadesc">Data buffer printout?</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsConfigPass"><span class="baseclass">TA2System::</span>fIsConfigPass</a></td><td class="datadesc">depreciated config handler</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsError"><span class="baseclass">TA2System::</span>fIsError</a></td><td class="datadesc">any setup errors?</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsInit"><span class="baseclass">TA2System::</span>fIsInit</a></td><td class="datadesc">initialisation complete?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQsupervise:fIsRunInit"></a>fIsRunInit</td><td class="datadesc">Experimental run initialised</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQsupervise:fIsRunTerm"></a>fIsRunTerm</td><td class="datadesc">Experimental run terminated</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TDAQsupervise:fIsRunning"></a>fIsRunning</td><td class="datadesc">DAQ currently running</td></tr>
+<tr class="datainh"><td class="datatype">ARFile_t*</td><td class="dataname"><a href="./TA2System.html#TA2System:fLogFile"><span class="baseclass">TA2System::</span>fLogFile</a></td><td class="datadesc">diagnostic log file</td></tr>
+<tr class="datainh"><td class="datatype">FILE*</td><td class="dataname"><a href="./TA2System.html#TA2System:fLogStream"><span class="baseclass">TA2System::</span>fLogStream</a></td><td class="datadesc">file ptr for logging output</td></tr>
+<tr class="datainh"><td class="datatype">TString</td><td class="dataname"><a href="#TNamed:fName"><span class="baseclass">TNamed::</span>fName</a></td><td class="datadesc">object identifier</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TDAQsupervise:fOutBuff"></a>fOutBuff</td><td class="datadesc">output buffer</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQsupervise:fPort"></a>fPort</td><td class="datadesc">communications port</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TDAQsupervise:fRunNumber"></a>fRunNumber</td><td class="datadesc">Experimental run number</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TDAQsupervise:fServerIP"></a>fServerIP</td><td class="datadesc">remote communications server</td></tr>
+<tr class="data"><td class="datatype">ARSocket_t*</td><td class="dataname"><a name="TDAQsupervise:fSocket"></a>fSocket</td><td class="datadesc">network communication socket</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a></td><td class="dataname"><a name="TDAQsupervise:fTime"></a>fTime[32]</td><td class="datadesc">holds system time</td></tr>
+<tr class="datainh"><td class="datatype">TString</td><td class="dataname"><a href="#TNamed:fTitle"><span class="baseclass">TNamed::</span>fTitle</a></td><td class="datadesc">object title</td></tr>
+<tr class="data"><td class="datatype"><a href="./TDAQmodule.html">TDAQmodule</a>*</td><td class="dataname"><a name="TDAQsupervise:fTrigMod"></a>fTrigMod</td><td class="datadesc">Trigger hardware inhibit control module</td></tr>
+
+</table></div>
+</div>
+<h2><a id="TDAQsupervise:Class_Charts"></a>Class Charts</h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%"><a href="ClassHierarchy.html">Inheritance Chart</a>:</td></tr><tr class="inhtree"><td width="10%"></td><td width="70%"><table class="inhtree"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td><table><tr>
+<td bgcolor="#efefef" align="right">
+<tt>TNamed</tt></td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><tt><a name="TA2System" href="./TA2System.html">TA2System</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><big><b><tt><a name="TDAQsupervise" href="./TDAQsupervise.html">TDAQsupervise</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td>&larr;</td><td><table><tr>
+<td bgcolor="#f7f7f7"><table><tr><td>
+<center><tt><a name="TGUIsupervise" href="./TGUIsupervise.html">TGUIsupervise</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<h2>Function documentation</h2>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TDAQsupervise:TDAQsupervise" href="src/TDAQsupervise.cxx.html#I8ghJC">TDAQsupervise</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./TDAQexperiment.html">TDAQexperiment</a>* , <a href="./ListOfTypes.html#Char_t">Char_t</a>*  = NULL)</span><br />
+<div class="funccomm"><pre> Import the pointer to the experiment class and
+ ensure local variables marked unitialised
+ file by default is NULL...output directed to the terminal
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TDAQsupervise:_TDAQsupervise" href="src/TDAQsupervise.cxx.html#LNXkCB">~TDAQsupervise</a>()</span><br />
+<div class="funccomm"><pre> Clean up
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:SetConfig" href="src/TDAQsupervise.cxx.html#XnshHB">SetConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a> )</span><br />
+<div class="funccomm"><pre> Command decode
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:SetInputMode" href="src/TDAQsupervise.cxx.html#CWlFpE">SetInputMode</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> Setup I/O mode of superviser from info in line
+ If ethernet initialise communications socket
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:GetString" href="src/TDAQsupervise.cxx.html#ah0R9C">GetString</a>()</span><br />
+<div class="funccomm"><pre> Zero the command-line buffer
+ Then read from input stream
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:PutString" href="src/TDAQsupervise.cxx.html#uPPHNE">PutString</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> Put message on output stream
+  <a href="./ListOfTypes.html#Int_t">Int_t</a> length;
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:CommandLoop" href="src/TDAQsupervise.cxx.html#tOC2OE">CommandLoop</a>(<a href="./TDAQmodule.html">TDAQmodule</a>*  = NULL)</span><br />
+<div class="funccomm"><pre> Continuous loop...await and execute DAQ control/supervise command
+ Save pointer to IRQ/Trigger control hardware
+ Create data buffer space if not already done
+ Communication socket moved here from <a href="./TDAQsupervise.html#TDAQsupervise:SetInputMode" title="void TDAQsupervise::SetInputMode(Char_t* )">SetInputMode</a>()
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecAutoStart" href="src/TDAQsupervise.cxx.html#NOQmRD">ExecAutoStart</a>()</span><br />
+<div class="funccomm"><pre> Slave-mode running. Send write a single header record to the data buffer.
+ and enable the local DAQ and IRQ
+ 15/09/10 Check 1st if the local buffer has been created
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecStart" href="src/TDAQsupervise.cxx.html#UD9MRC">ExecStart</a>()</span><br />
+<div class="funccomm"><pre> Start the DAQ, but do not start a new run
+ Check slave mode, data storage, run already initialised
+ enable IRQ
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecGo" href="src/TDAQsupervise.cxx.html#Pu5Cb">ExecGo</a>()</span><br />
+<div class="funccomm"><pre> Start the DAQ, but do not start a new run
+ Similar to <a href="./TDAQsupervise.html#TDAQsupervise:ExecStart" title="void TDAQsupervise::ExecStart()">ExecStart</a>, but calls any additional functions e.g. TCS
+ if defined in the system
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecRun" href="src/TDAQsupervise.cxx.html#zzClKD">ExecRun</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>  = -1)</span><br />
+<div class="funccomm"><pre> Start data taking run. Check 1st on DAQ status...
+ Control, storage, already initialised?
+
+ Check if control is enabled (slave?)
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecPause" href="src/TDAQsupervise.cxx.html#aiV4_D">ExecPause</a>()</span><br />
+<div class="funccomm"><pre> Pause DAQ..just disable trigger input
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecStop" href="src/TDAQsupervise.cxx.html#Ei3RAB">ExecStop</a>()</span><br />
+<div class="funccomm"><pre> Stop DAQ, used only in nostore mode
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecEnd" href="src/TDAQsupervise.cxx.html#SZD5i">ExecEnd</a>()</span><br />
+<div class="funccomm"><pre> Stop data taking run
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecKill" href="src/TDAQsupervise.cxx.html#n6D_dD">ExecKill</a>()</span><br />
+<div class="funccomm"><pre> Kill DAQ...this is allowed even if DAQ control is not enabled
+ Control is enabled send shutdown message to Data receiver
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ExecBufferDump" href="src/TDAQsupervise.cxx.html#MjM22E">ExecBufferDump</a>()</span><br />
+<div class="funccomm"><pre> <a href="./#TNamed:Print" title="void TNamed::Print(Option_t* option=&quot;&quot;)">Print</a> out the current data buffer to a text file
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:DAQEnable" href="src/TDAQsupervise.cxx.html#agE68B">DAQEnable</a>()</span><br />
+<div class="funccomm"><pre> Enable triggers
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:DAQDisable" href="src/TDAQsupervise.cxx.html#sEGChC">DAQDisable</a>()</span><br />
+<div class="funccomm"><pre> Disable triggers
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:GetSysTime" href="src/TDAQsupervise.cxx.html#Ko1QrB">GetSysTime</a>()</span><br />
+<div class="funccomm"><pre> Store and print the system time in ascii format
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:CreateHeader" href="src/TDAQsupervise.cxx.html#giRHC">CreateHeader</a>(<span class="keyword">void</span>* )</span><br />
+<div class="funccomm"><pre> Create header buffer from information held in
+ <a href="./TDAQexperiment.html">TDAQexperiment</a> and <a href="./TDAQsupervise.html">TDAQsupervise</a> classes
+ Use Acqu Mk2 format, unless format explicitly set to Mk1
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:CreateMk1Header" href="src/TDAQsupervise.cxx.html#gj7fyB">CreateMk1Header</a>(<span class="keyword">void</span>* )</span><br />
+<div class="funccomm"><pre> Create header buffer from information held in
+ <a href="./TDAQexperiment.html">TDAQexperiment</a> and <a href="./TDAQsupervise.html">TDAQsupervise</a> classes
+ Use Acqu Mk1 format
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:CreateHeader%1" href="src/TDAQsupervise.cxx.html#kh_4qC">CreateHeader</a>(<span class="keyword">void</span>* , <a href="./ListOfTypes.html#UInt_t">UInt_t</a> )</span><br />
+<div class="funccomm"><pre> Send End buffer to storage
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQsupervise:GetRunDesc" href="src/TDAQsupervise.cxx.html#AfLI9D">GetRunDesc</a>()</span><br />
+<div class="funccomm"><pre> Description of experiment
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:SaveRunLog" href="src/TDAQsupervise.cxx.html#UgIzxE">SaveRunLog</a>()</span><br />
+<div class="funccomm"><pre> Save run number to log file
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQsupervise:GetRunLog" href="src/TDAQsupervise.cxx.html#GUWVhD">GetRunLog</a>()</span><br />
+<div class="funccomm"><pre> Get run number from log file
+ Check if the file exists. Failure to get run number returns -1
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ConfigTCS" href="src/TDAQsupervise.cxx.html#fI4aqB">ConfigTCS</a>()</span><br />
+<div class="funccomm"><pre> Run the re-configuration procedure of the Trigger Control System
+ if it exists
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:CAMAC_IO" href="src/TDAQsupervise.cxx.html#Bq9jD">CAMAC_IO</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> , <a href="./ListOfTypes.html#Int_t">Int_t</a> , <a href="./ListOfTypes.html#Int_t">Int_t</a> , <a href="./ListOfTypes.html#Int_t">Int_t</a> , <a href="./ListOfTypes.html#Int_t">Int_t</a> )</span><br />
+<div class="funccomm"><pre> <a href="./#TObject:Execute" title="void TObject::Execute(const char* method,const char* params,Int_t* error=0) or overloads">Execute</a> a CAMAC CNAF
+ Return the datum (read or written) and the state of Q and X
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:ConfigVUPROM" href="src/TDAQsupervise.cxx.html#k9blV">ConfigVUPROM</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> Issue commands to VUPROM
+ if it exists
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a>* <a class="funcname" name="TDAQsupervise:GetVUPROMparm" href="src/TDAQsupervise.cxx.html#L7bC2E">GetVUPROMparm</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> )</span><br />
+<div class="funccomm"><pre> Get parameters in integer array from VUPROM
+ return NULL if no VUPROM
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TDAQsupervise:TDAQsupervise" href="src/TDAQsupervise.h.html#Ovg.AB">TDAQsupervise</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./TDAQexperiment.html">TDAQexperiment</a>* , <a href="./ListOfTypes.html#Char_t">Char_t</a>*  = NULL)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TDAQexperiment.html">TDAQexperiment</a>* <a class="funcname" name="TDAQsupervise:GetEXP" href="src/TDAQsupervise.h.html#cdErrC">GetEXP</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fEXP" title="TDAQexperiment* TDAQsupervise::fEXP">fEXP</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQsupervise:GetExpCtrlMode" href="src/TDAQsupervise.h.html#wg7s4E">GetExpCtrlMode</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fExpCtrlMode" title="Int_t TDAQsupervise::fExpCtrlMode">fExpCtrlMode</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">ARSocket_t* <a class="funcname" name="TDAQsupervise:GetSocket" href="src/TDAQsupervise.h.html#X001kD">GetSocket</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fSocket" title="ARSocket_t* TDAQsupervise::fSocket">fSocket</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQsupervise:GetServerIP" href="src/TDAQsupervise.h.html#h2.E7C">GetServerIP</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fServerIP" title="Char_t* TDAQsupervise::fServerIP">fServerIP</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQsupervise:GetPort" href="src/TDAQsupervise.h.html#I9v7oD">GetPort</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fPort" title="Int_t TDAQsupervise::fPort">fPort</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TDAQmodule.html">TDAQmodule</a>* <a class="funcname" name="TDAQsupervise:GetIRQMod" href="src/TDAQsupervise.h.html#UBhqkC">GetIRQMod</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fIRQMod" title="TDAQmodule* TDAQsupervise::fIRQMod">fIRQMod</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQsupervise:GetTime" href="src/TDAQsupervise.h.html#m.MlND">GetTime</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fTime" title="Char_t TDAQsupervise::fTime">fTime</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQsupervise:GetComment" href="src/TDAQsupervise.h.html#MUHeMD">GetComment</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fComment" title="Char_t TDAQsupervise::fComment">fComment</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQsupervise:GetFileName" href="src/TDAQsupervise.h.html#WErwgC">GetFileName</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fFileName" title="Char_t TDAQsupervise::fFileName">fFileName</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQsupervise:GetCommandLine" href="src/TDAQsupervise.h.html#qlE0uE">GetCommandLine</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fCommandLine" title="Char_t TDAQsupervise::fCommandLine">fCommandLine</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQsupervise:GetGUIBuffer" href="src/TDAQsupervise.h.html#Kjs.cC">GetGUIBuffer</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fGUIBuffer" title="Char_t* TDAQsupervise::fGUIBuffer">fGUIBuffer</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TDAQguiCtrl.html">TDAQguiCtrl</a>* <a class="funcname" name="TDAQsupervise:GetGUICtrl" href="src/TDAQsupervise.h.html#Ju4dME">GetGUICtrl</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fGUICtrl" title="TDAQguiCtrl* TDAQsupervise::fGUICtrl">fGUICtrl</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:SetGUIBuffer" href="src/TDAQsupervise.h.html#EG1lqE">SetGUIBuffer</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* b)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TDAQsupervise.html#TDAQsupervise:fGUIBuffer" title="Char_t* TDAQsupervise::fGUIBuffer">fGUIBuffer</a> = b; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TDAQsupervise:GetOutBuff" href="src/TDAQsupervise.h.html#L_OK0B">GetOutBuff</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fOutBuff" title="Char_t* TDAQsupervise::fOutBuff">fOutBuff</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TDAQsupervise:GetRunNumber" href="src/TDAQsupervise.h.html#b9vLkC">GetRunNumber</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fRunNumber" title="Int_t TDAQsupervise::fRunNumber">fRunNumber</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:SetRunNumber" href="src/TDAQsupervise.h.html#ylLNVE">SetRunNumber</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> r)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:SetAuto" href="src/TDAQsupervise.h.html#KiC7LC">SetAuto</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> state)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TDAQsupervise.html#TDAQsupervise:fIsAuto" title="Bool_t TDAQsupervise::fIsAuto">fIsAuto</a> = state; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TDAQsupervise:SetTrigMod" href="src/TDAQsupervise.h.html#rmJRNE">SetTrigMod</a>(<a href="./TDAQmodule.html">TDAQmodule</a>* trigmod)</span><br />
+
+<div class="code"><code class="inlinecode">{ <a href="./TDAQsupervise.html#TDAQsupervise:fTrigMod" title="TDAQmodule* TDAQsupervise::fTrigMod">fTrigMod</a> = trigmod; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQsupervise:IsDataReady" href="src/TDAQsupervise.h.html#GkWgFC">IsDataReady</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./ListOfTypes.html#Bool_t">kFALSE</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQsupervise:IsRunInit" href="src/TDAQsupervise.h.html#zsiMtE">IsRunInit</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fIsRunInit" title="Bool_t TDAQsupervise::fIsRunInit">fIsRunInit</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQsupervise:IsRunTerm" href="src/TDAQsupervise.h.html#guQtkE">IsRunTerm</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fIsRunTerm" title="Bool_t TDAQsupervise::fIsRunTerm">fIsRunTerm</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQsupervise:IsBufferDump" href="src/TDAQsupervise.h.html#qbrqED">IsBufferDump</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fIsBufferDump" title="Bool_t TDAQsupervise::fIsBufferDump">fIsBufferDump</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQsupervise:IsAuto" href="src/TDAQsupervise.h.html#FonBDD">IsAuto</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fIsAuto" title="Bool_t TDAQsupervise::fIsAuto">fIsAuto</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQsupervise:IsRunning" href="src/TDAQsupervise.h.html#b9G8lE">IsRunning</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TDAQsupervise.html#TDAQsupervise:fIsRunning" title="Bool_t TDAQsupervise::fIsRunning">fIsRunning</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQsupervise:IsSlave" href="src/TDAQsupervise.h.html#JpdCUC">IsSlave</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TDAQsupervise:IsGUI" href="src/TDAQsupervise.h.html#pOtdi">IsGUI</a>()</span><br />
+</div>
+
+<br />
+<!--SIGNATURE-->
+<div id="footer">
+
+<em>&raquo; Last changed:       JRM Annand    1st Oct 2012 Allow stop/go when storing </em><em>&raquo; Last generated: 2013-08-11 12:18</em><br />
+<em>This page has been automatically generated. For comments or suggestions regarding the documentation or ROOT in general please send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>.</em>
+</div>
+</div>
+</body>
+</html>

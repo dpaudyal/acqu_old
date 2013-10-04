@@ -1,0 +1,817 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@pcroot.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Sun Aug 11 12:17:57 2013            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>TA2DataManager</title>
+<meta name="rating" content="General" />
+<meta name="objecttype" content="Manual" />
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers, cern" />
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis." />
+<link rel="stylesheet" type="text/css" href="ROOT.css" id="ROOTstyle" />
+<script type="text/javascript" src="ROOT.js"></script>
+</head>
+<body  onload="javascript:SetValuesFromCookie();"><div id="body_content">
+<div id="root_header"><img src="http://root.cern.ch/drupal/sites/default/files/rootdrawing-logo.png" alt="ROOT logo"/></div>
+<a name="TopOfPage"></a>
+<script type="text/javascript">WriteFollowPageBox('class TA2DataManager','','/home/acqu/4v6/acqu/AcquRoot/src/TA2DataManager.h');</script>
+<div id="toplinks">
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Quick Links:</span>
+<a class="descrheadentry" href="http://root.cern.ch">ROOT Homepage</a>
+<a class="descrheadentry" href="./ClassIndex.html">Class Index</a>
+<a class="descrheadentry" href="./ClassHierarchy.html">Class Hierarchy</a></div>
+<script type="text/javascript">
+function onSearch() {
+var s='http://www.google.com/search?q=%s+site%3A%u+-site%3A%u%2Fsrc%2F+-site%3A%u%2Fexamples%2F';
+var ref=String(document.location.href).replace(/https?:\/\//,'').replace(/\/[^\/]*$/,'').replace(/\//g,'%2F');
+window.location.href=s.replace(/%u/ig,ref).replace(/%s/ig,escape(document.searchform.t.value));
+return false;}
+</script>
+<form id="searchform" name="searchform" onsubmit="return onSearch()" action="javascript:onSearch();" method="post">
+<input name="t" size="30" value="Search documentation..." onfocus="if (document.searchform.t.value=='Search documentation...') document.searchform.t.value='';"></input>
+<a id="searchlink"  title="www.google.com"  href="javascript:onSearch();" onclick="return onSearch()">Search</a></form>
+</div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Source:</span>
+<a class="descrheadentry" href="src/TA2DataManager.h.html">header file</a>
+<a class="descrheadentry" href="src/TA2DataManager.cxx.html">source file</a>
+<a class="descrheadentry" href="TA2DataManager_Tree.pdf">inheritance tree (.pdf)</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquRoot/src/TA2DataManager.h?view=log">viewVC header</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquRoot/src/TA2DataManager.cc?view=log">viewVC source</a> 
+</div></div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Sections:</span>
+<a class="descrheadentry" href="#TA2DataManager:description">class description</a> 
+<a class="descrheadentry" href="#TA2DataManager:Function_Members">function members</a>
+<a class="descrheadentry" href="#TA2DataManager:Data_Members">data members</a>
+<a class="descrheadentry" href="#TA2DataManager:Class_Charts">class charts</a>
+</div></div>
+</div>
+<div class="location">
+<a class="locationlevel" href="index.html">(UNKNOWN PRODUCT)</a>
+ &#187; <a class="locationlevel" href="./HOME_Index.html">HOME</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_Index.html">4V6</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_ACQUROOT_Index.html">ACQUROOT</a>
+ &#187; <a class="locationlevel" href="#TopOfPage">TA2DataManager</a>
+</div>
+<div class="dropshadow"><div class="withshadow"><h1><a name="TA2DataManager:description"></a>class TA2DataManager: public <a href="./TA2System.html">TA2System</a></h1>
+<div class="classdescr">
+</div>
+</div></div>
+
+<div id="functions">
+<h2><a id="TA2DataManager:Function_Members"></a>Function Members (Methods)</h2>
+&nbsp;<br /><b>&nbsp;&nbsp;&nbsp;&nbsp;This is an abstract class, constructors will not be documented.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Look at the <a href="TA2DataManager.h">header</a> to check for available constructors.</b><br />
+<div class="access" id="funcpubl"><b>public:</b>
+<table class="func" id="tabfuncpubl" cellspacing="0">
+<tr class="func"><td class="funcret"> virtual</td><td class="funcname"><a class="funcname" href="#TA2DataManager:_TA2DataManager">~TA2DataManager</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AbstractMethod"><span class="baseclass">TObject::</span>AbstractMethod</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:AddChild">AddChild</a>(<a href="./TA2DataManager.html">TA2DataManager</a>*, <span class="keyword">const</span> <span class="keyword">char</span>* = <span class="string">"TA2Detector"</span>)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:AddChild%1">AddChild</a>(<span class="keyword">char</span>*, <a href="./TA2DataManager.html">TA2DataManager</a>** = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:AddCmdList"><span class="baseclass">TA2System::</span>AddCmdList</a>(<span class="keyword">const</span> Map_t*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AppendPad"><span class="baseclass">TObject::</span>AppendPad</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Browse"><span class="baseclass">TObject::</span>Browse</a>(TBrowser* b)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:BuildName"><span class="baseclass">TA2System::</span>BuildName</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:CheckName"><span class="baseclass">TA2System::</span>CheckName</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* name)</td></tr>
+<tr class="func"><td class="funcret">static TClass*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:Class">Class</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:ClassName"><span class="baseclass">TObject::</span>ClassName</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:Cleanup">Cleanup</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Clear"><span class="baseclass">TNamed::</span>Clear</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TNamed:Clone"><span class="baseclass">TNamed::</span>Clone</a>(<span class="keyword">const</span> <span class="keyword">char</span>* newname = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:CloseEvent">CloseEvent</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:CommandConfig"><span class="baseclass">TA2System::</span>CommandConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Compare"><span class="baseclass">TNamed::</span>Compare</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Copy"><span class="baseclass">TNamed::</span>Copy</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>&amp; named) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./TA2DataManager.html">TA2DataManager</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:CreateChild">CreateChild</a>(<span class="keyword">const</span> <span class="keyword">char</span>*, <a href="./ListOfTypes.html#Int_t">Int_t</a>)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:Decode">Decode</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:DecodeSaved">DecodeSaved</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Delete"><span class="baseclass">TObject::</span>Delete</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:DistancetoPrimitive"><span class="baseclass">TObject::</span>DistancetoPrimitive</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Draw"><span class="baseclass">TObject::</span>Draw</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DrawClass"><span class="baseclass">TObject::</span>DrawClass</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:DrawClone"><span class="baseclass">TObject::</span>DrawClone</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Dump"><span class="baseclass">TObject::</span>Dump</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:EndFile">EndFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Error"><span class="baseclass">TObject::</span>Error</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute"><span class="baseclass">TObject::</span>Execute</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute%1"><span class="baseclass">TObject::</span>Execute</a>(TMethod* method, TObjArray* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ExecuteEvent"><span class="baseclass">TObject::</span>ExecuteEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> event, <a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Fatal"><span class="baseclass">TObject::</span>Fatal</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:FileConfig"><span class="baseclass">TA2System::</span>FileConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:FillBuffer"><span class="baseclass">TNamed::</span>FillBuffer</a>(<span class="keyword">char</span>*&amp; buffer)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject%1"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:Finish">Finish</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UShort_t">UShort_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetADC">GetADC</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetADCdefined">GetADCdefined</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2BitPattern.html">TA2BitPattern</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetBitPattern">GetBitPattern</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2DataManager.html">TA2DataManager</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetChild">GetChild</a>(<span class="keyword">const</span> <span class="keyword">char</span>*, <span class="keyword">const</span> <span class="keyword">char</span>* = <span class="string">"TA2Apparatus"</span>)</td></tr>
+<tr class="func"><td class="funcret">TList*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetChildren">GetChildren</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2DataManager.html">TA2DataManager</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetChildType">GetChildType</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a> = 0)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2MultiCut.html">TA2MultiCut</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetDataCuts">GetDataCuts</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetDrawOption"><span class="baseclass">TObject::</span>GetDrawOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Long_t">Long_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetDtorOnly"><span class="baseclass">TObject::</span>GetDtorOnly</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetEndOfFileCmd">GetEndOfFileCmd</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span>**</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetEvent">GetEvent</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetEvent%1">GetEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> i)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetFinishCmd">GetFinishCmd</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2DataManager.html">TA2DataManager</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetGrandChild">GetGrandChild</a>(<span class="keyword">const</span> <span class="keyword">char</span>*, <span class="keyword">const</span> <span class="keyword">char</span>* = <span class="string">"TA2Detector"</span>)</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2MultiCut.html">TA2MultiCut</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetHistCuts">GetHistCuts</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetIconName"><span class="baseclass">TObject::</span>GetIconName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">ARFile_t*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetInputFile"><span class="baseclass">TA2System::</span>GetInputFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">ARFile_t*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetLogFile"><span class="baseclass">TA2System::</span>GetLogFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">FILE*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetLogStream"><span class="baseclass">TA2System::</span>GetLogStream</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetMapKey"><span class="baseclass">TA2System::</span>GetMapKey</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetMapString"><span class="baseclass">TA2System::</span>GetMapString</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetMaxADC">GetMaxADC</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetMaxPeriod">GetMaxPeriod</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetMaxScaler">GetMaxScaler</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2MultiCut.html">TA2MultiCut</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetMiscCuts">GetMiscCuts</a>()</td></tr>
+<tr class="func"><td class="funcret">MultiADC_t**</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetMulti%1">GetMulti</a>()</td></tr>
+<tr class="func"><td class="funcret">MultiADC_t*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetMulti">GetMulti</a>(<span class="keyword">int</span> i)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TNamed:GetName"><span class="baseclass">TNamed::</span>GetName</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetNPatternHits">GetNPatternHits</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetNPeriod">GetNPeriod</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetObjectInfo"><span class="baseclass">TObject::</span>GetObjectInfo</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetObjectStat"><span class="baseclass">TObject::</span>GetObjectStat</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetOption"><span class="baseclass">TObject::</span>GetOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2DataManager.html">TA2DataManager</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetParent">GetParent</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a>**</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetPatternHits">GetPatternHits</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetPeriodCmd">GetPeriodCmd</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TA2RateMonitor.html">TA2RateMonitor</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetRateMonitor">GetRateMonitor</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetScaler">GetScaler</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetScalerAcc">GetScalerAcc</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetScalerCurr">GetScalerCurr</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetScalerError">GetScalerError</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetScalerIndex">GetScalerIndex</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetScalerSum">GetScalerSum</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TNamed:GetTitle"><span class="baseclass">TNamed::</span>GetTitle</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">TTree*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetTree">GetTree</a>()</td></tr>
+<tr class="func"><td class="funcret">TFile*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetTreeFile">GetTreeFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetUniqueID"><span class="baseclass">TObject::</span>GetUniqueID</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:HandleTimer"><span class="baseclass">TObject::</span>HandleTimer</a>(TTimer* timer)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#ULong_t">ULong_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Hash"><span class="baseclass">TNamed::</span>Hash</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Info"><span class="baseclass">TObject::</span>Info</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> <span class="keyword">char</span>* classname) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom%1"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> TClass* cl) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:InitSaveTree%1">InitSaveTree</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:InitSaveTree">InitSaveTree</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>**, <span class="keyword">void</span>**, <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <a href="./ListOfTypes.html#Char_t">Char_t</a>** = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Inspect"><span class="baseclass">TObject::</span>Inspect</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:InvertBit"><span class="baseclass">TObject::</span>InvertBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="func"><td class="funcret">virtual TClass*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsA">IsA</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsBitPattern">IsBitPattern</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsDecode">IsDecode</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsDecodeOK">IsDecodeOK</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsEndOfFile">IsEndOfFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsEqual"><span class="baseclass">TObject::</span>IsEqual</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:IsError"><span class="baseclass">TA2System::</span>IsError</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsFinish">IsFinish</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsFolder"><span class="baseclass">TObject::</span>IsFolder</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:IsInit"><span class="baseclass">TA2System::</span>IsInit</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsOnHeap"><span class="baseclass">TObject::</span>IsOnHeap</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsRateMonitor">IsRateMonitor</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsRawDecode">IsRawDecode</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsRawDecodeOK">IsRawDecodeOK</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsReconstruct">IsReconstruct</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsReconstructOK">IsReconstructOK</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsSaveEvent">IsSaveEvent</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:IsSortable"><span class="baseclass">TNamed::</span>IsSortable</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsZombie"><span class="baseclass">TObject::</span>IsZombie</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:LoadVariable">LoadVariable</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:ls"><span class="baseclass">TNamed::</span>ls</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:MacroExe">MacroExe</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* macroCmd)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2Key"><span class="baseclass">TA2System::</span>Map2Key</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2Key%1"><span class="baseclass">TA2System::</span>Map2Key</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> Map_t**)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2String"><span class="baseclass">TA2System::</span>Map2String</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MayNotUse"><span class="baseclass">TObject::</span>MayNotUse</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Notify"><span class="baseclass">TObject::</span>Notify</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete%1"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]%1"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new%1"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]%1"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./#TNamed:TNamed" title="TNamed TNamed::TNamed() or overloads">TNamed</a>&amp;</td><td class="funcname"><a class="funcname" href="#TNamed:operator_"><span class="baseclass">TNamed::</span>operator=</a>(<span class="keyword">const</span> <a href="./#TNamed:TNamed" title="TNamed TNamed::TNamed() or overloads">TNamed</a>&amp; rhs)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Paint"><span class="baseclass">TObject::</span>Paint</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:ParseCut">ParseCut</a>(<span class="keyword">char</span>*)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:ParseEndOfFile">ParseEndOfFile</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:ParseFinish">ParseFinish</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:ParseMisc"><span class="baseclass">TA2System::</span>ParseMisc</a>(<span class="keyword">char</span>*)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:ParsePeriod">ParsePeriod</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:Periodic">Periodic</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Pop"><span class="baseclass">TObject::</span>Pop</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:PostInitialise">PostInitialise</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Print"><span class="baseclass">TNamed::</span>Print</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Read"><span class="baseclass">TObject::</span>Read</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:Reconstruct">Reconstruct</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:RecursiveRemove"><span class="baseclass">TObject::</span>RecursiveRemove</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ResetBit"><span class="baseclass">TObject::</span>ResetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:ResetCut">ResetCut</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SaveAs"><span class="baseclass">TObject::</span>SaveAs</a>(<span class="keyword">const</span> <span class="keyword">char</span>* filename = <span class="string">""</span>, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:SaveEvent">SaveEvent</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:SaveEvent%1">SaveEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> i)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SavePrimitive"><span class="baseclass">TObject::</span>SavePrimitive</a>(basic_ostream&lt;<span class="keyword">char</span>,char_traits&lt;<span class="keyword">char</span>&gt; &gt;&amp; out, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit%1"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f, <a href="./ListOfTypes.html#Bool_t">Bool_t</a> set)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetConfig"><span class="baseclass">TA2System::</span>SetConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDrawOption"><span class="baseclass">TObject::</span>SetDrawOption</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDtorOnly"><span class="baseclass">TObject::</span>SetDtorOnly</a>(<span class="keyword">void</span>* obj)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:SetEndOfFile">SetEndOfFile</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:SetFinish">SetFinish</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetLogFile"><span class="baseclass">TA2System::</span>SetLogFile</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetLogStream"><span class="baseclass">TA2System::</span>SetLogStream</a>(FILE* str)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetName"><span class="baseclass">TNamed::</span>SetName</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetNameTitle"><span class="baseclass">TNamed::</span>SetNameTitle</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name, <span class="keyword">const</span> <span class="keyword">char</span>* title)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetObjectStat"><span class="baseclass">TObject::</span>SetObjectStat</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> stat)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:SetSaveEvent">SetSaveEvent</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetTitle"><span class="baseclass">TNamed::</span>SetTitle</a>(<span class="keyword">const</span> <span class="keyword">char</span>* title = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetUniqueID"><span class="baseclass">TObject::</span>SetUniqueID</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> uid)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:ShowMembers">ShowMembers</a>(TMemberInspector&amp; insp)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Sizeof"><span class="baseclass">TNamed::</span>Sizeof</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:Streamer">Streamer</a>(TBuffer&amp; b)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:StreamerNVirtual">StreamerNVirtual</a>(TBuffer&amp; b)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SysError"><span class="baseclass">TObject::</span>SysError</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBit"><span class="baseclass">TObject::</span>TestBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBits"><span class="baseclass">TObject::</span>TestBits</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:UpdatePeriod">UpdatePeriod</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:UseCurrentStyle"><span class="baseclass">TObject::</span>UseCurrentStyle</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Warning"><span class="baseclass">TObject::</span>Warning</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write%1"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0) <span class="keyword">const</span></td></tr>
+
+</table></div>
+<div class="access" id="funcprot"><b>protected:</b>
+<table class="func" id="tabfuncprot" cellspacing="0">
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:BaseInit"><span class="baseclass">TA2System::</span>BaseInit</a>(<span class="keyword">const</span> Map_t*, <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DoError"><span class="baseclass">TObject::</span>DoError</a>(<span class="keyword">int</span> level, <span class="keyword">const</span> <span class="keyword">char</span>* location, <span class="keyword">const</span> <span class="keyword">char</span>* fmt, va_list va) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetN2V">GetN2V</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:GetVarType">GetVarType</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TA2DataManager:IsInt">IsInt</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MakeZombie"><span class="baseclass">TObject::</span>MakeZombie</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TA2DataManager:PostInit">PostInit</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PrintError"><span class="baseclass">TA2System::</span>PrintError</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <a href="./ListOfTypes.html#Int_t">Int_t</a> = EErrNonFatal)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PrintMessage"><span class="baseclass">TA2System::</span>PrintMessage</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+
+</table></div>
+</div>
+
+<div id="datamembers">
+<h2><a name="TA2DataManager:Data_Members"></a>Data Members</h2>
+<div class="access" id="enumpubl"><b>public:</b>
+<table class="data" id="tabenumpubl" cellspacing="0">
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span>EStatusBits { </td><td class="dataname"><a href="#TObject:kCanDelete">kCanDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kMustCleanup">kMustCleanup</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kObjInCanvas">kObjInCanvas</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kIsReferenced">kIsReferenced</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kHasUUID">kHasUUID</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kCannotPick">kCannotPick</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNoContextMenu">kNoContextMenu</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kInvalidObject">kInvalidObject</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span><i>[unnamed]</i> { </td><td class="dataname"><a href="#TObject:kIsOnHeap">kIsOnHeap</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNotDeleted">kNotDeleted</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kZombie">kZombie</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kBitMask">kBitMask</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kSingleKey">kSingleKey</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kOverwrite">kOverwrite</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kWriteDelete">kWriteDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+
+</table></div>
+<div class="access" id="dataprot"><b>protected:</b>
+<table class="data" id="tabdataprot" cellspacing="0">
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UShort_t">UShort_t</a>*</td><td class="dataname"><a name="TA2DataManager:fADC"></a>fADC</td><td class="datadesc">ADC array for subsequent analysis</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a>*</td><td class="dataname"><a name="TA2DataManager:fADCdefined"></a>fADCdefined</td><td class="datadesc">Tag if ADC[i] defined</td></tr>
+<tr class="data"><td class="datatype"><a href="./TA2BitPattern.html">TA2BitPattern</a>*</td><td class="dataname"><a name="TA2DataManager:fBitPattern"></a>fBitPattern</td><td class="datadesc">pattern-unit handler</td></tr>
+<tr class="data"><td class="datatype">TBranch**</td><td class="dataname"><a name="TA2DataManager:fBranch"></a>fBranch</td><td class="datadesc">separate branches of tree</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TA2DataManager:fChildren"></a>fChildren</td><td class="datadesc">one tier down in analysis</td></tr>
+<tr class="data"><td class="datatype"><a href="./TA2MultiCut.html">TA2MultiCut</a>*</td><td class="dataname"><a name="TA2DataManager:fCompoundCut"></a>fCompoundCut</td><td class="datadesc">for setting up compount cuts</td></tr>
+<tr class="data"><td class="datatype"><a href="./TA2MultiCut.html">TA2MultiCut</a>*</td><td class="dataname"><a name="TA2DataManager:fDataCuts"></a>fDataCuts</td><td class="datadesc">data filtering conditions</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TA2DataManager:fEndOfFileCmd"></a>fEndOfFileCmd</td><td class="datadesc">end-of-file command to execute</td></tr>
+<tr class="data"><td class="datatype"><span class="keyword">void</span>**</td><td class="dataname"><a name="TA2DataManager:fEvent"></a>fEvent</td><td class="datadesc">decoded event buffer</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TA2DataManager:fFinishCmd"></a>fFinishCmd</td><td class="datadesc">end-of-run command to execute</td></tr>
+<tr class="data"><td class="datatype"><a href="./TA2MultiCut.html">TA2MultiCut</a>*</td><td class="dataname"><a name="TA2DataManager:fHistCuts"></a>fHistCuts</td><td class="datadesc">histogram filtering conditions</td></tr>
+<tr class="datainh"><td class="datatype">ARFile_t*</td><td class="dataname"><a href="./TA2System.html#TA2System:fInputFile"><span class="baseclass">TA2System::</span>fInputFile</a></td><td class="datadesc">config input file if any</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsBitPattern"></a>fIsBitPattern</td><td class="datadesc">bit pattern decode</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsConfigPass"><span class="baseclass">TA2System::</span>fIsConfigPass</a></td><td class="datadesc">depreciated config handler</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsCut"></a>fIsCut</td><td class="datadesc">perform data cuts?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsDecode"></a>fIsDecode</td><td class="datadesc">perform decoding?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsDecodeOK"></a>fIsDecodeOK</td><td class="datadesc">Decoding passed conditions?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsEndOfFile"></a>fIsEndOfFile</td><td class="datadesc">end-of-file procedures?</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsError"><span class="baseclass">TA2System::</span>fIsError</a></td><td class="datadesc">any setup errors?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsFinish"></a>fIsFinish</td><td class="datadesc">end-of-run procedures?</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsInit"><span class="baseclass">TA2System::</span>fIsInit</a></td><td class="datadesc">initialisation complete?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsRateMonitor"></a>fIsRateMonitor</td><td class="datadesc">scaler time dependence</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsRawDecode"></a>fIsRawDecode</td><td class="datadesc">perform Raw decoding?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsRawDecodeOK"></a>fIsRawDecodeOK</td><td class="datadesc">Raw decoding passed conditions?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsReconstruct"></a>fIsReconstruct</td><td class="datadesc">perform reconstruction?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsReconstructOK"></a>fIsReconstructOK</td><td class="datadesc">Reconstruction passed conditions?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TA2DataManager:fIsSaveEvent"></a>fIsSaveEvent</td><td class="datadesc">save output data?</td></tr>
+<tr class="datainh"><td class="datatype">ARFile_t*</td><td class="dataname"><a href="./TA2System.html#TA2System:fLogFile"><span class="baseclass">TA2System::</span>fLogFile</a></td><td class="datadesc">diagnostic log file</td></tr>
+<tr class="datainh"><td class="datatype">FILE*</td><td class="dataname"><a href="./TA2System.html#TA2System:fLogStream"><span class="baseclass">TA2System::</span>fLogStream</a></td><td class="datadesc">file ptr for logging output</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2DataManager:fMaxADC"></a>fMaxADC</td><td class="datadesc">no. ADC's defined in data base</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="dataname"><a name="TA2DataManager:fMaxPeriod"></a>fMaxPeriod</td><td class="datadesc"># events between periodic tasks</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2DataManager:fMaxScaler"></a>fMaxScaler</td><td class="datadesc">no. scalers defined in data base</td></tr>
+<tr class="data"><td class="datatype"><a href="./TA2MultiCut.html">TA2MultiCut</a>*</td><td class="dataname"><a name="TA2DataManager:fMiscCuts"></a>fMiscCuts</td><td class="datadesc">miscellaneous filtering conditions</td></tr>
+<tr class="data"><td class="datatype">MultiADC_t**</td><td class="dataname"><a name="TA2DataManager:fMulti"></a>fMulti</td><td class="datadesc">list of any multi-hit ADC's</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="dataname"><a name="TA2DataManager:fNPatternHits"></a>fNPatternHits</td><td class="datadesc"># hits from bit pattern units </td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="dataname"><a name="TA2DataManager:fNPeriod"></a>fNPeriod</td><td class="datadesc">periodic task event counter</td></tr>
+<tr class="datainh"><td class="datatype">TString</td><td class="dataname"><a href="#TNamed:fName"><span class="baseclass">TNamed::</span>fName</a></td><td class="datadesc">object identifier</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2DataManager:fNbranch"></a>fNbranch</td><td class="datadesc"># branches to analyse</td></tr>
+<tr class="data"><td class="datatype"><a href="./TA2DataManager.html">TA2DataManager</a>*</td><td class="dataname"><a name="TA2DataManager:fParent"></a>fParent</td><td class="datadesc">one tier up in analysis</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a>**</td><td class="dataname"><a name="TA2DataManager:fPatternHits"></a>fPatternHits</td><td class="datadesc">hits from bit pattern units</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TA2DataManager:fPeriodCmd"></a>fPeriodCmd</td><td class="datadesc">period command to execute</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TA2DataManager:fRandSeed"></a>fRandSeed</td><td class="datadesc">initial seed for random</td></tr>
+<tr class="data"><td class="datatype">TRandom*</td><td class="dataname"><a name="TA2DataManager:fRandom"></a>fRandom</td><td class="datadesc">Random generator</td></tr>
+<tr class="data"><td class="datatype"><a href="./TA2RateMonitor.html">TA2RateMonitor</a>*</td><td class="dataname"><a name="TA2DataManager:fRateMonitor"></a>fRateMonitor</td><td class="datadesc">scaler rate monitors</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="dataname"><a name="TA2DataManager:fScaler"></a>fScaler</td><td class="datadesc">Scaler dump</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a>*</td><td class="dataname"><a name="TA2DataManager:fScalerAcc"></a>fScalerAcc</td><td class="datadesc">local scalers accumulated buffer</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="dataname"><a name="TA2DataManager:fScalerBuff"></a>fScalerBuff</td><td class="datadesc">Scaler dump + other info</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="dataname"><a name="TA2DataManager:fScalerCurr"></a>fScalerCurr</td><td class="datadesc">local scalers current buffer</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>*</td><td class="dataname"><a name="TA2DataManager:fScalerIndex"></a>fScalerIndex</td><td class="datadesc">local scaler indices</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a>*</td><td class="dataname"><a name="TA2DataManager:fScalerSum"></a>fScalerSum</td><td class="datadesc">Accumulated scaler</td></tr>
+<tr class="datainh"><td class="datatype">TString</td><td class="dataname"><a href="#TNamed:fTitle"><span class="baseclass">TNamed::</span>fTitle</a></td><td class="datadesc">object title</td></tr>
+<tr class="data"><td class="datatype">TTree*</td><td class="dataname"><a name="TA2DataManager:fTree"></a>fTree</td><td class="datadesc">ROOT tree for output</td></tr>
+<tr class="data"><td class="datatype">TFile*</td><td class="dataname"><a name="TA2DataManager:fTreeFile"></a>fTreeFile</td><td class="datadesc">output file for trees etc</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TA2DataManager:fTreeFileName"></a>fTreeFileName</td><td class="datadesc">reduced data tree file name</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TA2DataManager:fVariables"></a>fVariables</td><td class="datadesc">info on cut/histgram variables</td></tr>
+<tr class="data"><td class="datatype"><span class="keyword">const</span> Map_t*</td><td class="dataname"><a name="TA2DataManager:kValidChild"></a>kValidChild</td><td class="datadesc">valid child class types</td></tr>
+
+</table></div>
+</div>
+<h2><a id="TA2DataManager:Class_Charts"></a>Class Charts</h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%"><a href="ClassHierarchy.html">Inheritance Chart</a>:</td></tr><tr class="inhtree"><td width="10%"></td><td width="70%"><table class="inhtree"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td><table><tr>
+<td bgcolor="#efefef" align="right">
+<tt>TNamed</tt></td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><tt><a name="TA2System" href="./TA2System.html">TA2System</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><big><b><tt><a name="TA2DataManager" href="./TA2DataManager.html">TA2DataManager</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td>&larr;</td><td><table><tr>
+<td bgcolor="#f7f7f7"><table><tr><td>
+<center><tt><a name="TA2HistManager" href="./TA2HistManager.html">TA2HistManager</a></tt></center></td>
+<td>&larr;</td><td><table><tr>
+<td bgcolor="#efefef"><table><tr><td>
+<center><tt><a name="TA2Analysis" href="./TA2Analysis.html">TA2Analysis</a></tt></center></td>
+<td>&larr;</td><td><table><tr>
+<td bgcolor="#e7e7e7"><table><tr><td>
+<center><tt><a name="TA2UserAnalysis" href="./TA2UserAnalysis.html">TA2UserAnalysis</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr><tr>
+<td bgcolor="#efefef"><table><tr><td>
+<center><tt><a name="TA2Apparatus" href="./TA2Apparatus.html">TA2Apparatus</a></tt></center></td>
+<td>&larr;</td><td><table><tr>
+<td bgcolor="#e7e7e7"><table><tr><td>
+<center><tt><a name="TA2CB" href="./TA2CB.html">TA2CB</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr><tr>
+<td bgcolor="#e7e7e7"><table><tr><td>
+<center><tt><a name="TA2Calorimeter" href="./TA2Calorimeter.html">TA2Calorimeter</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr><tr>
+<td bgcolor="#e7e7e7"><table><tr><td>
+<center><tt><a name="TA2CosmicCal" href="./TA2CosmicCal.html">TA2CosmicCal</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr><tr>
+<td bgcolor="#e7e7e7"><table><tr><td>
+<center><tt><a name="TA2CrystalBall" href="./TA2CrystalBall.html">TA2CrystalBall</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr><tr>
+<td bgcolor="#e7e7e7"><table><tr><td>
+<center><tt><a name="TA2GenericApp" href="./TA2GenericApp.html">TA2GenericApp</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr><tr>
+<td bgcolor="#e7e7e7"><table><tr><td>
+<center><tt><a name="TA2GenericApparatus" href="./TA2GenericApparatus.html">TA2GenericApparatus</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td><td align="left">&nbsp;<a href="ClassHierarchy.html">[more...]</a></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<h2>Function documentation</h2>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TA2DataManager:_TA2DataManager" href="src/TA2DataManager.cxx.html#Uwc0M">~TA2DataManager</a>()</span><br />
+<div class="funccomm"><pre> Free up any allocated memory
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:AddChild" href="src/TA2DataManager.cxx.html#Bz5Xp">AddChild</a>(<a href="./TA2DataManager.html">TA2DataManager</a>* , <span class="keyword">const</span> <span class="keyword">char</span>*  = <span class="string">"TA2Detector"</span>)</span><br />
+<div class="funccomm"><pre> Add child to list, after checking its a child
+ Check that the child list is initialised
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:AddChild%1" href="src/TA2DataManager.cxx.html#n_UqCE">AddChild</a>(<span class="keyword">char</span>* , <a href="./TA2DataManager.html">TA2DataManager</a>**  = NULL)</span><br />
+<div class="funccomm"><pre> Add child class to list....info from command line
+ Configure child if parameter file specified on command line
+ Output log stream passed by parent
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2DataManager.html">TA2DataManager</a>* <a class="funcname" name="TA2DataManager:GetChildType" href="src/TA2DataManager.cxx.html#UFzLBD">GetChildType</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a>  = 0)</span><br />
+<div class="funccomm"><pre> Search list of children for nth instance of particular class type
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2DataManager.html">TA2DataManager</a>* <a class="funcname" name="TA2DataManager:GetChild" href="src/TA2DataManager.cxx.html#G49UYB">GetChild</a>(<span class="keyword">const</span> <span class="keyword">char</span>* , <span class="keyword">const</span> <span class="keyword">char</span>*  = <span class="string">"TA2Apparatus"</span>)</span><br />
+<div class="funccomm"><pre> Search list of children for particular class
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2DataManager.html">TA2DataManager</a>* <a class="funcname" name="TA2DataManager:GetGrandChild" href="src/TA2DataManager.cxx.html#dNcy9B">GetGrandChild</a>(<span class="keyword">const</span> <span class="keyword">char</span>* , <span class="keyword">const</span> <span class="keyword">char</span>*  = <span class="string">"TA2Detector"</span>)</span><br />
+<div class="funccomm"><pre> Search list of children's children for particular class
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:ParseCut" href="src/TA2DataManager.cxx.html#J34k">ParseCut</a>(<span class="keyword">char</span>* )</span><br />
+<div class="funccomm"><pre> General-purpose data-cut setup
+ Parse cut information from <span class="string">"Data-Cut:"</span> command line
+ Check initialisation completed first...do postintialisation if not.
+ After working out what's desired, from the input line
+ the SetCut() method is called.
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:PostInit" href="src/TA2DataManager.cxx.html#L1.iV">PostInit</a>()</span><br />
+<div class="funccomm"><pre> Some further initialisation after main setup parameters read in
+ and usually before cuts and display setup
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:LoadVariable" href="src/TA2DataManager.cxx.html#CShneC">LoadVariable</a>()</span><br />
+<div class="funccomm"><pre> Load any plottable variables
+ Bit-pattern variables
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:ParsePeriod" href="src/TA2DataManager.cxx.html#cVw0I">ParsePeriod</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> <a href="./#TObject:Read" title="Int_t TObject::Read(const char* name)">Read</a> period info from line of text
+ Interval (in number of events) between periodic procedure
+ Name of Macro file containing the periodic procedure
+ Name of the periodic procedure to call
+ including any parameters to pass to the
+ periodic procedure
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:ParseEndOfFile" href="src/TA2DataManager.cxx.html#BghzCB">ParseEndOfFile</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> <a href="./#TObject:Read" title="Int_t TObject::Read(const char* name)">Read</a> any end-of-file macro spec
+ Name of Macro file containing the periodic procedure
+ Name of the periodic procedure to call
+ including any parameters to pass to the end-of-file procedure
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:ParseFinish" href="src/TA2DataManager.cxx.html#kbkjI">ParseFinish</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> <a href="./#TObject:Read" title="Int_t TObject::Read(const char* name)">Read</a> any end-of-run macro spec
+ Name of Macro file containing the periodic procedure
+ Name of the periodic procedure to call
+ including any parameters to pass to the end-of-file procedure
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:SetEndOfFile" href="src/TA2DataManager.cxx.html#Typo_C">SetEndOfFile</a>()</span><br />
+<div class="funccomm"><pre> Enable End-of-File Procedures
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:SetFinish" href="src/TA2DataManager.cxx.html#hSFuU">SetFinish</a>()</span><br />
+<div class="funccomm"><pre> Enable End-of-Run Procedures
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:SetSaveEvent" href="src/TA2DataManager.cxx.html#v1dT1C">SetSaveEvent</a>()</span><br />
+<div class="funccomm"><pre> Enable saving of <span class="string">"events"</span> ....
+ pieces of data to be saved every experimental event
+ This could be e.g
+ raw data ( ADC index/value strings,
+ or <span class="string">"physical"</span> data (4-Vectors with particle ID)
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:InitSaveTree" href="src/TA2DataManager.cxx.html#NoaSdE">InitSaveTree</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>** , <span class="keyword">void</span>** , <a href="./ListOfTypes.html#Char_t">Char_t</a>*  = NULL, <a href="./ListOfTypes.html#Char_t">Char_t</a>**  = NULL)</span><br />
+<div class="funccomm"><pre> Initialise output tree for data, Create ROOT file of name: <a href="./TA2DataManager.html#TA2DataManager:fTreeFileName" title="Char_t* TA2DataManager::fTreeFileName">fTreeFileName</a>,
+ Initialise TTree data structure to be written to the ROOT file
+ tree data format: format, data buffer: buff, (optional) tree name: tname
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:InitSaveTree%1" href="src/TA2DataManager.cxx.html#HM.VL">InitSaveTree</a>()</span><br />
+<div class="funccomm"><pre> Sucessively call init-saves of children
+ default calling function doesn't perform any init-save
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:Periodic" href="src/TA2DataManager.cxx.html#RUxnV">Periodic</a>()</span><br />
+<div class="funccomm"><pre> Optional tasks to perform every time <a href="./TA2DataManager.html#TA2DataManager:fMaxPeriod" title="UInt_t TA2DataManager::fMaxPeriod">fMaxPeriod</a> events have
+ been processed. If <a href="./TA2DataManager.html#TA2DataManager:fMaxPeriod" title="UInt_t TA2DataManager::fMaxPeriod">fMaxPeriod</a> = 0 nothing done
+ If any periodic macro has been defined then execute it,
+ then step through the list of child analysis entities
+ and call any defined child periodic macro
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:EndFile" href="src/TA2DataManager.cxx.html#yI6X4C">EndFile</a>()</span><br />
+<div class="funccomm"><pre> Tasks to perform when the analysis of a data file is complete
+ Call any locally defined macro
+ Step through list of child analysis entities
+ and call the child <a href="./TA2DataManager.html#TA2DataManager:EndFile" title="void TA2DataManager::EndFile()">EndFile</a> method for each
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:Finish" href="src/TA2DataManager.cxx.html#b2c_y">Finish</a>()</span><br />
+<div class="funccomm"><pre> Tasks to perform when the analysis of all data files is complete
+ Call any locally defined macro
+ Step through list of child analysis entities
+ and call the child <a href="./TA2DataManager.html#TA2DataManager:Finish" title="void TA2DataManager::Finish()">Finish</a> method for each
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:CloseEvent" href="src/TA2DataManager.cxx.html#H3z4Z">CloseEvent</a>()</span><br />
+<div class="funccomm"><pre> Save event to Tree
+ Check event saving enabled
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:Decode" href="src/TA2DataManager.h.html#wpU8z">Decode</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:DecodeSaved" href="src/TA2DataManager.h.html#kyQ1GD">DecodeSaved</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:Reconstruct" href="src/TA2DataManager.h.html#A4DnOB">Reconstruct</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:Cleanup" href="src/TA2DataManager.h.html#JxITGB">Cleanup</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:UpdatePeriod" href="src/TA2DataManager.h.html#ADql8D">UpdatePeriod</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:MacroExe" href="src/TA2DataManager.h.html#vcJFBE">MacroExe</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* macroCmd)</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:PostInitialise" href="src/TA2DataManager.h.html#IuH1sD">PostInitialise</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* <a class="funcname" name="TA2DataManager:GetN2V" href="src/TA2DataManager.h.html#kOYgWC">GetN2V</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2DataManager:GetVarType" href="src/TA2DataManager.h.html#dFIsUD">GetVarType</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsInt" href="src/TA2DataManager.h.html#busyjD">IsInt</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:ResetCut" href="src/TA2DataManager.h.html#W0cxVE">ResetCut</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:SaveEvent%1" href="src/TA2DataManager.h.html#iSlMhC">SaveEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> i)</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TA2DataManager:SaveEvent" href="src/TA2DataManager.h.html#FgubiD">SaveEvent</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2DataManager.html">TA2DataManager</a>* <a class="funcname" name="TA2DataManager:CreateChild" href="src/TA2DataManager.h.html#GNHCmE">CreateChild</a>(<span class="keyword">const</span> <span class="keyword">char</span>* , <a href="./ListOfTypes.html#Int_t">Int_t</a> )</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2DataManager.html">TA2DataManager</a>* <a class="funcname" name="TA2DataManager:GetParent" href="src/TA2DataManager.h.html#lbHwpB">GetParent</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fParent" title="TA2DataManager* TA2DataManager::fParent">fParent</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TList* <a class="funcname" name="TA2DataManager:GetChildren" href="src/TA2DataManager.h.html#EvstiE">GetChildren</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fChildren" title="TList* TA2DataManager::fChildren">fChildren</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2MultiCut.html">TA2MultiCut</a>* <a class="funcname" name="TA2DataManager:GetDataCuts" href="src/TA2DataManager.h.html#WOXiTD">GetDataCuts</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fDataCuts" title="TA2MultiCut* TA2DataManager::fDataCuts">fDataCuts</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2MultiCut.html">TA2MultiCut</a>* <a class="funcname" name="TA2DataManager:GetHistCuts" href="src/TA2DataManager.h.html#tmqmlC">GetHistCuts</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fHistCuts" title="TA2MultiCut* TA2DataManager::fHistCuts">fHistCuts</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2MultiCut.html">TA2MultiCut</a>* <a class="funcname" name="TA2DataManager:GetMiscCuts" href="src/TA2DataManager.h.html#iOSPy">GetMiscCuts</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fMiscCuts" title="TA2MultiCut* TA2DataManager::fMiscCuts">fMiscCuts</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UShort_t">UShort_t</a>* <a class="funcname" name="TA2DataManager:GetADC" href="src/TA2DataManager.h.html#YGdRN">GetADC</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fADC" title="UShort_t* TA2DataManager::fADC">fADC</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a>* <a class="funcname" name="TA2DataManager:GetADCdefined" href="src/TA2DataManager.h.html#GfLcAC">GetADCdefined</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fADCdefined" title="Int_t* TA2DataManager::fADCdefined">fADCdefined</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>* <a class="funcname" name="TA2DataManager:GetScaler" href="src/TA2DataManager.h.html#j8Ias">GetScaler</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fScaler" title="UInt_t* TA2DataManager::fScaler">fScaler</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a>* <a class="funcname" name="TA2DataManager:GetScalerSum" href="src/TA2DataManager.h.html#OTS.5B">GetScalerSum</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fScalerSum" title="Double_t* TA2DataManager::fScalerSum">fScalerSum</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span>** <a class="funcname" name="TA2DataManager:GetEvent" href="src/TA2DataManager.h.html#ReHzR">GetEvent</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fEvent" title="void** TA2DataManager::fEvent">fEvent</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span>* <a class="funcname" name="TA2DataManager:GetEvent%1" href="src/TA2DataManager.h.html#caO79">GetEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> i)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fEvent" title="void** TA2DataManager::fEvent">fEvent</a>[i]; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2DataManager:GetMaxADC" href="src/TA2DataManager.h.html#a7xR2C">GetMaxADC</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fMaxADC" title="Int_t TA2DataManager::fMaxADC">fMaxADC</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2DataManager:GetMaxScaler" href="src/TA2DataManager.h.html#E8ZwEC">GetMaxScaler</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fMaxScaler" title="Int_t TA2DataManager::fMaxScaler">fMaxScaler</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>* <a class="funcname" name="TA2DataManager:GetScalerIndex" href="src/TA2DataManager.h.html#Zd9Z_C">GetScalerIndex</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fScalerIndex" title="UInt_t* TA2DataManager::fScalerIndex">fScalerIndex</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>* <a class="funcname" name="TA2DataManager:GetScalerCurr" href="src/TA2DataManager.h.html#aPGiF">GetScalerCurr</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fScalerCurr" title="UInt_t* TA2DataManager::fScalerCurr">fScalerCurr</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a>* <a class="funcname" name="TA2DataManager:GetScalerAcc" href="src/TA2DataManager.h.html#Qh7sj">GetScalerAcc</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fScalerAcc" title="Double_t* TA2DataManager::fScalerAcc">fScalerAcc</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TA2DataManager:GetScalerError" href="src/TA2DataManager.h.html#z2mn0E">GetScalerError</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TAcquRoot.html">gAR</a>-><a href="./TAcquRoot.html#TAcquRoot:GetScalerError" title="Int_t TAcquRoot::GetScalerError()">GetScalerError</a>();}</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">MultiADC_t* <a class="funcname" name="TA2DataManager:GetMulti" href="src/TA2DataManager.h.html#x8mW9B">GetMulti</a>(<span class="keyword">int</span> i)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fMulti" title="MultiADC_t** TA2DataManager::fMulti">fMulti</a>[i]; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">MultiADC_t** <a class="funcname" name="TA2DataManager:GetMulti%1" href="src/TA2DataManager.h.html#frBnDE">GetMulti</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fMulti" title="MultiADC_t** TA2DataManager::fMulti">fMulti</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2RateMonitor.html">TA2RateMonitor</a>* <a class="funcname" name="TA2DataManager:GetRateMonitor" href="src/TA2DataManager.h.html#N64lYE">GetRateMonitor</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fRateMonitor" title="TA2RateMonitor* TA2DataManager::fRateMonitor">fRateMonitor</a>;}</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TA2BitPattern.html">TA2BitPattern</a>* <a class="funcname" name="TA2DataManager:GetBitPattern" href="src/TA2DataManager.h.html#zCylUB">GetBitPattern</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fBitPattern" title="TA2BitPattern* TA2DataManager::fBitPattern">fBitPattern</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a>** <a class="funcname" name="TA2DataManager:GetPatternHits" href="src/TA2DataManager.h.html#UIJghD">GetPatternHits</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fPatternHits" title="Int_t** TA2DataManager::fPatternHits">fPatternHits</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a>* <a class="funcname" name="TA2DataManager:GetNPatternHits" href="src/TA2DataManager.h.html#RBN8qC">GetNPatternHits</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fNPatternHits" title="UInt_t* TA2DataManager::fNPatternHits">fNPatternHits</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TFile* <a class="funcname" name="TA2DataManager:GetTreeFile" href="src/TA2DataManager.h.html#pMkPT">GetTreeFile</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fTreeFile" title="TFile* TA2DataManager::fTreeFile">fTreeFile</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TTree* <a class="funcname" name="TA2DataManager:GetTree" href="src/TA2DataManager.h.html#aeSLhC">GetTree</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fTree" title="TTree* TA2DataManager::fTree">fTree</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a> <a class="funcname" name="TA2DataManager:GetNPeriod" href="src/TA2DataManager.h.html#jjcRe">GetNPeriod</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fNPeriod" title="UInt_t TA2DataManager::fNPeriod">fNPeriod</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#UInt_t">UInt_t</a> <a class="funcname" name="TA2DataManager:GetMaxPeriod" href="src/TA2DataManager.h.html#M6_JY">GetMaxPeriod</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fMaxPeriod" title="UInt_t TA2DataManager::fMaxPeriod">fMaxPeriod</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TA2DataManager:GetPeriodCmd" href="src/TA2DataManager.h.html#TwMlOC">GetPeriodCmd</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fPeriodCmd" title="Char_t* TA2DataManager::fPeriodCmd">fPeriodCmd</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TA2DataManager:GetEndOfFileCmd" href="src/TA2DataManager.h.html#XYl0WE">GetEndOfFileCmd</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fEndOfFileCmd" title="Char_t* TA2DataManager::fEndOfFileCmd">fEndOfFileCmd</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TA2DataManager:GetFinishCmd" href="src/TA2DataManager.h.html#zEznV">GetFinishCmd</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fFinishCmd" title="Char_t* TA2DataManager::fFinishCmd">fFinishCmd</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsRawDecode" href="src/TA2DataManager.h.html#Wo0jB">IsRawDecode</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsRawDecode" title="Bool_t TA2DataManager::fIsRawDecode">fIsRawDecode</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsDecode" href="src/TA2DataManager.h.html#PnkgYE">IsDecode</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsDecode" title="Bool_t TA2DataManager::fIsDecode">fIsDecode</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsReconstruct" href="src/TA2DataManager.h.html#aYQgPC">IsReconstruct</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsReconstruct" title="Bool_t TA2DataManager::fIsReconstruct">fIsReconstruct</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsRawDecodeOK" href="src/TA2DataManager.h.html#OGFSoC">IsRawDecodeOK</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsRawDecodeOK" title="Bool_t TA2DataManager::fIsRawDecodeOK">fIsRawDecodeOK</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsDecodeOK" href="src/TA2DataManager.h.html#GBt_SC">IsDecodeOK</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsDecodeOK" title="Bool_t TA2DataManager::fIsDecodeOK">fIsDecodeOK</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsReconstructOK" href="src/TA2DataManager.h.html#CVOhxD">IsReconstructOK</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsReconstructOK" title="Bool_t TA2DataManager::fIsReconstructOK">fIsReconstructOK</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsBitPattern" href="src/TA2DataManager.h.html#tjcPE">IsBitPattern</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsBitPattern" title="Bool_t TA2DataManager::fIsBitPattern">fIsBitPattern</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsRateMonitor" href="src/TA2DataManager.h.html#UNpZLC">IsRateMonitor</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsRateMonitor" title="Bool_t TA2DataManager::fIsRateMonitor">fIsRateMonitor</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsEndOfFile" href="src/TA2DataManager.h.html#JrxtVB">IsEndOfFile</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsEndOfFile" title="Bool_t TA2DataManager::fIsEndOfFile">fIsEndOfFile</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsFinish" href="src/TA2DataManager.h.html#mqxdZD">IsFinish</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsFinish" title="Bool_t TA2DataManager::fIsFinish">fIsFinish</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TA2DataManager:IsSaveEvent" href="src/TA2DataManager.h.html#hgxASD">IsSaveEvent</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TA2DataManager.html#TA2DataManager:fIsSaveEvent" title="Bool_t TA2DataManager::fIsSaveEvent">fIsSaveEvent</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+
+<br />
+<!--SIGNATURE-->
+<div id="footer">
+
+<em>&raquo; Last changed: 	JRM Annand... 1st Sep 2009   delete[] </em><em>&raquo; Last generated: 2013-08-11 12:17</em><br />
+<em>This page has been automatically generated. For comments or suggestions regarding the documentation or ROOT in general please send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>.</em>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@pcroot.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Sun Aug 11 12:17:56 2013            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>TA2Calorimeter - source file</title>
+<meta name="rating" content="General" />
+<meta name="objecttype" content="Manual" />
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers, cern" />
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis." />
+<link rel="stylesheet" type="text/css" href="../ROOT.css" id="ROOTstyle" />
+<script type="text/javascript" src="../ROOT.js"></script>
+</head>
+<body  onload="javascript:SetValuesFromCookie();"><div id="body_content">
+<div id="root_header"><img src="http://root.cern.ch/drupal/sites/default/files/rootdrawing-logo.png" alt="ROOT logo"/></div>
+<div id="codeAndLineNumbers"><pre class="listing">
+<span class="comment">//--Author	JRM Annand   20th Dec 2002</span>
+<span class="comment">//--Rev 	JRM Annand...26th Feb 2003...1st production version</span>
+<span class="comment">//--Rev 	JRM Annand... 1st Oct 2003...Incorp. <a href="../TA2DataManager.html">TA2DataManager</a></span>
+<span class="comment">//--Rev 	JRM Annand...12th Dec 2003...fMulti 2D plots</span>
+<span class="comment">//--Rev 	JRM Annand...19th Feb 2004...User code</span>
+<span class="comment">//--Rev 	JRM Annand...12th May 2004...General CB,TAPS etc. use</span>
+<span class="comment">//--Update	JRM Annand...10th Feb 2005...gcc 3.4 compatible</span>
+<span class="comment">//--Update	JRM Annand...12th Jul 2005...New TAPS detector class (R.Gregor)</span>
+<span class="comment">//--Description</span>
+<span class="comment">//                *** Acqu++ &lt;-&gt; Root ***</span>
+<span class="comment">// Online/Offline Analysis of Sub-Atomic Physics Experimental Data</span>
+<span class="comment">//</span>
+<span class="comment">// <a href="../TA2Calorimeter.html">TA2Calorimeter</a></span>
+<span class="comment">//</span>
+<span class="comment">// For general description of calorimeter-type systems</span>
+
+<span class="cpp">#include "TA2Calorimeter.h"</span>
+
+<span class="cpp">#include "TA2CylMWPC.h"</span>
+<span class="cpp">#include "TA2PlasticPID.h"</span>
+<span class="cpp">#include "TA2CalArray.h"</span>
+<span class="cpp">#include "TA2TAPS_BaF2.h"</span>
+
+<span class="comment">// Default list of detector classes that the <a href="../TA2CrystalBall.html">TA2CrystalBall</a></span>
+<span class="comment">// apparatus may contain</span>
+<span class="keyword">enum</span> { ECylMWPC,
+       EPlasticPID, ECalArray, ETAPS_BaF2 };
+<span class="keyword">static</span> Map_t kValidDetectors[] = {
+  {<span class="string">"TA2CylMWPC"</span>,        ECylMWPC},
+  {<span class="string">"TA2PlasticPID"</span>,     EPlasticPID},
+  {<span class="string">"TA2CalArray"</span>,       ECalArray},
+  {<span class="string">"TA2TAPS_BaF2"</span>,      ETAPS_BaF2},
+  {NULL, 		-1}
+};
+
+ClassImp(<a href="../TA2Calorimeter.html">TA2Calorimeter</a>)
+
+<span class="comment">//-----------------------------------------------------------------------------</span>
+<a name="xfVjbC"></a><a href="../TA2Calorimeter.html">TA2Calorimeter</a>::<a href="../TA2Calorimeter.html#TA2Calorimeter:TA2Calorimeter" title="TA2Calorimeter TA2Calorimeter::TA2Calorimeter(const char* ,TA2System* ) or overloads">TA2Calorimeter</a>( <span class="keyword">const</span> <span class="keyword">char</span>* name, <a href="../TA2System.html">TA2System</a>* analysis  )
+  :<a href="../TA2Apparatus.html">TA2Apparatus</a>( name, analysis, kValidDetectors )
+{
+  <a href="../TA2Calorimeter.html#TA2Calorimeter:fCal" title="TA2ClusterDetector* TA2Calorimeter::fCal">fCal</a> = NULL;
+  <a href="../TA2Calorimeter.html#TA2Calorimeter:fPID" title="TA2Detector* TA2Calorimeter::fPID">fPID</a> = NULL;
+  <a href="../TA2Calorimeter.html#TA2Calorimeter:fPTracker" title="TA2Detector* TA2Calorimeter::fPTracker">fPTracker</a> = NULL;
+}
+
+
+<span class="comment">//-----------------------------------------------------------------------------</span>
+<a name="AH340E"></a><a href="../TA2Calorimeter.html">TA2Calorimeter</a>::<a href="../TA2Calorimeter.html#TA2Calorimeter:_TA2Calorimeter" title="void TA2Calorimeter::~TA2Calorimeter()">~TA2Calorimeter</a>()
+{
+  <span class="comment">// Free up allocated memory</span>
+}
+
+<span class="comment">//-----------------------------------------------------------------------------</span>
+<a name="RZKmSD"></a><a href="../TA2DataManager.html">TA2DataManager</a>*  <a href="../TA2Calorimeter.html">TA2Calorimeter</a>::<a href="../TA2Calorimeter.html#TA2Calorimeter:CreateChild" title="TA2DataManager* TA2Calorimeter::CreateChild(const char* ,Int_t )">CreateChild</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name, <a href="../ListOfTypes.html#Int_t">Int_t</a> dclass)
+{
+  <span class="comment">// Create a <a href="../TA2Detector.html">TA2Detector</a> class for use with the <a href="../TA2CrystalBall.html">TA2CrystalBall</a></span>
+  <span class="comment">// Valid detector types are...</span>
+  <span class="comment">// 1. <a href="../TA2Ladder.html">TA2Ladder</a></span>
+  <span class="comment">// 2. TA2BeamMonitor</span>
+
+  <span class="keyword">if</span>( !name ) name = <a href="../TA2System.html#TA2System:Map2String" title="Char_t* TA2System::Map2String(Int_t ,const Map_t* =NULL)">Map2String</a>( dclass );
+  <span class="keyword">switch</span> (dclass){
+  <span class="keyword">default</span>:
+    <span class="keyword">return</span> NULL;
+  <span class="keyword">case</span> ECylMWPC:
+    <a href="../TA2Calorimeter.html#TA2Calorimeter:fPTracker" title="TA2Detector* TA2Calorimeter::fPTracker">fPTracker</a> = <span class="keyword">new</span> <a href="../TA2CylMWPC.html">TA2CylMWPC</a>( name, <span class="keyword">this</span> );
+    <span class="keyword">return</span> <a href="../TA2Calorimeter.html#TA2Calorimeter:fPTracker" title="TA2Detector* TA2Calorimeter::fPTracker">fPTracker</a>;
+  <span class="keyword">case</span> EPlasticPID:
+    <a href="../TA2Calorimeter.html#TA2Calorimeter:fPID" title="TA2Detector* TA2Calorimeter::fPID">fPID</a> = <span class="keyword">new</span> <a href="../TA2PlasticPID.html">TA2PlasticPID</a>( name, <span class="keyword">this</span> );
+    <span class="keyword">return</span> <a href="../TA2Calorimeter.html#TA2Calorimeter:fPID" title="TA2Detector* TA2Calorimeter::fPID">fPID</a>;
+  <span class="keyword">case</span> ECalArray:
+    <a href="../TA2Calorimeter.html#TA2Calorimeter:fCal" title="TA2ClusterDetector* TA2Calorimeter::fCal">fCal</a> = <span class="keyword">new</span> <a href="../TA2CalArray.html">TA2CalArray</a>( name, <span class="keyword">this</span> );
+    <span class="keyword">return</span> <a href="../TA2Calorimeter.html#TA2Calorimeter:fCal" title="TA2ClusterDetector* TA2Calorimeter::fCal">fCal</a>;
+  <span class="keyword">case</span> ETAPS_BaF2:
+    <a href="../TA2Calorimeter.html#TA2Calorimeter:fCal" title="TA2ClusterDetector* TA2Calorimeter::fCal">fCal</a> = <span class="keyword">new</span> <a href="../TA2TAPS_BaF2.html">TA2TAPS_BaF2</a>( name, <span class="keyword">this</span> );
+    <span class="keyword">return</span> <a href="../TA2Calorimeter.html#TA2Calorimeter:fCal" title="TA2ClusterDetector* TA2Calorimeter::fCal">fCal</a>;
+  }
+}
+
+<span class="comment">//-----------------------------------------------------------------------------</span>
+<a name="jJp_Z"></a><span class="keyword">void</span> <a href="../TA2Calorimeter.html">TA2Calorimeter</a>::<a href="../TA2Calorimeter.html#TA2Calorimeter:LoadVariable" title="void TA2Calorimeter::LoadVariable()">LoadVariable</a>( )
+{
+  <span class="comment">// Input name - variable pointer associations for any subsequent</span>
+  <span class="comment">// cut or histogram setup.</span>
+  <span class="comment">// <a href="../TA2Calorimeter.html#TA2Calorimeter:LoadVariable" title="void TA2Calorimeter::LoadVariable()">LoadVariable</a>( <span class="string">"name"</span>, pointer-to-variable, type-spec );</span>
+  <span class="comment">// NB scaler variable pointers need the preceeding &amp;</span>
+  <span class="comment">//    array variable pointers do not.</span>
+  <span class="comment">// type-spec ED prefix for a <a href="../ListOfTypes.html#Double_t">Double_t</a> variable</span>
+  <span class="comment">//           EI prefix for an <a href="../ListOfTypes.html#Int_t">Int_t</a> variable</span>
+  <span class="comment">// type-spec SingleX for a single-valued variable</span>
+  <span class="comment">//           MultiX  for a multi-valued variable</span>
+
+  <span class="comment">//                            name        pointer          type-spec</span>
+  <a href="../TA2DataManager.html">TA2DataManager</a>::<a href="../TA2DataManager.html#TA2DataManager:LoadVariable" title="void TA2DataManager::LoadVariable()">LoadVariable</a>(<span class="string">"NphotMinv"</span>, <a href="../TA2Calorimeter.html#TA2Calorimeter:fM_Nphoton" title="Double_t* TA2Calorimeter::fM_Nphoton">fM_Nphoton</a>,      EDSingleX);
+  <span class="comment">//</span>
+  <a href="../TA2Apparatus.html">TA2Apparatus</a>::<a href="../TA2Apparatus.html#TA2Apparatus:LoadVariable" title="void TA2Apparatus::LoadVariable()">LoadVariable</a>();
+}
+
+<span class="comment">//-----------------------------------------------------------------------------</span>
+<a name="S0IAfD"></a><span class="keyword">void</span> <a href="../TA2Calorimeter.html">TA2Calorimeter</a>::<a href="../TA2Calorimeter.html#TA2Calorimeter:PostInit" title="void TA2Calorimeter::PostInit()">PostInit</a>( )
+{
+  <span class="comment">// Store pointers to ADC's, scalers etc.</span>
+  <span class="comment">// Set up histograms if desired.</span>
+  <span class="keyword">if</span>( !fParticleID )
+    <a href="../TA2System.html#TA2System:PrintError" title="void TA2System::PrintError(const Char_t* ,const Char_t* =NULL,Int_t =EErrNonFatal)">PrintError</a>(<span class="string">""</span>,
+	       <span class="string">"&lt;Configuration aborted: ParticleID class MUST be specified&gt;"</span>,
+	       EErrFatal);
+  <span class="comment">//</span>
+  fMaxParticle = <a href="../TA2Calorimeter.html#TA2Calorimeter:fCal" title="TA2ClusterDetector* TA2Calorimeter::fCal">fCal</a>-><a href="../TA2ClusterDetector.html#TA2ClusterDetector:GetMaxCluster" title="UInt_t TA2ClusterDetector::GetMaxCluster()">GetMaxCluster</a>();
+  <a href="../TA2Apparatus.html">TA2Apparatus</a>::<a href="../TA2Apparatus.html#TA2Apparatus:PostInit" title="void TA2Apparatus::PostInit()">PostInit</a>();
+  <a href="../TA2Calorimeter.html#TA2Calorimeter:fP4_Nphoton" title="TLorentzVector* TA2Calorimeter::fP4_Nphoton">fP4_Nphoton</a> = <span class="keyword">new</span> TLorentzVector[fMaxParticle];
+  <a href="../TA2Calorimeter.html#TA2Calorimeter:fM_Nphoton" title="Double_t* TA2Calorimeter::fM_Nphoton">fM_Nphoton</a> =  <span class="keyword">new</span> <a href="../ListOfTypes.html#Double_t">Double_t</a>[fMaxParticle];
+}
+
+</pre>
+<div id="linenums"><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="1" href="#1" class="ln">1</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="2" href="#2" class="ln">2</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="3" href="#3" class="ln">3</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="4" href="#4" class="ln">4</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="5" href="#5" class="ln">5</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="6" href="#6" class="ln">6</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="7" href="#7" class="ln">7</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="8" href="#8" class="ln">8</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="9" href="#9" class="ln">9</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="10" href="#10" class="ln">10</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="11" href="#11" class="ln">11</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="12" href="#12" class="ln">12</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="13" href="#13" class="ln">13</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="14" href="#14" class="ln">14</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="15" href="#15" class="ln">15</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="16" href="#16" class="ln">16</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="17" href="#17" class="ln">17</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="18" href="#18" class="ln">18</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="19" href="#19" class="ln">19</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="20" href="#20" class="ln">20</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="21" href="#21" class="ln">21</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="22" href="#22" class="ln">22</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="23" href="#23" class="ln">23</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="24" href="#24" class="ln">24</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="25" href="#25" class="ln">25</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="26" href="#26" class="ln">26</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="27" href="#27" class="ln">27</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="28" href="#28" class="ln">28</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="29" href="#29" class="ln">29</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="30" href="#30" class="ln">30</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="31" href="#31" class="ln">31</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="32" href="#32" class="ln">32</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="33" href="#33" class="ln">33</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="34" href="#34" class="ln">34</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="35" href="#35" class="ln">35</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="36" href="#36" class="ln">36</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="37" href="#37" class="ln">37</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="38" href="#38" class="ln">38</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="39" href="#39" class="ln">39</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="40" href="#40" class="ln">40</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="41" href="#41" class="ln">41</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="42" href="#42" class="ln">42</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="43" href="#43" class="ln">43</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="44" href="#44" class="ln">44</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="45" href="#45" class="ln">45</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="46" href="#46" class="ln">46</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="47" href="#47" class="ln">47</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="48" href="#48" class="ln">48</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="49" href="#49" class="ln">49</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="50" href="#50" class="ln">50</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="51" href="#51" class="ln">51</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="52" href="#52" class="ln">52</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="53" href="#53" class="ln">53</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="54" href="#54" class="ln">54</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="55" href="#55" class="ln">55</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="56" href="#56" class="ln">56</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="57" href="#57" class="ln">57</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="58" href="#58" class="ln">58</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="59" href="#59" class="ln">59</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="60" href="#60" class="ln">60</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="61" href="#61" class="ln">61</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="62" href="#62" class="ln">62</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="63" href="#63" class="ln">63</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="64" href="#64" class="ln">64</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="65" href="#65" class="ln">65</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="66" href="#66" class="ln">66</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="67" href="#67" class="ln">67</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="68" href="#68" class="ln">68</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="69" href="#69" class="ln">69</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="70" href="#70" class="ln">70</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="71" href="#71" class="ln">71</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="72" href="#72" class="ln">72</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="73" href="#73" class="ln">73</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="74" href="#74" class="ln">74</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="75" href="#75" class="ln">75</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="76" href="#76" class="ln">76</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="77" href="#77" class="ln">77</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="78" href="#78" class="ln">78</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="79" href="#79" class="ln">79</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="80" href="#80" class="ln">80</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="81" href="#81" class="ln">81</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="82" href="#82" class="ln">82</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="83" href="#83" class="ln">83</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="84" href="#84" class="ln">84</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="85" href="#85" class="ln">85</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="86" href="#86" class="ln">86</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="87" href="#87" class="ln">87</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="88" href="#88" class="ln">88</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="89" href="#89" class="ln">89</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="90" href="#90" class="ln">90</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="91" href="#91" class="ln">91</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="92" href="#92" class="ln">92</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="93" href="#93" class="ln">93</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="94" href="#94" class="ln">94</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="95" href="#95" class="ln">95</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="96" href="#96" class="ln">96</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="97" href="#97" class="ln">97</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="98" href="#98" class="ln">98</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="99" href="#99" class="ln">99</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="100" href="#100" class="ln">100</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="101" href="#101" class="ln">101</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="102" href="#102" class="ln">102</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="103" href="#103" class="ln">103</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="104" href="#104" class="ln">104</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="105" href="#105" class="ln">105</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="106" href="#106" class="ln">106</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="107" href="#107" class="ln">107</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="108" href="#108" class="ln">108</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="109" href="#109" class="ln">109</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="110" href="#110" class="ln">110</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="111" href="#111" class="ln">111</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="112" href="#112" class="ln">112</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="113" href="#113" class="ln">113</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="114" href="#114" class="ln">114</a></div><div class="ln">&nbsp;<span class="lnfile">TA2Calorimeter.cc:</span><a name="115" href="#115" class="ln">115</a></div></div>
+</div>
+
+<br />
+<!--SIGNATURE-->
+<div id="footer">
+
+<em>&raquo; Last changed: 2013-08-11 12:17 </em><em>&raquo; Last generated: 2013-08-11 12:17</em><br />
+<em>This page has been automatically generated. For comments or suggestions regarding the documentation or ROOT in general please send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>.</em>
+</div>
+</div>
+</body>
+</html>

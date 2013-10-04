@@ -1,0 +1,254 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   29th Apr 2003
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: SpinPolPhysics.dat
+## Last stage in event-by-event analysis
+##
+##-----------------------------------------------------------------------
+##
+## Target parameters
+##	x,y,z		Mass(MeV)
+## Proton
+Target:	0. 0. 0.	938.271
+## Carbon
+#Target:	0. 0. 0.	11174.86
+##
+## Wild-card stuff for fitting combinations of particles to a reaction
+## Not fully implemented
+Permutations: 1
+##
+## Particle data group database,	max # particles
+ParticleID:				16
+##
+## Limits for meson -> N photons invariant-mass identification
+##		pi0 (MeV)	eta (MeV)
+#Mass-Limits:	40.		40.
+Mass-Limits:	20.		40.
+#Mass-Limits:	10.		40.
+#
+## Limits for Prompt-Random Windows for Random Subtraction
+## These take precedence over those in Tagger...
+##                     Promp  Rand1  Rand2
+#Prompt-Random-Windows: 130.5 145.5 105.5 120.5 155.5 170.5
+Prompt-Random-Windows: 40 55  15 30  65 80
+##
+## Output tree to ROOT file
+##
+#SaveEventTree: EventTree.root
+SaveCompWTree: CompWTree.root
+#SaveCompMTree: CompMTree.root
+#SavePionWTree: PionWTree.root
+#SavePionMTree: PionMTree.root
+##
+## Do some post-initialisation.
+## Should usually be done before display is setup
+Initialise:
+#
+# Cut specification...see apparatus setup, same syntax applies
+#          1/2D Name       Link Scope L/H Limits
+#Data-Cut: 1D    Nphoton     AND data 1 1
+#Data-Cut: 1D    Nproton     AND data 1 1
+#
+Data-Cut: 1D	 SynchDif    OR	data -615 -585
+Data-Cut: 1D	 SynchDif    OR	data 61440 61465
+Data-Cut: 1D	 SynchDif    OR	data 0 0
+#
+Data-Cut: 1D    CutCompW    AND	compound-hist
+Data-Cut: 1D    Nphoton	    AND	element	1 1
+Data-Cut: 1D    Nproton	    AND	element 1 1
+#
+Data-Cut: 1D    CutCompM    AND	compound-hist
+Data-Cut: 1D    Nphoton	    AND	element	1 1
+Data-Cut: 1D    Nproton	    AND	element 0 0
+#
+Data-Cut: 1D    CutPionW    AND	compound-hist
+Data-Cut: 1D	Npi0	    AND	element 1 1
+Data-Cut: 1D	Nproton	    AND	element 1 1
+#
+Data-Cut: 1D    CutPionM    AND	compound-hist
+Data-Cut: 1D	Npi0	    AND	element 1 1
+Data-Cut: 1D	Nproton	    AND	element 0 0
+#
+Data-Cut: 1D	cherORW     OR	compound-hist
+Data-Cut: 1D	CherTDC0    OR	element -2200 -1600
+Data-Cut: 1D	CherTDC1    OR	element -2200 -1600
+Data-Cut: 1D	CherTDC2    OR	element -2200 -1600
+#
+Data-Cut: 1D	cherM0W     AND	compound-hist
+Data-Cut: 1D	CherTDC0    AND	element -2200 -1600
+#
+Data-Cut: 1D	cherM1W     AND	compound-hist
+Data-Cut: 1D	CherTDC1    AND	element -2200 -1600
+#
+Data-Cut: 1D	cherM2W     AND	compound-hist
+Data-Cut: 1D	CherTDC2    AND	element -2200 -1600
+#
+Data-Cut: 1D	cherORT     OR	compound-hist
+Data-Cut: 1D	CherTDC0    OR	element -2050 -1950
+Data-Cut: 1D	CherTDC1    OR	element -2050 -1950
+Data-Cut: 1D	CherTDC2    OR	element -2050 -1950
+#
+Data-Cut: 1D	cherM0T     AND	compound-hist
+Data-Cut: 1D	CherTDC0    AND	element -2050 -1950
+#
+Data-Cut: 1D	cherM1T     AND	compound-hist
+Data-Cut: 1D	CherTDC1    AND	element -2050 -1950
+#
+Data-Cut: 1D	cherM2T     AND	compound-hist
+Data-Cut: 1D	CherTDC2    AND	element -2050 -1950
+#
+Display: 1D SynchDif 70000 -1000 69000
+Display: 2D TgRefTDC 200 0 10000 -1 CBRefTDC 200 0 10000 -1
+#
+Display: 1D CherADC 4096 0 4095
+Display: 1D CherTDC0 2000 -7000 7000
+Display: 1D CherTDC1 2000 -7000 7000
+Display: 1D CherTDC2 2000 -7000 7000
+#
+Display: 1D CherADC 4096 0 4095 -1 -1 cherORW
+Display: 1D CherADC 4096 0 4095 -1 -1 cherM0W
+Display: 1D CherADC 4096 0 4095 -1 -1 cherM1W
+Display: 1D CherADC 4096 0 4095 -1 -1 cherM2W
+#
+Display: 1D CherTDC0 2000 -7000 7000 -1 -1 cherM0W
+Display: 1D CherTDC1 2000 -7000 7000 -1 -1 cherM1W
+Display: 1D CherTDC2 2000 -7000 7000 -1 -1 cherM2W
+#
+Display: 1D CherADC 4096 0 4095 -1 -1 cherORT
+Display: 1D CherADC 4096 0 4095 -1 -1 cherM0T
+Display: 1D CherADC 4096 0 4095 -1 -1 cherM1T
+Display: 1D CherADC 4096 0 4095 -1 -1 cherM2T
+#
+Display: 1D CherTDC0 2000 -7000 7000 -1 -1 cherM0T
+Display: 1D CherTDC1 2000 -7000 7000 -1 -1 cherM1T
+Display: 1D CherTDC2 2000 -7000 7000 -1 -1 cherM2T
+#
+Display: 1D BeamPol	20 0 20
+#
+Display: 1D Nphoton	16 0 16
+Display: 1D Nproton	16 0 16
+Display: 1D Npiplus	16 0 16
+Display: 1D Nneutron	16 0 16
+Display: 1D Nrootino	16 0 16
+#
+Display: 1D Ngprime	16 0 16
+Display: 1D Nprompt	16 0 16
+Display: 1D Nrandom	16 0 16
+Display: 1D Npi0	16 0 16
+Display: 1D Neta	16 0 16
+#
+Display: 1D Nproton	16 0 16 -1 -1 CutCompW
+Display: 1D Nproton	16 0 16 -1 -1 CutPionW
+#
+Display: 1D M2g 	800 0 800
+Display: 1D M6g 	800 0 800
+#
+# Require at least one photon and one proton
+#
+Display: 1D PhotEk 	400 0 400
+Display: 1D PhotPx 	800 -400 400
+Display: 1D PhotPy 	800 -400 400
+Display: 1D PhotPz 	800 -400 400
+Display: 1D PhotTh 	180 0 180
+Display: 1D PhotPh 	360 -180 180
+Display: 1D PhotTm 	200 -100 100
+#
+Display: 1D PionEk 	400 0 400
+Display: 1D PionPx 	1600 -800 800
+Display: 1D PionPy 	1600 -800 800
+Display: 1D PionPz 	1600 -800 800
+Display: 1D PionMa 	300 0 300
+Display: 1D PionTh 	180 0 180
+Display: 1D PionPh 	360 -180 180
+Display: 1D PionTm 	200 -100 100
+#
+Display: 1D PionOA 	180 0 180
+#
+Display: 1D ProtUn 	400 0 400
+Display: 1D ProtEk 	400 0 400
+Display: 1D ProtPx 	1600 -800 800
+Display: 1D ProtPy 	1600 -800 800
+Display: 1D ProtPz 	1600 -800 800
+Display: 1D ProtTh 	180 0 180
+Display: 1D ProtPh 	360 -180 180
+Display: 1D ProtTm 	200 -100 100
+#
+Display: 1D MPrToPh	500 0 500 -1 -1
+#
+# RANDOM SUBTRACTED VARIABLES
+#
+Display: 1D TaggChP     352 0 352 -1 -1
+Display: 1D TaggChR     352 0 352 -1 -1
+Display: 1D TaggEkP	352 v2u_450_plot.ghist -1
+Display: 1D TaggEkR	352 v2u_450_plot.ghist -1
+Display: 1D TaggTmP	200 -100 100 -1 -1
+Display: 1D TaggTmR	200 -100 100 -1 -1
+#
+Display: 1D DifTime	200 0 100 -1 -1
+#
+Display: 1D RecoEkP 	800 -400 400 -1 -1 CutCompW
+Display: 1D RecoEkR 	800 -400 400 -1 -1 CutCompW
+Display: 1D RecoPx 	1600 -800 800 -1 -1 CutCompW
+Display: 1D RecoPy 	1600 -800 800 -1 -1 CutCompW
+Display: 1D RecoPzP 	1600 -800 800 -1 -1 CutCompW
+Display: 1D RecoPzR 	1600 -800 800 -1 -1 CutCompW
+Display: 1D RecoMaP 	800 0 1600 -1 -1 CutCompW
+Display: 1D RecoMaR 	800 0 1600 -1 -1 CutCompW
+#
+Display: 1D MissEkP 	800 -400 400 -1 -1 CutCompW
+Display: 1D MissEkR 	800 -400 400 -1 -1 CutCompW
+Display: 1D MissPx 	1600 -800 800 -1 -1 CutCompW
+Display: 1D MissPy 	1600 -800 800 -1 -1 CutCompW
+Display: 1D MissPzP 	1600 -800 800 -1 -1 CutCompW
+Display: 1D MissPzR 	1600 -800 800 -1 -1 CutCompW
+Display: 1D MissPt 	800 0 800 -1 -1 CutCompW
+Display: 1D MissPrP 	800 0 800 -1 -1 CutCompW
+Display: 1D MissPrR 	800 0 800 -1 -1 CutCompW
+#
+Display: 1D ProtOAP 	180 0 180 -1 -1 CutCompW
+Display: 1D ProtOAR 	180 0 180 -1 -1 CutCompW
+#
+Display: 1D RecoEkP 	800 -400 400 -1 -1 CutCompM
+Display: 1D RecoEkR 	800 -400 400 -1 -1 CutCompM
+Display: 1D RecoPx 	1600 -800 800 -1 -1 CutCompM
+Display: 1D RecoPy 	1600 -800 800 -1 -1 CutCompM
+Display: 1D RecoPzP 	1600 -800 800 -1 -1 CutCompM
+Display: 1D RecoPzR 	1600 -800 800 -1 -1 CutCompM
+Display: 1D RecoMaP 	800 0 1600 -1 -1 CutCompM
+Display: 1D RecoMaR 	800 0 1600 -1 -1 CutCompM
+#
+Display: 1D RecoEkP 	800 -400 400 -1 -1 CutPionW
+Display: 1D RecoEkR 	800 -400 400 -1 -1 CutPionW
+Display: 1D RecoPx 	1600 -800 800 -1 -1 CutPionW
+Display: 1D RecoPy 	1600 -800 800 -1 -1 CutPionW
+Display: 1D RecoPzP 	1600 -800 800 -1 -1 CutPionW
+Display: 1D RecoPzR 	1600 -800 800 -1 -1 CutPionW
+Display: 1D RecoMaP 	800 0 1600 -1 -1 CutPionW
+Display: 1D RecoMaR 	800 0 1600 -1 -1 CutPionW
+#
+Display: 1D MissEkP 	800 -400 400 -1 -1 CutPionW
+Display: 1D MissEkR 	800 -400 400 -1 -1 CutPionW
+Display: 1D MissPx 	1600 -800 800 -1 -1 CutPionW
+Display: 1D MissPy 	1600 -800 800 -1 -1 CutPionW
+Display: 1D MissPzP 	1600 -800 800 -1 -1 CutPionW
+Display: 1D MissPzR 	1600 -800 800 -1 -1 CutPionW
+Display: 1D MissPt 	800 0 800 -1 -1 CutPionW
+Display: 1D MissPrP 	800 0 800 -1 -1 CutPionW
+Display: 1D MissPrR 	800 0 800 -1 -1 CutPionW
+#
+Display: 1D ProtOAP 	180 0 180 -1 -1 CutPionW
+Display: 1D ProtOAR 	180 0 180 -1 -1 CutPionW
+#
+Display: 1D RecoEkP 	800 -400 400 -1 -1 CutPionM
+Display: 1D RecoEkR 	800 -400 400 -1 -1 CutPionM
+Display: 1D RecoPx 	1600 -800 800 -1 -1 CutPionM
+Display: 1D RecoPy 	1600 -800 800 -1 -1 CutPionM
+Display: 1D RecoPzP 	1600 -800 800 -1 -1 CutPionM
+Display: 1D RecoPzR 	1600 -800 800 -1 -1 CutPionM
+Display: 1D RecoMaP 	800 0 1600 -1 -1 CutPionM
+Display: 1D RecoMaR 	800 0 1600 -1 -1 CutPionM
+#

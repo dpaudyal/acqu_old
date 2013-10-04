@@ -1,0 +1,689 @@
+//--Author	JRM Annand   18th Feb 2004   Use def physics
+//--Rev
+//--Rev         JRM Annand   13th May 2004   Start general physics suite
+//--Rev         JRM Annand   28th Apr 2004   General photo-meson methods
+//--Rev         JRM Annand   13th Jul 2005   SortNPhoton bugs
+//--Rev         JRM Annand   25th Jul 2005   ED bug fix fP4tot
+//--Rev         JRM Annand   22nd Sep 2006   pi+n analysis add lin pol
+//--Rev         JRM Annand   14th Mar 2007   fEmProton for D(g,np) calib.
+//--Update      JRM Annand   21st Jul 2008   Compton scattering
+//--Update      DL Hornidge  6th Sep 2008   More Compton scattering
+//--Description
+//                *** Acqu++ <-> Root ***
+// Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+//
+// TA2Compton
+//
+// General reconstruction of reaction kinematics in Mainz tagged-photon
+// meson production experiments.
+// Use 4-momenta and PDG-index information from apparati to reconstruct
+// reaction kinematics. The PDG index (and 4-momentum) assigned by the
+// apparatus is not considered binding, e.g. in cases where n/gamma
+// discrimination by an apparatus is not possible, in which case it
+// defaults to kGamma. The method TA2ParticleID->SetMassP4( *p4, ipdg )
+// may be used to reset the rest-mass of an existing 4 momentum *p4 to that
+// corresponding to PDG index ipdg.
+// This one deals with pion and eta photopdir zu besuchenroduction on the nucleon.
+// PDG codes of particles generlly observed MAMI-B
+// kElectron 11,     kPositron -11
+// kMuonMinus 13     kMuonPlus -13      kGamma 22
+// kPi0 111          kPiPlus 211        kPiMinus -211       kEta 221
+// kProton 2212      kNeutron 2112
+// 
+
+#include "TA2Compton.h"
+#include "TAcquRoot.h"
+#include "TA2Analysis.h"
+#include "TA2Calorimeter.h"
+#include "TA2Tagger.h"
+#include "TA2Ladder.h"
+#include "TAcquFile.h"
+#include <iostream>
+
+// Valid Keywords for command-line setup of Compton
+enum { EPhotoMassLimits = 1000, EPhotoPRLimits, EPhotoMissMassLimits,
+	EPhotoOpenCut};
+static const Map_t kPhotoKeys[] = {
+	{"Mass-Limits:",					EPhotoMassLimits},
+	{"Prompt-Random-Windows:",		EPhotoPRLimits},
+	{"Missing-Mass-Limits:",		EPhotoMissMassLimits},
+	{"Opening-Angle-Cut:",			EPhotoOpenCut},
+	{NULL,            -1}
+};
+
+ClassImp(TA2Compton)
+
+//-----------------------------------------------------------------------------
+TA2Compton::TA2Compton( const char* name, TA2Analysis* analysis )
+	 :TA2Physics( name, analysis ) {
+	 // Initialise Compton variables here
+	 // Default null pointers, zeroed variables
+
+	 fTAGG = NULL;
+	 fCB = NULL;
+	 fTAPS = NULL;
+	 fTAGGp4 = NULL;
+	 fCBp4 = NULL;
+	 fTAPSp4 = NULL;
+	 fTAGGpdg = NULL;
+	 fCBpdg = NULL;
+	 fTAPSpdg = NULL;
+
+	 fP4photon = NULL;
+	 fP4proton = NULL;
+	 fP4piplus = NULL;
+	 fP4neutron = NULL;
+	 fP4pi0 = NULL;
+	 fP4gprime = NULL;
+	 fP4eta = NULL;
+	 fP4rootino = NULL;
+
+	 fNphoton = 0;
+	 fNproton = 0;
+	 fNpiplus = 0;
+	 fNneutron = 0;
+	 fNpi0 = 0;
+	 fNgprime = 0;
+	 fNeta = 0;
+	 fNrootino = 0;
+
+	 fMassDpi0 = NULL;
+	 fMassDeta = NULL;
+	 fMassIJ = NULL;
+	 fMassIpi0 = NULL;
+	 fMassIeta = NULL;
+	 fIsMesonIndex = NULL;
+
+	 // Particle Timing
+//	 fCBTime = NULL;
+//	 fTAPSTime = NULL;
+//	 fTimePhoton = NULL;
+//	 fTimeProton = NULL;
+//	 fTimePiPlus = NULL;
+//	 fTimeRootino = NULL;
+
+	 fMaxMDpi0 = 0.0;
+	 fMaxMDeta = 0.0;
+
+	 fM2g = ENullHit;
+	 fM6g = ENullHit;
+
+	 fPi0TGG = ENullHit;
+	 fPi0KE = ENullHit;
+	 fPi0Theta = ENullHit;
+	 fPi0Phi = ENullHit;
+
+	 fPhotKE = ENullHit;
+	 fPhotTheta = ENullHit;
+	 fPhotPhi = ENullHit;
+
+	 fProtKE = ENullHit;
+	 fProtTheta = ENullHit;
+	 fProtPhi = ENullHit;
+
+	 fNprompt = fNrandom = fMaxTagg = fMax2gPerm = 0;
+	 fNparaP = fNparaR = fNperpP = fNperpR = 0;
+
+	 AddCmdList( kPhotoKeys );       // command-line recognition for SetConfig()
+}
+
+
+//-----------------------------------------------------------------------------
+TA2Compton::~TA2Compton()
+{
+	 // Free up allocated memory...after checking its allocated
+	 // detector and cuts lists
+}
+
+//-----------------------------------------------------------------------------
+void TA2Compton::SetConfig(Char_t* line, Int_t key)
+{
+	// Any special command-line input for Crystal Ball apparatus
+
+	switch (key){
+		case EPhotoMassLimits:
+			//  Invariant mass limits
+			if( sscanf( line, "%lf%lf", &fMaxMDpi0, &fMaxMDeta ) != 2 ){
+				PrintError( line, "<Compton meson invariant mass limits>");
+				return;
+			}
+			break;
+		case EPhotoPRLimits:
+			//  Prompt-Random Windows
+			if( sscanf( line, "%lf%lf%lf%lf", &fPlo, &fPhi, &fRlo, &fRhi ) != 4 ){
+				PrintError( line, "<Compton prompt-random windows>");
+				return;
+			}
+			break;
+		case EPhotoMissMassLimits:
+			//  Invariant mass limits
+			if( sscanf( line, "%lf%lf%lf%lf", &fMMMinLo, &fMMMinHi, &fMMMaxLo,
+						&fMMMaxHi) != 4 ){
+				PrintError( line, "<Compton missing mass limits>");
+				return;
+			}
+			break;
+		case EPhotoOpenCut:
+			//  Opening Angle Cut
+			if( sscanf( line, "%lf", &fOACut) != 1 ){
+				PrintError( line, "<Opening Angle Cut>");
+				return;
+			}
+			break;
+		default:
+			// default main apparatus SetConfig()
+			TA2Physics::SetConfig( line, key );
+			break;
+	}
+}
+
+//---------------------------------------------------------------------------
+void TA2Compton::PostInit()
+{
+	// Initialise arrays to contain 4 momenta and plotable scaler variables
+	// Missing mass, missing energy, cm momentum, energies, angles
+	// Initialisation will abort if CB or Tagger not initialised
+	// TAPS is optional
+	Int_t i;
+
+	fCB = (TA2Calorimeter*)((TA2Analysis*)fParent)->GetChild("CB");
+	if( !fCB ) PrintError("","<No CB class found in annalysis>",EErrFatal);
+	else{
+		fCBp4 = fCB->GetP4();
+		fCBpdg = fCB->GetPDG_ID();
+//		fCBTime = ((TA2CrystalBall*)fCB)->GetClusterTime();
+	}
+	fTAGG = (TA2Tagger*)((TA2Analysis*)fParent)->GetChild("TAGG");
+	if(!fTAGG) PrintError("","<No Tagger class found in annalysis>",EErrFatal);
+	else{
+		fTAGGp4 = fTAGG->GetP4();
+		fTAGGpdg = fTAGG->GetPDG_ID();
+	}
+	fTAPS = (TA2Calorimeter*)((TA2Analysis*)fParent)->GetChild("TAPS");
+	if( !fTAPS ) PrintError("Warning!!!","<No TAPS class found in annalysis>");
+	else{
+		fTAPSp4 = fTAPS->GetP4();
+		fTAPSpdg = fTAPS->GetPDG_ID();
+//		fTAPSTime = ((TA2TAPS*)fTAPS)->GetClusterTime();
+	}
+	fLADD = (TA2Ladder*)((TA2Analysis*)fParent)->GetGrandChild( "FPD");
+	if ( !fLADD)
+		PrintError( "", "<No Ladder class found in analysis>", EErrFatal);
+
+	// containers for sorted 4-momentum pointers
+	Int_t maxparticle = fCB->GetMaxParticle();
+	TLorentzVector* p4;
+	if( fTAPS ) maxparticle += fTAPS->GetMaxParticle();
+	fP4photon =  new TLorentzVector*[maxparticle];   
+	fP4proton =  new TLorentzVector*[maxparticle];
+	fP4piplus =  new TLorentzVector*[maxparticle];
+	fP4neutron = new TLorentzVector*[maxparticle];
+
+	fP4pi0 =     new TLorentzVector*[maxparticle];
+	p4 = new TLorentzVector[maxparticle];           // space for pi0 4-mom
+	for(i=0; i<maxparticle; i++) fP4pi0[i] = p4 + i;
+
+	fP4gprime =  new TLorentzVector*[maxparticle];
+
+	fP4eta =     new TLorentzVector*[maxparticle];
+	p4 = new TLorentzVector[maxparticle];           // space for eta 4-mom
+	for(i=0; i<maxparticle; i++) fP4eta[i] = p4 + i;
+
+	fP4rootino = new TLorentzVector*[maxparticle];
+	p4 = new TLorentzVector[maxparticle];           // space for unknown 4-mom
+	for(i=0; i<maxparticle; i++) fP4rootino[i] = p4 + i;
+
+	// Arrays used to combine photons to mesons
+	Int_t maxperm = 0;
+	for(i=1; i<= maxparticle; i++) maxperm += i;
+	fMassDpi0 = new Double_t[maxperm];       // space for pi0 diffs
+	fMassDeta = new Double_t[maxperm];       // space for eta diffs
+	fMassIJ = new Int_t[maxperm];
+	fMassIpi0 = new Int_t[maxperm];
+	fMassIeta = new Int_t[maxperm];
+	fMax2gPerm = maxperm;
+	fIsMesonIndex = new Bool_t[maxparticle];
+
+	rand = new TRandom(0);
+
+	// Arrays for particle timing
+	fTimePhoton = new Double_t[maxparticle];
+	fTimeProton = new Double_t[maxparticle];
+	fTimePiPlus = new Double_t[maxparticle];
+	fTimeRootino = new Double_t[maxparticle];
+
+	TagTime = new TH1D("TagTime", "TagTime", 2500, 0, 250);
+//	PhotTime = new TH1D("PhotTime", "PhotTime", 2500, 0, 250);
+//	PhotTagTime = new TH1D("PhotTagTime", "PhotTagTime", 2500, 0, 250);
+
+// Photon
+	MMissPhot_P = new TH1D("MMissPhot_P", "MMissPhot_P", 200, 900, 1100);
+	MMissPhot_R = new TH1D("MMissPhot_R", "MMissPhot_R", 200, 900, 1100);
+
+	MMissPhot_TChan_P = new TH2D( "MMissPhot_TChan_P", "MMissPhot_TChan_P",
+			352, 0, 352, 200, 900, 1100);
+	MMissPhot_TChan_R = new TH2D( "MMissPhot_TChan_R", "MMissPhot_TChan_R",
+			352, 0, 352, 200, 900, 1100);
+
+	MMissPhot_Theta_TChan_P = new TH3D( "MMissPhot_Theta_TChan_P",
+			"MMissPhot_Theta_TChan_P", 352, 0, 352, 180, 0, 180, 200, 900, 1100);
+	MMissPhot_Theta_TChan_R = new TH3D( "MMissPhot_Theta_TChan_R",
+			"MMissPhot_Theta_TChan_R", 352, 0, 352, 180, 0, 180, 200, 900, 1100);
+
+	MMissPhot_OpenA_P = new TH2D( "MMissPhot_OpenA_P", "MMissPhot_OpenA_P",
+			180, 0, 180, 200, 900, 1100);
+	MMissPhot_OpenA_R = new TH2D( "MMissPhot_OpenA_R", "MMissPhot_OpenA_R",
+			180, 0, 180, 200, 900, 1100);
+
+	MMissPhot_Theta_OpenA_P = new TH3D( "MMissPhot_Theta_OpenA_P",
+			"MMissPhot_Theta_OpenA_P", 180, 0, 180, 180, 0, 180, 200, 900, 1100);
+	MMissPhot_Theta_OpenA_R = new TH3D( "MMissPhot_Theta_OpenA_R",
+			"MMissPhot_Theta_OpenA_R", 180, 0, 180, 180, 0, 180, 200, 900, 1100);
+
+	EMiss_OpenA_P = new TH2D( "EMiss_OpenA_P", "EMiss_OpenA_P", 180, 0, 180,
+			200, 900, 1100);
+	EMiss_OpenA_R = new TH2D( "EMiss_OpenA_R", "EMiss_OpenA_R", 180, 0, 180,
+			200, 900, 1100);
+
+	MMissPhot_CutP = new TH1D("MMissPhot_CutP", "MMissPhot_CutP", 200, 900,
+			1100);
+	MMissPhot_CutR = new TH1D("MMissPhot_CutR", "MMissPhot_CutR", 200, 900,
+			1100);
+
+	MMissPhot_TChan_CutP = new TH2D( "MMissPhot_TChan_CutP",
+			"MMissPhot_TChan_CutP", 352, 0, 352, 200, 900, 1100);
+	MMissPhot_TChan_CutR = new TH2D( "MMissPhot_TChan_CutR",
+			"MMissPhot_TChan_CutR", 352, 0, 352, 200, 900, 1100);
+
+	MMissPhot_Theta_TChan_CutP = new TH3D( "MMissPhot_Theta_TChan_CutP",
+			"MMissPhot_Theta_TChan_CutP", 352, 0, 352, 180, 0, 180, 200, 900,
+			1100);
+	MMissPhot_Theta_TChan_CutR = new TH3D( "MMissPhot_Theta_TChan_CutR",
+			"MMissPhot_Theta_TChan_CutR", 352, 0, 352, 180, 0, 180, 200, 900,
+			1100);
+
+/*
+// Pi0
+	MMissPi0_Theta_TChan_P = new TH3D( "MMissPi0_Theta_TChan_P",
+			"MMissPi0_Theta_TChan_P", 352, 0, 352, 180, 0, 180, 500, 800, 1300);
+	MMissPi0_Theta_TChan_R = new TH3D( "MMissPi0_Theta_TChan_R",
+			"MMissPi0_Theta_TChan_R", 352, 0, 352, 180, 0, 180, 500, 800, 1300);
+
+//	MMissPi0_TGG_TChan_P = new TH3D( "MMissPi0_TGG_TChan_P",
+//			"MMissPi0_TGG_TChan_P", 352, 0, 352, 180, 0, 180, 500, 800, 1300);
+//	MMissPi0_TGG_TChan_R = new TH3D( "MMissPi0_TGG_TChan_R",
+//			"MMissPi0_TGG_TChan_R", 352, 0, 352, 180, 0, 180, 500, 800, 1300);
+
+	MMissPi0_TGG_ThetaCM_P = new TH3D( "MMissPi0_TGG_ThetaCM_P",
+			"MMissPi0_TGG_ThetaCM_P", 180, 0, 180, 180, 0, 180, 500, 800, 1300);
+	MMissPi0_TGG_ThetaCM_R = new TH3D( "MMissPi0_TGG_ThetaCM_R",
+			"MMissPi0_TGG_ThetaCM_R", 180, 0, 180, 180, 0, 180, 500, 800, 1300);
+
+	MMissPi0_TGG_ThetaCM_NC_P = new TH3D( "MMissPi0_TGG_ThetaCM_NC_P",
+			"MMissPi0_TGG_ThetaCM_NC_P", 180, 0, 180, 180, 0, 180, 500, 800, 1300);
+	MMissPi0_TGG_ThetaCM_NC_R = new TH3D( "MMissPi0_TGG_ThetaCM_NC_R",
+			"MMissPi0_TGG_ThetaCM_NC_R", 180, 0, 180, 180, 0, 180, 500, 800, 1300);
+*/
+
+	// Default physics initialisation
+	TA2Physics::PostInit();
+}
+
+//-----------------------------------------------------------------------------
+void TA2Compton::LoadVariable( )
+{
+	// Input name - variable pointer associations for any subsequent
+	// cut or histogram setup
+	// LoadVariable( "name", pointer-to-variable, type-spec );
+	// NB scaler variable pointers need the preceeding &
+	//    array variable pointers do not.
+	// type-spec ED prefix for a Double_t variable
+	//           EI prefix for an Int_t variable
+	// type-spec SingleX for a single-valued variable
+	//           MultiX  for a multi-valued variable
+
+	TA2Physics::LoadVariable();
+	TA2DataManager::LoadVariable("Nphoton",      &fNphoton,       EISingleX);
+	TA2DataManager::LoadVariable("Nproton",      &fNproton,       EISingleX);
+	TA2DataManager::LoadVariable("Npiplus",      &fNpiplus,       EISingleX);
+	TA2DataManager::LoadVariable("Nneutron",     &fNneutron,      EISingleX);
+	TA2DataManager::LoadVariable("Npi0",         &fNpi0,          EISingleX);
+	TA2DataManager::LoadVariable("Ngprime",      &fNgprime,       EISingleX);
+	TA2DataManager::LoadVariable("Neta",         &fNeta,          EISingleX);
+	TA2DataManager::LoadVariable("Nrootino",     &fNrootino,      EISingleX);
+	TA2DataManager::LoadVariable("M2g",          &fM2g,           EDSingleX);
+	TA2DataManager::LoadVariable("M6g",          &fM6g,           EDSingleX);
+
+	TA2DataManager::LoadVariable("Pi0TGG",			&fPi0TGG,		EDSingleX);
+	TA2DataManager::LoadVariable("Pi0KE",			&fPi0KE,			EDSingleX);
+	TA2DataManager::LoadVariable("Pi0Theta",		&fPi0Theta,		EDSingleX);
+	TA2DataManager::LoadVariable("Pi0Phi",			&fPi0Phi,		EDSingleX);
+
+	TA2DataManager::LoadVariable("PhotKE",			&fPhotKE,		EDSingleX);
+	TA2DataManager::LoadVariable("PhotTheta",		&fPhotTheta,	EDSingleX);
+	TA2DataManager::LoadVariable("PhotPhi",		&fPhotPhi,		EDSingleX);
+
+	TA2DataManager::LoadVariable("ProtKE",			&fProtKE,		EDSingleX);
+	TA2DataManager::LoadVariable("ProtTheta",		&fProtTheta,	EDSingleX);
+	TA2DataManager::LoadVariable("ProtPhi",		&fProtPhi,		EDSingleX);
+
+	return;
+}
+
+//-----------------------------------------------------------------------------
+void TA2Compton::Reconstruct()
+{
+	// General reconstruction of reaction kinematics in Mainz tagged-photon
+	// meson production experiments.
+	// Use 4-momenta and PDG-index information from apparati to reconstruct
+	// reaction kinematics. The PDG index (and 4-momentum) assigned by the
+	// apparatus is not considered binding, e.g. in cases where n/gamma
+	// discrimination by an apparatus is not possible, in which case it
+	// defaults to kGamma. The method TA2ParticleID->SetMassP4( *p4, ipdg )
+	// may be used to reset the rest-mass of an existing 4 momentum *p4 to that
+	// corresponding to PDG index ipdg.
+	// This one deals with pion and eta photoproduction on the nucleon.
+
+	Int_t ncb = fCB->GetNparticle();              // # particles in CB
+	Int_t ntaps, nptaps;
+	if( fTAPS ) ntaps = fTAPS->GetNparticle();    // # particles in TAPS
+	else ntaps = 0;
+	nptaps = 0;
+
+	Double_t* TaggTime = fLADD->GetTimeOR();		// tagger time
+
+	fNphoton = fNproton = fNpiplus = fNneutron = fNpi0 = fNgprime =
+		fNeta = fNrootino = 0;                 // zero particle counters
+	fM2g = ENullHit;                         // zero 2-gamma inv. mass
+	fM6g = ENullHit;                         // zero 6-gamma inv. mass
+
+	fPi0TGG = ENullHit;
+	fPi0KE = ENullHit;
+	fPi0Theta = ENullHit;
+	fPi0Phi = ENullHit;
+
+	fPhotKE = ENullHit;
+	fPhotTheta = ENullHit;
+	fPhotPhi = ENullHit;
+
+	fProtKE = ENullHit;
+	fProtTheta = ENullHit;
+	fProtPhi = ENullHit;
+
+	fNparticle = ncb + ntaps;                // total number particles (hits)
+	fP4tot.SetXYZT(0.0,0.0,0.0,0.0);         // zero total out 4-momentum
+
+	Int_t i;
+	// Sort 4-momenta provided by apparati according to particle typw
+	for( i=0; i<ncb; i++ ){                  // loop over CB hits
+		fP4tot += fCBp4[i];
+		switch( fCBpdg[i] ){                   // PDG code
+			case kGamma:                        // photon
+				fP4photon[fNphoton] = fCBp4+i;   // incl 4-momentum in photon list
+//				fTimePhoton[fNphoton] = *(fCBTime+i);	// Photon timing
+				fNphoton++;
+				break;
+			case kProton:                       // proton
+				fP4proton[fNproton] = fCBp4+i;   // incl 4-momentum in proton list
+//				fTimeProton[fNproton] = *(fCBTime+i);	// Proton timing
+				fNproton++;
+				break;
+			case kPiPlus:                       // pi+
+				fP4piplus[fNpiplus] = fCBp4+i;   // incl 4-momentum in pi+ list
+//				fTimePiPlus[fNpiplus] = *(fCBTime+i);	// Pi+ timing
+				fNpiplus++;
+				break;
+			default:                            // don't know
+				fP4rootino[fNrootino] = fCBp4+i; // incl 4 momentum in unknown list
+//				fTimeRootino[fNrootino] = *(fCBTime+i);	// unknown timing
+				fNrootino++;                          
+		}
+	}
+	for( i=0; i<ntaps; i++ ){                // loop over TAPS hits
+		fP4tot += fTAPSp4[i];
+		switch( fTAPSpdg[i] ){                 // PDG code
+			case kGamma:                        // photon
+				fP4photon[fNphoton] = fTAPSp4+i; // incl 4-momentum in photon list
+//				fTimePhoton[fNphoton] = *(fTAPSTime+i);	// Photon timing
+				fNphoton++;
+				//std::cout<<"TAPS g"<<std::endl;
+				break;
+			case kProton:                       // proton
+				fP4proton[fNproton] = fTAPSp4+i; // incl 4-momentum in proton list
+//				fTimeProton[fNproton] = *(fTAPSTime+i);	// Proton timing
+				fNproton++;
+				nptaps++;
+				//std::cout<<"TAPS proton"<<std::endl;
+				break;
+			case kPiPlus:                       // pi+
+				fP4piplus[fNpiplus] = fTAPSp4+i; // incl 4-momentum in proton list
+//				fTimePiPlus[fNpiplus] = *(fTAPSTime+i);	// Pi+ timing
+				fNpiplus++;
+				break;
+			default:                             // don't know
+				fP4rootino[fNrootino] = fTAPSp4+i;// incl 4 momentum in unknown list
+//				fTimeRootino[fNrootino] = *(fTAPSTime+i);	// unknown timing
+				//std::cout<<"TAPS rootino"<<std::endl;
+				fNrootino++;
+		}
+	}
+	// Check if detected photons combine to give pi0 or eta
+	TLorentzVector p4;
+	switch( fNphoton ){
+		case 1:
+			// Just 1 photon....assume its a gamma-prime
+			fP4gprime[ fNgprime++ ] = fP4photon[0];
+			break;
+		case 2:
+			// 2 photons detected,  fast check if they make a pi0 or eta
+			Sort2Photon();
+			break;
+		default:
+			// > 2 photons 
+			SortNPhoton();
+			// Check for 3-pi0 eta decay mode
+			if( fNpi0 == 3 ){
+				p4 = *fP4pi0[0] + *fP4pi0[1] + *fP4pi0[2];
+				fMassDpi0[0] = TMath::Abs( p4.M() - fParticleID->GetMassMeV(kEta) );
+				if( fMassDpi0[0] < fMaxMDeta ){
+					*fP4eta[0] = p4;
+					fNeta = 1;
+					fNpi0 = 0;
+				}
+			}
+			break;
+	}
+
+	if ( fNpi0 == 1)
+	{
+		TLorentzVector p4pi0 = *fP4pi0[0];
+		fPi0KE = p4pi0.E() - p4pi0.M();
+		fPi0Theta = p4pi0.Theta()*TMath::RadToDeg();
+		fPi0Phi = p4pi0.Phi()*TMath::RadToDeg();
+		printf( "%d  %6.1f\n", fNphoton, fM2g);
+	}
+
+	Int_t fNtagg = fTAGG->GetNparticle();
+	Int_t chan;
+	TLorentzVector p4In, p4miss;
+	Double_t bwidth = 0.18;
+	Double_t tt, undig;
+
+	TVector3 cmBoost;
+	Double_t cmtheta;
+
+	if ( fNproton == 1)
+	{
+		TLorentzVector p4prot = *fP4proton[0];
+
+		Double_t mProt = fParticleID->GetMassMeV( kProton);
+
+		fProtKE = p4prot.E() - mProt;
+		fProtKE /= 1.05;
+		fProtTheta = p4prot.Theta()*TMath::RadToDeg();
+		fProtPhi = p4prot.Phi()*TMath::RadToDeg();
+
+	}
+
+	// Photon
+	if ( fNphoton == 1)
+	{
+		TLorentzVector p4phot = *fP4photon[0];
+
+		fPhotKE = p4phot.E();
+		fPhotTheta = p4phot.Theta()*TMath::RadToDeg();
+		fPhotPhi = p4phot.Phi()*TMath::RadToDeg();
+
+//		PhotTime->Fill( fTimePhoton[0]);
+
+		// Loop over tagger hits
+		for ( i = 0; i < fNtagg; i++) 
+		{
+			chan = (fLADD->GetHits())[i];
+			undig = bwidth*(-0.5 + rand->Rndm());
+			tt = TaggTime[i] + undig;
+			TagTime->Fill( tt);
+
+//			Double_t ptt = tt + fTimePhoton[0];
+//			PhotTagTime->Fill( ptt);
+//			printf( "%8.5f  %8.5f  %8.5f\n", TaggTime[i], fTimePhoton[0], undig);
+
+			// Missing 4-mom stuff
+			p4In = fP4target[0] + fTAGGp4[i];
+			p4miss = p4In - p4phot;
+
+			TLorentzVector p4photcm;
+			cmBoost = -p4In.BoostVector();
+			p4photcm = p4phot;
+			p4photcm.Boost( cmBoost);												
+			cmtheta = p4photcm.Theta()*TMath::RadToDeg();
+
+			// Prompt Timing
+			if ( ( ( tt >= fPlo) && ( tt <= fPhi))
+					|| ( gAR->GetProcessType() == EMCProcess)) 
+			{
+				MMissPhot_P->Fill( p4miss.M());
+				MMissPhot_TChan_P->Fill( chan, p4miss.M());
+				MMissPhot_Theta_TChan_P->Fill( chan, cmtheta, p4miss.M());
+			}
+			// Random Timing
+			else if ( ( tt >= fRlo) && ( tt <= fRhi)) 
+			{
+				MMissPhot_R->Fill( p4miss.M());
+				MMissPhot_TChan_R->Fill( chan, p4miss.M());
+				MMissPhot_Theta_TChan_R->Fill( chan, cmtheta, p4miss.M());
+			}
+
+			// In coincidence with a proton
+			if ( fNproton == 1) {
+
+				TLorentzVector prot = *fP4proton[0];
+				Double_t angle = p4miss.Vect().Angle(
+						prot.Vect())*TMath::RadToDeg();
+
+				// Prompt Timing
+				if  ( ( ( tt >= fPlo) && ( tt <= fPhi))
+						|| ( gAR->GetProcessType() == EMCProcess)) 
+				{
+					MMissPhot_OpenA_P->Fill( angle, p4miss.M());
+					MMissPhot_Theta_OpenA_P->Fill( angle, cmtheta, p4miss.M());
+
+					EMiss_OpenA_P->Fill( angle, p4miss.E());
+					if ( angle <= fOACut) {
+						MMissPhot_CutP->Fill( p4miss.M());
+						MMissPhot_TChan_CutP->Fill( chan, p4miss.M());
+						MMissPhot_Theta_TChan_CutP->Fill( chan, cmtheta, p4miss.M());
+					}
+				}
+
+				// Random Timing
+				else if ( ( tt >= fRlo) && ( tt <= fRhi)) 
+				{
+					MMissPhot_OpenA_R->Fill( angle, p4miss.M());
+					MMissPhot_Theta_OpenA_R->Fill( angle, cmtheta, p4miss.M());
+					EMiss_OpenA_R->Fill( angle, p4miss.E());
+					if ( angle <= fOACut) {
+						MMissPhot_CutR->Fill( p4miss.M());
+						MMissPhot_TChan_CutR->Fill( chan, p4miss.M());
+						MMissPhot_Theta_TChan_CutR->Fill( chan, cmtheta, p4miss.M());
+					}
+				}
+			}
+		}
+	}
+
+/*
+	// Pion
+	else if ( ( fNphoton == 2) && ( fNpi0 == 1))
+	{
+		TLorentzVector p4pi0 = *fP4pi0[0];
+
+		Double_t mPi0 = fParticleID->GetMassMeV( kPi0);
+
+		// Pi0 opening-angle stuff
+		TLorentzVector p4a, p4b;
+		p4a = *fP4photon[0];					// decay gamma 1
+		p4b = *fP4photon[1];					// decay gamma 2
+		fPi0TGG = p4a.Vect().Angle(p4b.Vect())*TMath::RadToDeg();
+
+		// Pi0 lab parameters
+		Double_t p4mom, dx, dy, dz;
+		p4pi0 = *fP4pi0[0];
+		dx = cos(p4pi0.Phi())*sin(p4pi0.Theta());
+		dy = sin(p4pi0.Phi())*sin(p4pi0.Theta());
+		dz = cos(p4pi0.Theta());
+//		if ( fMassCorr == 1) {
+			p4pi0.SetE( p4pi0.E()*mPi0/p4pi0.M());
+			p4mom = sqrt( Sqr( p4pi0.E()) - Sqr( mPi0));
+			p4pi0.SetPx( p4mom*dx);
+			p4pi0.SetPy( p4mom*dy);
+			p4pi0.SetPz( p4mom*dz);
+//		}
+		fPi0KE = p4pi0.E() - p4pi0.M();
+		fPi0Theta = p4pi0.Theta()*TMath::RadToDeg();
+		fPi0Phi = p4pi0.Phi()*TMath::RadToDeg();
+
+		// Loop over tagger hits
+		for ( i = 0; i < fNtagg; i++) 
+		{
+			chan = (fLADD->GetHits())[i];
+			undig = bwidth*(-0.5 + rand->Rndm());
+			tt = TaggTime[i] + undig;
+			
+			// Missing 4-mom stuff
+			p4In = fP4target[0] + fTAGGp4[i];
+			p4miss = p4In - p4pi0;
+
+			TLorentzVector p4pi0cm;
+			cmBoost = -p4In.BoostVector();
+			p4pi0cm = p4pi0;
+			p4pi0cm.Boost(cmBoost);												
+			cmtheta = p4pi0cm.Theta()*TMath::RadToDeg();
+
+			Bool_t banana = EFalse;
+			if ( fPi0TGG >= TGGCut( fTAGGp4[i].E(), cmtheta)) banana = ETrue;
+
+//			printf( "%f  %f  %f  %f  %d\n", fPi0TGG, fTAGGp4[i].E(), cmtheta,
+//					TGGCut( fTAGGp4[i].E(), cmtheta), banana);
+
+			// Prompt Timing
+			if ((( tt >= fPlo) && ( tt <= fPhi))
+					|| ( gAR->GetProcessType() == EMCProcess))   
+			{
+				MMissPi0_Theta_TChan_P->Fill( chan, cmtheta, p4miss.M());
+				MMissPi0_TGG_ThetaCM_NC_P->Fill( cmtheta, fPi0TGG, p4miss.M());
+				if ( banana)
+					MMissPi0_TGG_ThetaCM_P->Fill( cmtheta, fPi0TGG, p4miss.M());
+			}
+			// Random Timing
+			else if ( ( tt >= fRlo) && ( tt <= fRhi)) 
+			{
+				MMissPi0_Theta_TChan_R->Fill( chan, cmtheta, p4miss.M());
+				MMissPi0_TGG_ThetaCM_NC_R->Fill( cmtheta, fPi0TGG, p4miss.M());
+				if ( banana)
+					MMissPi0_TGG_ThetaCM_R->Fill( cmtheta, fPi0TGG, p4miss.M());
+			}
+		}
+	}
+*/
+}

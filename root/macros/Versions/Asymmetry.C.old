@@ -1,0 +1,1798 @@
+// Asymmetry.C
+//
+// This file contains all sorts of macros that calculate and plot various
+// quantities having to do with the photon beam asymmetry.
+//
+// They are:
+//
+//		1) Init
+//		2) GetRatio
+// 	3) ChanZero
+// 	4) Yield
+// 	5) GetYield
+// 	6) PlotAsymBin
+// 	7) PlotAsymBoth
+// 	8) PlotAsymCorr
+// 	9) PlotYieldCorr
+// 	10) AsymCorrBin
+// 	11) AsymCorrOut
+// 	12) AsymCorrAll
+// 	13) AsymCorrBoth
+// 	14) AsymCorrComp
+// 	15) CorrFact
+// 	16) BinYield
+// 	17) PlotYieldCarb
+//
+
+gROOT->Reset();
+
+#include "includes/physics.h"
+#include "includes/functions.h"
+
+Int_t egamma[284];
+Double_t yield, dyield, pa_rat;
+Double_t pa_ratio[284];
+Double_t energy[284];
+Double_t yld[18], dyld[18];
+
+Double_t phi[] = { -170, -150, -130, -110, -90, -70, -50, -30, -10, 10, 30, 50,
+	70, 90, 110, 130, 150, 170};
+Double_t dphi[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+Double_t theta[] = { 10, 30, 50, 70, 90, 110, 130, 150, 170};
+Double_t dtheta[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0};
+Double_t tag_chan_lo[] = { 256, 252, 248, 244, 240, 236, 232, 179, 149, 119,
+	89, 59, 29};
+
+Double_t pol[] = { 0.20, 0.25, 0.30, 0.35, 0.38, 0.40, 0.35, 0.08, 1, 1, 1, 1,
+	1};
+
+Double_t asym[9], dasym[9], chisq[9], en[13];
+Double_t carbcon[7][8];
+
+// Full and Empty histogram files
+TFile full( "histograms/ARH_full.root");
+TFile empty( "histograms/ARH_empty.root");
+
+// Histograms
+TH3D *h_pr;
+TH3D *h_ra;
+
+// Scalers (from full)
+TH1D *h_sc = (TH1D*)full.Get( "SumScalers12to363");
+
+// Full Histograms for Total Yield
+TH3D *h_pr_f = (TH3D*)full.Get( "THits_TGG_ThetaCM_P");
+TH3D *h_ra_f = (TH3D*)full.Get( "THits_TGG_ThetaCM_R");
+
+// Empty Histograms for Total Yield
+TH3D *h_pr_e = (TH3D*)empty.Get( "THits_TGG_ThetaCM_P");
+TH3D *h_ra_e = (TH3D*)empty.Get( "THits_TGG_ThetaCM_R");
+
+//
+// 1) Init
+//
+// This macro reads in the tagger calibration file and the prompt-random
+// subtraction ratios.  It also calculates the bremsstrahlung-weighted incident
+// photon energy for the 13 bins used in the asymmetries in addition to reading
+// in the carbon contamination data obtained from simulation.
+//
+void Init()
+{
+	Int_t i, j, bin, tch_lo, tch_hi;
+	Double_t junk, eff, deff, eg, scal_tot;
+	TString filename;
+
+	// This reads in the tagger energies, and then assigns both real ("energy")
+	// and integer ("egamma") values.
+	filename = "xs/tageng450.out";
+	ifstream inFile( filename);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	while( !inFile.eof()) {
+		inFile >> i >> junk >> junk >> junk >> eff;
+		energy[i] = eff;
+		egamma[i] = (int)(eff + 0.5);
+	}
+	inFile.close();
+
+	// This reads in the prompt-random subtraction ratios.
+	filename = "xs/chan_subt/chan_subt.out";
+	ifstream inFile( filename);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	while( !inFile.eof()) {
+		inFile >> i >> eff;
+		pa_ratio[i] = eff;
+	}
+	inFile.close();
+
+	// This bit calculates the bremsstrahlung-weighted incident photon energies
+	// ("en") for the 13 bins used in the asymmetry plots.
+	for ( bin = 0; bin <= 12; bin++)
+	{
+		tch_lo = tag_chan_lo[bin];
+		tch_hi = tch_lo + 3;
+
+		scal_tot = 0;
+		for ( i = tch_lo; i <= tch_hi; i++) scal_tot += h_sc->GetBinContent(i);
+
+		eg = 0;
+		for ( i = tch_lo; i <= tch_hi; i++)
+			eg += energy[i]*h_sc->GetBinContent(i)/scal_tot;
+
+		en[bin] = eg;
+
+		cout << bin;
+		cout << "  " << en[bin];
+		cout << " MeV";
+		cout << endl;
+	}
+
+	// This reads in the full carbon contamination corrections.
+	for ( i = 2; i <= 6; i++) {  // Tagger Energy Bin
+		filename = TString( Form( "xs/eff/carbcont_%d.out", i));
+		ifstream inFile( filename);
+		if ( !inFile.is_open()) {
+			cout << "Error opening file ";
+			cout << filename;
+			cout << endl;
+			break;
+		}
+		for ( j = 0; j <= 8; j++) { // Theta Bin
+
+			inFile >> junk >> eff;
+
+			carbcon[i][j] = eff;
+//			cout << i;
+//			cout << " " << j;
+//			cout << " " << carbcon[i][j];
+//			cout << endl;
+		}
+		inFile.close();
+	}
+}
+
+//
+// 2) GetRatio
+//
+// This routine calculates the bremsstrahlung-averaged prompt-accidental
+// subtraction ratio for a range of tagger channels.
+//
+void GetRatio( Int_t chan_lo, Int_t chan_hi)
+{
+	Int_t i;
+	Double_t scal_tot;
+
+	// This calculates the bremsstrahlung-averaged subtraction ratio.
+	scal_tot = 0;
+	for ( i = chan_lo; i <= chan_hi; i++) {
+		if ( pa_ratio[i] != 0) scal_tot += h_sc->GetBinContent(i);
+	}
+	pa_rat = 0;
+	for ( i = chan_lo; i <= chan_hi; i++) {
+		if ( pa_ratio[i] != 0)
+			pa_rat += pa_ratio[i]*h_sc->GetBinContent(i)/scal_tot;
+	}
+//	cout << " pa_rat = " << pa_rat << endl;
+
+}
+
+//
+// 3) ChanZero3D
+//
+// This routine zeroes bad tagger channels in 3D histograms.
+//
+//
+void ChanZero3D( Char_t subt[8])
+{
+	Int_t i, Ny;
+	Int_t* lch = broken_ladd_ch;
+
+	Ny = h2d_f->GetXaxis()->GetNbins();
+
+	while ( *lch != -1) {
+		for ( i = 0; i < Ny; i++) {
+			if ( strcmp( subt, "full") == 0)
+				h2d_f->SetBinContent( i, *lch, 0);
+			else
+				h2d_e->SetBinContent( i, *lch, 0);
+//			cout << i << " " << h2d->GetBinContent( i, chan, 0);
+//			h2d->SetBinContent( i, chan, 0);
+//			cout << " " << h2d->GetBinContent( i, chan, 0) << endl;
+		}
+		lch++;
+	}
+}
+
+
+//
+// 4) Yield
+//
+// This routine calculates the yield and error for a certain bin of phase space
+// defined by region of phi, gamma-gamma opening angle, and tagger channels.
+//
+void Yield( Double_t phi_lo, Double_t phi_hi, Double_t emin, Double_t emax, 
+		Int_t chan_lo, Int_t chan_hi)
+{
+	Int_t xmin, xmax, ymin, ymax, zmin, zmax;
+	Double_t yield_p, yield_r;
+
+	// These are the integration limits for the phase space bin.
+	xmin = h_pr->GetXaxis()->FindBin( phi_lo);
+	xmax = h_pr->GetXaxis()->FindBin( phi_hi)-1;		// The -1 ensures that we
+	ymin = h_pr->GetYaxis()->FindBin( emin);			// don't double count since
+	ymax = h_pr->GetYaxis()->FindBin( emax);			// we loop over phi.
+	zmin = h_pr->GetZaxis()->FindBin( chan_lo);
+	zmax = h_pr->GetZaxis()->FindBin( chan_hi);
+
+	// This gets the prompt and accidental yields.
+	yield_p = h_pr->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	yield_r = h_ra->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+
+	// This obtains the subtracted yield and error.
+	yield = yield_p - pa_rat*yield_r;
+	dyield = sqrt( yield_p + Sqr( pa_rat)*yield_r);
+}
+
+//
+// 5) GetYield
+//
+// This routine is the main one used by all of the macros.  It uses the macro
+// Yield to calculate the yield for the target type ("full" or "empty"),
+// missing-mass window ("prot" or "carb"), a specific orientation ("perp" or
+// "para"), theta bin, and tagger channel range.  NOTE: the theta bin here runs
+// from 1 to 9 instead of 0 to 8.
+//
+void GetYield( Char_t tgt[8], Char_t mmiss[8], Char_t orient[8], Int_t i_th,
+		Int_t chan_lo, Int_t chan_hi)
+{
+	Int_t i, chan; Double_t phi_lo, phi_hi; Double_t emin, emax; Double_t Tgg,
+			Tgg_c12;
+
+	Char_t name[64];
+
+//	chan = (int)(chan_lo + chan_hi)/2;
+	chan = chan_lo;
+
+	// Prompt
+	if ( strcmp( mmiss, "prot") == 0)
+		sprintf( name, "THits_TGG_Phi_%d%s_P", i_th, orient);
+	else if ( strcmp( mmiss, "carb") == 0)
+		sprintf( name, "THits_TGG_Phi_%d%s_C_P", i_th, orient);
+	else {
+		printf( "<E> GetYield: Invalid Correction\n");
+		break;
+	}
+	if ( strcmp( tgt, "full") == 0) h_pr = (TH3D*)full.Get( name);
+	else if ( strcmp( tgt, "empty") == 0) h_pr = (TH3D*)empty.Get( name);
+	else {
+		printf( "<E> GetYield: Invalid Target Type\n");
+		break;
+	}
+
+	// Random
+	if ( strcmp( mmiss, "prot") == 0)
+		sprintf( name, "THits_TGG_Phi_%d%s_R", i_th, orient);
+	else if ( strcmp( mmiss, "carb") == 0)
+		sprintf( name, "THits_TGG_Phi_%d%s_C_R", i_th, orient);
+	else {
+		printf( "<E> GetYield: Invalid Correction\n");
+		break;
+	}
+	if ( strcmp( tgt, "full") == 0) h_ra = (TH3D*)full.Get( name);
+	else if ( strcmp( tgt, "empty") == 0) h_ra = (TH3D*)empty.Get( name);
+	else {
+		printf( "<E> GetYield: Invalid Target Type\n");
+		break;
+	}
+
+	// These lines calculate the minimum gamma-gamma opening angle for both
+	// hydrogen and carbon-12 from the incident photon energy, the pion mass,
+	// and the target mass.
+	if ( energy[chan] >= E_thr( kMP_MEV, kMPI0_MEV))
+		Tgg = Tgg_Min( qT_max(energy[chan], kMP_MEV, kMPI0_MEV), kMPI0_MEV)/kD2R;
+	else Tgg = 180;
+
+	if ( energy[chan] >= E_thr( kM_C12_MEV, kMPI0_MEV))
+		Tgg_c12 = Tgg_Min( qT_max(energy[chan], kM_C12_MEV, kMPI0_MEV),
+				kMPI0_MEV)/kD2R;
+	else Tgg_c12 = 180;
+
+	// These are the limits for the gamma-gamma opening angle yield integration.
+//	if ( strcmp( mmiss, "prot") == 0) emin = Tgg;
+//	else emin = Tgg_c12;
+	emin = Tgg;
+	emax = 180;
+
+	// This gives the prompt-random subtraction ratio.
+	GetRatio( chan_lo, chan_hi);
+
+	// Note that the phi bins are 20 degrees in size and the yield array goes
+	// from 0 to 17.
+	for (  i = 0; i <= 17; i++) {
+
+		phi_lo = 20*(i-9);
+		phi_hi = 20*(i-8);
+
+		Yield( phi_lo, phi_hi, emin, emax, chan_lo, chan_hi);
+
+		yld[i] = yield;
+		dyld[i] = dyield;
+	}
+}
+
+//
+// 6) PlotAsymBin
+//
+// This macro plots the phi dependence for both polarization orientations for a
+// specific target ("full" or "empty"), missing-mass window ("prot" or
+// "carb"), theta bin, and incident photon energy bin.  Fit statistics are
+// shown on the plots.  The theta bins run from 0 to 8.
+//
+void PlotAsymBin( Char_t tgt[8], Char_t mmiss[8], Int_t i_th, Int_t bin)
+{
+	Int_t i, tch_lo, tch_hi;
+	Double_t yld_perp[18], dyld_perp[18], yld_para[18], dyld_para[18];
+	Double_t p0_perp, dp0_perp, p0_para, dp0_para, scale, dscale;
+	Char_t orient[8], title[128];
+
+	c1 = new TCanvas( "c1", "Phi Yield", 200, 10, 1000, 500);
+	c1->Divide(3,1);
+	c1->SetFillColor( 38);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 38);
+	c1->GetFrame()->SetBorderSize( 12);
+
+	TF1 *f1 = new TF1( "f1", "[0]*(1-[1]*cos(2*x*0.01745))", -180, 180);
+	TF1 *f2 = new TF1( "f2", "[0]*cos(2*x*0.01745)", -180, 180);
+
+	tch_lo = tag_chan_lo[bin];
+	tch_hi = tch_lo + 3;
+
+	// Perp
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] = yld[i];
+		dyld_perp[i] = dyld[i];
+	}
+
+	gr1 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+//	title = TString( Form( "%s   #Theta = %3d   deg E_{#gamma} = %5.1f MeV",
+//			orient, (int)theta[i_th], en[bin]));
+//	gr1->SetTitle( title);
+	gr1->SetMarkerColor( 4);
+	gr1->SetMarkerStyle( 21);
+	gr1->GetXaxis()->SetTitleOffset( 1.1);
+	gr1->GetYaxis()->SetTitleOffset( 0.8);
+	gr1->GetYaxis()->SetTitleSize( 0.05);
+	gr1->GetXaxis()->SetTitle("#phi (deg)");
+	gr1->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr1->GetXaxis()->SetLabelSize( 0.03);
+	gr1->GetYaxis()->SetLabelSize( 0.03);
+	gr1->GetXaxis()->CenterTitle();
+	gr1->GetYaxis()->CenterTitle();
+
+	// Fit and Draw
+	gr1->Fit( "f1", "RLMQ");
+	c1->cd(1);
+	gr1->Draw( "AP");
+
+	p0_perp = f1->GetParameter(0);
+	dp0_perp = f1->GetParError(0);
+
+	// Para
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_para[i] = yld[i];
+		dyld_para[i] = dyld[i];
+	}
+
+	gr2 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+//	title = TString( Form( "%s   #Theta = %3d   deg E_{#gamma} = %5.1f MeV",
+//			orient, (int)theta[i_th], en[bin]));
+//	gr2->SetTitle( title);
+	gr2->SetMarkerColor( 4);
+	gr2->SetMarkerStyle( 21);
+	gr2->GetXaxis()->SetTitleOffset( 1.1);
+	gr2->GetYaxis()->SetTitleOffset( 0.8);
+	gr2->GetYaxis()->SetTitleSize( 0.05);
+	gr2->GetXaxis()->SetTitle("#phi (deg)");
+	gr2->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr2->GetXaxis()->SetLabelSize( 0.03);
+	gr2->GetYaxis()->SetLabelSize( 0.03);
+	gr2->GetXaxis()->CenterTitle();
+	gr2->GetYaxis()->CenterTitle();
+
+	// Fit and Draw
+	gr2->Fit( "f1", "RLMQ");
+	c1->cd(2);
+	gr2->Draw( "AP");
+
+	p0_para = f1->GetParameter(0);
+	dp0_para = f1->GetParError(0);
+	scale = p0_para/p0_perp;
+	dscale = sqrt( Sqr( dp0_para/p0_para)
+			+ Sqr( p0_para*dp0_perp/Sqr( p0_perp)));
+
+//	cout << " scale = " << scale << " +/- " << dscale << endl;
+//	for ( i = 0; i < 18; i++) {
+//		cout << i << " " << yld_perp[i] << " +/- " << dyld_perp[i] << endl;
+//	}
+
+	// Scale Perp
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] *= scale;
+		dyld_perp[i] = sqrt( Sqr( dscale*yld_perp[i]) + Sqr( scale*dyld_perp[i]));
+//		cout << i << " " << yld_perp[i] << " +/- " << dyld_perp[i] << endl;
+	}
+
+	// Combine Perp and Para
+	for ( i = 0; i < 18; i++) {
+		yld[i] = -(yld_para[i] - yld_perp[i])/(yld_para[i] + yld_perp[i]);
+		dyld[i] = 2/Sqr( yld_para[i] + yld_perp[i])*sqrt(
+				Sqr( yld_para[i]*dyld_perp[i]) + Sqr( yld_perp[i]*dyld_para[i]));
+	}
+
+	gr3 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+//	title = TString( Form( "Combined #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+//			(int)theta[i_th], en[bin]));
+//	gr3->SetTitle( title);
+	gr3->SetMarkerColor( 4);
+	gr3->SetMarkerStyle( 21);
+	gr3->GetXaxis()->SetTitleOffset( 1.1);
+	gr3->GetYaxis()->SetTitleOffset( 1.4);
+	gr3->GetYaxis()->SetTitleSize( 0.035);
+	gr3->GetXaxis()->SetTitle("#phi (deg)");
+	gr3->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr3->GetXaxis()->SetLabelSize( 0.03);
+	gr3->GetYaxis()->SetLabelSize( 0.03);
+	gr3->GetXaxis()->CenterTitle();
+	gr3->GetYaxis()->CenterTitle();
+
+	// Fit and Draw
+	gr3->Fit( "f2", "RLMQ");
+	c1->cd(3);
+	gStyle->SetOptFit(0);
+	gr3->Draw( "AP");
+
+	asym[i_th] = f2->GetParameter(0)/pol[bin];
+	dasym[i_th] = f2->GetParError(0)/pol[bin];
+	chisq[i_th] = f2->GetChisquare()/17;
+
+	cout << "Egamma = ";
+	cout << en[bin];
+	cout << "  Theta = ";
+	cout << theta[i_th];
+	cout << "  Asymmetry = ";
+	cout << asym[i_th];
+	cout << " +/- " << dasym[i_th];
+	cout << "  ChiSq = ";
+	cout << chisq[i_th];
+	cout << endl;
+
+//	TString file = Form( "plots/eps/asym_%s_%d_%d.eps", tgt, (int)en[bin],
+//			(int)theta[i_th]);
+//	c1->Print( file);
+
+}
+
+//
+// 7) PlotAsymBoth
+//
+// This macro plots the phi dependence (both polarization orientations
+// combined) for either target ("empty" or "full") for both proton and carbon
+// Mmiss windows, for a specific theta and incident photon energy bin.  Fit
+// statistics are shown on the plots.  The theta bins run from 0 to 8.
+//
+void PlotAsymBoth( Char_t tgt[8], Int_t i_th, Int_t bin)
+{
+	Int_t i, tch_lo, tch_hi;
+	Double_t yld_perp[18], dyld_perp[18], yld_para[18], dyld_para[18];
+	Double_t p0_perp, dp0_perp, p0_para, dp0_para, scale, dscale;
+	Double_t p0, dp0;
+	Double_t min, y1, y2;
+	Char_t mmiss[8], orient[8], title[256], file[64];
+
+	c1 = new TCanvas( "c1", "Phi Yield", 200, 10, 1000, 500);
+	c1->Divide(2,1);
+	c1->SetFillColor( 38);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 38);
+	c1->GetFrame()->SetBorderSize( 12);
+
+	TF1 *f1 = new TF1( "f1", "[0]*(1-[1]*cos(2*x*0.01745))", -180, 180);
+	TF1 *f2 = new TF1( "f2", "[0]*cos(2*x*0.01745)", -180, 180);
+
+	tch_lo = tag_chan_lo[bin];
+	tch_hi = tch_lo + 3;
+
+	// Target Full
+	strcpy( mmiss, "prot");
+	// Perp
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] = yld[i];
+		dyld_perp[i] = dyld[i];
+	}
+	gr1 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr1->Fit( "f1", "RLMQ");
+
+	p0_perp = f1->GetParameter(0);
+	dp0_perp = f1->GetParError(0);
+
+	// Para
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_para[i] = yld[i];
+		dyld_para[i] = dyld[i];
+	}
+	gr2 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr2->Fit( "f1", "RLMQ");
+
+	p0_para = f1->GetParameter(0);
+	dp0_para = f1->GetParError(0);
+	scale = p0_para/p0_perp;
+	dscale = sqrt( Sqr( dp0_para/p0_para)
+			+ Sqr( p0_para*dp0_perp/Sqr( p0_perp)));
+
+	// Scale Perp
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] *= scale;
+		dyld_perp[i] = sqrt( Sqr( dscale*yld_perp[i]) + Sqr( scale*dyld_perp[i]));
+	}
+
+	// Combine Perp and Para
+	min = 0;
+	for ( i = 0; i < 18; i++) {
+		yld[i] = -(yld_para[i] - yld_perp[i])/(yld_para[i] + yld_perp[i]);
+		dyld[i] = 2/Sqr( yld_para[i] + yld_perp[i])*sqrt(
+				Sqr( yld_para[i]*dyld_perp[i]) + Sqr( yld_perp[i]*dyld_para[i]));
+		if ( yld[i] < min) min = yld[i];
+	}
+
+	gr3 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	sprintf( title,"Hydrogen: #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+			(int)theta[i_th], en[bin]);
+	gr3->SetTitle( title);
+	gr3->SetMarkerColor( 4);
+	gr3->SetLineColor( 4);
+	gr3->SetLineWidth( 2);
+	gr3->SetMarkerStyle( 21);
+	gr3->GetXaxis()->SetTitleOffset( 1.1);
+	gr3->GetYaxis()->SetTitleOffset( 1.4);
+	gr3->GetYaxis()->SetTitleSize( 0.035);
+	gr3->GetXaxis()->SetTitle("#phi (deg)");
+	gr3->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr3->GetXaxis()->SetLabelSize( 0.03);
+	gr3->GetYaxis()->SetLabelSize( 0.03);
+	gr3->GetXaxis()->CenterTitle();
+	gr3->GetYaxis()->CenterTitle();
+
+	// Fit and Draw
+	gr3->Fit( "f2", "RLMQ");
+	c1->cd(1);
+//	gStyle->SetOptFit(0);
+	gr3->Draw( "AP");
+	p0 = f2->GetParameter(0);
+	dp0 = f2->GetParError(0);
+	cout << p0 << " +/- " << dp0 << endl;
+
+	sprintf( title, "a_{1} = %5.3f +/- %5.3f\n", p0, dp0);
+	TPaveLabel *pt = new TPaveLabel(0.25,0.125,0.55,0.2, title, "NDC");
+	pt->SetTextSize(0.5);
+	pt->SetFillStyle(0);
+	pt->SetBorderSize(0);
+	pt->Draw();
+
+	// Target Empty
+	strcpy( mmiss, "carb");
+	// Perp
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] = yld[i];
+		dyld_perp[i] = dyld[i];
+	}
+	gr4 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr4->Fit( "f1", "RLMQ");
+
+	p0_perp = f1->GetParameter(0);
+	dp0_perp = f1->GetParError(0);
+
+	// Para
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_para[i] = yld[i];
+		dyld_para[i] = dyld[i];
+	}
+	gr5 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr5->Fit( "f1", "RLMQ");
+
+	p0_para = f1->GetParameter(0);
+	dp0_para = f1->GetParError(0);
+	scale = p0_para/p0_perp;
+	dscale = sqrt( Sqr( dp0_para/p0_para)
+			+ Sqr( p0_para*dp0_perp/Sqr( p0_perp)));
+
+	// Scale Perp
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] *= scale;
+		dyld_perp[i] = sqrt( Sqr( dscale*yld_perp[i]) + Sqr( scale*dyld_perp[i]));
+	}
+
+	// Combine Perp and Para
+	min = 0;
+	for ( i = 0; i < 18; i++) {
+		yld[i] = -(yld_para[i] - yld_perp[i])/(yld_para[i] + yld_perp[i]);
+		dyld[i] = 2/Sqr( yld_para[i] + yld_perp[i])*sqrt(
+				Sqr( yld_para[i]*dyld_perp[i]) + Sqr( yld_perp[i]*dyld_para[i]));
+		if ( yld[i] < min) min = yld[i];
+	}
+
+	gr6 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	sprintf( title,"Carbon: #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+			(int)theta[i_th], en[bin]);
+	gr6->SetTitle( title);
+	gr6->SetMarkerColor( 2);
+	gr6->SetLineColor( 2);
+	gr6->SetMarkerStyle( 21);
+	gr6->SetLineWidth( 2);
+	gr6->GetXaxis()->SetTitleOffset( 1.1);
+	gr6->GetYaxis()->SetTitleOffset( 1.4);
+	gr6->GetYaxis()->SetTitleSize( 0.035);
+	gr6->GetXaxis()->SetTitle("#phi (deg)");
+	gr6->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr6->GetXaxis()->SetLabelSize( 0.03);
+	gr6->GetYaxis()->SetLabelSize( 0.03);
+	gr6->GetXaxis()->CenterTitle();
+	gr6->GetYaxis()->CenterTitle();
+
+	// Fit and Draw
+	gr6->Fit( "f2", "RLMQ");
+	c1->cd(2);
+//	gStyle->SetOptFit(0);
+	gr6->Draw( "AP");
+
+	p0 = f2->GetParameter(0);
+	dp0 = f2->GetParError(0);
+	cout << p0 << " +/- " << dp0 << endl;
+
+	sprintf( title, "a_{1} = %5.3f +/- %5.3f\n", p0, dp0);
+	TPaveLabel *pt = new TPaveLabel(0.25,0.125,0.55,0.2, title, "NDC");
+	pt->SetTextSize(0.5);
+	pt->SetFillStyle(0);
+	pt->SetBorderSize(0);
+	pt->Draw();
+
+	sprintf( file, "plots/eps/asym_both_%d_%d.eps", (int)en[bin],
+			(int)theta[i_th]);
+//	c1->Print( file);
+}
+
+//
+// 8) PlotAsymCorr
+//
+// This macro plots the phi dependence (both polarization orientations
+// combined) for a specific target ("full" or "empty") for the proton window,
+// the carbon window, and the corrected hydrogen window, each for a specific
+// theta and incident photon energy bin.  Fit statistics are shown on the
+// plots.  The theta bins run from 0 to 8.
+//
+void PlotAsymCorr( Char_t tgt[8], Int_t i_th, Int_t bin)
+{
+	Int_t i, tch_lo, tch_hi;
+	Double_t yld_perp[18], dyld_perp[18], yld_para[18], dyld_para[18];
+	Double_t p0_perp, dp0_perp, p0_para, dp0_para, scale, dscale;
+	Double_t p0, dp0;
+	Double_t min, y1, y2;
+	Char_t mmiss[8], orient[8], title[256], file[64];
+
+	c1 = new TCanvas( "c1", "Phi Yield", 200, 10, 1000, 500);
+	c1->Divide(3,1);
+	c1->SetFillColor( 38);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 38);
+	c1->GetFrame()->SetBorderSize( 12);
+
+	TF1 *f1 = new TF1( "f1", "[0]*(1-[1]*cos(2*x*0.01745))", -180, 180);
+	TF1 *f2 = new TF1( "f2", "[0]*cos(2*x*0.01745)", -180, 180);
+
+	tch_lo = tag_chan_lo[bin];
+	tch_hi = tch_lo + 3;
+
+	// Proton Missing Mass Window
+	strcpy( mmiss, "prot");
+	// Perp
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] = yld[i];
+		dyld_perp[i] = dyld[i];
+	}
+	gr1 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr1->Fit( "f1", "RLMQ");
+
+	p0_perp = f1->GetParameter(0);
+	dp0_perp = f1->GetParError(0);
+
+	// Para
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_para[i] = yld[i];
+		dyld_para[i] = dyld[i];
+	}
+	gr2 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr2->Fit( "f1", "RLMQ");
+
+	p0_para = f1->GetParameter(0);
+	dp0_para = f1->GetParError(0);
+	scale = p0_para/p0_perp;
+	dscale = sqrt( Sqr( dp0_para/p0_para)
+			+ Sqr( p0_para*dp0_perp/Sqr( p0_perp)));
+
+	// Scale Perp
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] *= scale;
+		dyld_perp[i] = sqrt( Sqr( dscale*yld_perp[i]) + Sqr( scale*dyld_perp[i]));
+	}
+
+	// Combine Perp and Para
+	min = 0;
+	for ( i = 0; i < 18; i++) {
+		yld[i] = -(yld_para[i] - yld_perp[i])/(yld_para[i] + yld_perp[i]);
+		dyld[i] = 2/Sqr( yld_para[i] + yld_perp[i])*sqrt(
+				Sqr( yld_para[i]*dyld_perp[i]) + Sqr( yld_perp[i]*dyld_para[i]));
+		if ( yld[i] < min) min = yld[i];
+	}
+
+	gr3 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	sprintf( title,"Full #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+			(int)theta[i_th], en[bin]);
+	gr3->SetTitle( title);
+	gr3->SetMarkerColor( 4);
+	gr3->SetLineColor( 4);
+	gr3->SetLineWidth( 2);
+	gr3->SetMarkerStyle( 21);
+	gr3->GetXaxis()->SetTitleOffset( 1.1);
+	gr3->GetYaxis()->SetTitleOffset( 1.4);
+	gr3->GetYaxis()->SetTitleSize( 0.035);
+	gr3->GetXaxis()->SetTitle("#phi (deg)");
+	gr3->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr3->GetXaxis()->SetLabelSize( 0.03);
+	gr3->GetYaxis()->SetLabelSize( 0.03);
+	gr3->GetXaxis()->CenterTitle();
+	gr3->GetYaxis()->CenterTitle();
+
+	// Fit and Draw
+	gr3->Fit( "f2", "RLMQ");
+	c1->cd(1);
+//	gStyle->SetOptFit(0);
+	gr3->Draw( "AP");
+	p0 = f2->GetParameter(0);
+	dp0 = f2->GetParError(0);
+	cout << p0 << " +/- " << dp0 << endl;
+
+	sprintf( title, "#Sigma = %5.3f +/- %5.3f\n", p0, dp0);
+	TPaveLabel *pt = new TPaveLabel(0.25,0.15,0.65,0.22, title, "NDC");
+	pt->SetTextSize(0.4);
+	pt->SetBorderSize(0);
+	pt->Draw();
+
+	// Carbon Missing Mass Window
+	strcpy( mmiss, "carb");
+	// Perp
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] = yld[i];
+		dyld_perp[i] = dyld[i];
+	}
+	gr4 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr4->Fit( "f1", "RLMQ");
+
+	p0_perp = f1->GetParameter(0);
+	dp0_perp = f1->GetParError(0);
+
+	// Para
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		yld_para[i] = yld[i];
+		dyld_para[i] = dyld[i];
+	}
+	gr5 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr5->Fit( "f1", "RLMQ");
+
+	p0_para = f1->GetParameter(0);
+	dp0_para = f1->GetParError(0);
+	scale = p0_para/p0_perp;
+	dscale = sqrt( Sqr( dp0_para/p0_para)
+			+ Sqr( p0_para*dp0_perp/Sqr( p0_perp)));
+
+	// Scale Perp
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] *= scale;
+		dyld_perp[i] = sqrt( Sqr( dscale*yld_perp[i]) + Sqr( scale*dyld_perp[i]));
+	}
+
+	// Combine Perp and Para
+	min = 0;
+	for ( i = 0; i < 18; i++) {
+		yld[i] = -(yld_para[i] - yld_perp[i])/(yld_para[i] + yld_perp[i]);
+		dyld[i] = 2/Sqr( yld_para[i] + yld_perp[i])*sqrt(
+				Sqr( yld_para[i]*dyld_perp[i]) + Sqr( yld_perp[i]*dyld_para[i]));
+		if ( yld[i] < min) min = yld[i];
+	}
+
+	gr6 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	sprintf( title,"Empty #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+			(int)theta[i_th], en[bin]);
+	gr6->SetTitle( title);
+	gr6->SetMarkerColor( 2);
+	gr6->SetLineColor( 2);
+	gr6->SetMarkerStyle( 21);
+	gr6->SetLineWidth( 2);
+	gr6->GetXaxis()->SetTitleOffset( 1.1);
+	gr6->GetYaxis()->SetTitleOffset( 1.4);
+	gr6->GetYaxis()->SetTitleSize( 0.035);
+	gr6->GetXaxis()->SetTitle("#phi (deg)");
+	gr6->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr6->GetXaxis()->SetLabelSize( 0.03);
+	gr6->GetYaxis()->SetLabelSize( 0.03);
+	gr6->GetXaxis()->CenterTitle();
+	gr6->GetYaxis()->CenterTitle();
+
+	// Fit and Draw
+	gr6->Fit( "f2", "RLMQ");
+	c1->cd(2);
+//	gStyle->SetOptFit(0);
+	gr6->Draw( "AP");
+
+	p0 = f2->GetParameter(0);
+	dp0 = f2->GetParError(0);
+	cout << p0 << " +/- " << dp0 << endl;
+
+	sprintf( title, "#Sigma = %5.3f +/- %5.3f\n", p0, dp0);
+	TPaveLabel *pt1 = new TPaveLabel(0.25,0.15,0.65,0.22, title, "NDC");
+	pt1->SetTextSize(0.4);
+	pt1->SetBorderSize(0);
+	pt1->Draw();
+
+	//
+	// Corrected Proton Missing Mass Window
+	// Here the yield is corrected.
+	//
+	strcpy( mmiss, "prot");
+	// Perp
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		Double_t xx = CorrFact( tgt, orient, i_th, bin, i);
+		yld_perp[i] = yld[i] - xx;
+		dyld_perp[i] = sqrt( Sqr( dyld[i]) + xx);
+		cout << yld[i];
+		cout << "  " << CorrFact( tgt, orient, i_th, bin, i);
+		cout << "  " << yld_perp[i];
+		cout << endl;
+	}
+	gr7 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr7->Fit( "f1", "RLMQ");
+
+	p0_perp = f1->GetParameter(0);
+	dp0_perp = f1->GetParError(0);
+
+	// Para
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		Double_t xx = CorrFact( tgt, orient, i_th, bin, i);
+		yld_para[i] = yld[i] - xx;
+		dyld_para[i] = sqrt( Sqr( dyld[i]) + xx);
+	}
+	gr8 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr8->Fit( "f1", "RLMQ");
+
+	p0_para = f1->GetParameter(0);
+	dp0_para = f1->GetParError(0);
+	scale = p0_para/p0_perp;
+	dscale = sqrt( Sqr( dp0_para/p0_para)
+			+ Sqr( p0_para*dp0_perp/Sqr( p0_perp)));
+
+	// Scale Perp
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] *= scale;
+		dyld_perp[i] = sqrt( Sqr( dscale*yld_perp[i]) + Sqr( scale*dyld_perp[i]));
+	}
+
+	// Combine Perp and Para
+	min = 0;
+	for ( i = 0; i < 18; i++) {
+		yld[i] = -(yld_para[i] - yld_perp[i])/(yld_para[i] + yld_perp[i]);
+		dyld[i] = 2/Sqr( yld_para[i] + yld_perp[i])*sqrt(
+				Sqr( yld_para[i]*dyld_perp[i]) + Sqr( yld_perp[i]*dyld_para[i]));
+		if ( yld[i] < min) min = yld[i];
+	}
+
+	gr9 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	sprintf( title,"Full #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+			(int)theta[i_th], en[bin]);
+	gr9->SetTitle( title);
+	gr9->SetMarkerColor( 4);
+	gr9->SetLineColor( 4);
+	gr9->SetLineWidth( 2);
+	gr9->SetMarkerStyle( 21);
+	gr9->GetXaxis()->SetTitleOffset( 1.1);
+	gr9->GetYaxis()->SetTitleOffset( 1.4);
+	gr9->GetYaxis()->SetTitleSize( 0.035);
+	gr9->GetXaxis()->SetTitle("#phi (deg)");
+	gr9->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr9->GetXaxis()->SetLabelSize( 0.03);
+	gr9->GetYaxis()->SetLabelSize( 0.03);
+	gr9->GetXaxis()->CenterTitle();
+	gr9->GetYaxis()->CenterTitle();
+
+	// Fit and Draw
+	gr9->Fit( "f2", "RLMQ");
+	c1->cd(3);
+//	gStyle->SetOptFit(0);
+	gr9->Draw( "AP");
+	p0 = f2->GetParameter(0);
+	dp0 = f2->GetParError(0);
+	cout << p0 << " +/- " << dp0 << endl;
+
+	sprintf( title, "#Sigma = %5.3f +/- %5.3f\n", p0, dp0);
+	TPaveLabel *pt2 = new TPaveLabel(0.25,0.15,0.65,0.22, title, "NDC");
+	pt2->SetTextSize(0.4);
+	pt2->SetBorderSize(0);
+	pt2->Draw();
+
+	sprintf( file, "plots/eps/asym_corr_%d_%d.eps", (int)en[bin],
+			(int)theta[i_th]);
+//	c1->Print( file);
+}
+
+//
+// 9) PlotYieldCorr
+//
+// This macro plots the phi yield for a specific target ("full" or "empty"),
+// specific theta, and specific incident photon energy bin, for both hydrogen
+// and carbon missing mass windows and both polarization orientations.
+//
+void PlotYieldCorr( Char_t tgt[8], Int_t i_th, Int_t bin)
+{
+	Int_t i, tch_lo, tch_hi;
+	Double_t cyld[18], dcyld[18], nyld[18], dnyld[18];
+	Char_t mmiss[8], orient[8], title[256];
+
+	c1 = new TCanvas( "c1", "Phi Yield", 200, 10, 800, 500);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 21);
+	c1->GetFrame()->SetBorderSize( 12);
+	c1->Divide(2,1);
+
+	tch_lo = tag_chan_lo[bin];
+	tch_hi = tch_lo + 3;
+
+	// Proton Missing Mass Window
+	strcpy( mmiss, "prot");
+
+	c1->cd(1);
+	// Perp
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	gr1 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	sprintf( title,"#phi Yield for #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+			(int)theta[i_th], en[bin]);
+	gr1->SetTitle( title);
+	gr1->SetMarkerColor( 4);
+	gr1->SetLineColor( 4);
+	gr1->SetLineWidth( 2);
+	gr1->SetMarkerStyle( 21);
+	gr1->GetXaxis()->SetTitleOffset( 1.1);
+	gr1->GetYaxis()->SetTitleOffset( 1.4);
+	gr1->GetYaxis()->SetTitleSize( 0.035);
+	gr1->GetXaxis()->SetTitle("#phi (deg)");
+	gr1->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr1->GetXaxis()->SetLabelSize( 0.03);
+	gr1->GetYaxis()->SetLabelSize( 0.03);
+	gr1->GetXaxis()->CenterTitle();
+	gr1->GetYaxis()->CenterTitle();
+	gr1->SetMinimum( 0);
+	gr1->Draw("AP");
+
+	// Simulated Carbon Yield
+	Double_t tot_yld = 0;
+	Double_t tot_yldc = 0;
+	for ( i = 0; i < 18; i++) {
+		cyld[i] = CorrFact( tgt, orient, i_th, bin, i);
+		dcyld[i] = sqrt( cyld[i]);
+		tot_yld += yld[i];
+		tot_yldc += cyld[i];
+	}
+	cout << " tot = " << tot_yld << " " << tot_yldc << endl;
+
+	gr2 = new TGraphErrors( 18, phi, cyld, dphi, dcyld);
+	gr2->SetMarkerColor( 2);
+	gr2->SetLineColor( 2);
+	gr2->SetLineWidth( 2);
+	gr2->SetMarkerStyle( 21);
+	gr2->Draw("Psame");
+
+	// Corrected Yield
+	Double_t tot_yld = 0;
+	for ( i = 0; i < 18; i++) {
+		nyld[i] = yld[i] - CorrFact( tgt, orient, i_th, bin, i);
+		dnyld[i] = sqrt( Sqr( dyld[i]) + Sqr( dcyld[i]));
+		tot_yld += nyld[i];
+	}
+	cout << " tot = " << tot_yld << endl;
+	gr3 = new TGraphErrors( 18, phi, nyld, dphi, dnyld);
+	gr3->SetMarkerColor( 1);
+	gr3->SetLineColor( 1);
+	gr3->SetLineWidth( 2);
+	gr3->SetMarkerStyle( 21);
+	gr3->Draw("Psame");
+
+	c1->cd(2);
+	// Para
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	gr4 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+//	sprintf( title,"#phi Yield for #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+//			(int)theta[i_th], en[bin]);
+	gr4->SetTitle();
+	gr4->SetMarkerColor( 4);
+	gr4->SetLineColor( 4);
+	gr4->SetLineWidth( 2);
+	gr4->SetMarkerStyle( 21);
+	gr4->GetXaxis()->SetTitleOffset( 1.1);
+	gr4->GetYaxis()->SetTitleOffset( 1.4);
+	gr4->GetYaxis()->SetTitleSize( 0.035);
+	gr4->GetXaxis()->SetTitle("#phi (deg)");
+	gr4->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr4->GetXaxis()->SetLabelSize( 0.03);
+	gr4->GetYaxis()->SetLabelSize( 0.03);
+	gr4->GetXaxis()->CenterTitle();
+	gr4->GetYaxis()->CenterTitle();
+	gr4->SetMinimum( 0);
+	gr4->Draw("AP");
+
+	// Corrected Carbon Yield
+	for ( i = 0; i < 18; i++) {
+		cyld[i] = CorrFact( tgt, orient, i_th, bin, i);
+		dcyld[i] = sqrt( cyld[i]);
+	}
+	gr5 = new TGraphErrors( 18, phi, cyld, dphi, dcyld);
+	gr5->SetMarkerColor( 2);
+	gr5->SetLineColor( 2);
+	gr5->SetLineWidth( 2);
+	gr5->SetMarkerStyle( 21);
+	gr5->Draw("Psame");
+
+	// Corrected Yield
+	for ( i = 0; i < 18; i++) {
+		nyld[i] = yld[i] - CorrFact( tgt, orient, i_th, bin, i);
+		dnyld[i] = sqrt( Sqr( dyld[i]) + Sqr( dcyld[i]));
+	}
+	gr6 = new TGraphErrors( 18, phi, nyld, dphi, dnyld);
+	gr6->SetMarkerColor( 1);
+	gr6->SetLineColor( 1);
+	gr6->SetLineWidth( 2);
+	gr6->SetMarkerStyle( 21);
+	gr6->Draw("Psame");
+
+	sprintf( title, "plots/eps/phi_yld_%d_%d.eps", (int)en[bin],
+			(int)theta[i_th]);
+	c1->Print( title);
+}
+
+//
+// 10) AsymCorrBin
+//
+// This routine calculates the asymmetry, either corrected for carbon
+// contamination or not ("corr" or "uncorr"), for the proton or carbon
+// missing-mass window ("prot" or "carb"), for a specific theta tagger channel
+// bin, but does NOT plot it.  It is needed by the some of the other routines.
+// The theta bins run from 0 to 8.
+//
+// Note, however, currently it makes no sense to choose the options "corr"
+// and "carb" at the same time.
+//
+void AsymCorrBin( Char_t corr[8], Char_t mmiss[8], Int_t i_th, Int_t bin)
+{
+	Int_t i, tch_lo, tch_hi;
+	Double_t yld_perp[18], dyld_perp[18], yld_para[18], dyld_para[18];
+	Double_t p0_perp, dp0_perp, p0_para, dp0_para, scale, dscale;
+	Char_t orient[8], title[256], tgt[8];
+
+	strcpy( tgt, "full");
+
+	tch_lo = tag_chan_lo[bin];
+	tch_hi = tch_lo + 3;
+
+	// Fitting functions
+	TF1 *f1 = new TF1( "f1", "[0]*(1-[1]*cos(2*x*0.01745))", -180, 180);
+	TF1 *f2 = new TF1( "f2", "[0]*cos(2*x*0.01745)", -180, 180);
+
+	// Perp
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		if ( strcmp( corr, "corr") == 0) {
+			Double_t xx = CorrFact( tgt, orient, i_th, bin, i);
+			yld_perp[i] = yld[i] - xx;
+			dyld_perp[i] = sqrt( Sqr( dyld[i]) + xx);
+		}
+		else {
+			yld_perp[i] = yld[i];
+			dyld_perp[i] = dyld[i];
+		}
+	}
+	gr1 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr1->Fit( "f1", "RLMQ");
+	p0_perp = f1->GetParameter(0);
+	dp0_perp = f1->GetParError(0);
+
+	// Para
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	for ( i = 0; i < 18; i++) {
+		if ( strcmp( corr, "corr") == 0) {
+			Double_t xx = CorrFact( tgt, orient, i_th, bin, i);
+			yld_para[i] = yld[i] - xx;
+			dyld_para[i] = sqrt( Sqr( dyld[i]) + xx);
+		}
+		else {
+			yld_para[i] = yld[i];
+			dyld_para[i] = dyld[i];
+		}
+	}
+	gr2 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr2->Fit( "f1", "RLMQ");
+	p0_para = f1->GetParameter(0);
+	dp0_para = f1->GetParError(0);
+
+	scale = p0_para/p0_perp;
+	dscale = sqrt( Sqr( dp0_para/p0_para)
+			+ Sqr( p0_para*dp0_perp/Sqr( p0_perp)));
+
+	// Scale Perp
+	for ( i = 0; i < 18; i++) {
+		yld_perp[i] *= scale;
+		dyld_perp[i] = sqrt( Sqr( dscale*yld_perp[i]) + Sqr( scale*dyld_perp[i]));
+	}
+
+	// Combine Perp and Para
+	for ( i = 0; i < 18; i++) {
+		yld[i] = -(yld_para[i] - yld_perp[i])/(yld_para[i] + yld_perp[i]);
+		dyld[i] = 2/Sqr( yld_para[i] + yld_perp[i])*sqrt(
+				Sqr( yld_para[i]*dyld_perp[i]) + Sqr( yld_perp[i]*dyld_para[i]));
+	}
+
+	// Graph and fit without drawing
+	gr = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	gr->Fit( "f2", "RLMQ");
+
+	asym[i_th] = f2->GetParameter(0)/pol[bin];
+	dasym[i_th] = f2->GetParError(0)/pol[bin];
+	chisq[i_th] = f2->GetChisquare()/17;
+
+	cout << "Eg = ";
+	cout << en[bin];
+	cout << "  Th = ";
+	cout << theta[i_th];
+	cout << "  Asym = ";
+	cout << asym[i_th];
+	cout << " +/- " << dasym[i_th];
+	cout << "  ChiSq = ";
+	cout << chisq[i_th];
+	cout << endl;
+}
+
+//
+// 11) AsymCorrOut
+//
+// This macro uses AsymCorrBin to plot asymmetries, either corrected or
+// uncorrected ("corr" or "uncorr"), for either proton or carbon missing mass
+// window ("prot" or "carb"), as a function of theta and tagger energy bin.
+// The plots it outputs are good enough to show in talks.  The tagger energy
+// bins run from 0 to 12.
+//
+// Note, however, currently it makes no sense to choose the options "corr"
+// and "carb" at the same time.
+//
+void AsymCorrOut( Char_t corr[8], Char_t mmiss[8], Int_t bin)
+{
+	Int_t i_th, e_out;
+	Char_t file[64], title[128];
+
+	e_out = (int)(en[bin]+0.5);
+
+	if ( ( bin < 2) || ( bin > 12)) {
+		fprintf( stderr, "ERROR: bin number must be 0-12\n");
+		break;
+	}
+	
+	for ( i_th = 0; i_th <= 8; i_th++) AsymCorrBin( corr, mmiss, i_th, bin);
+	sprintf( file, "xs/asym/asym_%s_%s_%d.out", corr, mmiss, e_out);
+	ofstream outFile( file);
+	if ( !outFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	for ( i_th = 0; i_th <= 8; i_th++) 
+	{
+		outFile << theta[i_th];
+		outFile << "  " << asym[i_th];
+		outFile << "  " << dasym[i_th];
+		outFile << "  " << chisq[i_th];
+		outFile << endl ;
+	}
+	outFile.close();
+
+	c1 = new TCanvas( "c1", "Asymmetry", 200, 10, 700, 500);
+//	c1->SetFillColor( 38);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 21);
+	c1->GetFrame()->SetBorderSize( 12);
+
+	gr = new TGraphErrors( 9, theta, asym, dtheta, dasym);
+	sprintf( title,"Asymmetry for E_{#gamma} = %5.1f MeV", en[bin]);
+	gr->SetTitle( title);
+	gr->SetMarkerColor( 4);
+	gr->SetMarkerStyle( 21);
+	gr->SetMarkerSize( 1.2);
+	gr->SetLineColor(4);
+	gr->SetLineWidth(2);
+	gr->GetXaxis()->SetTitleOffset( 1.1);
+	gr->GetYaxis()->SetTitleOffset( 0.8);
+	gr->GetYaxis()->SetTitleSize( 0.05);
+	gr->GetXaxis()->SetTitle("#theta (deg)");
+	gr->GetYaxis()->SetTitle("#Sigma(#theta)");
+	gr->GetXaxis()->SetLabelSize( 0.03);
+	gr->GetYaxis()->SetLabelSize( 0.03);
+	gr->GetXaxis()->SetRangeUser(0,180);
+	gr->GetXaxis()->CenterTitle();
+	gr->GetYaxis()->CenterTitle();
+	gr->Draw( "AP");
+
+	l1 = new TLine(0,0,180,0);
+	l1->SetLineStyle(1);
+	l1->SetLineWidth(1);
+	l1->Draw();
+
+	sprintf( file, "plots/eps/asym_%s_%d.eps", corr, e_out);
+//	c1->Print( file);
+}
+
+//
+// 12) AsymCorrAll
+//
+// This macro uses AsymCorrBin to plot asymmetries as a function of theta for
+// uncorrected and corrected proton (on the same plot) and tagger energy bin.
+// The plots it outputs are good enough to show in talks.  The tagger energy
+// bins run from 2 to 6.
+//
+void AsymCorrAll( Int_t bin)
+{
+	Int_t i_th;
+	Double_t min, max;
+	Char_t corr[8], mmiss[8], file[64], title[128];
+
+	if ( ( bin < 2) || ( bin > 6)) {
+		fprintf( stderr, "ERROR: bin number must be 2-6\n");
+		break;
+	}
+
+	strcpy( mmiss, "prot");
+	
+	c1 = new TCanvas( "c1", "Asymmetry", 200, 10, 700, 500);
+//	c1->SetFillColor( 38);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 21);
+	c1->GetFrame()->SetBorderSize( 12);
+
+	// First uncorrected proton
+	strcpy( tgt, "uncorr");
+	for ( i_th = 0; i_th <= 8; i_th++) AsymCorrBin( corr, mmiss, i_th, bin);
+
+	gr = new TGraphErrors( 9, theta, asym, dtheta, dasym);
+	sprintf( title,"Asymmetry for E_{#gamma} = %5.1f MeV", en[bin]);
+	gr->SetTitle( title);
+	gr->SetMarkerColor( 2);
+	gr->SetMarkerStyle( 21);
+	gr->SetMarkerSize( 1.2);
+	gr->SetLineColor(2);
+	gr->SetLineWidth(2);
+	gr->GetXaxis()->SetTitleOffset( 1.1);
+	gr->GetYaxis()->SetTitleOffset( 0.8);
+	gr->GetYaxis()->SetTitleSize( 0.05);
+	gr->GetXaxis()->SetTitle("#theta (deg)");
+	gr->GetYaxis()->SetTitle("#Sigma(#theta)");
+	gr->GetXaxis()->SetLabelSize( 0.03);
+	gr->GetYaxis()->SetLabelSize( 0.03);
+	gr->GetXaxis()->SetRangeUser(0,180);
+	gr->GetXaxis()->CenterTitle();
+	gr->GetYaxis()->CenterTitle();
+	min = -0.5;
+	max = 1.5;
+	gr->GetYaxis()->SetRangeUser(min,max);
+	gr->Draw( "AP");
+
+	// Now carbon
+	strcpy( tgt, "carb");
+	for ( i_th = 0; i_th <= 8; i_th++) AsymCorrBin( corr, mmiss, i_th, bin);
+
+	gr2 = new TGraphErrors( 9, theta, asym, dtheta, dasym);
+	gr2->SetMarkerColor( 4);
+	gr2->SetMarkerStyle( 21);
+	gr2->SetMarkerSize( 1.2);
+	gr2->SetLineColor(4);
+	gr2->SetLineWidth(2);
+	gr2->Draw( "Psame");
+
+	// Now corrected proton
+	strcpy( tgt, "corr");
+	for ( i_th = 0; i_th <= 8; i_th++) AsymCorrBin( corr, mmiss, i_th, bin);
+
+	gr3 = new TGraphErrors( 9, theta, asym, dtheta, dasym);
+	gr3->SetMarkerColor( 1);
+	gr3->SetMarkerStyle( 21);
+	gr3->SetMarkerSize( 1.2);
+	gr3->SetLineColor(1);
+	gr3->SetLineWidth(2);
+	gr3->Draw( "Psame");
+
+	l1 = new TLine(0,0,180,0);
+	l1->SetLineStyle(1);
+	l1->SetLineWidth(1);
+	l1->Draw();
+
+	sprintf( file, "plots/eps/asymmetry_%d.eps", (int)en[bin]);
+	c1->Print( file);
+}
+
+//
+// 13) AsymCorrBoth
+//
+// This macro uses AsymCorrBin to plot asymmetries as a function of theta for
+// uncorrected proton and carbon (on the same plot) and tagger energy bin.
+// The plots it outputs are good enough to show in talks.  The tagger energy
+// bins run from 2 to 6.
+//
+void AsymCorrBoth( Int_t bin)
+{
+	Int_t i_th;
+	Double_t min, max;
+	Char_t corr[8], mmiss[8], file[64], title[128];
+
+	if ( ( bin < 2) || ( bin > 6)) {
+		fprintf( stderr, "ERROR: bin number must be 2-6\n");
+		break;
+	}
+	
+	c1 = new TCanvas( "c1", "Asymmetry", 200, 10, 700, 500);
+//	c1->SetFillColor( 38);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 21);
+	c1->GetFrame()->SetBorderSize( 12);
+
+	// First uncorrected proton
+	strcpy( corr, "uncorr");
+	strcpy( mmiss, "prot");
+	for ( i_th = 0; i_th <= 8; i_th++) AsymCorrBin( corr, mmiss, i_th, bin);
+
+	gr = new TGraphErrors( 9, theta, asym, dtheta, dasym);
+	sprintf( title,"Asymmetry for E_{#gamma} = %5.1f MeV", en[bin]);
+	gr->SetTitle( title);
+	gr->SetMarkerColor( 4);
+	gr->SetMarkerStyle( 20);
+	gr->SetMarkerSize( 1.2);
+	gr->SetLineColor(4);
+	gr->SetLineWidth(2);
+	gr->GetXaxis()->SetTitleOffset( 1.1);
+	gr->GetYaxis()->SetTitleOffset( 0.8);
+	gr->GetYaxis()->SetTitleSize( 0.05);
+	gr->GetXaxis()->SetTitle("#theta (deg)");
+	gr->GetYaxis()->SetTitle("#Sigma(#theta)");
+	gr->GetXaxis()->SetLabelSize( 0.03);
+	gr->GetYaxis()->SetLabelSize( 0.03);
+	gr->GetXaxis()->SetRangeUser(0,180);
+	gr->GetXaxis()->CenterTitle();
+	gr->GetYaxis()->CenterTitle();
+	min = -0.5;
+	max = 1.5;
+	gr->GetYaxis()->SetRangeUser(min,max);
+	gr->Draw( "AP");
+
+	// Now carbon
+	strcpy( corr, "uncorr");
+	strcpy( mmiss, "carb");
+	for ( i_th = 0; i_th <= 8; i_th++) AsymCorrBin( corr, mmiss, i_th, bin);
+
+	gr2 = new TGraphErrors( 9, theta, asym, dtheta, dasym);
+	gr2->SetMarkerColor( 2);
+	gr2->SetMarkerStyle( 21);
+	gr2->SetMarkerSize( 1.2);
+	gr2->SetLineColor(2);
+	gr2->SetLineWidth(2);
+	gr2->Draw( "Psame");
+
+	l1 = new TLine(0,0,180,0);
+	l1->SetLineStyle(1);
+	l1->SetLineWidth(1);
+	l1->Draw();
+
+	// Legend
+	pt = new TLegend(0.2,0.135,0.4,0.235);
+	pt->SetFillColor(0);
+	pt->SetBorderSize(0);
+	pt->SetTextSize(0.04);
+	pt->AddEntry( gr,"Proton","p");
+	pt->AddEntry( gr2,"Carbon","p");
+	pt->Draw();
+
+	sprintf( file, "plots/eps/asym_both_%d.eps", (int)en[bin]);
+	c1->Print( file);
+}
+
+//
+// 14) AsymCorrComp
+//
+// All this macro does is uses the asymmetry data from a file and plots it
+// along with the data from Schmidt.  It can either do so for incident photon
+// energy bins 4 or 5, and no others.
+//
+void AsymCorrComp( Int_t bin)
+{
+	Int_t th, ct, i;
+	Double_t x, dx, max;
+	Double_t xx[1], yy[1], dxx[1], dyy[1];
+	Double_t x1, y1, x2, y2, junk;
+	Double_t as[10], das[10];
+	Char_t file[64], title[128];
+
+	c1 = new TCanvas( "c1", "Asymmetry", 200, 10, 700, 500);
+//	c1->SetFillColor( 38);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 21);
+	c1->GetFrame()->SetBorderSize( 12);
+
+	if ( ( bin < 4) || ( bin > 5)) {
+		fprintf( stderr, "ERROR: bin number must be 4 or 5\n");
+		break;
+	}
+	
+	// Read in our results
+	sprintf( file, "xs/asym/asym_corr_%d.out", (int)en[bin]);
+	ifstream inFile( file);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << file;
+		cout << endl;
+		break;
+	}
+	i = 0;
+	max = 0;
+	while( !inFile.eof()) {
+		inFile >> th >> x >> dx >> junk;
+		as[i] = x;
+		if ( max < as[i]) max = as[i];
+		das[i++] = dx;
+	}
+	inFile.close();
+	ct = i-1;
+
+	// Plot our results
+	gr = new TGraphErrors( ct, theta, as, dtheta, das);
+	sprintf( title,"Asymmetry for E_{#gamma} = %5.1f MeV", en[bin]);
+	gr->SetTitle( title);
+	gr->SetMarkerColor( 4);
+	gr->SetMarkerStyle( 21);
+	gr->SetMarkerSize( 1.2);
+	gr->SetLineColor(4);
+	gr->SetLineWidth(2);
+	gr->GetXaxis()->SetTitleOffset( 1.1);
+	gr->GetYaxis()->SetTitleOffset( 0.8);
+	gr->GetYaxis()->SetTitleSize( 0.05);
+	gr->GetXaxis()->SetTitle("#theta (deg)");
+	gr->GetYaxis()->SetTitle("#Sigma(#theta)");
+	gr->GetXaxis()->SetLabelSize( 0.03);
+	gr->GetYaxis()->SetLabelSize( 0.03);
+	gr->GetXaxis()->SetRangeUser(0,180);
+	gr->GetXaxis()->CenterTitle();
+	gr->GetYaxis()->CenterTitle();
+	max *= 1.4;
+	gr->GetYaxis()->SetRangeUser(-max,max);
+	gr->Draw( "AP");
+
+	l1 = new TLine(0,0,180,0);
+	l1->SetLineStyle(1);
+	l1->SetLineWidth(1);
+	l1->Draw();
+
+	// Read in Axel's results
+	sprintf( file, "xs/previous/asym_160.dat");
+	ifstream inFile( file);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << file;
+		cout << endl;
+		break;
+	}
+	i = 0;
+	while( !inFile.eof()) {
+		inFile >> th >> x >> dx;
+		as[i] = x;
+		das[i++] = dx;
+	}
+	inFile.close();
+	ct = i-1;
+
+	// Plot Axel's results
+	gr1 = new TGraphErrors( ct, theta, as, dtheta, das);
+	gr1->SetMarkerColor( 2);
+	gr1->SetMarkerSize( 1.2);
+	gr1->SetLineWidth( 2);
+	gr1->SetLineColor( 2);
+	gr1->SetMarkerStyle( 20);
+	gr1->Draw( "Psame");
+
+	// Legend
+	pt = new TLegend(0.2,0.2,0.5,0.3);
+	pt->SetFillColor(0);
+	pt->SetBorderSize(0);
+	pt->SetTextSize(0.04);
+	pt->AddEntry( gr,"This Work","p");
+	pt->AddEntry( gr1,"Schmidt - TAPS","p");
+	pt->Draw();
+
+	sprintf( file, "plots/eps/asym_comp_%d.eps", (int)en[bin]);
+	c1->Print( file);
+}
+
+//
+// 15) CorrFact
+//
+// This macro calculates the correction factor for the carbon contamination.
+//
+Double_t CorrFact( Char_t tgt[8], Char_t orient[8], Int_t tbin, Int_t ebin,
+		Int_t ph_bin)
+{
+	Int_t s1;
+	Double_t fact, ap, ac;
+
+	if ( strcmp( orient, "perp") == 0) s1 = 1;
+	else s1 = -1;
+
+	if ( ebin == 2) {
+		ap = 0.9089;
+	}
+	else if ( ebin == 3) {
+		ap = 0.8816;
+	}
+	else if ( ebin == 4) {
+		ap = 0.8567;
+	}
+	else if ( ebin == 5) {
+		ap = 0.8482;
+	}
+	else if ( ebin == 6) {
+		ap = 0.8164;
+	}
+	ac = 1 - ap;
+
+	if ( strcmp( tgt, "full") == 0)
+		fact = carbcon[ebin][tbin]*(1 + s1*pol[ebin]*cos(2*phi[ph_bin]*kD2R));
+	else
+		fact = carbcon[ebin][tbin]/ac*(1 + s1*pol[ebin]*cos(2*phi[ph_bin]*kD2R));
+	fact *= BinYield( tgt, ebin)/18;
+	fact /= 2;		// This last factor is because the counts get divided into
+						// perp and parallel, whereas the ratio doesn't take this
+						// into account
+
+//	cout << ebin;
+//	cout << " " << tbin;
+//	cout << " " << ph_bin;
+//	cout << " " << carbcon[ebin][tbin];
+//	cout << " " << carbcon[ebin][tbin]/ac;
+//	cout << " " << s1;
+//	cout << " " << pol[ebin];
+//	cout << " " << phi[ph_bin];
+//	cout << " " << BinYield( tgt, ebin)/18;
+//	cout << " " << fact;
+//	cout << endl;
+
+	return( fact);
+}
+
+//
+// 16) BinYield
+//
+// This macro calculates the total yield in the proton missing mass window for
+// a specific energy and target ("full" or "empty") for use with CorrFact.
+//
+Double_t BinYield( Char_t tgt[8], Int_t bin) 
+{
+	Int_t i, xmin, xmax, ymin, ymax, zmin, zmax;
+	Int_t chan, chan_lo, chan_hi;
+	Double_t Tgg;
+	Double_t theta_lo, theta_hi, emin, emax;
+	Double_t yield_p, yield_r, yield, dyield;
+
+	theta_lo = 0;
+	theta_hi = 180;
+	emin = Tgg;
+	emax = 180;
+	chan_lo = tag_chan_lo[bin];
+	chan_hi = chan_lo + 3;
+
+	chan = chan_lo;
+	Tgg = Tgg_Min( qT_max(energy[chan], kMP_MEV, kMPI0_MEV), kMPI0_MEV)/kD2R;
+
+	GetRatio( chan_lo, chan_hi);
+
+	xmin = h_pr_f->GetXaxis()->FindBin( theta_lo);
+	xmax = h_pr_f->GetXaxis()->FindBin( theta_hi);
+	ymin = h_pr_f->GetYaxis()->FindBin( emin);
+	ymax = h_pr_f->GetYaxis()->FindBin( emax);
+	zmin = h_pr_f->GetZaxis()->FindBin( chan_lo);
+	zmax = h_pr_f->GetZaxis()->FindBin( chan_hi);
+
+	// Full
+	if ( strcmp( tgt, "full") == 0) {
+		yield_p = h_pr_f->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+		yield_r = h_ra_f->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	}
+	else if ( strcmp( tgt, "empty") == 0) {
+		yield_p = h_pr_e->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+		yield_r = h_ra_e->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	}
+	yield = yield_p - pa_rat*yield_r;
+
+//	cout << yield << endl;
+	return( yield);
+
+}
+
+//
+// 17) PlotYieldCarb
+//
+// This macro plots the phi yield for a specific target ("full" or "empty"),
+// specific theta, and specific incident photon energy bin, for both hydrogen
+// and carbon missing mass windows and both polarization orientations.
+//
+void PlotYieldCarb( Int_t i_th, Int_t bin)
+{
+	Int_t i, tch_lo, tch_hi;
+	Double_t cyld[18], dcyld[18], nyld[18], dnyld[18];
+	Double_t tot_yld, tot_yldc;
+	Char_t mmiss[8], orient[8], title[256], tgt[8];
+
+	c1 = new TCanvas( "c1", "Phi Yield", 200, 10, 800, 500);
+	c1->SetGrid();
+	c1->GetFrame()->SetFillColor( 21);
+	c1->GetFrame()->SetBorderSize( 12);
+	c1->Divide(2,1);
+
+	tch_lo = tag_chan_lo[bin];
+	tch_hi = tch_lo + 3;
+
+	// Target Empty and Proton Missing Mass Window
+	strcpy( tgt, "empty");
+	strcpy( mmiss, "prot");
+
+	c1->cd(1);
+	// Perp
+	cout << "PERP" << endl;
+	strcpy( orient, "perp");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	gr1 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+	sprintf( title,"#phi Yield for #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+			(int)theta[i_th], en[bin]);
+	gr1->SetTitle( title);
+	gr1->SetMarkerColor( 4);
+	gr1->SetLineColor( 4);
+	gr1->SetLineWidth( 2);
+	gr1->SetMarkerStyle( 21);
+	gr1->GetXaxis()->SetTitleOffset( 1.1);
+	gr1->GetYaxis()->SetTitleOffset( 1.4);
+	gr1->GetYaxis()->SetTitleSize( 0.035);
+	gr1->GetXaxis()->SetTitle("#phi (deg)");
+	gr1->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr1->GetXaxis()->SetLabelSize( 0.03);
+	gr1->GetYaxis()->SetLabelSize( 0.03);
+	gr1->GetXaxis()->CenterTitle();
+	gr1->GetYaxis()->CenterTitle();
+	gr1->SetMinimum( 0);
+	gr1->Draw("AP");
+
+	// Simulated Carbon Yield
+	tot_yld = 0;
+	tot_yldc = 0;
+	for ( i = 0; i < 18; i++) {
+		cyld[i] = CorrFact( tgt, orient, i_th, bin, i);
+		dcyld[i] = sqrt( cyld[i]);
+		tot_yld += yld[i];
+		tot_yldc += cyld[i];
+//		cout << " " << i;
+//		cout << " " << yld[i];
+//		cout << " " << cyld[i];
+//		cout << endl;
+	}
+	cout << " perp tot = " << tot_yld << " " << tot_yldc << endl;
+
+	gr2 = new TGraphErrors( 18, phi, cyld, dphi, dcyld);
+	gr2->SetMarkerColor( 2);
+	gr2->SetLineColor( 2);
+	gr2->SetLineWidth( 2);
+	gr2->SetMarkerStyle( 21);
+	gr2->Draw("Psame");
+
+	c1->cd(2);
+	// Para
+	cout << "PARA" << endl;
+	strcpy( orient, "para");
+	GetYield( tgt, mmiss, orient, i_th+1, tch_lo, tch_hi);
+	gr4 = new TGraphErrors( 18, phi, yld, dphi, dyld);
+//	sprintf( title,"#phi Yield for #Theta = %3d deg    E_{#gamma} = %5.1f MeV",
+//			(int)theta[i_th], en[bin]);
+	gr4->SetTitle();
+	gr4->SetMarkerColor( 4);
+	gr4->SetLineColor( 4);
+	gr4->SetLineWidth( 2);
+	gr4->SetMarkerStyle( 21);
+	gr4->GetXaxis()->SetTitleOffset( 1.1);
+	gr4->GetYaxis()->SetTitleOffset( 1.4);
+	gr4->GetYaxis()->SetTitleSize( 0.035);
+	gr4->GetXaxis()->SetTitle("#phi (deg)");
+	gr4->GetYaxis()->SetTitle("Y(#phi) (counts)");
+	gr4->GetXaxis()->SetLabelSize( 0.03);
+	gr4->GetYaxis()->SetLabelSize( 0.03);
+	gr4->GetXaxis()->CenterTitle();
+	gr4->GetYaxis()->CenterTitle();
+	gr4->SetMinimum( 0);
+	gr4->Draw("AP");
+
+	// Corrected Carbon Yield
+	tot_yld = 0;
+	tot_yldc = 0;
+	for ( i = 0; i < 18; i++) {
+		cyld[i] = CorrFact( tgt, orient, i_th, bin, i);
+		dcyld[i] = sqrt( cyld[i]);
+		tot_yld += yld[i];
+		tot_yldc += cyld[i];
+//		cout << " " << i;
+//		cout << " " << yld[i];
+//		cout << " " << cyld[i];
+//		cout << endl;
+	}
+	cout << " para tot = " << tot_yld << " " << tot_yldc << endl;
+
+	gr5 = new TGraphErrors( 18, phi, cyld, dphi, dcyld);
+	gr5->SetMarkerColor( 2);
+	gr5->SetLineColor( 2);
+	gr5->SetLineWidth( 2);
+	gr5->SetMarkerStyle( 21);
+	gr5->Draw("Psame");
+
+	sprintf( title, "plots/eps/phi_yld_carb_%d_%d.eps", (int)en[bin],
+			(int)theta[i_th]);
+//	c1->Print( title);
+}

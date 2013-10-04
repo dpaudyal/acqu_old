@@ -1,0 +1,829 @@
+// Macro TotXS.C
+//
+// This macro calculates the total cross section from
+// the proton missing mass as a function of tagger channel
+// converted to incident photon energy.
+//
+// NOTE:  The tagger channels run from 0 to 283.
+//
+// DLH		08.08.2006		First "New" Version
+// DLH		14.09.2006		Switched everything to Root TH3D from jtagg
+// DLH		16.11.2006		Subtracting empty-target data as well
+// DLH		01.12.2006		Adding subtraction options: "subt", "full", "empty"
+//
+
+gROOT->Reset();
+
+#include "includes/physics.h"
+#include "includes/functions.h"
+
+Int_t egamma[284];
+Double_t pa_ratio[284], etag[284], d_etag[284], edet[284], d_edet[284];
+Double_t xs[284], dxs[284], en[284], den[284], energy[284];
+
+// Target Full
+TFile full( "histograms/ARH_full.root");
+TH3D *h_pr_f = (TH3D*)full.Get( "THits_TGG_ThetaCM_P");
+TH3D *h_ra_f = (TH3D*)full.Get( "THits_TGG_ThetaCM_R");
+TH1D *h_sc_f = (TH1D*)full.Get( "SumScalers12to363");
+
+// Carbon
+TH3D *c_pr_f = (TH3D*)full.Get( "THits_TGG_ThetaCM_C_P");
+TH3D *c_ra_f = (TH3D*)full.Get( "THits_TGG_ThetaCM_C_R");
+
+// Target Empty
+TFile empty( "histograms/ARH_empty.root");
+TH3D *h_pr_e = (TH3D*)empty.Get( "THits_TGG_ThetaCM_P");
+TH3D *h_ra_e = (TH3D*)empty.Get( "THits_TGG_ThetaCM_R");
+TH1D *h_sc_e = (TH1D*)empty.Get( "SumScalers12to363");
+
+// This is valid for run 1730, also exclude channels 0-19.
+Int_t broken_ladd_ch[] = { 29, 30, 31, 54, 55, 56, 148, 149, 150, 229, 230,
+	231, 240, 241, -1};
+
+void InitXS()
+{
+	Int_t i, eg;
+	Double_t junk, eff, deff;
+	Char_t filename[64];
+
+	strcpy( filename, "xs/tageng450.out");
+	ifstream inFile( filename);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	while( !inFile.eof()) {
+		inFile >> i >> junk >> junk >> junk >> eff;
+		energy[i] = eff;
+		egamma[i] = (int)(eff + 0.5);
+	}
+	inFile.close();
+
+	// Random Subtraction Ratios
+	// NOTE: This needs to be done for both empty and full,
+	//			but I am going to leave it for now.
+	strcpy( filename, "xs/chan_subt/chan_subt.out");
+	ifstream inFile( filename);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	while( !inFile.eof()) {
+		inFile >> i >> eff;
+		pa_ratio[i] = eff;
+	}
+	inFile.close();
+
+	// Detection Efficiencies
+	for ( i = 0; i < 284; i++) {
+		if ( i >= 252) {
+			edet[i] = 0.8;
+			d_edet[i] = 0.01;
+		}
+		else {
+			edet[i] = -1;
+			d_edet[i] = -1;
+		}
+	}
+	strcpy( filename, "xs/eff/edet_tot.out");
+	ifstream inFile( filename);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	while( !inFile.eof()) {
+		inFile >> eg >> eff >> deff;
+		for ( i = 0; i < 284; i++) {
+			if ( eg == egamma[i]) {
+				edet[i] = eff;
+				d_edet[i] = deff;
+				break;
+			}
+		}
+	}
+	inFile.close();
+	for ( i = 0; i < 284; i++) {
+		if ( egamma[i] == egamma[i+1]) {
+			edet[i+1] = edet[i];
+			d_edet[i+1] = d_edet[i];
+		}
+	}
+
+	// Tagging efficiencies
+	strcpy( filename, "xs/eff/tag_eff.out");
+	ifstream inFile( filename);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	while( !inFile.eof()) {
+		inFile >> i >> junk >> junk >> eff >> deff;
+		if ( i == 284) break;
+		if ( eff != 0) {
+			etag[i] = eff;
+			d_etag[i] = deff;
+		}
+		else {
+			etag[i] = -1;
+			d_etag[i] = -1;
+		}
+	}
+	inFile.close();
+
+	Int_t* lch = broken_ladd_ch;
+	while ( *lch != -1){ 
+		h_sc_f->SetBinContent( *lch, 0);
+		h_sc_e->SetBinContent( *lch, 0);
+		lch++;
+	}
+
+}
+
+void TotXS( Char_t subt_str[8])
+{
+	Int_t i, count, min, max, chan;
+	Double_t eng, x, dx;
+	Double_t enn[300], denn[300], xsn[300], dxsn[300];
+	Double_t eng1[50], deng1[50], xs1[50], dxs1[50];
+	Double_t xx[10], yy[10];
+	Char_t filename[64];
+
+	c1 = new TCanvas( "c1", "Total Cross Sections", 200, 10, 700, 500);
+//   c1->SetFillColor( 42);
+//   c1->SetFillColor( 38);
+   c1->SetGrid();
+   c1->GetFrame()->SetFillColor( 21);
+   c1->GetFrame()->SetBorderSize( 12);
+
+	min = 21;
+	max = 283;
+
+	strcpy( filename, "xs/tot_xs/tot_xs.out");
+	ofstream outFile( filename);
+	if ( !outFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	count = 0;
+	for ( chan = min; chan <= max; chan++) {
+		ChanXS( subt_str, chan);
+		enn[count] = en[chan];
+		denn[count] = 0;
+		xsn[count] = xs[chan];
+		dxsn[count] = dxs[chan];
+		outFile << enn[count] << "  " << xsn[count] << "  " << dxsn[count++]
+			<< endl ;
+	}
+	outFile.close();
+
+	// Plot Results
+	gr = new TGraphErrors( count-1, enn, xsn, denn, dxsn);
+	gr->SetTitle( "Preliminary #gammap#rightarrowp#pi^{0} Total Cross Section");
+//	gr->SetMarkerColor( 4);
+	gr->SetMarkerStyle( 20);
+	gr->SetMarkerSize( 1.0);
+	gr->SetLineWidth( 3);
+	gr->GetXaxis()->SetTitleOffset( 1.1);
+	gr->GetYaxis()->SetTitleOffset( 1.0);
+	gr->GetYaxis()->SetTitleSize( 0.05);
+	gr->GetXaxis()->SetTitle("E_{#gamma} (MeV)");
+	gr->GetYaxis()->SetTitle("#sigma (#mub)");
+	gr->GetXaxis()->SetLabelSize( 0.03);
+	gr->GetYaxis()->SetLabelSize( 0.03);
+	gr->GetXaxis()->CenterTitle();
+	gr->GetYaxis()->CenterTitle();
+	gr->GetXaxis()->SetRangeUser(100,402);
+	gr->SetMaximum(400);
+	gr->SetMinimum(-5);
+	gr->Draw( "AP");
+
+	pt = new TLegend(0.6,0.2,0.85,0.4);
+	pt->SetFillColor(0);
+	pt->SetBorderSize(0);
+	pt->SetTextSize(0.04);
+
+	pt->AddEntry( gr, "This Work", "p");
+
+	l2 = new TLine(130,-0.5,130,15);
+	l2->SetLineStyle(1);
+	l2->SetLineWidth(2);
+	l2->Draw();
+	l3 = new TLine(130,15,180,15);
+	l3->SetLineStyle(1);
+	l3->SetLineWidth(2);
+	l3->Draw();
+	l4 = new TLine(180,-0.5,180,15);
+	l4->SetLineStyle(1);
+	l4->SetLineWidth(2);
+	l4->Draw();
+	l5 = new TLine(130,-0.5,180,-0.5);
+	l5->SetLineStyle(1);
+	l5->SetLineWidth(2);
+	l5->Draw();
+
+	l6 = new TLine(130,0,117,185);
+	l6->SetLineStyle(2);
+	l6->SetLineWidth(2);
+	l6->Draw();
+	l7 = new TLine(180,0,250,185);
+	l7->SetLineStyle(2);
+	l7->SetLineWidth(2);
+	l7->Draw();
+
+	// Roman's Data
+	i = 0;
+	strcpy( filename, "xs/previous/tot_xs_rl.dat");
+	ifstream inFile( filename);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	while( !inFile.eof()) {
+		inFile >> eng >> x >> dx;
+		eng1[i] = eng;
+		deng1[i] = 0;
+		xs1[i] = x;
+		dxs1[i++] = dx;
+	}
+	inFile.close();
+
+	rl = new TGraphErrors( i-1, eng1, xs1, deng1, dxs1);
+	rl->SetMarkerColor( 2);
+	rl->SetMarkerStyle( 21);
+	rl->SetMarkerSize( 1.0);
+	rl->SetLineWidth( 3);
+	rl->SetLineColor( 2);
+	rl->Draw("P");
+
+	pt->AddEntry( rl, "Leukel - TAPS", "p");
+	pt->Draw();
+
+	sp1 = new TPad( "sp1", "Threshold ", 0.13, 0.475, 0.51, 0.875);
+	sp1->Draw();
+//	sp1->SetFillColor( 40);
+	sp1->SetFillColor( 29);
+	sp1->SetGrid();
+	sp1->GetFrame()->SetFillColor( 21);
+	sp1->GetFrame()->SetBorderSize( 12);
+	sp1->SetRightMargin(0.01);
+	sp1->SetLeftMargin(0.04);
+	sp1->SetBottomMargin(0.05);
+	sp1->cd();
+	gr2 = new TGraphErrors( count, en, xs, den, dxs);
+//	gr2->SetTitle( "Threshold Region");
+	gr2->SetTitle();
+//	gr2->SetMarkerColor( 4);
+	gr2->SetMarkerStyle( 20);
+	gr2->SetMarkerSize( 1.0);
+	gr2->SetLineWidth( 3);
+	gr2->GetXaxis()->SetRangeUser(130,170);
+	gr2->SetMaximum(5.5);
+	gr2->SetMinimum(-0.5);
+	gr2->Draw( "AP");
+	l1 = new TLine(145,-0.5,145,5.5);
+	l1->SetLineStyle(2);
+	l1->SetLineColor(2);
+	l1->SetLineWidth(3);
+	l1->Draw();
+
+	// Axel's Data
+	i = 0;
+	strcpy( filename, "xs/previous/tot_xs_as.dat");
+	ifstream inFile( filename);
+	if ( !inFile.is_open()) {
+		cout << "Error opening file ";
+		cout << filename;
+		cout << endl;
+		break;
+	}
+	while( !inFile.eof()) {
+		inFile >> eng >> x >> dx;
+		eng1[i] = eng;
+		deng1[i] = 0;
+		xs1[i] = x;
+		dxs1[i++] = dx;
+	}
+	inFile.close();
+	as = new TGraphErrors( i-1, eng1, xs1, deng1, dxs1);
+	as->SetMarkerColor( 2);
+	as->SetMarkerStyle( 22);
+	as->SetMarkerSize( 1.0);
+	as->SetLineWidth(3);
+	as->SetLineColor(2);
+	as->Draw("P");
+
+	pt->AddEntry( as, "Schmidt - TAPS", "p");
+
+	TPaveText *pt1 = new TPaveText(145.5,4.2,162.5,4.9);
+	pt1->AddText(" p#pi^{0} Threshold");
+	pt1->SetBorderSize(0);
+	pt1->SetFillColor(29);
+	pt1->Draw();
+
+	c1->Print( "plots/eps/xstot.eps");
+}
+
+void ChanXS( Char_t subt_str[8], Int_t chan) 
+{
+	Int_t i, xmin, xmax, ymin, ymax, zmin, zmax;
+	Double_t Tgg, Tgg_c12;
+	Double_t t, fact, emin, emax, sum, n_yld, dn_yld;
+	Double_t theta_lo, theta_hi, emin, emax, chan_lo, chan_hi;
+	Double_t yield_p, yield_r;
+	Double_t fyield, dfyield, fscalers, dfscalers;
+	Double_t eyield, deyield, escalers, descalers;
+	Double_t r_fe, yield, dyield;
+
+	t = 2.02951e23;	// This is in nuclei/cm^2 from VK
+
+	// The 1e30 converts cm^2 to microbarn.
+	fact = 1e30/t;
+
+	if ( energy[chan] >= E_thr( kMP_MEV, kMPI0_MEV))
+		Tgg = Tgg_Min( qT_max(energy[chan], kMP_MEV, kMPI0_MEV), kMPI0_MEV)/kD2R;
+	else Tgg = 180;
+
+	if ( energy[chan] >= E_thr( kM_C12_MEV, kMPI0_MEV))
+		Tgg_c12 = Tgg_Min( qT_max(energy[chan], kM_C12_MEV, kMPI0_MEV),
+				kMPI0_MEV)/kD2R;
+	else Tgg_c12 = 180;
+
+//	emin = 900;
+//	emax = 1000;
+	theta_lo = 0;
+	theta_hi = 180;
+//	emin = Tgg_c12;
+	emin = Tgg;
+	emax = 180;
+	chan_lo = chan;
+	chan_hi = chan;
+
+	xmin = h_pr_f->GetXaxis()->FindBin( theta_lo);
+	xmax = h_pr_f->GetXaxis()->FindBin( theta_hi);
+	ymin = h_pr_f->GetYaxis()->FindBin( emin);
+	ymax = h_pr_f->GetYaxis()->FindBin( emax);
+	zmin = h_pr_f->GetZaxis()->FindBin( chan_lo);
+	zmax = h_pr_f->GetZaxis()->FindBin( chan_hi);
+
+	// Full
+	yield_p = h_pr_f->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	yield_r = h_ra_f->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	fyield = yield_p - pa_ratio[chan]*yield_r;
+	dfyield = sqrt( yield_p - Sqr( pa_ratio[chan])*yield_r);
+	fscalers = h_sc_f->GetBinContent(chan);
+	dfscalers = sqrt( fscalers);
+
+	// Empty
+	yield_p = h_pr_e->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	yield_r = h_ra_e->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	eyield = yield_p - pa_ratio[chan]*yield_r;
+	deyield = sqrt( yield_p - Sqr( pa_ratio[chan])*yield_r);
+	escalers = h_sc_e->GetBinContent(chan);
+	descalers = sqrt( escalers);
+
+//	cout << fyield;
+//	cout << " +/- " << dfyield;
+//	cout << "   " << fscalers;
+//	cout << "   " << eyield;
+//	cout << " +/- " << deyield;
+//	cout << "   " << escalers;
+//	cout << endl;
+
+	if ( ( fscalers != 0) && ( escalers != 0)) {
+
+		if ( strcmp( subt_str, "full") == 0) {
+			n_yld = fyield/fscalers;
+			dn_yld = 1/fscalers*sqrt( Sqr( dfyield)
+					+ Sqr( fyield*dfscalers/fscalers));
+			yield = fyield;
+			dyield = dfyield;
+		}
+		else if ( strcmp( subt_str, "empty") == 0) {
+			n_yld = eyield/escalers;
+			dn_yld = 1/escalers*sqrt( Sqr( deyield)
+					+ Sqr( eyield*descalers/escalers));
+			yield = eyield;
+			dyield = deyield;
+		}
+		else if ( strcmp( subt_str, "subt") == 0) {
+			n_yld = eyield/escalers;
+			r_fe = fscalers/escalers;
+			yield = fyield - r_fe*eyield;
+			dyield = sqrt( Sqr( dfyield) + Sqr( r_fe*deyield));
+
+			n_yld = yield/fscalers;
+			dn_yld = 1/fscalers*sqrt( Sqr( dyield)
+					+ Sqr( yield*dfscalers/fscalers));
+		}
+		else {
+			cout << "ERROR: must use known subtraction string";
+			cout << endl;
+			break;
+		}
+
+		xs[chan] = n_yld*fact/edet[chan]/etag[chan];
+		dxs[chan] = dn_yld*fact/edet[chan]/etag[chan];
+
+		cout << "Chan = " << chan;
+//		cout << "  " << yield_p;
+//		cout << "  " << yield_r;
+//		cout << "  " << pa_ratio[chan];
+		cout << "  Eg = " << energy[chan];
+		cout << "  edet = " << edet[chan];
+		cout << "  etag = " << etag[chan];
+		cout << "  Y = " << yield;
+		cout << " +/- " << dyield;
+		cout << "  S = " << fscalers;
+		cout << " +/- " << dfscalers;
+		cout << "  xs = " << xs[chan];
+		cout << " +/- " << dxs[chan];
+		cout << endl;
+
+		en[chan] = energy[chan];
+		den[chan++] = 0;
+	}
+//	else cout << "Chan = " << chan << "  S = 0" << endl;
+
+}
+
+void ChanXS_C( Int_t chan) 
+{
+	Int_t i, xmin, xmax, ymin, ymax, zmin, zmax;
+	Double_t Tgg_c12;
+	Double_t t, fact, emin, emax, sum, n_yld, dn_yld;
+	Double_t theta_lo, theta_hi, emin, emax, chan_lo, chan_hi;
+	Double_t yield_p, yield_r;
+	Double_t fyield, dfyield, fscalers, dfscalers;
+	Double_t eyield, deyield, escalers, descalers;
+	Double_t r_fe, yield, dyield;
+
+	t = 2.02951e23;	// This is in nuclei/cm^2 from VK
+
+	// The 1e30 converts cm^2 to microbarn.
+	fact = 1e30/t;
+
+	if ( energy[chan] >= E_thr( kM_C12_MEV, kMPI0_MEV))
+		Tgg_c12 = Tgg_Min( qT_max(energy[chan], kM_C12_MEV, kMPI0_MEV),
+				kMPI0_MEV)/kD2R;
+	else Tgg_c12 = 180;
+
+	theta_lo = 0;
+	theta_hi = 180;
+	emin = Tgg_c12;
+	emax = 180;
+	chan_lo = chan;
+	chan_hi = chan;
+
+	xmin = c_pr_f->GetXaxis()->FindBin( theta_lo);
+	xmax = c_pr_f->GetXaxis()->FindBin( theta_hi);
+	ymin = c_pr_f->GetYaxis()->FindBin( emin);
+	ymax = c_pr_f->GetYaxis()->FindBin( emax);
+	zmin = c_pr_f->GetZaxis()->FindBin( chan_lo);
+	zmax = c_pr_f->GetZaxis()->FindBin( chan_hi);
+
+	// Full
+	yield_p = c_pr_f->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	yield_r = c_ra_f->Integral( xmin, xmax, ymin, ymax, zmin, zmax);
+	fyield = yield_p - pa_ratio[chan]*yield_r;
+	dfyield = sqrt( yield_p - Sqr( pa_ratio[chan])*yield_r);
+	fscalers = h_sc_f->GetBinContent(chan);
+	dfscalers = sqrt( fscalers);
+
+	if ( fscalers != 0) {
+
+		n_yld = fyield/fscalers;
+		dn_yld = 1/fscalers*sqrt( Sqr( dfyield)
+				+ Sqr( fyield*dfscalers/fscalers));
+		yield = fyield;
+		dyield = dfyield;
+
+		xs[chan] = n_yld*fact/edet[chan]/etag[chan];
+		dxs[chan] = dn_yld*fact/edet[chan]/etag[chan];
+
+		cout << "Chan = " << chan;
+//		cout << "  " << yield_p;
+//		cout << "  " << yield_r;
+//		cout << "  " << pa_ratio[chan];
+		cout << "  Eg = " << energy[chan];
+		cout << "  edet = " << edet[chan];
+		cout << "  etag = " << etag[chan];
+		cout << "  Y = " << yield;
+		cout << " +/- " << dyield;
+		cout << "  S = " << fscalers;
+		cout << " +/- " << dfscalers;
+		cout << "  xs = " << xs[chan];
+		cout << " +/- " << dxs[chan];
+		cout << endl;
+
+		en[chan] = energy[chan];
+		den[chan++] = 0;
+	}
+
+//	else cout << "Chan = " << chan << "  S = 0" << endl;
+
+}
+
+void ThreshXS( Char_t subt_str[8])
+{
+	Int_t i, count, min, max, chan;
+	Double_t eng, x, dx;
+	Double_t enn[300], denn[300], xsn[300], dxsn[300];
+	Double_t eng1[50], deng1[50], xs1[50], dxs1[50];
+	Double_t xx[10], yy[10];
+
+	c1 = new TCanvas( "c1", "Total Cross Sections", 200, 10, 700, 500);
+   c1->SetFillColor( 42);
+   c1->SetGrid();
+   c1->GetFrame()->SetFillColor( 21);
+   c1->GetFrame()->SetBorderSize( 12);
+
+	min = 200;
+	max = 283;
+
+	count = 0;
+	ofstream outFile( "xs/tot_xs/thresh_xs.out");
+	for ( chan = min; chan <= max; chan++) {
+		ChanXS( subt_str, chan);
+		enn[count] = en[chan];
+		denn[count] = 0;
+		xsn[count] = xs[chan];
+		dxsn[count] = dxs[chan];
+		outFile << enn[count] << "  " << xsn[count] << "  " << dxsn[count++]
+			<< endl ;
+	}
+	outFile.close();
+
+	gr = new TGraphErrors( count-1, enn, xsn, denn, dxsn);
+	gr->SetTitle( "Preliminary #gammap#rightarrowp#pi^{0} Total Cross Section");
+	gr->SetMarkerColor( 4);
+	gr->SetMarkerStyle( 21);
+	gr->SetMarkerSize( 0.5);
+	gr->GetXaxis()->SetTitleOffset( 1.1);
+	gr->GetYaxis()->SetTitleOffset( 1.0);
+	gr->GetYaxis()->SetTitleSize( 0.05);
+	gr->GetXaxis()->SetTitle("E_{#gamma} (MeV)");
+	gr->GetYaxis()->SetTitle("#sigma (#mub)");
+	gr->GetXaxis()->SetLabelSize( 0.03);
+	gr->GetYaxis()->SetLabelSize( 0.03);
+	gr->GetXaxis()->CenterTitle();
+	gr->GetYaxis()->CenterTitle();
+	gr->GetXaxis()->SetRangeUser(140,210);
+//	gr->SetMaximum(6);
+//	gr->SetMinimum(-0.1);
+	gr->Draw( "AP");
+
+	// Label for my data
+//	xx[0] = 300;
+//	yy[0] = 100;
+//	TPolyMarker *pm = new TPolyMarker( 1, xx, yy);
+//	pm->SetMarkerColor( 4);
+//	pm->SetMarkerStyle( 21);
+//	pm->SetMarkerSize( 1.0);
+//	pm->Draw();
+//	TPaveText *pt2 = new TPaveText(305,90,345,110);
+//	pt2->AddText("This Work");
+//	pt2->SetBorderSize(0);
+//	pt2->SetFillColor(42);
+//	pt2->Draw();
+
+	// Label for Axel's data
+//	xx[0] = 300;
+//	yy[0] = 60;
+//	TPolyMarker *pm = new TPolyMarker( 1, xx, yy);
+//	pm->SetMarkerColor( 6);
+//	pm->SetMarkerStyle( 21);
+//	pm->SetMarkerSize( 1.0);
+//	pm->Draw();
+//	TPaveText *pt2 = new TPaveText(305,50,370,70);
+//	pt2->AddText("Schmidt - TAPS");
+//	pt2->SetBorderSize(0);
+//	pt2->SetFillColor(42);
+//	pt2->Draw();
+
+	// Axel's Data
+	i = 0;
+	ifstream inFile( "xs/previous/tot_xs_as.dat");
+	while( !inFile.eof()) {
+		inFile >> eng >> x >> dx;
+		eng1[i] = eng;
+		deng1[i] = 0;
+		xs1[i] = x;
+		dxs1[i++] = dx;
+	}
+	inFile.close();
+	as = new TGraphErrors( i-1, eng1, xs1, deng1, dxs1);
+	as->SetMarkerColor( 6);
+	as->SetMarkerStyle( 21);
+	as->SetMarkerSize( 0.7);
+	as->Draw("P");
+
+//	TPaveText *pt1 = new TPaveText(147,11.5,165,13.5);
+//	pt1->AddText(" p#pi^{0} Threshold");
+//	pt1->SetBorderSize(0);
+//	pt1->SetFillColor(40);
+//	pt1->SetFillStyle(4000);
+//	pt1->Draw();
+
+	c1->Print( "plots/eps/xstot_thresh.eps");
+}
+
+void CarbonXS()
+{
+	Int_t i, count, min, max, chan;
+	Double_t eng, x, dx;
+	Double_t enn[300], denn[300], xsn[300], dxsn[300];
+	Double_t eng1[50], deng1[50], xs1[50], dxs1[50];
+	Double_t xx[10], yy[10];
+
+	c1 = new TCanvas( "c1", "Total Cross Sections", 200, 10, 700, 500);
+   c1->SetFillColor( 42);
+   c1->SetGrid();
+   c1->GetFrame()->SetFillColor( 21);
+   c1->GetFrame()->SetBorderSize( 12);
+
+	min = 245;
+	max = 283;
+
+	count = 0;
+	ofstream outFile( "xs/tot_xs/thresh_xs.out");
+	for ( chan = min; chan <= max; chan++) {
+		ChanXS_C( chan);
+		enn[count] = en[chan];
+		denn[count] = 0;
+		xsn[count] = xs[chan];
+		dxsn[count] = dxs[chan];
+		outFile << enn[count] << "  " << xsn[count] << "  " << dxsn[count++]
+			<< endl ;
+	}
+	outFile.close();
+
+	gr = new TGraphErrors( count-1, enn, xsn, denn, dxsn);
+	gr->SetTitle( "Preliminary #gammap#rightarrowp#pi^{0} Total Cross Section");
+	gr->SetMarkerColor( 4);
+	gr->SetMarkerStyle( 21);
+	gr->SetMarkerSize( 0.5);
+	gr->GetXaxis()->SetTitleOffset( 1.1);
+	gr->GetYaxis()->SetTitleOffset( 1.0);
+	gr->GetYaxis()->SetTitleSize( 0.05);
+	gr->GetXaxis()->SetTitle("E_{#gamma} (MeV)");
+	gr->GetYaxis()->SetTitle("#sigma (#mub)");
+	gr->GetXaxis()->SetLabelSize( 0.03);
+	gr->GetYaxis()->SetLabelSize( 0.03);
+	gr->GetXaxis()->CenterTitle();
+	gr->GetYaxis()->CenterTitle();
+	gr->GetXaxis()->SetRangeUser(130,170);
+//	gr->SetMaximum(6);
+//	gr->SetMinimum(-0.1);
+	gr->Draw( "AP");
+
+	// Label for my data
+//	xx[0] = 300;
+//	yy[0] = 100;
+//	TPolyMarker *pm = new TPolyMarker( 1, xx, yy);
+//	pm->SetMarkerColor( 4);
+//	pm->SetMarkerStyle( 21);
+//	pm->SetMarkerSize( 1.0);
+//	pm->Draw();
+//	TPaveText *pt2 = new TPaveText(305,90,345,110);
+//	pt2->AddText("This Work");
+//	pt2->SetBorderSize(0);
+//	pt2->SetFillColor(42);
+//	pt2->Draw();
+
+	// Label for Axel's data
+//	xx[0] = 300;
+//	yy[0] = 60;
+//	TPolyMarker *pm = new TPolyMarker( 1, xx, yy);
+//	pm->SetMarkerColor( 6);
+//	pm->SetMarkerStyle( 21);
+//	pm->SetMarkerSize( 1.0);
+//	pm->Draw();
+//	TPaveText *pt2 = new TPaveText(305,50,370,70);
+//	pt2->AddText("Schmidt - TAPS");
+//	pt2->SetBorderSize(0);
+//	pt2->SetFillColor(42);
+//	pt2->Draw();
+
+	// Axel's Data
+	i = 0;
+	ifstream inFile( "xs/previous/tot_xs_as.dat");
+	while( !inFile.eof()) {
+		inFile >> eng >> x >> dx;
+		eng1[i] = eng;
+		deng1[i] = 0;
+		xs1[i] = x;
+		dxs1[i++] = dx;
+	}
+	inFile.close();
+	as = new TGraphErrors( i-1, eng1, xs1, deng1, dxs1);
+	as->SetMarkerColor( 6);
+	as->SetMarkerStyle( 21);
+	as->SetMarkerSize( 0.7);
+	as->Draw("P");
+
+//	TPaveText *pt1 = new TPaveText(147,11.5,165,13.5);
+//	pt1->AddText(" p#pi^{0} Threshold");
+//	pt1->SetBorderSize(0);
+//	pt1->SetFillColor(40);
+//	pt1->SetFillStyle(4000);
+//	pt1->Draw();
+
+	c1->Print( "plots/eps/xstot_carbon.eps");
+}
+
+void DeltaXS( Char_t subt_str[8])
+{
+	Int_t i, count, min, max, chan;
+	Double_t eng, x, dx;
+	Double_t enn[200], denn[200], xsn[200], dxsn[200];
+	Double_t eng1[50], deng1[50], xs1[50], dxs1[50];
+	Double_t xx[10], yy[10];
+
+	c1 = new TCanvas( "c1", "Total Cross Sections", 200, 10, 700, 500);
+   c1->SetFillColor( 42);
+   c1->SetGrid();
+   c1->GetFrame()->SetFillColor( 21);
+   c1->GetFrame()->SetBorderSize( 12);
+
+	min = 50;
+	max = 150;
+
+	count = 0;
+	ofstream outFile( "xs/tot_xs/delta_xs.out");
+	for ( chan = min; chan <= max; chan++) {
+		ChanXS( subt_str, chan);
+		enn[count] = en[chan];
+		denn[count] = 0;
+		xsn[count] = xs[chan];
+		dxsn[count] = dxs[chan];
+		outFile << enn[count] << "  " << xsn[count] << "  " << dxsn[count++]
+			<< endl ;
+	}
+	outFile.close();
+
+	gr = new TGraphErrors( count-1, enn, xsn, denn, dxsn);
+	gr->SetTitle( "Preliminary #gammap#rightarrowp#pi^{0} Total Cross Section");
+	gr->SetMarkerColor( 4);
+	gr->SetMarkerStyle( 21);
+	gr->SetMarkerSize( 0.5);
+	gr->GetXaxis()->SetTitleOffset( 1.1);
+	gr->GetYaxis()->SetTitleOffset( 1.0);
+	gr->GetYaxis()->SetTitleSize( 0.05);
+	gr->GetXaxis()->SetTitle("E_{#gamma} (MeV)");
+	gr->GetYaxis()->SetTitle("#sigma (#mub)");
+	gr->GetXaxis()->SetLabelSize( 0.03);
+	gr->GetYaxis()->SetLabelSize( 0.03);
+	gr->GetXaxis()->CenterTitle();
+	gr->GetYaxis()->CenterTitle();
+	gr->GetXaxis()->SetRangeUser(265,375);
+	gr->SetMaximum(350);
+	gr->SetMinimum(150);
+	gr->Draw( "AP");
+
+	// Roman's Data
+	i = 0;
+	ifstream inFile( "xs/previous/tot_xs_rl.dat");
+	while( !inFile.eof()) {
+		inFile >> eng >> x >> dx;
+		eng1[i] = eng;
+		deng1[i] = 0;
+		xs1[i] = x;
+		dxs1[i++] = dx;
+	}
+	inFile.close();
+
+	rl = new TGraphErrors( i-1, eng1, xs1, deng1, dxs1);
+	rl->SetMarkerColor( 2);
+	rl->SetMarkerStyle( 21);
+	rl->SetMarkerSize( 0.5);
+	rl->Draw("P");
+
+	// Label for my data
+//	xx[0] = 300;
+//	yy[0] = 100;
+//	TPolyMarker *pm = new TPolyMarker( 1, xx, yy);
+//	pm->SetMarkerColor( 4);
+//	pm->SetMarkerStyle( 21);
+//	pm->SetMarkerSize( 1.0);
+//	pm->Draw();
+//	TPaveText *pt2 = new TPaveText(305,90,345,110);
+//	pt2->AddText("This Work");
+//	pt2->SetBorderSize(0);
+//	pt2->SetFillColor(42);
+//	pt2->Draw();
+
+	c1->Print( "plots/eps/xstot_delta.eps");
+}

@@ -1,0 +1,90 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   29th Apr 2003
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: EnergyLossPhysics_MC.dat
+## Last stage in event-by-event analysis
+##
+##-----------------------------------------------------------------------
+##
+## Target parameters
+##	x,y,z		Mass(MeV)
+# LH2
+Target:	0. 0. 0.	938.271
+##
+## Wild-card stuff for fitting combinations of particles to a reaction
+## Not fully implemented
+#Permutations: 1
+##
+## Particle data group database,	max # particles
+ParticleID:				16
+##
+## Particle type to be analyzed
+Particle-Type: 2212
+##
+## Do some post-initialisation.
+## Should usually be done before display is setup
+Initialise:
+#
+# Cut specification...see apparatus setup, same syntax applies
+#         1/2D Name      Link   Scope          Low/High Limits
+#Data-Cut: 1D   Nphoton	 AND    data			1 2
+#Data-Cut: 1D   Nproton	 AND    data			1 2
+#
+Display: 1D Nparticle 16 0 16
+Display: 1D NpartCB   16 0 16
+Display: 1D NpartTAPS 16 0 16
+Display: 1D Nphoton   16 0 16
+Display: 1D Nproton   16 0 16
+Display: 1D Npiplus   16 0 16
+Display: 1D Nneutron  16 0 16
+Display: 1D Nrootino  16 0 16
+#
+Display: 1D Ngprime   16 0 16
+Display: 1D Npi0      16 0 16
+Display: 1D Neta      16 0 16
+#
+Display: 1D ActualEk  300 0 300
+Display: 1D ActualPm  1000 0 1000
+Display: 1D ActualTh  180 0 180
+Display: 1D ActualPh  360 -180 180
+#
+Display: 1D DetectEk  300 0 300
+Display: 1D DetectPm  1000 0 1000
+Display: 1D DetectTh  180 0 180
+Display: 1D DetectPh  360 -180 180
+#
+Display: 1D DifferEk  300 -20 280
+Display: 1D DifferPm  600 -50 550
+Display: 1D DifferTh  360 -180 180
+Display: 1D DifferPh  360 -180 180
+#
+Display: 1D DetCorEk  300 0 300
+Display: 1D DetCorPm  1000 0 1000
+Display: 1D DetCorTh  180 0 180
+Display: 1D DetCorPh  360 -180 180
+#
+Display: 1D DifCorEk  300 -20 280
+Display: 1D DifCorPm  600 -50 550
+Display: 1D DifCorTh  360 -180 180
+Display: 1D DifCorPh  360 -180 180
+#
+Display: 1D CBCrystN  720 0 720
+Display: 1D TAPSCstN  438 0 438
+#
+Display: 2D DetectTh 180 0 180 -1 DifferTh 360 -180 180 -1
+Display: 2D DetectPh 360 -180 180 -1 DifferPh 360 -180 180 -1
+#
+#Display: 3D CBCrystN 720 0 720 0 DetectEk 300 0 300 0 DifferEk 150 -20 280 0
+#Display: 3D CBCrystN 720 0 720 0 DetectPm 1000 0 1000 0 DifferPm 300 -50 550 0
+#Display: 3D CBCrystN 720 0 720 0 DetectTh 180 0 180 0 DifferTh 180 -180 180 0
+#Display: 3D CBCrystN 720 0 720 0 DetectPh 360 -180 180 0 DifferPh 180 -180 180 0
+#
+#Display: 3D TAPSCstN 438 0 438 0 DetectEk 300 0 300 0 DifferEk 150 -20 280 0
+#Display: 3D TAPSCstN 438 0 438 0 DetectPm 1000 0 1000 0 DifferPm 300 -50 550 0
+#Display: 3D TAPSCstN 438 0 438 0 DetectTh 180 0 180 0 DifferTh 180 -180 180 0
+#Display: 3D TAPSCstN 438 0 438 0 DetectPh 360 -180 180 0 DifferPh 180 -180 180 0
+#

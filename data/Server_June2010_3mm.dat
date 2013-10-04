@@ -1,0 +1,79 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   13th Jan 2004
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: FPcommServer.Offline
+## Configuration file for DataServer (data input for analysis)
+##
+##-----------------------------------------------------------------------
+## Number of Input streams (sources of data), Record length to write data
+## and switch 0/1 = no/yes to control data write
+##              Number streams	Record Len	Save Data
+Input-Streams:	1		524288		0
+##
+## Optional directory spec. If not specified File-Names must contain the full
+## directory path
+File-Directory:	/work/data/June2010/
+##
+## Specify each input stream
+## From disk file, ACQU (Mk1) format, save any output to file (save=1)
+## Input data record length, Output data record length
+##
+##            	Source	Format	Save?	RecLen	Buffers	Swap	MarkID
+Stream-Spec:	File	Mk1	0	32768	32	0	400
+##
+## Now the list of data files to analyse normal mode
+##		File Name	1st rec	Last rec
+File-Name:	CB_25903.dat	0	0
+File-Name:	CB_25904.dat	0	0
+File-Name:	CB_25906.dat	0	0
+File-Name:	CB_25907.dat	0	0
+File-Name:	CB_25911.dat	0	0
+File-Name:	CB_25912.dat	0	0
+File-Name:	CB_25913.dat	0	0
+File-Name:	CB_25914.dat	0	0
+File-Name:	CB_25915.dat	0	0
+File-Name:	CB_25916.dat	0	0
+File-Name:	CB_25920.dat	0	0
+File-Name:	CB_25921.dat	0	0
+File-Name:	CB_25922.dat	0	0
+File-Name:	CB_25923.dat	0	0
+File-Name:	CB_25924.dat	0	0
+File-Name:	CB_25925.dat	0	0
+File-Name:	CB_25926.dat	0	0
+File-Name:	CB_25927.dat	0	0
+File-Name:	CB_25928.dat	0	0
+File-Name:	CB_25929.dat	0	0
+File-Name:	CB_25930.dat	0	0
+File-Name:	CB_25931.dat	0	0
+File-Name:	CB_25932.dat	0	0
+File-Name:	CB_25933.dat	0	0
+File-Name:	CB_25934.dat	0	0
+File-Name:	CB_25935.dat	0	0
+File-Name:	CB_25936.dat	0	0
+File-Name:	CB_25937.dat	0	0
+File-Name:	CB_25938.dat	0	0
+File-Name:	CB_25939.dat	0	0
+File-Name:	CB_25940.dat	0	0
+File-Name:	CB_25941.dat	0	0
+File-Name:	CB_25942.dat	0	0
+File-Name:	CB_25943.dat	0	0
+File-Name:	CB_25944.dat	0	0
+File-Name:	CB_25945.dat	0	0
+File-Name:	CB_25946.dat	0	0
+File-Name:	CB_25947.dat	0	0
+File-Name:	CB_25948.dat	0	0
+File-Name:	CB_25949.dat	0	0
+File-Name:	CB_25951.dat	0	0
+File-Name:	CB_25952.dat	0	0
+File-Name:	CB_25953.dat	0	0
+File-Name:	CB_25954.dat	0	0
+File-Name:	CB_25955.dat	0	0
+File-Name:	CB_25956.dat	0	0
+File-Name:	CB_25957.dat	0	0
+File-Name:	CB_25958.dat	0	0
+##
+## END

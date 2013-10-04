@@ -1,0 +1,234 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   29th Apr 2003
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: ThrPi0Physics.dat
+## Last stage in event-by-event analysis
+##
+##-----------------------------------------------------------------------
+##
+## Target parameters
+##	x,y,z		Mass(MeV)
+# LH2
+Target:	0. 0. 0.	938.27231
+#
+## Wild-card stuff for fitting combinations of particles to a reaction
+## Not fully implemented
+Permutations: 1
+##
+## Particle data group database,	max # particles
+ParticleID:				16
+## Limits for meson -> N photons invariant-mass identification
+##		pi0 (MeV)	eta (MeV)
+Mass-Limits:	20.		40.
+## Limits for Prompt-Random Windows for Random Subtraction
+## These take precedence over those in KensTagger...
+##                     Pr      Ran1   Ran2
+Prompt-Random-Windows: 41 53 7 37 57 87
+##
+## Pi0 Invariant Mass Correction
+#  1 or 0
+Mass-Corr: 1
+#Mass-Corr: 0
+#
+# Target Missing Mass Windows
+#	145-MeV lo/hi	400-MeV lo/hi
+Missing-Mass-Windows:	933	945	880	1000
+#
+# Pi0-decay-gamma opening angle minimum cut offset
+# Cut is TGG_min minus offset in degrees
+TGG-Cut-Offset: 3
+##
+## Do some post-initialisation.
+## Should usually be done before display is setup
+Initialise:
+#
+# Cut specification...see apparatus setup, same syntax applies
+#         1/2D Name      Link   Scope          Low/High Limits
+#Data-Cut: 1D   Npi0	 AND    data			1 1
+#Data-Cut: 1D   Nphoton	 AND    data			2 2
+#
+# Cuts to take care of out of sync issue
+#
+Data-Cut: 1D	SynchDif	OR	data -615 -585
+Data-Cut: 1D	SynchDif	OR	data 61440 61465
+Data-Cut: 1D	SynchDif	OR	data 0 0
+#
+# Histograms of physics-level variables
+#         X-Name  X-ch/low/high/id  	Y-Name   Y-ch/low/high/id  Cond(opt)
+#
+Display: 1D SynchDif 70000 -1000 69000
+Display: 2D TgRefTDC 200 0 10000 -1 CBRefTDC 200 0 10000 -1
+#
+Display: 1D Nphoton	16 0 16
+Display: 1D Nproton	16 0 16
+Display: 1D Npiplus	16 0 16
+Display: 1D Nneutron	16 0 16
+Display: 1D Npi0	16 0 16
+Display: 1D Ngprime	16 0 16
+Display: 1D Neta	16 0 16
+Display: 1D Nrootino	16 0 16
+Display: 1D M2g 	400 0 200
+Display: 1D M6g 	400 0 800
+Display: 1D Npi0phot	16 0 16
+#
+#Display: 1D Pi0TGG 	180 0 180
+#Display: 1D Pi0KE 	400 0 800
+#Display: 1D Pi0CMTheta 	180 0 180
+#
+Display: 1D TaggerTime 1000 50 167
+Display: 1D Pi0TaggTime 1000 0 200
+Display: 1D TChanHit 352 0 352
+#
+Display: 1D NTaggPhot	64 0 64
+Display: 1D TaggPhotHits 352 0 352
+#Display: 1D TaggPhotEnergy 300 100 400
+Display: 1D TaggPhotTime 1000 50 167
+#
+#Display: 1D TChanP 352 0 352
+#Display: 1D TChanR 352 0 352
+Display: 1D MMissP	300 800 1100
+Display: 1D MMissR 	300 800 1100
+#Display: 1D TGGP 	180 0 180
+#Display: 1D TGGR 	180 0 180
+#Display: 1D M2gTaggP 120 100 160
+#Display: 1D M2gTaggR 120 100 160
+#
+#Display: 1D NPi0PhotP 32 0 32
+#Display: 1D NPi0PhotR 32 0 32
+#
+#Display: 1D KELabP	400 0 400
+#Display: 1D KELabR	400 0 400
+#Display: 1D ThetaLabP 	180 0 180
+#Display: 1D ThetaLabR 	180 0 180
+#Display: 1D PhiLabP 	360 -180 180
+#Display: 1D PhiLabR 	360 -180 180
+#
+#Display: 1D KECMP	200 125 325
+#Display: 1D KECMR	200 125 325
+#Display: 1D ThetaCMP 	180 0 180
+#Display: 1D ThetaCMR 	180 0 180
+#Display: 1D PhiCMP 	360 -180 180
+#Display: 1D PhiCMR 	360 -180 180
+#
+###
+Display: 2D TChanHit 352 0 352 -1 Pi0TaggTime 1000 0 200 -1
+#
+Display: 2D TChanM2gP 352 0 352 -1 M2gTaggP 400 0 200 -1
+Display: 2D TChanM2gR 352 0 352 -1 M2gTaggR 400 0 200 -1
+###
+#
+# For Total Cross Section Only
+#
+# For Yield Check...
+Display: 2D TChanP 352 0 352 -1 MMissP 300 800 1100 -1
+Display: 2D TChanR 352 0 352 -1 MMissR 300 800 1100 -1
+#
+Display: 2D TChanP 352 0 352 -1 NPi0PhotP 32 0 32 -1
+Display: 2D TChanR 352 0 352 -1 NPi0PhotR 32 0 32 -1
+#
+#Display: 2D TGGP 180 0 180 -1 MMissP 300 800 1100 -1
+#Display: 2D TGGR 180 0 180 -1 MMissR 300 800 1100 -1
+#
+#Display: 3D TChanP 352 0 352 -1 MMissP 300 800 1100 -1 TGGP 180 0 180 -1
+#Display: 3D TChanR 352 0 352 -1 MMissR 300 800 1100 -1 TGGR 180 0 180 -1
+#
+# For Total and Differential Cross Section
+#
+###
+Display: 3D TChanP 352 0 352 -1 TGGP 180 0 180 -1 ThetaCMP 180 0 180 -1
+Display: 3D TChanR 352 0 352 -1 TGGR 180 0 180 -1 ThetaCMR 180 0 180 -1
+Display: 3D TChanP 352 0 352 -1 KECMP 600 0 300 -1 ThetaCMP 180 0 180 -1
+Display: 3D TChanR 352 0 352 -1 KECMR 600 0 300 -1 ThetaCMR 180 0 180 -1
+Display: 3D TChanP 352 0 352 -1 MMissP 300 800 1100 -1 ThetaCMP 9 0 180 -1
+Display: 3D TChanR 352 0 352 -1 MMissR 300 800 1100 -1 ThetaCMR 9 0 180 -1
+###
+#
+# These two have the TGG cut already
+#
+###
+Display: 3D TChanCut1P 352 0 352 -1 MMissCut1P 300 800 1100 -1 ThetaCMCut1P 9 0 180 -1
+Display: 3D TChanCut1R 352 0 352 -1 MMissCut1R 300 800 1100 -1 ThetaCMCut1R 9 0 180 -1
+Display: 3D TChanCut1P 352 0 352 -1 KECMCut1P 600 0 300 -1 ThetaCMCut1P 9 0 180 -1
+Display: 3D TChanCut1R 352 0 352 -1 KECMCut1R 600 0 300 -1 ThetaCMCut1R 9 0 180 -1
+###
+#
+# For Polarization Check...
+#Display: 2D TChanP 352 0 352 -1 PhiCMP 18 -180 180 -1
+#Display: 2D TChanR 352 0 352 -1 PhiCMR 18 -180 180 -1
+#
+# ASYMMETRY HISTOGRAMS
+#
+#Display: 3D TChanP 352 0 352 -1 ThetaCMP 9 0 180 -1 PhiCMP 18 -180 180 -1
+#Display: 3D TChanR 352 0 352 -1 ThetaCMR 9 0 180 -1 PhiCMR 18 -180 180 -1
+#
+# These two have both the TGG Cut and the Mmiss cut.
+#
+###
+Display: 3D TChanCut2P 352 0 352 -1 ThetaCMCut2P 9 0 180 -1 PhiCMCut2P 18 -180 180 -1
+Display: 3D TChanCut2R 352 0 352 -1 ThetaCMCut2R 9 0 180 -1 PhiCMCut2R 18 -180 180 -1
+Display: 3D TChanCut2P 352 0 352 -1 KECMCut2P 600 0 300 -1 ThetaCMCut2P 9 0 180 -1
+Display: 3D TChanCut2R 352 0 352 -1 KECMCut2R 600 0 300 -1 ThetaCMCut2R 9 0 180 -1
+###
+Display: 1D TaggPhotEnergy 401 99 500 
+Display: 2D TaggPhotEnergy 401 99 500 -1 MMissP 300 800 1100 -1
+Display: 2D TaggPhotEnergy 401 99 500 -1 MMissR 300 800 1100 -1
+Display: 2D TaggPhotEnergy 401 99 500 -1 MMissCut1P 300 800 1100 -1
+Display: 2D TaggPhotEnergy 401 99 500 -1 MMissCut1R 300 800 1100 -1
+Display: 2D TaggPhotEnergy 401 99 500 -1 Pi0TaggTime 1000 0 200 -1
+
+###
+Display: 1D TChanCut1P 352 0 352 -1
+Display: 1D TChanCut1R 352 0 352 -1
+Display: 1D KECMCut1P 600 0 300 -1
+Display: 1D KECMCut1R 600 0 300 -1
+Display: 1D ThetaCMCut1P 180 0 180 -1
+Display: 1D ThetaCMCut1R 180 0 180 -1
+Display: 1D MMissCut1P 300 800 1100 -1
+Display: 1D MMissCut1R 300 800 1100 -1
+Display: 1D TChanCut2P 352 0 352 -1
+Display: 1D TChanCut2R 352 0 352 -1
+Display: 1D KECMCut2P 600 0 300 -1
+Display: 1D KECMCut2R 600 0 300 -1
+Display: 1D ThetaCMCut2P 180 0 180 -1
+Display: 1D ThetaCMCut2R 180 0 180 -1
+Display: 1D PhiCMCut2P 360 -180 180 -1
+Display: 1D PhiCMCut2R 360 -180 180 -1
+#
+Display: 1D CutAngleP 180 0 180 -1
+Display: 1D CutAngleR 180 0 180 -1
+Display: 1D Pi0LabThetaProtP 180 0 180 -1
+Display: 1D Pi0LabThetaProtR 180 0 180 -1
+Display: 1D Pi0LabThetaProtCutP 180 0 180 -1
+Display: 1D Pi0LabThetaProtCutR 180 0 180 -1
+#
+### Multi-Hit Stuff ###
+#
+Display: 1D LADDnhm0 64 0 64 -1
+Display: 1D TChanHitM0 352 0 352 -1
+Display: 1D TaggerTimeM0 1000 -500 500
+Display: 1D Pi0TaggTimeM0 1000 -500 500
+#
+Display: 1D LADDnhm1 8 0 8 -1
+Display: 1D TChanHitM1 352 0 352 -1
+Display: 1D TaggerTimeM1 1000 -500 500
+Display: 1D Pi0TaggTimeM1 1000 -500 500
+#
+Display: 1D LADDnhm2 8 0 8 -1
+Display: 1D TaggerTimeM2 1000 -500 500
+Display: 1D TChanHitM2 352 0 352 -1
+Display: 1D Pi0TaggTimeM2 1000 -500 500
+#
+Display: 1D LADDnhm3 8 0 8 -1
+Display: 1D TaggerTimeM3 1000 -500 500
+Display: 1D TChanHitM3 352 0 352 -1
+Display: 1D Pi0TaggTimeM3 1000 -500 500
+#
+Display: 1D LADDnhm4 8 0 8 -1
+Display: 1D TChanHitM4 352 0 352 -1
+Display: 1D TaggerTimeM4 1000 -500 500
+Display: 1D Pi0TaggTimeM4 1000 -500 500
+###

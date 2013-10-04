@@ -1,0 +1,648 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@pcroot.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Sun Aug 11 12:18:03 2013            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>TMCGenerator</title>
+<meta name="rating" content="General" />
+<meta name="objecttype" content="Manual" />
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers, cern" />
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis." />
+<link rel="stylesheet" type="text/css" href="ROOT.css" id="ROOTstyle" />
+<script type="text/javascript" src="ROOT.js"></script>
+</head>
+<body  onload="javascript:SetValuesFromCookie();"><div id="body_content">
+<div id="root_header"><img src="http://root.cern.ch/drupal/sites/default/files/rootdrawing-logo.png" alt="ROOT logo"/></div>
+<a name="TopOfPage"></a>
+<script type="text/javascript">WriteFollowPageBox('class TMCGenerator','','/home/acqu/4v6/acqu/AcquMC/src/TMCGenerator.h');</script>
+<div id="toplinks">
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Quick Links:</span>
+<a class="descrheadentry" href="http://root.cern.ch">ROOT Homepage</a>
+<a class="descrheadentry" href="./ClassIndex.html">Class Index</a>
+<a class="descrheadentry" href="./ClassHierarchy.html">Class Hierarchy</a></div>
+<script type="text/javascript">
+function onSearch() {
+var s='http://www.google.com/search?q=%s+site%3A%u+-site%3A%u%2Fsrc%2F+-site%3A%u%2Fexamples%2F';
+var ref=String(document.location.href).replace(/https?:\/\//,'').replace(/\/[^\/]*$/,'').replace(/\//g,'%2F');
+window.location.href=s.replace(/%u/ig,ref).replace(/%s/ig,escape(document.searchform.t.value));
+return false;}
+</script>
+<form id="searchform" name="searchform" onsubmit="return onSearch()" action="javascript:onSearch();" method="post">
+<input name="t" size="30" value="Search documentation..." onfocus="if (document.searchform.t.value=='Search documentation...') document.searchform.t.value='';"></input>
+<a id="searchlink"  title="www.google.com"  href="javascript:onSearch();" onclick="return onSearch()">Search</a></form>
+</div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Source:</span>
+<a class="descrheadentry" href="src/TMCGenerator.h.html">header file</a>
+<a class="descrheadentry" href="src/TMCGenerator.cxx.html">source file</a>
+<a class="descrheadentry" href="TMCGenerator_Tree.pdf">inheritance tree (.pdf)</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquMC/src/TMCGenerator.h?view=log">viewVC header</a> <a class="descrheadentry" href="http://root.cern.ch/viewcvs/trunk//home/acqu/4v6/acqu/AcquMC/src/TMCGenerator.cc?view=log">viewVC source</a> 
+</div></div>
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Sections:</span>
+<a class="descrheadentry" href="#TMCGenerator:description">class description</a> 
+<a class="descrheadentry" href="#TMCGenerator:Function_Members">function members</a>
+<a class="descrheadentry" href="#TMCGenerator:Data_Members">data members</a>
+<a class="descrheadentry" href="#TMCGenerator:Class_Charts">class charts</a>
+</div></div>
+</div>
+<div class="location">
+<a class="locationlevel" href="index.html">(UNKNOWN PRODUCT)</a>
+ &#187; <a class="locationlevel" href="./HOME_Index.html">HOME</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_Index.html">4V6</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_Index.html">ACQU</a>
+ &#187; <a class="locationlevel" href="./HOME_ACQU_4V6_ACQU_ACQUMC_Index.html">ACQUMC</a>
+ &#187; <a class="locationlevel" href="#TopOfPage">TMCGenerator</a>
+</div>
+<div class="dropshadow"><div class="withshadow"><h1><a name="TMCGenerator:description"></a>class TMCGenerator: public <a href="./TA2System.html">TA2System</a></h1>
+<div class="classdescr">
+<pre>--Description
+                *** Acqu++ &lt;-&gt; Root ***
+ Online/Offline Analysis of Sub-Atomic Physics Experimental Data
+
+ <a href="./TMCGenerator.html">TMCGenerator</a>
+
+ Monte Carlo Kinematics Generator
+ Beam + Target -&gt; Reaction -&gt; Products
+ Store
+ 1) Interaction vertex in target (x,y,z)
+ 2) Beam 4-momentum
+ 3) 4-momenta of reaction products
+ Output as ROOT tree (decodable by macro MCReplay.C)
+ OR as HBOOK ntuple, in identical format to mkin for input
+ to CB/TAPS GEANT-3 model cbsim
+</pre></div>
+</div></div>
+
+<div id="functions">
+<h2><a id="TMCGenerator:Function_Members"></a>Function Members (Methods)</h2>
+<div class="access" id="funcpubl"><b>public:</b>
+<table class="func" id="tabfuncpubl" cellspacing="0">
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TMCGenerator:TMCGenerator%1">TMCGenerator</a>(<span class="keyword">const</span> <a href="./TMCGenerator.html">TMCGenerator</a>&amp;)</td></tr>
+<tr class="func"><td class="funcret"></td><td class="funcname"><a class="funcname" href="#TMCGenerator:TMCGenerator">TMCGenerator</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a> = 999999)</td></tr>
+<tr class="func"><td class="funcret"> virtual</td><td class="funcname"><a class="funcname" href="#TMCGenerator:_TMCGenerator">~TMCGenerator</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AbstractMethod"><span class="baseclass">TObject::</span>AbstractMethod</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:AddCmdList"><span class="baseclass">TA2System::</span>AddCmdList</a>(<span class="keyword">const</span> Map_t*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:AppendPad"><span class="baseclass">TObject::</span>AppendPad</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Browse"><span class="baseclass">TObject::</span>Browse</a>(TBrowser* b)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:BuildName"><span class="baseclass">TA2System::</span>BuildName</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:CheckName"><span class="baseclass">TA2System::</span>CheckName</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* name)</td></tr>
+<tr class="func"><td class="funcret">static TClass*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:Class">Class</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:ClassName"><span class="baseclass">TObject::</span>ClassName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Clear"><span class="baseclass">TNamed::</span>Clear</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TNamed:Clone"><span class="baseclass">TNamed::</span>Clone</a>(<span class="keyword">const</span> <span class="keyword">char</span>* newname = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:CloseEvent">CloseEvent</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:CloseNtuple">CloseNtuple</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:CommandConfig"><span class="baseclass">TA2System::</span>CommandConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Compare"><span class="baseclass">TNamed::</span>Compare</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Copy"><span class="baseclass">TNamed::</span>Copy</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>&amp; named) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Delete"><span class="baseclass">TObject::</span>Delete</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:DistancetoPrimitive"><span class="baseclass">TObject::</span>DistancetoPrimitive</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Draw"><span class="baseclass">TObject::</span>Draw</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DrawClass"><span class="baseclass">TObject::</span>DrawClass</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:DrawClone"><span class="baseclass">TObject::</span>DrawClone</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Dump"><span class="baseclass">TObject::</span>Dump</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Error"><span class="baseclass">TObject::</span>Error</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute"><span class="baseclass">TObject::</span>Execute</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Execute%1"><span class="baseclass">TObject::</span>Execute</a>(TMethod* method, TObjArray* params, <a href="./ListOfTypes.html#Int_t">Int_t</a>* error = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ExecuteEvent"><span class="baseclass">TObject::</span>ExecuteEvent</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> event, <a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Fatal"><span class="baseclass">TObject::</span>Fatal</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:FileConfig"><span class="baseclass">TA2System::</span>FileConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:FillBuffer"><span class="baseclass">TNamed::</span>FillBuffer</a>(<span class="keyword">char</span>*&amp; buffer)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>*</td><td class="funcname"><a class="funcname" href="#TObject:FindObject%1"><span class="baseclass">TObject::</span>FindObject</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:Flush">Flush</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:Generate">Generate</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TMCParticle.html">TMCParticle</a>*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetBeam">GetBeam</a>()</td></tr>
+<tr class="func"><td class="funcret">TVector3*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetBeamCentre">GetBeamCentre</a>()</td></tr>
+<tr class="func"><td class="funcret">TBranch**</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetBranch">GetBranch</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetDrawOption"><span class="baseclass">TObject::</span>GetDrawOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Long_t">Long_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetDtorOnly"><span class="baseclass">TObject::</span>GetDtorOnly</a>()</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span>**</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetEvent">GetEvent</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetIconName"><span class="baseclass">TObject::</span>GetIconName</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">ARFile_t*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetInputFile"><span class="baseclass">TA2System::</span>GetInputFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">ARFile_t*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetLogFile"><span class="baseclass">TA2System::</span>GetLogFile</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">FILE*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetLogStream"><span class="baseclass">TA2System::</span>GetLogStream</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetMapKey"><span class="baseclass">TA2System::</span>GetMapKey</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:GetMapString"><span class="baseclass">TA2System::</span>GetMapString</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TNamed:GetName"><span class="baseclass">TNamed::</span>GetName</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetNParticle">GetNParticle</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetNthrow">GetNthrow</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TObject:GetObjectInfo"><span class="baseclass">TObject::</span>GetObjectInfo</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a> px, <a href="./ListOfTypes.html#Int_t">Int_t</a> py) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">static <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetObjectStat"><span class="baseclass">TObject::</span>GetObjectStat</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Option_t">Option_t</a>*</td><td class="funcname"><a class="funcname" href="#TObject:GetOption"><span class="baseclass">TObject::</span>GetOption</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">TLorentzVector*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetP4Beam">GetP4Beam</a>()</td></tr>
+<tr class="func"><td class="funcret">TLorentzVector*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetP4R">GetP4R</a>()</td></tr>
+<tr class="func"><td class="funcret">TLorentzVector*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetP4Target">GetP4Target</a>()</td></tr>
+<tr class="func"><td class="funcret">TList*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetParticle">GetParticle</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TMCParticle.html">TMCParticle</a>*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetParticle%1">GetParticle</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* name)</td></tr>
+<tr class="func"><td class="funcret">TDatabasePDG*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetPDG">GetPDG</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <a href="./TMCParticle.html">TMCParticle</a>*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetPDG_ID">GetPDG_ID</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a> = <a href="./ListOfTypes.html#Bool_t">kFALSE</a>, <a href="./ListOfTypes.html#Int_t">Int_t</a> = <a href="./ListOfTypes.html#Bool_t">kFALSE</a>)</td></tr>
+<tr class="func"><td class="funcret">TRandom*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetRand">GetRand</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./TMCParticle.html">TMCParticle</a>*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetReaction">GetReaction</a>()</td></tr>
+<tr class="func"><td class="funcret">TList*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetReactionList">GetReactionList</a>()</td></tr>
+<tr class="func"><td class="funcret">TList*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetResonance">GetResonance</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetSeed">GetSeed</a>()</td></tr>
+<tr class="func"><td class="funcret">TVector3*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetTargetCentre">GetTargetCentre</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetTargetLength">GetTargetLength</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetTargetMass">GetTargetMass</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetTargetRadius">GetTargetRadius</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">const</span> <span class="keyword">char</span>*</td><td class="funcname"><a class="funcname" href="#TNamed:GetTitle"><span class="baseclass">TNamed::</span>GetTitle</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">TTree*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetTree">GetTree</a>()</td></tr>
+<tr class="func"><td class="funcret">TFile*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetTreeFile">GetTreeFile</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetTreeFileName">GetTreeFileName</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#UInt_t">UInt_t</a></td><td class="funcname"><a class="funcname" href="#TObject:GetUniqueID"><span class="baseclass">TObject::</span>GetUniqueID</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">TVector3*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:GetVertex">GetVertex</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:GEvent">GEvent</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:GP4">GP4</a>(<a href="./TMCParticle.html">TMCParticle</a>* particle)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:HandleTimer"><span class="baseclass">TObject::</span>HandleTimer</a>(TTimer* timer)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#ULong_t">ULong_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Hash"><span class="baseclass">TNamed::</span>Hash</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Info"><span class="baseclass">TObject::</span>Info</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> <span class="keyword">char</span>* classname) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:InheritsFrom%1"><span class="baseclass">TObject::</span>InheritsFrom</a>(<span class="keyword">const</span> TClass* cl) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:InitNtuple">InitNtuple</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* name, <a href="./ListOfTypes.html#Int_t">Int_t</a> = 0)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:InitParticleDist">InitParticleDist</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./TMCParticle.html">TMCParticle</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a>)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:InitTree">InitTree</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a> = 0)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:InitTreeParticles">InitTreeParticles</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a> = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Inspect"><span class="baseclass">TObject::</span>Inspect</a>() <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:InvertBit"><span class="baseclass">TObject::</span>InvertBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="func"><td class="funcret">virtual TClass*</td><td class="funcname"><a class="funcname" href="#TMCGenerator:IsA">IsA</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsEqual"><span class="baseclass">TObject::</span>IsEqual</a>(<span class="keyword">const</span> <a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj) <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:IsError">IsError</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsFolder"><span class="baseclass">TObject::</span>IsFolder</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:IsInit"><span class="baseclass">TA2System::</span>IsInit</a>()</td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:IsNtupleOut">IsNtupleOut</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsOnHeap"><span class="baseclass">TObject::</span>IsOnHeap</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:IsSortable"><span class="baseclass">TNamed::</span>IsSortable</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TMCGenerator:IsTreeOut">IsTreeOut</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:IsZombie"><span class="baseclass">TObject::</span>IsZombie</a>() <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:ls"><span class="baseclass">TNamed::</span>ls</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2Key"><span class="baseclass">TA2System::</span>Map2Key</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2Key%1"><span class="baseclass">TA2System::</span>Map2Key</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> Map_t**)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:Map2String"><span class="baseclass">TA2System::</span>Map2String</a>(<a href="./ListOfTypes.html#Int_t">Int_t</a>, <span class="keyword">const</span> Map_t* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MayNotUse"><span class="baseclass">TObject::</span>MayNotUse</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Notify"><span class="baseclass">TObject::</span>Notify</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete%1"><span class="baseclass">TObject::</span>operator delete</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:operator_delete[]%1"><span class="baseclass">TObject::</span>operator delete[]</a>(<span class="keyword">void</span>* ptr, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new%1"><span class="baseclass">TObject::</span>operator new</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span>*</td><td class="funcname"><a class="funcname" href="#TObject:operator_new[]%1"><span class="baseclass">TObject::</span>operator new[]</a>(<a href="./ListOfTypes.html#size_t">size_t</a> sz, <span class="keyword">void</span>* vp)</td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./#TNamed:TNamed" title="TNamed TNamed::TNamed() or overloads">TNamed</a>&amp;</td><td class="funcname"><a class="funcname" href="#TNamed:operator_"><span class="baseclass">TNamed::</span>operator=</a>(<span class="keyword">const</span> <a href="./#TNamed:TNamed" title="TNamed TNamed::TNamed() or overloads">TNamed</a>&amp; rhs)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Paint"><span class="baseclass">TObject::</span>Paint</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:ParseBeam">ParseBeam</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:ParseMisc"><span class="baseclass">TA2System::</span>ParseMisc</a>(<span class="keyword">char</span>*)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:ParseParticle">ParseParticle</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:ParseTarget">ParseTarget</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Pop"><span class="baseclass">TObject::</span>Pop</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:PostInit">PostInit</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:Print"><span class="baseclass">TNamed::</span>Print</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Read"><span class="baseclass">TObject::</span>Read</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:RecursiveRemove"><span class="baseclass">TObject::</span>RecursiveRemove</a>(<a href="./#TObject:TObject" title="TObject TObject::TObject() or overloads">TObject</a>* obj)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:ResetBit"><span class="baseclass">TObject::</span>ResetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SaveAs"><span class="baseclass">TObject::</span>SaveAs</a>(<span class="keyword">const</span> <span class="keyword">char</span>* filename = <span class="string">""</span>, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>) <span class="keyword">const</span><span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:SaveEvent">SaveEvent</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:SaveEventAsParticles">SaveEventAsParticles</a>()</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:SaveNtuple">SaveNtuple</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SavePrimitive"><span class="baseclass">TObject::</span>SavePrimitive</a>(basic_ostream&lt;<span class="keyword">char</span>,char_traits&lt;<span class="keyword">char</span>&gt; &gt;&amp; out, <a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit%1"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetBit"><span class="baseclass">TObject::</span>SetBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f, <a href="./ListOfTypes.html#Bool_t">Bool_t</a> set)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:SetConfig">SetConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>*, <a href="./ListOfTypes.html#Int_t">Int_t</a>)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDrawOption"><span class="baseclass">TObject::</span>SetDrawOption</a>(<a href="./ListOfTypes.html#Option_t">Option_t</a>* option = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetDtorOnly"><span class="baseclass">TObject::</span>SetDtorOnly</a>(<span class="keyword">void</span>* obj)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetLogFile"><span class="baseclass">TA2System::</span>SetLogFile</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:SetLogStream"><span class="baseclass">TA2System::</span>SetLogStream</a>(FILE* str)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetName"><span class="baseclass">TNamed::</span>SetName</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetNameTitle"><span class="baseclass">TNamed::</span>SetNameTitle</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name, <span class="keyword">const</span> <span class="keyword">char</span>* title)</td></tr>
+<tr class="funcinh"><td class="funcret">static <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetObjectStat"><span class="baseclass">TObject::</span>SetObjectStat</a>(<a href="./ListOfTypes.html#Bool_t">Bool_t</a> stat)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TNamed:SetTitle"><span class="baseclass">TNamed::</span>SetTitle</a>(<span class="keyword">const</span> <span class="keyword">char</span>* title = <span class="string">""</span>)<span class="funcprop"><abbr title="has a popup menu entry">MENU</abbr> </span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SetUniqueID"><span class="baseclass">TObject::</span>SetUniqueID</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> uid)</td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:ShowMembers">ShowMembers</a>(TMemberInspector&amp; insp)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TNamed:Sizeof"><span class="baseclass">TNamed::</span>Sizeof</a>() <span class="keyword">const</span></td></tr>
+<tr class="func"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:Streamer">Streamer</a>(TBuffer&amp; b)</td></tr>
+<tr class="func"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TMCGenerator:StreamerNVirtual">StreamerNVirtual</a>(TBuffer&amp; b)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:SysError"><span class="baseclass">TObject::</span>SysError</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBit"><span class="baseclass">TObject::</span>TestBit</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:TestBits"><span class="baseclass">TObject::</span>TestBits</a>(<a href="./ListOfTypes.html#UInt_t">UInt_t</a> f) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:UseCurrentStyle"><span class="baseclass">TObject::</span>UseCurrentStyle</a>()</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:Warning"><span class="baseclass">TObject::</span>Warning</a>(<span class="keyword">const</span> <span class="keyword">char</span>* method, <span class="keyword">const</span> <span class="keyword">char</span>* msgfmt) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="funcname"><a class="funcname" href="#TObject:Write%1"><span class="baseclass">TObject::</span>Write</a>(<span class="keyword">const</span> <span class="keyword">char</span>* name = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> option = 0, <a href="./ListOfTypes.html#Int_t">Int_t</a> bufsize = 0) <span class="keyword">const</span></td></tr>
+
+</table></div>
+<div class="access" id="funcprot"><b>protected:</b>
+<table class="func" id="tabfuncprot" cellspacing="0">
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:BaseInit"><span class="baseclass">TA2System::</span>BaseInit</a>(<span class="keyword">const</span> Map_t*, <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+<tr class="funcinh"><td class="funcret">virtual <span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:DoError"><span class="baseclass">TObject::</span>DoError</a>(<span class="keyword">int</span> level, <span class="keyword">const</span> <span class="keyword">char</span>* location, <span class="keyword">const</span> <span class="keyword">char</span>* fmt, va_list va) <span class="keyword">const</span></td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="#TObject:MakeZombie"><span class="baseclass">TObject::</span>MakeZombie</a>()</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PrintError"><span class="baseclass">TA2System::</span>PrintError</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*, <span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* = NULL, <a href="./ListOfTypes.html#Int_t">Int_t</a> = EErrNonFatal)</td></tr>
+<tr class="funcinh"><td class="funcret"><span class="keyword">void</span></td><td class="funcname"><a class="funcname" href="./TA2System.html#TA2System:PrintMessage"><span class="baseclass">TA2System::</span>PrintMessage</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>*)</td></tr>
+
+</table></div>
+</div>
+
+<div id="datamembers">
+<h2><a name="TMCGenerator:Data_Members"></a>Data Members</h2>
+<div class="access" id="enumpubl"><b>public:</b>
+<table class="data" id="tabenumpubl" cellspacing="0">
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span>EStatusBits { </td><td class="dataname"><a href="#TObject:kCanDelete">kCanDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kMustCleanup">kMustCleanup</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kObjInCanvas">kObjInCanvas</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kIsReferenced">kIsReferenced</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kHasUUID">kHasUUID</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kCannotPick">kCannotPick</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNoContextMenu">kNoContextMenu</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kInvalidObject">kInvalidObject</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+<tr class="datainh"><td class="datatype">enum <span class="baseclass">TObject::</span><i>[unnamed]</i> { </td><td class="dataname"><a href="#TObject:kIsOnHeap">kIsOnHeap</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kNotDeleted">kNotDeleted</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kZombie">kZombie</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kBitMask">kBitMask</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kSingleKey">kSingleKey</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kOverwrite">kOverwrite</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype"></td><td class="dataname"><a href="#TObject:kWriteDelete">kWriteDelete</a></td><td></td></tr>
+<tr class="datainh"><td class="datatype">};</td><td></td><td></td></tr>
+
+</table></div>
+<div class="access" id="dataprot"><b>protected:</b>
+<table class="data" id="tabdataprot" cellspacing="0">
+<tr class="data"><td class="datatype"><a href="./TMCParticle.html">TMCParticle</a>*</td><td class="dataname"><a name="TMCGenerator:fBeam"></a>fBeam</td><td class="datadesc">beam particle</td></tr>
+<tr class="data"><td class="datatype">TVector3*</td><td class="dataname"><a name="TMCGenerator:fBeamCentre"></a>fBeamCentre</td><td class="datadesc">production point of beam</td></tr>
+<tr class="data"><td class="datatype">TBranch**</td><td class="dataname"><a name="TMCGenerator:fBranch"></a>fBranch</td><td class="datadesc">output branches</td></tr>
+<tr class="data"><td class="datatype">TClonesArray*</td><td class="dataname"><a name="TMCGenerator:fClonePtcl"></a>fClonePtcl</td><td class="datadesc">Array of particles for saving</td></tr>
+<tr class="data"><td class="datatype"><span class="keyword">void</span>**</td><td class="dataname"><a name="TMCGenerator:fEvent"></a>fEvent</td><td class="datadesc">output data buffers</td></tr>
+<tr class="datainh"><td class="datatype">ARFile_t*</td><td class="dataname"><a href="./TA2System.html#TA2System:fInputFile"><span class="baseclass">TA2System::</span>fInputFile</a></td><td class="datadesc">config input file if any</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsConfigPass"><span class="baseclass">TA2System::</span>fIsConfigPass</a></td><td class="datadesc">depreciated config handler</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TMCGenerator:fIsError"></a>fIsError</td><td class="datadesc">errors ?</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsError"><span class="baseclass">TA2System::</span>fIsError</a></td><td class="datadesc">any setup errors?</td></tr>
+<tr class="datainh"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a href="./TA2System.html#TA2System:fIsInit"><span class="baseclass">TA2System::</span>fIsInit</a></td><td class="datadesc">initialisation complete?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TMCGenerator:fIsNtupleOut"></a>fIsNtupleOut</td><td class="datadesc">hbook output ?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TMCGenerator:fIsPartOut"></a>fIsPartOut</td><td class="datadesc">TParticle output ?</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TMCGenerator:fIsTreeOut"></a>fIsTreeOut</td><td class="datadesc">root output ?</td></tr>
+<tr class="datainh"><td class="datatype">ARFile_t*</td><td class="dataname"><a href="./TA2System.html#TA2System:fLogFile"><span class="baseclass">TA2System::</span>fLogFile</a></td><td class="datadesc">diagnostic log file</td></tr>
+<tr class="datainh"><td class="datatype">FILE*</td><td class="dataname"><a href="./TA2System.html#TA2System:fLogStream"><span class="baseclass">TA2System::</span>fLogStream</a></td><td class="datadesc">file ptr for logging output</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TMCGenerator:fNParticle"></a>fNParticle</td><td class="datadesc"># particles in final state</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TMCGenerator:fNThrow"></a>fNThrow</td><td class="datadesc"># of events</td></tr>
+<tr class="datainh"><td class="datatype">TString</td><td class="dataname"><a href="#TNamed:fName"><span class="baseclass">TNamed::</span>fName</a></td><td class="datadesc">object identifier</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TMCGenerator:fNrun"></a>fNrun</td><td class="datadesc"># of runs</td></tr>
+<tr class="data"><td class="datatype">TFile*</td><td class="dataname"><a name="TMCGenerator:fNtpFile"></a>fNtpFile</td><td class="datadesc">output tree file</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TMCGenerator:fNtpFileName"></a>fNtpFileName</td><td class="datadesc">name of output tree file</td></tr>
+<tr class="data"><td class="datatype">TNtuple*</td><td class="dataname"><a name="TMCGenerator:fNtuple"></a>fNtuple</td><td class="datadesc">output ntuple</td></tr>
+<tr class="data"><td class="datatype">TLorentzVector*</td><td class="dataname"><a name="TMCGenerator:fP4Beam"></a>fP4Beam</td><td class="datadesc">4-momentum of beam</td></tr>
+<tr class="data"><td class="datatype">TLorentzVector*</td><td class="dataname"><a name="TMCGenerator:fP4R"></a>fP4R</td><td class="datadesc">4-momentum beam + target particle</td></tr>
+<tr class="data"><td class="datatype">TLorentzVector*</td><td class="dataname"><a name="TMCGenerator:fP4Target"></a>fP4Target</td><td class="datadesc">target 4-momentum (usually at rest</td></tr>
+<tr class="data"><td class="datatype">TDatabasePDG*</td><td class="dataname"><a name="TMCGenerator:fPDG"></a>fPDG</td><td class="datadesc">PDG data base</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TMCGenerator:fParticle"></a>fParticle</td><td class="datadesc">linked list of particles</td></tr>
+<tr class="data"><td class="datatype">TRandom*</td><td class="dataname"><a name="TMCGenerator:fRand"></a>fRand</td><td class="datadesc">random number generator</td></tr>
+<tr class="data"><td class="datatype"><a href="./TMCParticle.html">TMCParticle</a>*</td><td class="dataname"><a name="TMCGenerator:fReaction"></a>fReaction</td><td class="datadesc">reaction "particle"</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TMCGenerator:fReactionList"></a>fReactionList</td><td class="datadesc">list of foam-generating particles</td></tr>
+<tr class="data"><td class="datatype">TList*</td><td class="dataname"><a name="TMCGenerator:fResonance"></a>fResonance</td><td class="datadesc">list of resonances</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Int_t">Int_t</a></td><td class="dataname"><a name="TMCGenerator:fSeed"></a>fSeed</td><td class="datadesc">initial random seed</td></tr>
+<tr class="data"><td class="datatype"><a href="./TMCParticle.html">TMCParticle</a>*</td><td class="dataname"><a name="TMCGenerator:fTarget"></a>fTarget</td><td class="datadesc">quasi-free "particle" in target</td></tr>
+<tr class="data"><td class="datatype">TVector3*</td><td class="dataname"><a name="TMCGenerator:fTargetCentre"></a>fTargetCentre</td><td class="datadesc">centre-position of target</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TMCGenerator:fTargetLength"></a>fTargetLength</td><td class="datadesc">Target 1/2 length (cm)</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TMCGenerator:fTargetMass"></a>fTargetMass</td><td class="datadesc">Mass of target (GeV)</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TMCGenerator:fTargetQFRecoilMass"></a>fTargetQFRecoilMass</td><td class="datadesc">Mass of recoil fragment in QF</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Double_t">Double_t</a></td><td class="dataname"><a name="TMCGenerator:fTargetRadius"></a>fTargetRadius</td><td class="datadesc">Target radius (cm)</td></tr>
+<tr class="datainh"><td class="datatype">TString</td><td class="dataname"><a href="#TNamed:fTitle"><span class="baseclass">TNamed::</span>fTitle</a></td><td class="datadesc">object title</td></tr>
+<tr class="data"><td class="datatype">TTree*</td><td class="dataname"><a name="TMCGenerator:fTree"></a>fTree</td><td class="datadesc">output tree</td></tr>
+<tr class="data"><td class="datatype">TFile*</td><td class="dataname"><a name="TMCGenerator:fTreeFile"></a>fTreeFile</td><td class="datadesc">output tree file</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Char_t">Char_t</a>*</td><td class="dataname"><a name="TMCGenerator:fTreeFileName"></a>fTreeFileName</td><td class="datadesc">name of output tree file</td></tr>
+<tr class="data"><td class="datatype"><a href="./ListOfTypes.html#Bool_t">Bool_t</a></td><td class="dataname"><a name="TMCGenerator:fUseDegrees"></a>fUseDegrees</td><td class="datadesc">input angles in degrees</td></tr>
+<tr class="data"><td class="datatype">TVector3*</td><td class="dataname"><a name="TMCGenerator:fVertex"></a>fVertex</td><td class="datadesc">interaction vertex</td></tr>
+
+</table></div>
+</div>
+<h2><a id="TMCGenerator:Class_Charts"></a>Class Charts</h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%"><a href="ClassHierarchy.html">Inheritance Chart</a>:</td></tr><tr class="inhtree"><td width="10%"></td><td width="70%"><table class="inhtree"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td><table><tr>
+<td bgcolor="#efefef" align="right">
+<tt>TNamed</tt></td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><tt><a name="TA2System" href="./TA2System.html">TA2System</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&larr;</td><td>
+<center><big><b><tt><a name="TMCGenerator" href="./TMCGenerator.html">TMCGenerator</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td>&larr;</td><td><table><tr>
+<td bgcolor="#f7f7f7"><table><tr><td>
+<center><tt><a name="TMCFoamGenerator" href="./TMCFoamGenerator.html">TMCFoamGenerator</a></tt></center></td>
+<td>&larr;</td><td><table><tr>
+<td bgcolor="#efefef"><table><tr><td>
+<center><tt><a name="TMCPhotoPSGenerator" href="./TMCPhotoPSGenerator.html">TMCPhotoPSGenerator</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr><tr>
+<td bgcolor="#efefef"><table><tr><td>
+<center><tt><a name="TMCUserGenerator" href="./TMCUserGenerator.html">TMCUserGenerator</a></tt></center></td>
+<td></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<h2>Function documentation</h2>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TMCGenerator:TMCGenerator" href="src/TMCGenerator.cxx.html#Ty2X">TMCGenerator</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a>  = 999999)</span><br />
+<div class="funccomm"><pre> Basic initialisation of MC generator
+ Initialise random-number generator and PDG database
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TMCGenerator:_TMCGenerator" href="src/TMCGenerator.cxx.html#uvjS4B">~TMCGenerator</a>()</span><br />
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:Flush" href="src/TMCGenerator.cxx.html#V8gBxB">Flush</a>()</span><br />
+<div class="funccomm"><pre> Free up allocated memory
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:SetConfig" href="src/TMCGenerator.cxx.html#HnwgUD">SetConfig</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a> )</span><br />
+<div class="funccomm"><pre> Parse a line of configuration information.
+ Recognised command strings are listed in Map_t kMCcmd[] array above
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:PostInit" href="src/TMCGenerator.cxx.html#PJKEAC">PostInit</a>()</span><br />
+<div class="funccomm"><pre> Finish initialisation
+ Ensure all initialisation of particle classes complete before MC loop
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:InitTreeParticles" href="src/TMCGenerator.cxx.html#AOeDKB">InitTreeParticles</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a>  = 0)</span><br />
+<div class="funccomm"><pre> Save output in the TParticle class. The TTree of output data contains
+ a TClonesArray of TParticle
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:InitTree" href="src/TMCGenerator.cxx.html#mFuop">InitTree</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a>  = 0)</span><br />
+<div class="funccomm"><pre> Initialise ROOT Tree output
+ Tree name is <span class="string">"Reaction_Kinematics"</span>
+ Branch Names
+ Constants: static values...dimensions etc.
+ 4-momenta
+ PDG-indices
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:SaveEventAsParticles" href="src/TMCGenerator.cxx.html#FoHfiC">SaveEventAsParticles</a>()</span><br />
+<div class="funccomm"><pre> Save Event in TParticle format if this is enabled at configuration
+ if not Check if HBOOK ntuple output enabled
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:SaveEvent" href="src/TMCGenerator.cxx.html#JkAglC">SaveEvent</a>()</span><br />
+<div class="funccomm"><pre> Save Event in ROOT format if this is enabled at configuration
+ if not Check if HBOOK ntuple output enabled
+ Vertex and 4-momenta components saved as doubles
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:CloseEvent" href="src/TMCGenerator.cxx.html#Lskv.D">CloseEvent</a>()</span><br />
+<div class="funccomm"><pre> <a href="./#TNamed:Print" title="void TNamed::Print(Option_t* option=&quot;&quot;)">Print</a> out some Tree statistics
+ and close tree file
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:ParseBeam" href="src/TMCGenerator.cxx.html#XMY25E">ParseBeam</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> Extract beam information from input line
+ Basic input...
+ Mass (or PDG id) source-position
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:ParseTarget" href="src/TMCGenerator.cxx.html#UFZpBB">ParseTarget</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> Extract target information from input line
+ Target mass (GeV), Target radius (cm), Target length (cm)
+ Target centre coordinates x,y,z (cm)
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:ParseParticle" href="src/TMCGenerator.cxx.html#yHydtE">ParseParticle</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* )</span><br />
+<div class="funccomm"><pre> Extract particle information from input line
+ Optional Parameters...
+ Mass of nuclear constituent (nucleon) involved in quasi-free process
+ Momentum distribution of constituent...
+    <a href="./#TObject:Read" title="Int_t TObject::Read(const char* name)">Read</a> either from named file...x[i], f(x[i])
+    Or constructed from <span class="string">"function string"</span>
+ Min, max values of distribution
+ Parameters of function (only if function string supplied)
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:InitParticleDist" href="src/TMCGenerator.cxx.html#xc9i9D">InitParticleDist</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./TMCParticle.html">TMCParticle</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a> )</span><br />
+<div class="funccomm"><pre> Parse entry of distribution info
+ Either from a file containing pairs of x,f(x) values
+   file name and min,max values of TH1D containing distribution
+ Or from a string specifying a function
+   Enter function string, #pts to generate, min, max values of TH1D
+   containing distribution, and any parameters relating to the distribution
+ Use SetDist() method of <a href="./TMCParticle.html">TMCParticle</a>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:Generate" href="src/TMCGenerator.cxx.html#HCFD5">Generate</a>()</span><br />
+<div class="funccomm"><pre> Loop to generate beam on target
+ and then produce all product partices of the reaction
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:InitNtuple" href="src/TMCGenerator.cxx.html#SZYt6E">InitNtuple</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* name, <a href="./ListOfTypes.html#Int_t">Int_t</a>  = 0)</span><br />
+<div class="funccomm"><pre> Open TTree file and create ntuple which mimics mkin format
+ Ntuple variables are...
+ Vertex x,y,z
+ Beam Px,Py,Pz,Ptot,Etot
+ Particle Px,Py,Pz,Ptot,Etot....for all particles stored
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:SaveNtuple" href="src/TMCGenerator.cxx.html#H806UD">SaveNtuple</a>()</span><br />
+<div class="funccomm"><pre> Save output as an ntuple, mimicing mkin format
+ Vertex coordinates
+ x, y, z
+ Beam 4 momentum (Pt = magnitude of momentum, E = total energy)
+ Px/Pt. Py/Pt, Pz/Pt, Pt, E
+ Each <span class="string">"tracked"</span> particle...
+ Px/Pt. Py/Pt, Pz/Pt, Pt, E
+ This format is recognised by the GEANT3 model of CB/TAPS cbsim
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:CloseNtuple" href="src/TMCGenerator.cxx.html#ruyvvC">CloseNtuple</a>()</span><br />
+<div class="funccomm"><pre> Ensure ntuple data flushed to TTree file
+ <a href="./#TNamed:Print" title="void TNamed::Print(Option_t* option=&quot;&quot;)">Print</a> ntuple statistics and close TTree file
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TMCParticle.html">TMCParticle</a>* <a class="funcname" name="TMCGenerator:GetPDG_ID" href="src/TMCGenerator.cxx.html#YBNOBB">GetPDG_ID</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a>  = <a href="./ListOfTypes.html#Bool_t">kFALSE</a>, <a href="./ListOfTypes.html#Int_t">Int_t</a>  = <a href="./ListOfTypes.html#Bool_t">kFALSE</a>)</span><br />
+<div class="funccomm"><pre> Look for particle of nucleus in data base
+ particles use root data base
+ nuclei use tables in MCNtuple.h
+
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:GEvent" href="src/TMCGenerator.h.html#AaFkKC">GEvent</a>()</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span> <a class="funcname" name="TMCGenerator:GP4" href="src/TMCGenerator.h.html#Q7CDCC">GP4</a>(<a href="./TMCParticle.html">TMCParticle</a>* particle)</span><br />
+<div class="funccomm"><pre>
+</pre></div>
+</div>
+<div class="funcdoc"><span class="funcname"> <a class="funcname" name="TMCGenerator:TMCGenerator" href="src/TMCGenerator.h.html#hxvFoB">TMCGenerator</a>(<span class="keyword">const</span> <a href="./ListOfTypes.html#Char_t">Char_t</a>* , <a href="./ListOfTypes.html#Int_t">Int_t</a>  = 999999)</span><br />
+</div>
+<div class="funcdoc"><span class="funcname">TRandom* <a class="funcname" name="TMCGenerator:GetRand" href="src/TMCGenerator.h.html#smJvw">GetRand</a>()</span><br />
+<div class="funccomm"><pre> Inlined getters...read-only protected variables
+</pre></div>
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fRand" title="TRandom* TMCGenerator::fRand">fRand</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TMCGenerator:GetSeed" href="src/TMCGenerator.h.html#U9LryB">GetSeed</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fSeed" title="Int_t TMCGenerator::fSeed">fSeed</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TDatabasePDG* <a class="funcname" name="TMCGenerator:GetPDG" href="src/TMCGenerator.h.html#tC6adB">GetPDG</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fPDG" title="TDatabasePDG* TMCGenerator::fPDG">fPDG</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TMCGenerator:GetTargetMass" href="src/TMCGenerator.h.html#f71FeD">GetTargetMass</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fTargetMass" title="Double_t TMCGenerator::fTargetMass">fTargetMass</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TMCGenerator:GetTargetRadius" href="src/TMCGenerator.h.html#oyuaQC">GetTargetRadius</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fTargetRadius" title="Double_t TMCGenerator::fTargetRadius">fTargetRadius</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Double_t">Double_t</a> <a class="funcname" name="TMCGenerator:GetTargetLength" href="src/TMCGenerator.h.html#DptETD">GetTargetLength</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fTargetLength" title="Double_t TMCGenerator::fTargetLength">fTargetLength</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TVector3* <a class="funcname" name="TMCGenerator:GetTargetCentre" href="src/TMCGenerator.h.html#q1cLtD">GetTargetCentre</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fTargetCentre" title="TVector3* TMCGenerator::fTargetCentre">fTargetCentre</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TVector3* <a class="funcname" name="TMCGenerator:GetVertex" href="src/TMCGenerator.h.html#zmKiVB">GetVertex</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fVertex" title="TVector3* TMCGenerator::fVertex">fVertex</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TVector3* <a class="funcname" name="TMCGenerator:GetBeamCentre" href="src/TMCGenerator.h.html#O749jE">GetBeamCentre</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fBeamCentre" title="TVector3* TMCGenerator::fBeamCentre">fBeamCentre</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TLorentzVector* <a class="funcname" name="TMCGenerator:GetP4Target" href="src/TMCGenerator.h.html#V43tFC">GetP4Target</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fP4Target" title="TLorentzVector* TMCGenerator::fP4Target">fP4Target</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TLorentzVector* <a class="funcname" name="TMCGenerator:GetP4Beam" href="src/TMCGenerator.h.html#IlBgEE">GetP4Beam</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fP4Beam" title="TLorentzVector* TMCGenerator::fP4Beam">fP4Beam</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TLorentzVector* <a class="funcname" name="TMCGenerator:GetP4R" href="src/TMCGenerator.h.html#EAnjQC">GetP4R</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fP4R" title="TLorentzVector* TMCGenerator::fP4R">fP4R</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TMCParticle.html">TMCParticle</a>* <a class="funcname" name="TMCGenerator:GetBeam" href="src/TMCGenerator.h.html#CO5CvB">GetBeam</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fBeam" title="TMCParticle* TMCGenerator::fBeam">fBeam</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TMCParticle.html">TMCParticle</a>* <a class="funcname" name="TMCGenerator:GetReaction" href="src/TMCGenerator.h.html#aYgNs">GetReaction</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fReaction" title="TMCParticle* TMCGenerator::fReaction">fReaction</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TMCGenerator:GetNthrow" href="src/TMCGenerator.h.html#hoMCJD">GetNthrow</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fNThrow" title="Int_t TMCGenerator::fNThrow">fNThrow</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Int_t">Int_t</a> <a class="funcname" name="TMCGenerator:GetNParticle" href="src/TMCGenerator.h.html#XeThv">GetNParticle</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fNParticle" title="Int_t TMCGenerator::fNParticle">fNParticle</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TList* <a class="funcname" name="TMCGenerator:GetResonance" href="src/TMCGenerator.h.html#usXEdE">GetResonance</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fResonance" title="TList* TMCGenerator::fResonance">fResonance</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TList* <a class="funcname" name="TMCGenerator:GetReactionList" href="src/TMCGenerator.h.html#dJBPLC">GetReactionList</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fReactionList" title="TList* TMCGenerator::fReactionList">fReactionList</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TList* <a class="funcname" name="TMCGenerator:GetParticle" href="src/TMCGenerator.h.html#fBBrkB">GetParticle</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fParticle" title="TList* TMCGenerator::fParticle">fParticle</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Char_t">Char_t</a>* <a class="funcname" name="TMCGenerator:GetTreeFileName" href="src/TMCGenerator.h.html#dRRTPE">GetTreeFileName</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fTreeFileName" title="Char_t* TMCGenerator::fTreeFileName">fTreeFileName</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TFile* <a class="funcname" name="TMCGenerator:GetTreeFile" href="src/TMCGenerator.h.html#kqPpzE">GetTreeFile</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fTreeFile" title="TFile* TMCGenerator::fTreeFile">fTreeFile</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TTree* <a class="funcname" name="TMCGenerator:GetTree" href="src/TMCGenerator.h.html#tpwjqD">GetTree</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fTree" title="TTree* TMCGenerator::fTree">fTree</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname">TBranch** <a class="funcname" name="TMCGenerator:GetBranch" href="src/TMCGenerator.h.html#ss3jgB">GetBranch</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fBranch" title="TBranch** TMCGenerator::fBranch">fBranch</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><span class="keyword">void</span>** <a class="funcname" name="TMCGenerator:GetEvent" href="src/TMCGenerator.h.html#HYlezD">GetEvent</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fEvent" title="void** TMCGenerator::fEvent">fEvent</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TMCGenerator:IsTreeOut" href="src/TMCGenerator.h.html#DokUb">IsTreeOut</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fIsTreeOut" title="Bool_t TMCGenerator::fIsTreeOut">fIsTreeOut</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TMCGenerator:IsNtupleOut" href="src/TMCGenerator.h.html#Hmy17B">IsNtupleOut</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fIsNtupleOut" title="Bool_t TMCGenerator::fIsNtupleOut">fIsNtupleOut</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./ListOfTypes.html#Bool_t">Bool_t</a> <a class="funcname" name="TMCGenerator:IsError" href="src/TMCGenerator.h.html#MHLFn">IsError</a>()</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> <a href="./TMCGenerator.html#TMCGenerator:fIsError" title="Bool_t TMCGenerator::fIsError">fIsError</a>; }</code></div>
+<div style="clear:both;"></div>
+</div>
+<div class="funcdoc"><span class="funcname"><a href="./TMCParticle.html">TMCParticle</a>* <a class="funcname" name="TMCGenerator:GetParticle%1" href="src/TMCGenerator.h.html#FqSR9C">GetParticle</a>(<a href="./ListOfTypes.html#Char_t">Char_t</a>* name)</span><br />
+
+<div class="code"><code class="inlinecode">{ <span class="keyword">return</span> (<a href="./TMCParticle.html">TMCParticle</a>*)<a href="./TMCGenerator.html#TMCGenerator:fParticle" title="TList* TMCGenerator::fParticle">fParticle</a>-&gt;<a href="./#TObject:FindObject" title="TObject* TObject::FindObject(const char* name) or overloads">FindObject</a>( name ); }</code></div>
+<div style="clear:both;"></div>
+</div>
+
+<br />
+<!--SIGNATURE-->
+<div id="footer">
+
+<em>&raquo; Last changed:  	JRM Annand...27th Feb 2012  Use-degrees option, and Theta-dist </em><em>&raquo; Last generated: 2013-08-11 12:18</em><br />
+<em>This page has been automatically generated. For comments or suggestions regarding the documentation or ROOT in general please send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>.</em>
+</div>
+</div>
+</body>
+</html>
